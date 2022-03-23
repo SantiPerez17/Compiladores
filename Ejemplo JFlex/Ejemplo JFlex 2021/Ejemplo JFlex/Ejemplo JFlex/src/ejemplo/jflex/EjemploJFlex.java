@@ -5,6 +5,7 @@
  */
 package ejemplo.jflex;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java_cup.runtime.Symbol;
@@ -23,15 +24,19 @@ public class EjemploJFlex {
     public static void main(String[] args) throws IOException {
 
         // TODO code application logic here
-        MiLexico lexico = new MiLexico(new InputStreamReader(System.in));
-        System.out.printf("Análisis léxico iniciado: %nIngrese por teclado:%n");
+        //  MiLexico lexico = new MiLexico(new InputStreamReader(System.in));
+        //  System.out.printf("Análisis léxico iniciado: %nIngrese por teclado:%n");
+        System.out.println("Leyendo entrada...\n");
+        FileReader entrada = new FileReader("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/entrada.txt");
+        MiLexico lexico = new MiLexico(entrada);
         while (true) {
             MiToken token = lexico.yylex();
             if (token == null)
                 break;
             System.out.println("Token: " + token.toString());
         }
-        System.out.println("Análisis léxico terminado.");
+        System.out.println("\nAnálisis léxico terminado.");
+
 
     }
 
