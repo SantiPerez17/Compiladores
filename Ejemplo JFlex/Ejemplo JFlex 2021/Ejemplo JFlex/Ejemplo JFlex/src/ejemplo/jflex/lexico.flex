@@ -23,6 +23,11 @@ package ejemplo.jflex;
     int string_yyline = 0;
     int string_yycolumn = 0;
     int count_comment = 0;
+    int cota_int = 15000;
+    float cota_float_min = 1.4E-45f;
+    float cota_float_max = 3.4028235E10f;
+    int cota_string = 50;
+    int cantMax_string = 4;
 
 
     StringBuffer string = new StringBuffer();
@@ -40,18 +45,14 @@ package ejemplo.jflex;
     }
 %}
 
-LineTerminator = \r|\n|\r\n
-InputCharacter = [^\r\n]
-WhiteSpace     = {LineTerminator} | [ \t\f]
-
 /* comments */
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
+//Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+//TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 // Comment can be the last line of the file, without line terminator.
-EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
-DocumentationComment = "/**" {CommentContent} "*"+ "/"
-CommentContent       = ( [^*] | \*+ [^/*] )*
+//EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+//DocumentationComment = "/**" {CommentContent} "*"+ "/"
+//CommentContent       = ( [^*] | \*+ [^/*] )*
 
 //Identifier = [:jletter:] [:jletterdigit:]*
 Identifier = (([^\W\_\d]){1}[^\W]*){1,50}
@@ -67,13 +68,16 @@ Menor = \<
 Mayor_Igual = \>=
 Menor_Igual = \<=
 OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
-
+LineTerminator = \r|\n|\r\n
+InputCharacter = [^\r\n]
+WhiteSpace     =  \s | {LineTerminator} | [\t\f]
+SimpleComment = #.*{LineTerminator}?
 
 %state STRING
-%state comment
+%state Comment
 
 %%
-<comment>{
+<Comment>{
 "\(\*" {count_comment+=1;}
 "\*\)" {count_comment-=1;
       if (count_comment==0){
@@ -92,7 +96,7 @@ OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
 <YYINITIAL> {
 
 
-  "\(\*" {yybegin(comment);
+  "\(\*" {yybegin(Comment);
           count_comment+=1;
             }
   "\*\)" { throw new Error ("Error no comentario balanceado" );
@@ -101,6 +105,7 @@ OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
                                     yybegin(STRING); 
                                     string_yyline = this.yyline;
                                     string_yycolumn = this.yycolumn; }
+  {SimpleComment} {/*nada*/}
 
   /* "operators" */
   ":=" { return token("ASIGN", yytext()); }
@@ -128,8 +133,17 @@ OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
 
   /* tipos de datos */
       {Bool} {return token("BOOL", yytext());}
-      {Int} {return token("INT", yytext());}
-      {Float} {return token("FLOAT", yytext());}
+      {Int} {int a = Integer.parseInt(yytext());
+                //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
+                if ( a < cota_int && a > -(cota_int) ) {return token("INT", yytext());}
+                        else{
+                            throw new Error ("Error supera cantidad maxima o minima en caracteres enteros." );}}
+
+      {Float} {float a = Float.parseFloat(yytext());
+                              //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
+                              if ( a < cota_float_max && a > cota_float_min ) {return token("FLOAT", yytext());}
+                                      else{
+                                          throw new Error ("Error supera cantidad maxima o minima en caracteres flotantes." );}}
   /*- ----------------- */
       "display" {return token("DISPLAY", yytext());}
       "declare.section" {return token("DECLARE.SECTION", yytext());}
@@ -160,29 +174,20 @@ OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
     //‘\“‘ : comilla
     {Comilla} {return token("COMILLA", yytext());}
 
-
-
-
-
-
-
-
-
-
-
   /* identifiers */
   {Identifier}                   { return token("IDENTIFIER", yytext()); }
-
-  /* comments */
-  {Comment}                      { /* ignore */ }
-
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }
 }
 
 <STRING> {
   \"                             { yybegin(YYINITIAL);
-                                   return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString()); }
+                                    System.out.println(string.length());
+                                    if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
+                                        else{
+                                            throw new Error ("Error supera cantidad maxima de cadena de caracteres" );
+                                        }
+      }
   [^\n\r\"\\]+                   { string.append( yytext() ); }
   \\t                            { string.append('\t'); }
   \\n                            { string.append('\n'); }
