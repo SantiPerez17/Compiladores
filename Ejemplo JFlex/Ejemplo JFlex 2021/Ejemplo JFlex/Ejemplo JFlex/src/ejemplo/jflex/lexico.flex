@@ -23,10 +23,8 @@ package ejemplo.jflex;
     int string_yyline = 0;
     int string_yycolumn = 0;
     int count_comment = 0;
-    int cota_int = 15000;
-    float cota_float_min = 1.4E-45f;
-    float cota_float_max = 3.4028235E10f;
-    int cota_string = 50;
+    int cota_int = 20;
+    int cota_float = 50;
     int cantMax_string = 500;
 
 
@@ -55,6 +53,9 @@ package ejemplo.jflex;
 //CommentContent       = ( [^*] | \*+ [^/*] )*
 
 //Identifier = [:jletter:] [:jletterdigit:]*
+Cola = "cola" | "Cola"
+
+
 Identifier = (([^\W\_\d]){1}[^\W]*){1,50}
 
 Int= \d+
@@ -72,7 +73,6 @@ LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
 WhiteSpace     =  \s | {LineTerminator} | [\t\f]
 SimpleComment = #.*{LineTerminator}?
-Cola = "Cola"
 %state STRING
 %state Comment
 
@@ -107,7 +107,7 @@ Cola = "Cola"
                                     string_yycolumn = this.yycolumn; }
   {SimpleComment} {/*nada*/}
 
-  {Cola} {return token ("COLA", yytext())}
+  {Cola} {return token("COLA", yytext());}
 
   /* "operators" */
   ":=" { return token("ASIGN", yytext()); }
@@ -135,17 +135,21 @@ Cola = "Cola"
 
   /* tipos de datos */
       {Bool} {return token("BOOL", yytext());}
-      {Int} {int a = Integer.parseInt(yytext());
+      {Int} {
+          int a = yytext().length();
+          //int a = Integer.parseInt(yytext());
                 //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                if ( a < cota_int && a > -(cota_int) ) {return token("INT", yytext());}
+                if ( a < cota_int ) {return token("INT", yytext());}
                         else{
-                            throw new Error ("Error supera cantidad maxima o minima en caracteres enteros." );}}
+                            throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}}
 
-      {Float} {float a = Float.parseFloat(yytext());
+      {Float} {
+          int a = yytext().length();
+          //float a = Float.parseFloat(yytext()); me equivoqué pense que pedían hasta que numero flotante, y era su cant de caracteres.
                               //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                              if ( a < cota_float_max && a > cota_float_min ) {return token("FLOAT", yytext());}
+                              if ( a < cota_float) {return token("FLOAT", yytext());}
                                       else{
-                                          throw new Error ("Error supera cantidad maxima o minima en caracteres flotantes." );}}
+                                          throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}}
   /*- ----------------- */
       "display" {return token("DISPLAY", yytext());}
       "declare.section" {return token("DECLARE.SECTION", yytext());}
