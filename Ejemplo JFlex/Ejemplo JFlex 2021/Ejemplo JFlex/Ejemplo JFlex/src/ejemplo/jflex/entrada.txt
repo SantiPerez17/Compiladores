@@ -7,8 +7,9 @@ declare.section
  float: y,x,z;
  bool: u:=false;
 enddeclare.section
-
+resul:=cola (4;[10,20,30,40,5,4])
 
 (* \n hola \n\n\n como \t estas? \n *) (**)
 a:=1.1231231231231231231231231231231231231231231231231200000000000000000000000000000000000000000000002034
 "hola #asd"
+#dkajsdklasldjasñdasd asd as

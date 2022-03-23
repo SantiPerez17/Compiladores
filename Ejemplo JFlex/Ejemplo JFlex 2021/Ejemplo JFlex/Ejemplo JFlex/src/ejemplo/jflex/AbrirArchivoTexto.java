@@ -16,24 +16,24 @@ import javax.swing.UIManager;
 
 public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
-    public AbrirArchivoTexto(){
+    public AbrirArchivoTexto() {
         //Para poder cerrar la ventana
-        setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Se agrega un layout
-        setLayout( new BorderLayout() );
+        setLayout(new BorderLayout());
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
         JScrollPane jsp = new JScrollPane();
-        jsp.setViewportView( txp );
+        jsp.setViewportView(txp);
 
-        add( jsp, BorderLayout.CENTER );
+        add(jsp, BorderLayout.CENTER);
 
         //Se crea un boton para abrir el archivo
-        JButton btn = new JButton( "Abrir" );
-        btn.addActionListener( this );
-        btn.setIcon( new ImageIcon( getClass().getResource( "Abrir.png" ) ) );
+        JButton btn = new JButton("Abrir");
+        btn.addActionListener(this);
+
 
         add( btn, BorderLayout.NORTH );
 

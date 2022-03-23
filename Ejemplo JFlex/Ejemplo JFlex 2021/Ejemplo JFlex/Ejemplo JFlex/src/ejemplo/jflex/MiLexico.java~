@@ -1150,7 +1150,6 @@ public class MiLexico {
           case 74: break;
           case 24:
             { yybegin(YYINITIAL);
-                                    System.out.println(string.length());
                                     if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
                                         else{
                                             throw new Error ("Error supera cantidad maxima de cadena de caracteres" );

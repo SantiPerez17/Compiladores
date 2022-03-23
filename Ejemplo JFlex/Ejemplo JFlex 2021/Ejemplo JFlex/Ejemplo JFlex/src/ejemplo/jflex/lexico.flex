@@ -72,7 +72,7 @@ LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
 WhiteSpace     =  \s | {LineTerminator} | [\t\f]
 SimpleComment = #.*{LineTerminator}?
-
+Cola = "Cola"
 %state STRING
 %state Comment
 
@@ -106,6 +106,8 @@ SimpleComment = #.*{LineTerminator}?
                                     string_yyline = this.yyline;
                                     string_yycolumn = this.yycolumn; }
   {SimpleComment} {/*nada*/}
+
+  {Cola} {return token ("COLA", yytext())}
 
   /* "operators" */
   ":=" { return token("ASIGN", yytext()); }
