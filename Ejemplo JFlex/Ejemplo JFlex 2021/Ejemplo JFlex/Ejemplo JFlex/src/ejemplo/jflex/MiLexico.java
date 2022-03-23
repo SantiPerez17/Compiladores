@@ -609,7 +609,7 @@ public class MiLexico {
     float cota_float_min = 1.4E-45f;
     float cota_float_max = 3.4028235E10f;
     int cota_string = 50;
-    int cantMax_string = 4;
+    int cantMax_string = 500;
 
 
     StringBuffer string = new StringBuffer();
@@ -1150,7 +1150,6 @@ public class MiLexico {
           case 74: break;
           case 24:
             { yybegin(YYINITIAL);
-                                    System.out.println(string.length());
                                     if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
                                         else{
                                             throw new Error ("Error supera cantidad maxima de cadena de caracteres" );

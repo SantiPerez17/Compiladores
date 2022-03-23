@@ -1,14 +1,14 @@
 # asdasd
-
 var:= (* commentario *) 123;
 #prueba de ver si esto anda
 declare.section
  int: a,b,c;
+ "hola #asd"
  float: y,x,z;
  bool: u:=false;
 enddeclare.section
 
 
-(* \n hola \n\n\n como \t estas? \n *) (**);
+(* \n hola \n\n\n como \t estas? \n *) (**)
 a:=1.1231231231231231231231231231231231231231231231231200000000000000000000000000000000000000000000002034
 "hola #asd"
