@@ -1,54 +1,56 @@
 package ejemplo.jflex;
 
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
+import java.io.*;
+import javax.swing.*;
 
 public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
-    public AbrirArchivoTexto() {
-        //Para poder cerrar la ventana
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Se agrega un layout
-        setLayout(new BorderLayout());
+
+    public AbrirArchivoTexto() {
+        JFrame frame = new JFrame("Compilador");
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+        panel1.setLayout(new FlowLayout());
+        panel2.setLayout(new BorderLayout());
+        frame.setSize( 500, 500 );
+        frame.setLocationRelativeTo( null );
+        frame.add(panel1, BorderLayout.NORTH);
+        frame.add(panel2, BorderLayout.CENTER);
+
+        //Se crea un boton para abrir el archivo
+        JButton btn = new JButton("Abrir");
+        btn.addActionListener(this);
+        panel1.add( btn );
+
+        //Se crea un boton para guardar el archivo
+        JButton btn2 = new JButton("Guardar");
+        btn2.addActionListener(this);
+        panel1.add( btn2 );
+
+        //Se crea un boton para compilar el archivo
+        JButton btn3 = new JButton("Compilar");
+        btn3.addActionListener(this);
+        panel1.add( btn3 );
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
         JScrollPane jsp = new JScrollPane();
         jsp.setViewportView(txp);
+        panel2.add(jsp, BorderLayout.CENTER);
 
-        add(jsp, BorderLayout.CENTER);
-
-        //Se crea un boton para abrir el archivo
-        JButton btn = new JButton("Abrir");
-        btn.addActionListener(this);
-
-
-        add( btn, BorderLayout.NORTH );
-
-        //Tamaño de la ventana
-        setSize( 500, 500 );
-
-        //Esto sirve para centrar la ventana
-        setLocationRelativeTo( null );
-
-        //Hacemos visible la ventana
-        setVisible( true );
+        frame.setVisible( true );
     }
 
     //------------------------------Action Performed-------------------------------//
     public void actionPerformed( ActionEvent e ){
+
         JButton btn = (JButton)e.getSource();
         if( btn.getText().equals( "Abrir" ) )
         {
@@ -58,23 +60,47 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
             int seleccion = abrirArchivo.showOpenDialog( this );
 
-            if( seleccion == JFileChooser.APPROVE_OPTION )
-            {
+            if( seleccion == JFileChooser.APPROVE_OPTION ) {
                 File f = abrirArchivo.getSelectedFile();
-                try
-                {
+                archivo = f;
+                try {
                     String nombre = f.getName();
                     String path = f.getAbsolutePath();
-                    String contenido = getArchivo( path );
+                    String contenido = getArchivo(path);
                     //Colocamos en el titulo de la aplicacion el
                     //nombre del archivo
-                    this.setTitle( nombre );
+                    this.setTitle(nombre);
 
                     //En el editor de texto colocamos su contenido
-                    txp.setText( contenido );
+                    txp.setText(contenido);
 
-                }catch( Exception exp){}
+                } catch (Exception exp) {
+                }
             }
+        } else if( btn.getText().equals( "Guardar" ) ){
+            try {
+                setArchivo(archivo, txp.getText());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane,ex.getMessage());
+            }
+        } else if( btn.getText().equals( "Compilar" ) ){
+            JFrame frame2 = new JFrame("Tokens");
+            frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame2.setLayout(new BorderLayout());
+            frame2.setSize( 500, 500 );
+            frame2.setLocationRelativeTo( null );
+            txp2 = new JTextPane();
+            JScrollPane jsp2 = new JScrollPane();
+            jsp2.setViewportView(txp2);
+            frame2.add(jsp2, BorderLayout.CENTER);
+            frame2.setVisible( true );
+
+            try {
+                Compilar(txp.getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
         }
     }
     //-----------------------------------------------------------------------------//
@@ -110,6 +136,31 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
     }
     //-----------------------------------------------------------------------------//
 
+    //-------------------------Se guarda el contenido en el Archivo----------------//
+    public void setArchivo(File archivo, String contenido) throws IOException {
+        FileWriter fw = new FileWriter("C:\\Users\\agusa\\IdeaProjects\\Compiladores\\Ejemplo JFlex\\Ejemplo JFlex 2021\\Ejemplo JFlex\\Ejemplo JFlex\\src\\ejemplo\\jflex\\entrada.txt");
+        String texto = contenido;
+        PrintWriter imprime = new PrintWriter(fw);
+        imprime.print(texto);
+        fw.close();
+        JOptionPane.showMessageDialog(rootPane,"Archivo guardado");
+    }
+    //-----------------------------------------------------------------------------//
+
+    public void Compilar(String contenido) throws IOException {
+        FileReader entrada = new FileReader(archivo);
+        MiLexico lexico = new MiLexico(entrada);
+        String tokens = "";
+        while (true) {
+            MiToken token = lexico.yylex();
+            if (token == null)
+                break;
+            tokens += "Token: " + token.toString() + "\n";
+        }
+        tokens += "\nAnálisis léxico terminado.";
+        txp2.setText(tokens);
+    }
+
     public static void main( String[] arg ){
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -125,5 +176,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
     }
 
     JTextPane txp;
+    JTextPane txp2;
     JFileChooser abrirArchivo;
+    File archivo = new File("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/entrada.txt");;
 }
