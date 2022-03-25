@@ -45,6 +45,10 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
         jsp.setViewportView(txp);
         panel2.add(jsp, BorderLayout.CENTER);
 
+        String path = archivo.getAbsolutePath();
+        String contenido = getArchivo(path);
+        txp.setText(contenido);
+
         frame.setVisible( true );
     }
 
@@ -138,7 +142,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
     //-------------------------Se guarda el contenido en el Archivo----------------//
     public void setArchivo(File archivo, String contenido) throws IOException {
-        FileWriter fw = new FileWriter("C:\\Users\\agusa\\IdeaProjects\\Compiladores\\Ejemplo JFlex\\Ejemplo JFlex 2021\\Ejemplo JFlex\\Ejemplo JFlex\\src\\ejemplo\\jflex\\entrada.txt");
+        FileWriter fw = new FileWriter(archivo.getAbsolutePath());
         String texto = contenido;
         PrintWriter imprime = new PrintWriter(fw);
         imprime.print(texto);
