@@ -8,5 +8,6 @@
     <orderEntry type="jdk" jdkName="16" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jflex-full-1.8.2" level="project" />
+    <orderEntry type="library" name="jflex-full-1.8.21" level="project" />
   </component>
 </module>
