@@ -390,7 +390,7 @@ public class MiLexico {
     "\1\4\3\5\1\6\1\7\1\10\1\11\1\12\1\13"+
     "\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\23"+
     "\1\24\1\25\1\26\1\27\1\30\1\31\1\4\1\32"+
-    "\1\4\1\33\1\27\1\34\1\35\1\36\2\27\1\37"+
+    "\1\4\1\33\1\30\1\34\1\35\1\36\2\27\1\37"+
     "\2\27\1\40\1\41\1\42\2\27\1\43\1\27\1\44"+
     "\1\27\1\45\1\46\1\47\1\4\2\50\1\4\1\50"+
     "\1\4\1\50\1\51\21\50\1\52\31\50\2\53\1\54"+
@@ -1097,7 +1097,8 @@ public class MiLexico {
                 //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
                 if ( a < cota_int ) {return token("INT", yytext());}
                         else{
-                            throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}
+                            throw new Error ("Error supera cantidad maxima de caracteres permitidos" );
+                            }
             }
             // fall through
           case 65: break;
@@ -1182,7 +1183,7 @@ public class MiLexico {
                               //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
                               if ( a < cota_float) {return token("FLOAT", yytext());}
                                       else{
-                                          throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}
+                                          return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
             }
             // fall through
           case 80: break;

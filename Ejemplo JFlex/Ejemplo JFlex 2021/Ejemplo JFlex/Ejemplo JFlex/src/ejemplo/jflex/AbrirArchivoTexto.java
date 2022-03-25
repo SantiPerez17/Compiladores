@@ -98,7 +98,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
             try {
                 Compilar(txp.getText());
             } catch (IOException ex) {
-                ex.printStackTrace();
+                JOptionPane.showMessageDialog(rootPane,ex.getMessage());
             }
 
         }
@@ -148,17 +148,30 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
     //-----------------------------------------------------------------------------//
 
     public void Compilar(String contenido) throws IOException {
-        FileReader entrada = new FileReader(archivo);
-        MiLexico lexico = new MiLexico(entrada);
-        String tokens = "";
-        while (true) {
-            MiToken token = lexico.yylex();
-            if (token == null)
-                break;
-            tokens += "Token: " + token.toString() + "\n";
+        try{
+            FileReader entrada = new FileReader(archivo);
+            MiLexico lexico = new MiLexico(entrada);
+            String tokens = "";
+            String errores = "Errores:";
+            while (true) {
+                MiToken token = lexico.yylex();
+                if (token == null) {
+                    break;
+                } else if (token.nombre == "ERROR"){
+                    errores += "\n" + token.valor.toString() + " - Linea: " + (token.linea+1);
+                }
+                tokens += "Token: " + token.toString() + "\n";
+            }
+            if (errores == "Errores:"){
+                tokens += "\nAnálisis léxico terminado.";
+                txp2.setText(tokens);
+            } else {
+                errores += "\n\nEl análisis léxico se ejecuto con errores.";
+                txp2.setText(errores);
+            }
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(rootPane,ex.getMessage());
         }
-        tokens += "\nAnálisis léxico terminado.";
-        txp2.setText(tokens);
     }
 
     public static void main( String[] arg ){

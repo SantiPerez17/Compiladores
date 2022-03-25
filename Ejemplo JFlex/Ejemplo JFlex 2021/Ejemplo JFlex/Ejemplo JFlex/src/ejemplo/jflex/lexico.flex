@@ -83,10 +83,10 @@ SimpleComment = #.*{LineTerminator}?
       if (count_comment==0){
           yybegin(YYINITIAL);
       }}
-"\n" {throw new Error ("Error no comentario balanceado" );}
+"\n" {return token("ERROR", "Error comentario no balanceado");}
 
 <<EOF>> {
-         throw new Error ("Error no comentario balanceado" );
+         return token("ERROR", "Error comentario no balanceado");
       }
 [^] {/*nada*/}
 }
@@ -99,7 +99,7 @@ SimpleComment = #.*{LineTerminator}?
   "\(\*" {yybegin(Comment);
           count_comment+=1;
             }
-  "\*\)" { throw new Error ("Error no comentario balanceado" );
+  "\*\)" { return token("ERROR", "Error comentario no balanceado");
   }
   \"                             {  string.setLength(0);
                                     yybegin(STRING); 
@@ -141,7 +141,9 @@ SimpleComment = #.*{LineTerminator}?
                 //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
                 if ( a < cota_int ) {return token("INT", yytext());}
                         else{
-                            throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}}
+                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
+                            }
+            }
 
       {Float} {
           int a = yytext().length();
@@ -149,7 +151,7 @@ SimpleComment = #.*{LineTerminator}?
                               //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
                               if ( a < cota_float) {return token("FLOAT", yytext());}
                                       else{
-                                          throw new Error ("Error supera cantidad maxima de caracteres permitidos" );}}
+                                          return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}}
   /*- ----------------- */
       "display" {return token("DISPLAY", yytext());}
       "declare.section" {return token("DECLARE.SECTION", yytext());}
@@ -190,7 +192,7 @@ SimpleComment = #.*{LineTerminator}?
   \"                             { yybegin(YYINITIAL);
                                     if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
                                         else{
-                                            throw new Error ("Error supera cantidad maxima de cadena de caracteres" );
+                                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
                                         }
       }
   [^\n\r\"\\]+                   { string.append( yytext() ); }
@@ -203,4 +205,4 @@ SimpleComment = #.*{LineTerminator}?
 }
 
 /* error fallback */
-[^]                              { throw new Error("Illegal character <"+yytext()+">"); }
+[^]                              { return token("ERROR", "Illegal character <"+yytext()+">"); }
