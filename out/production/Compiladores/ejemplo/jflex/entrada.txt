@@ -1,15 +1,14 @@
 # asdasd
-var:= (* commentario *) 123;
-#prueba de ver si esto anda
-declare.section
- int: a,b,c;
- "hola #asd"
+var:= (* commentario *) 123; 
+#prueba de ver si esto anda 
+declare.section *)
+ int: a,b,c; 
+ "hola #asd" 
  float: y,x,z;
  bool: u:=false;
 enddeclare.section
-resul:=cola (4;[10,20,30,40,5,4])
-
-(* \n hola \n\n\n como \t estas? \n *) (**)
-a:=1.1231231
-"hola #asd"
-#dkajsdklasldjasñdasd asd as
+resul:=cola (4;[10,20,30,40,5,4]) 
+(* \n hola \n\n\n como \t estas? \n *)
+a:=1.1231231651919
+"hola #asdaklsdjalsdkajdklasjdaskldjaskldjakldjaskldjaskddjaklsd" 
+#dkajsdklasldjasñdasd asd as *) 

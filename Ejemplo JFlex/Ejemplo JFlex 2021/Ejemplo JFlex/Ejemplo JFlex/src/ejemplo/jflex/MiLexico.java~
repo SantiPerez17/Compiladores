@@ -610,7 +610,7 @@ public class MiLexico {
     int string_yycolumn = 0;
     int count_comment = 0;
     int cota_int = 20;
-    int cota_float = 50;
+    int cota_float = 25;
     int cantMax_string = 500;
 
 
@@ -1019,7 +1019,7 @@ public class MiLexico {
         zzAtEOF = true;
             switch (zzLexicalState) {
             case Comment: {
-              throw new Error ("Error no comentario balanceado" );
+              return token("ERROR", "Error comentario no balanceado");
             }  // fall though
             case 150: break;
             default:
@@ -1029,7 +1029,7 @@ public class MiLexico {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { throw new Error("Illegal character <"+yytext()+">");
+            { return token("ERROR", "Illegal character <"+yytext()+">");
             }
             // fall through
           case 53: break;
@@ -1097,7 +1097,7 @@ public class MiLexico {
                 //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
                 if ( a < cota_int ) {return token("INT", yytext());}
                         else{
-                            throw new Error ("Error supera cantidad maxima de caracteres permitidos" );
+                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
                             }
             }
             // fall through
@@ -1156,7 +1156,7 @@ public class MiLexico {
             { yybegin(YYINITIAL);
                                     if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
                                         else{
-                                            throw new Error ("Error supera cantidad maxima de cadena de caracteres" );
+                                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
                                         }
             }
             // fall through
@@ -1167,7 +1167,7 @@ public class MiLexico {
             // fall through
           case 77: break;
           case 26:
-            { throw new Error ("Error no comentario balanceado" );
+            { return token("ERROR", "Error comentario no balanceado");
             }
             // fall through
           case 78: break;

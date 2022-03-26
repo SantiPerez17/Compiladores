@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.util.Objects;
 import javax.swing.*;
 
 public class AbrirArchivoTexto extends JFrame implements ActionListener {
@@ -11,7 +12,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
 
     public AbrirArchivoTexto() {
-        JFrame frame = new JFrame("Compilador");
+        JFrame frame = new JFrame("Compilador-Lexer");
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
 
@@ -155,23 +156,24 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
         try{
             FileReader entrada = new FileReader(archivo);
             MiLexico lexico = new MiLexico(entrada);
-            String tokens = "";
-            String errores = "Errores:";
+            StringBuilder tokens = new StringBuilder();
+            StringBuilder errores = new StringBuilder("Errores: ");
+
             while (true) {
                 MiToken token = lexico.yylex();
                 if (token == null) {
                     break;
-                } else if (token.nombre == "ERROR"){
-                    errores += "\n" + token.valor.toString() + " - Linea: " + (token.linea+1);
+                } else if (Objects.equals(token.nombre, "ERROR")){
+                    errores.append("\n").append(token.valor.toString()).append(" - Linea: ").append(token.linea + 1);
                 }
-                tokens += "Token: " + token.toString() + "\n";
+                tokens.append("Token: ").append(token).append("\n");
             }
-            if (errores == "Errores:"){
-                tokens += "\nAnálisis léxico terminado.";
-                txp2.setText(tokens);
+            if (errores.toString().equals("Errores: ")){
+                tokens.append("\nAnálisis léxico terminado.");
+                txp2.setText(tokens.toString());
             } else {
-                errores += "\n\nEl análisis léxico se ejecuto con errores.";
-                txp2.setText(errores);
+                errores.append("\n\nEl análisis léxico se ejecuto con errores.");
+                txp2.setText(errores.toString());
             }
         } catch(Exception ex){
             JOptionPane.showMessageDialog(rootPane,ex.getMessage());

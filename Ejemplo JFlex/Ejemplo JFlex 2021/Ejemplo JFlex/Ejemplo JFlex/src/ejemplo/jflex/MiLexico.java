@@ -610,8 +610,8 @@ public class MiLexico {
     int string_yycolumn = 0;
     int count_comment = 0;
     int cota_int = 20;
-    int cota_float = 50;
-    int cantMax_string = 500;
+    int cota_float = 25;
+    int cantMax_string = 100;
 
 
     StringBuffer string = new StringBuffer();
