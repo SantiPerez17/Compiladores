@@ -83,10 +83,11 @@ SimpleComment = #.*{LineTerminator}?
       if (count_comment==0){
           yybegin(YYINITIAL);
       }}
-"\n" {return token("ERROR", "Error comentario no balanceado");}
-
-<<EOF>> {
+\n {
          return token("ERROR", "Error comentario no balanceado");
+      }
+<<EOF>> {
+         return token("ERROR" , "Error comentario no balanceado");
       }
 [^] {/*nada*/}
 }
@@ -98,14 +99,17 @@ SimpleComment = #.*{LineTerminator}?
 
   "\(\*" {yybegin(Comment);
           count_comment+=1;
-            }
+
+      }
   "\*\)" { return token("ERROR", "Error comentario no balanceado");
   }
-  \"                             {  string.setLength(0);
-                                    yybegin(STRING); 
-                                    string_yyline = this.yyline;
-                                    string_yycolumn = this.yycolumn; }
-  {SimpleComment} {/*nada*/}
+
+  \"  {  string.setLength(0);
+          yybegin(STRING);
+          string_yyline = this.yyline;
+          string_yycolumn = this.yycolumn; }
+
+  {SimpleComment} {}
 
   {Cola} {return token("COLA", yytext());}
 

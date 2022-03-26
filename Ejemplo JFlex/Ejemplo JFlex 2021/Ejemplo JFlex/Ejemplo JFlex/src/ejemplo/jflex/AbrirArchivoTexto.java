@@ -12,7 +12,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
 
     public AbrirArchivoTexto() {
-        JFrame frame = new JFrame("Compilador-Lexer");
+        JFrame frame = new JFrame("Compilador");
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
 
@@ -159,14 +159,17 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
             StringBuilder tokens = new StringBuilder();
             StringBuilder errores = new StringBuilder("Errores: ");
 
-            while (true) {
+            while (!(lexico.yyatEOF())) {
                 MiToken token = lexico.yylex();
                 if (token == null) {
                     break;
-                } else if (Objects.equals(token.nombre, "ERROR")){
-                    errores.append("\n").append(token.valor.toString()).append(" - Linea: ").append(token.linea + 1);
                 }
-                tokens.append("Token: ").append(token).append("\n");
+                if (Objects.equals(token.nombre, "ERROR")){
+                    errores.append("\n").append(token.valor).append(" - Linea: ").append(token.linea + 1);
+                }
+                else {
+                    tokens.append("Token: ").append(token).append("\n\n");
+                }
             }
             if (errores.toString().equals("Errores: ")){
                 tokens.append("\nAnálisis léxico terminado.");
@@ -197,5 +200,5 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
     JTextPane txp;
     JTextPane txp2;
     JFileChooser abrirArchivo;
-    File archivo = new File("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/entrada.txt");;
+    File archivo = new File("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");;
 }

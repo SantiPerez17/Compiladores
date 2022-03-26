@@ -27,13 +27,14 @@ public class EjemploJFlex {
         //  MiLexico lexico = new MiLexico(new InputStreamReader(System.in));
         //  System.out.printf("Análisis léxico iniciado: %nIngrese por teclado:%n");
         System.out.println("Leyendo entrada...\n");
-        FileReader entrada = new FileReader("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/entrada.txt");
+        FileReader entrada = new FileReader("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");
         MiLexico lexico = new MiLexico(entrada);
-        while (true) {
+        String tokens = "Iniciando analizador lexico ... \n ";
+        while (!(lexico.yyatEOF())) {
             MiToken token = lexico.yylex();
             if (token == null)
                 break;
-            System.out.println("Token: " + token.toString());
+            System.out.println("Token: " + token);
         }
         System.out.println("\nAnálisis léxico terminado.");
 
@@ -41,5 +42,5 @@ public class EjemploJFlex {
     }
 
 
-    
+
 }

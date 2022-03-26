@@ -1,7 +1,7 @@
 # asdasd
-var:= (* commentario *) 123; 
+var:= (* commentario *) 123;
 #prueba de ver si esto anda 
-declare.section *)
+declare.section 
  int: a,b,c; 
  "hola #asd" 
  float: y,x,z;
@@ -12,3 +12,5 @@ resul:=cola (4;[10,20,30,40,5,4])
 a:=1.1231231651919
 "hola #asdaklsdjalsdkajdklasjdaskldjaskldjakldjaskldjaskddjaklsd" 
 #dkajsdklasldjasñdasd asd as *) 
+yujkjhbjm,hb
+(*(**)*)
