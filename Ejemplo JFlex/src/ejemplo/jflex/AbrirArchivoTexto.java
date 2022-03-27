@@ -9,8 +9,6 @@ import javax.swing.*;
 
 public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
-
-
     public AbrirArchivoTexto() {
         JFrame frame = new JFrame("Compilador");
         JPanel panel1 = new JPanel();
@@ -200,5 +198,5 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
     JTextPane txp;
     JTextPane txp2;
     JFileChooser abrirArchivo;
-    File archivo = new File("Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");;
+    File archivo = new File("Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");;
 }

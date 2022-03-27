@@ -22,7 +22,7 @@ public class Generador {
      */
     public static void main(String[] args) {
         //si le cambio el path se rompe asique lo dejo así.
-        String path = "Ejemplo JFlex/Ejemplo JFlex 2021/Ejemplo JFlex/Ejemplo JFlex/src/ejemplo/jflex/lexico.flex";
+        String path = "Ejemplo JFlex/src/ejemplo/jflex/lexico.flex";
         generarLexer(path);
     }
     
