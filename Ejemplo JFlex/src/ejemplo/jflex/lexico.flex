@@ -57,6 +57,9 @@ Cola = "cola" | "Cola"
 Input_int = "input_int"
 Input_float = "input_float"
 Input_bool = "input_bool"
+Tipo_int = "int"
+Tipo_float = "float"
+Tipo_bool = "bool"
 
 
 
@@ -165,6 +168,9 @@ SimpleComment = #.*{LineTerminator}?
       {Input_int} {return token("INPUT_INT", yytext());}
       {Input_float} {return token("INPUT_FLOAT", yytext());}
       {Input_bool} {return token("INPUT_BOOL", yytext());}
+      {Tipo_int} {return token("TIPO_INT", yytext());}
+      {Tipo_float} {return token("TIPO_FLOAT", yytext());}
+      {Tipo_bool} {return token("TIPO_BOOL", yytext());}
       "declare.section" {return token("DECLARE.SECTION", yytext());}
       "enddeclare.section" {return token("ENDDECLARE.SECTION", yytext());}
       "program.section" {return token("program.SECTION", yytext());}

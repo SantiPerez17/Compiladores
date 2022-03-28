@@ -1,6 +1,7 @@
 # asdasd
+bool
 var:= (* commentario *) 123;
-input_int(123); (*
+input_int(123); 
 #prueba de ver si esto anda 
 declare.section 
  int: a,b,c; 
