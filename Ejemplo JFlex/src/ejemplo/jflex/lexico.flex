@@ -54,6 +54,10 @@ package ejemplo.jflex;
 
 //Identifier = [:jletter:] [:jletterdigit:]*
 Cola = "cola" | "Cola"
+Input_int = "input_int"
+Input_float = "input_float"
+Input_bool = "input_bool"
+
 
 
 Identifier = (([^\W\_\d]){1}[^\W]*){1,50}
@@ -70,7 +74,7 @@ Mayor_Igual = \>=
 Menor_Igual = \<=
 OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
 LineTerminator = \r|\n|\r\n
-InputCharacter = [^\r\n]
+//InputCharacter = [^\r\n]
 WhiteSpace     =  \s | {LineTerminator} | [\t\f]
 SimpleComment = #.*{LineTerminator}?
 %state STRING
@@ -158,6 +162,9 @@ SimpleComment = #.*{LineTerminator}?
                                           return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}}
   /*- ----------------- */
       "display" {return token("DISPLAY", yytext());}
+      {Input_int} {return token("INPUT_INT", yytext());}
+      {Input_float} {return token("INPUT_FLOAT", yytext());}
+      {Input_bool} {return token("INPUT_BOOL", yytext());}
       "declare.section" {return token("DECLARE.SECTION", yytext());}
       "enddeclare.section" {return token("ENDDECLARE.SECTION", yytext());}
       "program.section" {return token("program.SECTION", yytext());}

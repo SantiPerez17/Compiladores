@@ -43,6 +43,6 @@ class MiToken{
         if (valor == null)
             return "[" + this.nombre + "]" + posicion;
         else
-            return "[" + this.nombre + "] -> (" + this.valor + ")" + posicion;
+            return "[" + this.nombre + "] --> (' " + this.valor + " ')" + posicion;
     }
 }
