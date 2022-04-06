@@ -30,13 +30,18 @@ public class EjemploJFlex {
         FileReader entrada = new FileReader("Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");
         MiLexico lexico = new MiLexico(entrada);
         String tokens = "Iniciando analizador lexico... \n ";
-        while (!(lexico.yyatEOF())) {
-            MiToken token = lexico.yylex();
-            if (token == null)
-                break;
-            System.out.println("Token: " + token);
-        }
-        System.out.println("\nAnálisis léxico terminado.");
+        try{
+            while (!(lexico.yyatEOF())) {
+                Symbol token = lexico.next_token();
+                if (token == null)
+                    break;
+                System.out.println("Token: " + token);
+            }
+            System.out.println("\nAnálisis léxico terminado.");
+        } catch (Error e){
+            System.out.println("error " + e);
+        };
+
 
 
     }

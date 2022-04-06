@@ -1,6 +1,9 @@
 /* JFlex example: partial Java language lexer specification */
 package ejemplo.jflex;
 
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import java_cup.sym;
 /**
  * This class is a simple example lexer.
  */
@@ -9,6 +12,7 @@ package ejemplo.jflex;
 %public
 %class MiLexico
 %unicode
+%cup
 %type MiToken
 %line
 %column
@@ -90,11 +94,9 @@ SimpleComment = #.*{LineTerminator}?
       if (count_comment==0){
           yybegin(YYINITIAL);
       }}
-\n {
-         return token("ERROR", "Error comentario no balanceado");
-      }
+
 <<EOF>> {
-         return token("ERROR" , "Error comentario no balanceado");
+         return token("ERROR", "Error comentario no balanceado");
       }
 [^] {/*nada*/}
 }
@@ -135,7 +137,7 @@ SimpleComment = #.*{LineTerminator}?
   /* OP LOGICOS*/
       "and" {return token("AND",yytext());}
       "or" {return token("OR", yytext());}
-      "not" {return token("not", yytext());}
+      "not" {return token("NOT", yytext());}
   /* Sentencias */
   "while" {return token("WHILE", yytext());}
       "do" {return token("DO", yytext());}
@@ -171,10 +173,10 @@ SimpleComment = #.*{LineTerminator}?
       {Tipo_int} {return token("TIPO_INT", yytext());}
       {Tipo_float} {return token("TIPO_FLOAT", yytext());}
       {Tipo_bool} {return token("TIPO_BOOL", yytext());}
-      "declare.section" {return token("DECLARE.SECTION", yytext());}
-      "enddeclare.section" {return token("ENDDECLARE.SECTION", yytext());}
-      "program.section" {return token("program.SECTION", yytext());}
-      "endprogram.section" {return token("ENDPROGRAM.SECTION", yytext());}
+      "declare.section" {return token("DECLARE_SECTION", yytext());}
+      "enddeclare.section" {return token("ENDDECLARE_SECTION", yytext());}
+      "program.section" {return token("PROGRAM_SECTION", yytext());}
+      "endprogram.section" {return token("ENDPROGRAM_SECTION", yytext());}
 
     //“\(“ : parentesiso
     "\(" {return token("PARENTESISO", yytext());}
@@ -220,6 +222,5 @@ SimpleComment = #.*{LineTerminator}?
   \\\"                           { string.append('\"'); }
   \\                             { string.append('\\'); }
 }
-
 /* error fallback */
 [^]                              { return token("ERROR", "Illegal character <"+yytext()+">"); }

@@ -1,0 +1,357 @@
+package ejemplo.jflex;
+
+import java_cup.runtime.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java_cup.runtime.*;
+
+class MiParser;
+
+parser code
+{:
+    public void syntax_error(Symbol s){
+        System.out.println("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+        +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+        System.out.println("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+        +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
+    }
+
+:};
+//action code para hacer tabla de simbolos
+
+terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, LLAVEO, CORCHETEO, CORCHETEC,  LLAVEc, PUNTOCOMA,
+PUNTO, COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, IGUAL, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
+terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
+
+nonterminal String ids, program, programa, sector_declaraciones, programa_main,lista_declaraciones, declaracion, tipo_de_dato,
+sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
+factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
+
+start with program;
+
+program ::= sector_declaraciones:sd programa:p //programa
+    {:  System.out.println("Regla 0: program --> sector_declaraciones programa");
+    RESULT= sd + p ;:}
+    |
+    programa:p {:
+    System.out.println("Regla 0.1: program --> " + p );
+    RESULT= p;
+    :};
+sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
+    {: System.out.println("Regla 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE.SECTION");
+       RESULT = "DECLARE_SECTION" + ld + "ENDDECLARE_SECTION"; :};
+
+lista_declaraciones ::= declaracion:d {:
+    System.out.println ( "Regla 1.1: lista_declaraciones --> declaracion");
+    RESULT = d; :}
+    |
+    lista_declaraciones:ld declaracion:d {:
+    System.out.println ("Regla 1.2: lista_declaraciones --> lista_declaraciones declaracion");
+    RESULT = ld + d ; :};
+
+declaracion ::=
+    tipo_de_dato:td DOSPUNTOS ids:i PUNTOCOMA {:
+        System.out.println("Regla 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA");
+        System.out.println("Regla 2: declaraciones -->" + td + ": " + i + ";");
+        RESULT = td + ":" + i + ";";:};
+
+ids ::=
+    IDENTIFIER:id {:
+        System.out.println("Regla 2.2: ids --> IDENTIFIER");
+        System.out.println("Regla 2.1: ids -->" + id);
+        RESULT = id; :}
+    |
+    ids:i COMA IDENTIFIER:id {:
+        System.out.println("Regla 2.2: ids --> ids IDENTIFIER");
+        System.out.println("Regla 2.1: ids --> "+ i + id );
+        RESULT = i + "," + id; :};
+
+tipo_de_dato ::=
+    TIPO_INT:ti {:
+        System.out.println("Regla 2.2.1: tipo_de_dato --> TIPO_INT");
+        System.out.println("Regla 2.2.1: tipo_de_dato -->" + ti );
+        RESULT = "int"; :}
+    |
+    TIPO_FLOAT:tf {:
+        System.out.println("Regla 2.2.2: tipo_de_dato --> TIPO_FLOAT");
+        System.out.println("Regla 2.2.2: tipo_de_dato -->" + tf );
+        RESULT = "float"; :}
+    |
+    TIPO_BOOL:tb {:
+        System.out.println("Regla 2.2.3: tipo_de_dato --> TIPO_BOOL");
+        System.out.println("Regla 2.2.3: tipo_de_dato --> "+ tb);
+        RESULT = "bool";:};
+
+programa ::=
+        PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
+            System.out.println("Regla 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION");
+            System.out.println("Regla 3: programa --> program.section " + ls  + " endprogram.section");
+            RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
+        :};
+lista_sentencias ::=
+        sentencia:s {:
+            System.out.println("Regla 3.1: lista_sentencias --> sentencia");
+            System.out.println("Regla 3.1: lista_sentencias --> "  + s);
+            RESULT = s; :}
+        |
+        lista_sentencias:ls sentencia:s {:
+            System.out.println("Regla 3.2: lista_sentencias --> lista_sentencias sentencia");
+            System.out.println("Regla 3.2: lista_sentencias --> " + ls + s);
+            RESULT = ls + s; :};
+
+sentencia ::=
+        sentencia_while:sw {:
+            System.out.println("Regla 3.1.1: sentencia --> sentencia_while");
+            System.out.println("Regla 3.1.1: sentencia --> " + sw);
+            RESULT = sw; :}
+        |
+        sentencia_if:si {:
+            System.out.println("Regla 3.1.2: sentencia --> sentencia_if");
+            System.out.println("Regla 3.1.2: sentencia --> " + si);
+            RESULT = si; :}
+        |
+        sentencia_display:sd {:
+            System.out.println("Regla 3.1.3: sentencia --> sentencia_display");
+            System.out.println("Regla 3.1.3: sentencia --> " + sd);
+            RESULT = sd; :}
+        |
+         sentencia_input:sinput {:
+            System.out.println("Regla 3.1.4: sentencia --> sentencia_input");
+            System.out.println("Regla 3.1.4: sentencia --> " + sinput);
+            RESULT = sinput;
+        :}
+        |
+        sentencia_asignacion:sa{:
+            System.out.println("Regla 3.1.5: sentencia --> sentencia_asignacion");
+            System.out.println("Regla 3.1.5: sentencia --> " + sa);
+            RESULT = sa;
+        :};
+
+sentencia_while ::=
+        WHILE PARENTESISO condicion:c PARENTESISC DO lista_sentencias:ls END {:
+            System.out.println("Regla 4: sentencia_while --> WHILE PARENTESISO condicion PARENTESISC DO lista_sentencias END");
+            System.out.println("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
+            RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
+        :};
+
+sentencia_if ::=
+        if_simple:ifs {:
+            System.out.println("Regla 5: sentencia_if --> if_simple");
+            System.out.println("Regla 5: sentencia_if --> " + ifs );
+            RESULT = ifs;
+         :}
+        |
+        if_else:ie {:
+            System.out.println("Regla 5: sentencia_if --> if_else");
+            System.out.println("Regla 5: sentencia_if --> " + ie );
+            RESULT = ie;
+         :};
+if_simple ::=
+        IF PARENTESISO condicion:cond PARENTESISC THEN lista_sentencias:ls END {:
+            System.out.println("Regla 5.1: if_simple --> IF PARENTESISO condicion PARENTESISC THEN lista_sentencias END");
+            System.out.println("Regla 5.1: if_simple --> IF (" + cond + ") THEN " + ls + " END"  );
+            RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
+        :};
+if_else ::=
+        IF PARENTESISO condicion:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
+            System.out.println("Regla 5.2: if_else --> IF PARENTESISO condicion PARENTESISC THEN lista_sentencias ELSE lista_sentencias END");
+            System.out.println("Regla 5.2: if_else --> IF (" + cond + ") THEN" + ls + "ELSE" + ls2 + "END"  );
+            RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
+        :};
+
+sentencia_display ::=
+        DISPLAY PARENTESISO STRING_LITERAL:sl PARENTESISC {:
+            System.out.println("Regla 6: sentencia_display --> DISPLAY ( STRING_LITERAL )");
+            System.out.println("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
+            RESULT = "display(" + sl + ")";
+        :};
+//condicion ::=
+  //      exp_or:e1 OPCOMP exp_or:e2 {::};
+
+sentencia_asignacion ::=
+    IDENTIFIER:id  ASIGN exp_or:eo {:
+        System.out.println("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN FLOAT");
+        System.out.println("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
+        RESULT = id + " := " + eo ;
+        :};
+
+exp_or ::=
+    exp_or:e1 OR exp_and:e2 {:
+        System.out.println("REGLA 7.1: exp_or --> exp_or OR exp_and");
+        System.out.println("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
+        RESULT = e1+" OR "+e2 ;
+    :}
+    |
+    exp_and:e {:
+        System.out.println("REGLA 7.2: exp_or --> exp_and");
+        System.out.println("REGLA 7.2: exp_or --> "+e );
+        RESULT = e ;
+    :};
+
+exp_and ::=
+    exp_and:e1 AND exp_not:e2 {:
+        System.out.println("REGLA 7.3: exp_and --> exp_and AND exp_not");
+        System.out.println("REGLA 7.3: exp_and--> "+e1+ " AND "+ e2 );
+        RESULT = e1+" AND "+e2 ;
+
+    :}
+    |
+    exp_not:e {:
+        System.out.println("REGLA 7.4: exp_and --> exp_not");
+        System.out.println("REGLA 7.4: exp_or --> "+e );
+        RESULT = e ;
+    :};
+
+exp_not ::=
+    NOT exp_not:e1 {:
+        System.out.println("REGLA 7.5: exp_not --> NOT exp_not");
+        System.out.println("REGLA 7.5: exp_not --> "+e1 );
+        RESULT = e1 ;
+    :}
+    |
+    comparacion:c {:
+        System.out.println("REGLA 7.6: exp_not --> comparacion");
+        System.out.println("REGLA 7.6: exp_not --> "+c );
+        RESULT = c ;
+    :};
+
+comparacion ::=
+    expresion:e1 OPCOMP:oc expresion:e2 {:
+        System.out.println("REGLA 7.6.1: comparacion --> expresion OPCOMP expresion");
+        System.out.println("REGLA 7.6.1: comparacion --> "+e1+" "+ oc +" "+ e2  );
+        RESULT = e1+oc+e2 ;
+    :}
+    |
+    expresion:e1 {:
+        System.out.println("REGLA 7.6.2: comparacion --> expresion");
+        System.out.println("REGLA 7.6.2: comparacion --> "+e1);
+        RESULT = e1 ;
+    :};
+expresion ::=
+    expresion:e1 SUMA termino:e2 {:
+        System.out.println("REGLA 7.7: expresion --> expresion SUMA termino");
+        System.out.println("REGLA 7.7: expresion --> "+e1+" + "+e2);
+        RESULT = e1+" + "+e2 ;
+    :}
+    |
+    expresion:e1 RESTA termino:e2 {:
+        System.out.println("REGLA 7.8: expresion --> expresion RESTA termino");
+        System.out.println("REGLA 7.8: expresion --> "+e1+" - "+e2);
+        RESULT = e1+" - "+e2 ;
+    :}
+    |
+    termino:t {:
+        System.out.println("REGLA 7.9: expresion --> termino");
+        System.out.println("REGLA 7.9: expresion --> "+ t );
+        RESULT = t ;
+    :};
+
+termino ::=
+    termino:t MULT menos_unario:mu {:
+        System.out.println("REGLA 7.9.1: termino --> termino MULT menor_unario");
+        System.out.println("REGLA 7.9.1: termino --> " + t + " * " + mu );
+        RESULT = t+" * "+ mu ;
+    :}
+    |
+    termino:t DIV menos_unario:mu {:
+        System.out.println("REGLA 7.9.2: termino --> termino DIV menor_unario");
+        System.out.println("REGLA 7.9.2: termino --> " + t + " / " + mu );
+        RESULT = t+" / "+ mu ;
+    :}
+    |
+    menos_unario:mu {:
+        System.out.println("REGLA 7.9.3: termino --> menor_unario");
+        System.out.println("REGLA 7.9.3: termino --> " + mu );
+        RESULT = mu;
+    :};
+
+menos_unario ::=
+    RESTA menos_unario:mu {:
+        System.out.println("REGLA 8.1: menos_unario --> - menor_unario");
+        System.out.println("REGLA 8.1: menos_unario --> -" + mu );
+        RESULT = "-"+ mu;
+
+    :}
+    |
+    factor:f {: //superFenelchat
+        System.out.println("REGLA 8.2: menos_unario --> factor");
+        System.out.println("REGLA 8.2: menos_unario --> " + f );
+        RESULT = f;
+    :};
+
+factor ::=
+    INT:i {:
+        System.out.println("REGLA 8.1: factor --> INT");
+        System.out.println("REGLA 8.1: factor --> " + i );
+        RESULT = i;
+    :}
+    |
+    FLOAT:f {:
+        System.out.println("REGLA 8.2: factor --> FLOAT");
+        System.out.println("REGLA 8.2: factor --> " + f );
+        RESULT = f;
+    :}
+    |
+    BOOL:b {:
+        System.out.println("REGLA 8.3: factor --> BOOL");
+        System.out.println("REGLA 8.3: factor --> " + b );
+        RESULT = b;
+    :}
+    |
+    funcion_especial:fe {:
+        System.out.println("REGLA 8.4: factor --> funcion_especial");
+        System.out.println("REGLA 8.4: factor --> " + fe );
+        RESULT = fe;
+    :}
+    |
+    PARENTESISO exp_or:eo PARENTESISC {:
+        System.out.println("REGLA 8.5: factor --> PARENTESISO exp_or PARENTESISC");
+        System.out.println("REGLA 8.5: factor --> " + "(" + eo + ")" );
+        RESULT = "(" + eo + ")";
+    :}
+    |
+    IDENTIFIER:id {:
+        System.out.println("REGLA 8.6: factor --> IDENTIFIER");
+        System.out.println("REGLA 8.6: factor --> " + id );
+        RESULT = id;
+    :};
+
+funcion_especial ::=
+    COLA PARENTESISO pivot:p PUNTOCOMA LLAVEO lista_expresiones:le LLAVEc PARENTESISC
+    {:
+        System.out.println("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA LLAVEO lista_expresiones LLAVEc PARENTESISC");
+        System.out.println("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
+        RESULT = "cola( "+p+";["+le+"])"  ;
+    :};
+
+pivot ::=
+    IDENTIFIER:id {:
+        System.out.println("REGLA 10: pivot --> IDENTIFIER");
+        System.out.println("REGLA 10: pivot --> " + id );
+        RESULT = id;
+    :}
+    |
+    INT:i {:
+        System.out.println("REGLA 10.1: pivot --> INT");
+        System.out.println("REGLA 10.1: pivot --> " + i );
+        RESULT = i;
+    :};
+
+lista_expresiones ::=
+    expresion:e {:
+        System.out.println("REGLA 10.2: lista_expresiones --> expresion");
+        System.out.println("REGLA 10.1: lista_expresiones --> " + e );
+        RESULT = e;
+    :}
+    |
+    lista_expresiones:le COMA expresion:e{:
+        System.out.println("REGLA 10.3: lista_expresiones --> lista_expresiones COMA expresion");
+        System.out.println("REGLA 10.3: lista_expresiones --> " +le+ ", " + e );
+        RESULT = le+", " + e;
+    :};

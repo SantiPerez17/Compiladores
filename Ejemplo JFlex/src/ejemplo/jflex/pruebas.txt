@@ -1,31 +1,10 @@
-# asdasd
-bool
-var:= (* commentario *) 123;
-input_int(123); 
-#prueba de ver si esto anda 
-declare.section 
- int: a,b,c; 
- "hola #asd" 
- float: y,x,z;
- bool: u:=false;
-enddeclare.section
-resul:=cola (4;[10,20,30,40,5,4]) 
-(* \n hola \n\n\n como \t estas? \n *)
-a:=1.1231231651919
-"hola #asdaklsdjalsdkajdklasjdaskldjaskldjakldjaskldjaskddjaklsd" 
-#dkajsdklasldjasñdasd asd as *) 
-yujkjhbjm,hb
-TESTCAMBIODEDIRECTORIO
-NUEVOTEST
-(*(**)*)
 declare.section
-a1 : integer
-d1 : float
-   enddeclare.section
-   program.section 
-a1:=12
-d1:=3,14
-if cola(a1,[10;20]) then
-d1 := 3,14
-end if
-    endprogram.section 
+    int:a,b,c;
+    float:x,y,z;
+    bool:r;
+enddeclare.section #adasdas
+program.section
+    display("hola")
+    a:=cola(2;[1,2,3])
+    resul:=cola (4;[10,20,30,40,5,4])
+endprogram.section

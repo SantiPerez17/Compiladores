@@ -4,7 +4,6 @@
     <root id="archive" name="Compiladores.jar">
       <element id="module-output" name="Compiladores" />
       <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/jflex-full-1.8.2.jar" path-in-jar="/" />
-      <element id="library" level="project" name="jflex-full-1.8.21" />
     </root>
   </artifact>
 </component>

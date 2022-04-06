@@ -5,12 +5,14 @@
  */
 package ejemplo.jflex;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Merce
  */
-class MiToken{
-    
+class MiToken extends java_cup.runtime.Symbol{
+
     public final String nombre;
     public final int linea;
     public final int columna;
@@ -28,7 +30,8 @@ class MiToken{
         this(nombre, linea, columna, null);
     }
 
-    MiToken (String nombre, int linea, int columna, Object valor){
+    MiToken (String nombre, int linea, int columna, Object valor) {
+        super(Arrays.asList(MiParserSym.terminalNames).indexOf(nombre), linea, columna, valor);
         this.nombre = nombre;
         this.valor = valor;
         this.linea = linea;
@@ -43,6 +46,6 @@ class MiToken{
         if (valor == null)
             return "[" + this.nombre + "]" + posicion;
         else
-            return "[" + this.nombre + "] --> (' " + this.valor + " ')" + posicion;
+            return "[" + this.nombre + "] -> (" + this.valor + ")" + posicion;
     }
 }

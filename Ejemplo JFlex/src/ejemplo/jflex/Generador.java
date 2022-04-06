@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java_cup.runtime.*;
 /**a
  *
  * @author itt
@@ -24,6 +24,14 @@ public class Generador {
         //si le cambio el path se rompe asique lo dejo así.
         String path = "Ejemplo JFlex/src/ejemplo/jflex/lexico.flex";
         generarLexer(path);
+        String[] param = new String[5];
+        param[0] = "-destdir";
+        param[1] = "Ejemplo JFlex/src/ejemplo/jflex";
+        param[2] = "-parser";
+        param[3] = "MiParser";
+        param[4] = "Ejemplo JFlex/src/ejemplo/jflex/parser.cup";
+        generarParser(param);
+
     }
     
     /**
@@ -37,5 +45,15 @@ public class Generador {
         jflex.generator.LexGenerator generator = new jflex.generator.LexGenerator(file);
         generator.generate();
     }
-    
+    public static void generarParser(String[] param){
+        try {
+            java_cup.Main.main(param);
+        } catch (IOException ex) {
+            Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+
 }

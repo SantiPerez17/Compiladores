@@ -1,5 +1,7 @@
 package ejemplo.jflex;
 
+import java_cup.runtime.Symbol;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -158,12 +160,12 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
             StringBuilder errores = new StringBuilder("Errores: ");
 
             while (!(lexico.yyatEOF())) {
-                MiToken token = lexico.yylex();
+                Symbol token = lexico.next_token();
                 if (token == null) {
                     break;
                 }
-                if (Objects.equals(token.nombre, "ERROR")){
-                    errores.append("\n").append(token.valor).append(" - Linea: ").append(token.linea + 1);
+                if (Objects.equals(((MiToken) token).nombre, "ERROR")){
+                    errores.append("\n").append(((MiToken) token).valor).append(" - Linea: ").append(((MiToken) token).linea + 1);
                 }
                 else {
                     tokens.append("Token: ").append(token).append("\n\n");
