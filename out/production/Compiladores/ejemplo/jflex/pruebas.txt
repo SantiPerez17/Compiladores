@@ -1,10 +1,15 @@
-declare.section
+(*declare.section
     int:a,b,c;
     float:x,y,z;
     bool:r;
-enddeclare.section #adasdas
+enddeclare.section *)
 program.section
     display("hola")
-    a:=cola(2;[1,2,3])
-    resul:=cola (4;[10,20,30,40,5,4])
+    display("holanda")
+    display("ewr") (* donde “ewr” debe ser una cte literal string *)
+    display(5.5 + aux)
+    display(7 <= mi_var)
+    while(f<a) do
+        display("hola")
+    end
 endprogram.section

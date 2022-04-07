@@ -33,6 +33,8 @@ nonterminal String ids, program, programa, sector_declaraciones, programa_main,l
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
 
+precedence left OPCOMP;
+
 start with program;
 
 program ::= sector_declaraciones:sd programa:p //programa
@@ -170,9 +172,27 @@ sentencia_display ::=
             System.out.println("Regla 6: sentencia_display --> DISPLAY ( STRING_LITERAL )");
             System.out.println("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             RESULT = "display(" + sl + ")";
-        :};
-//condicion ::=
-  //      exp_or:e1 OPCOMP exp_or:e2 {::};
+        :}
+        |
+        DISPLAY PARENTESISO comparacion:c PARENTESISC {:
+            System.out.println("Regla 6: sentencia_display --> DISPLAY ( comparacion )");
+            System.out.println("Regla 6: sentencia_display --> "+ "display( " + c + " )");
+            RESULT = "display(" + c + ")";
+        :}
+        ;
+condicion ::=
+    exp_or:e1 OPCOMP:op exp_or:e2 {:
+        System.out.println("Regla 6.1: condicion --> exp_or OPCOMP exp_or");
+        System.out.println("Regla 6.1: condicion -->" + e1 + op + e2 );
+        RESULT = e1 + op + e2;
+    :}
+    |
+    exp_or:e1 {:
+        System.out.println("Regla 6.2: condicion --> exp_or");
+        System.out.println("Regla 6.2: condicion -->" + e1 );
+        RESULT = e1; :}
+    ;
+
 
 sentencia_asignacion ::=
     IDENTIFIER:id  ASIGN exp_or:eo {:
@@ -320,7 +340,8 @@ factor ::=
         System.out.println("REGLA 8.6: factor --> IDENTIFIER");
         System.out.println("REGLA 8.6: factor --> " + id );
         RESULT = id;
-    :};
+    :}
+    ;
 
 funcion_especial ::=
     COLA PARENTESISO pivot:p PUNTOCOMA LLAVEO lista_expresiones:le LLAVEc PARENTESISC

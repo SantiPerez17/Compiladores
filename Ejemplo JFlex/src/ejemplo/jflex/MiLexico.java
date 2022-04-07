@@ -1063,7 +1063,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             }  // fall though
             case 177: break;
             default:
-          { return null;}
+          { return null; }
         }
       }
       else {
@@ -1087,7 +1087,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             // fall through
           case 62: break;
           case 4:
-            {
+            { 
             }
             // fall through
           case 63: break;
@@ -1306,7 +1306,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             // fall through
           case 102: break;
           case 44:
-            { return token("not", yytext());
+            { return token("NOT", yytext());
             }
             // fall through
           case 103: break;
