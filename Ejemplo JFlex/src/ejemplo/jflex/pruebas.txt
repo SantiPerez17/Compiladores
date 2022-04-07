@@ -11,5 +11,8 @@ program.section
     display(7 <= mi_var)
     while(f<a) do
         display("hola")
+        if (b==c) then
+            b:=b+1
+        end
     end
 endprogram.section

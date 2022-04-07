@@ -124,7 +124,6 @@ SimpleComment = #.*{LineTerminator}?
 
   /* "operators" */
   ":=" { return token("ASIGN", yytext()); }
-  "==" { return token("IGUAL", yytext()); }
   "+" { return token("SUMA", yytext()); }
   "-" {return token("RESTA", yytext());}
   "*" {return token("MULT", yytext());}

@@ -33,7 +33,7 @@ nonterminal String ids, program, programa, sector_declaraciones, programa_main,l
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
 
-precedence left OPCOMP;
+precedence left OPCOMP, sentencia;
 
 start with program;
 
