@@ -6,6 +6,7 @@
 package ejemplo.jflex;
 
 import java_cup.runtime.*;
+import java.util.ArrayList;
 import java_cup.sym;
 /**
  * This class is a simple example lexer.
