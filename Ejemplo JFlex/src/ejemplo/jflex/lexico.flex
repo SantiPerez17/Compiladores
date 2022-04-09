@@ -65,8 +65,6 @@ Tipo_int = "int"
 Tipo_float = "float"
 Tipo_bool = "bool"
 
-
-
 Identifier = (([^\W\_\d]){1}[^\W]*){1,50}
 
 Int= \d+

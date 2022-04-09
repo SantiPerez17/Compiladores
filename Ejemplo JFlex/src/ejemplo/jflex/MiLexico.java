@@ -6,7 +6,6 @@
 package ejemplo.jflex;
 
 import java_cup.runtime.*;
-import java.util.ArrayList;
 import java_cup.sym;
 /**
  * This class is a simple example lexer.
@@ -919,7 +918,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
    * @return the next token.
    * @exception java.io.IOException if any I/O-Error occurs.
    */
-  @Override  public MiToken next_token() throws java.io.IOException {
+  @Override  public Symbol next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;
 
@@ -1062,7 +1061,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             }  // fall though
             case 175: break;
             default:
-          { return null; }
+          { return new java_cup.runtime.Symbol(sym.EOF); }
         }
       }
       else {

@@ -103,7 +103,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
             try {
                 Compilar(txp.getText());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane,ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
             }
 
         }
@@ -161,7 +161,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
 
             while (!(lexico.yyatEOF())) {
                 Symbol token = lexico.next_token();
-                if (token == null) {
+                if (token.value == null) {
                     break;
                 }
                 if (Objects.equals(((MiToken) token).nombre, "ERROR")){
@@ -179,7 +179,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
                 txp2.setText(errores.toString());
             }
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane,ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane,"Error en linea 182: " + ex.getMessage());
         }
     }
 
