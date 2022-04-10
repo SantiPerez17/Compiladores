@@ -7,6 +7,8 @@ package archivos.jflexyjcup;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
+
 import java_cup.runtime.Symbol;
 
 /**
@@ -35,11 +37,13 @@ public class EjemploJFlex {
                 Symbol token = lexico.next_token();
                 if (token == null)
                     break;
+                if (Objects.equals(((MiToken) token).nombre, "ERROR")){
+                    System.out.println(token);
+                    break;
+                }
                 System.out.println("Token: " + token);
             }
             System.out.println("\nAnálisis léxico terminado.");
-        } catch (Error e){
-            System.out.println("error " + e);
         } catch (Exception e) {
             error = String.valueOf(e.getMessage());
             System.out.println(error);

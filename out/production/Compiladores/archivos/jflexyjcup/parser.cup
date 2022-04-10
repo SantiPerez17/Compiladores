@@ -21,7 +21,6 @@ parser code
         System.out.println("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
         +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
     }
-
 :};
 //action code para hacer tabla de simbolos
 

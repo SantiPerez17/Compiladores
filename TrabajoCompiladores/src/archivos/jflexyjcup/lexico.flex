@@ -1,7 +1,7 @@
 /* JFlex example: partial Java language lexer specification */
 package archivos.jflexyjcup;
 
-import archivos.jflexyjcup.MiToken;
+import archivos.jflexyjcup.MiToken;import java_cup.runtime.Symbol;
 /**
  * This class is a simple example lexer.
  */
@@ -22,8 +22,8 @@ import archivos.jflexyjcup.MiToken;
     * Típicamente serán variables de instancia o nuevos métodos de la clase.
     *************************************************************************/
 
-    int string_yyline = 0;
-    int string_yycolumn = 0;
+    int string_yyline = 1;
+    int string_yycolumn = 1;
     int count_comment = 0;
     int cota_int = 20;
     int cota_float = 25;
@@ -85,7 +85,7 @@ SimpleComment = #.*{LineTerminator}?
       }}
 
 <<EOF>> {
-         throw new Exception ("Error comentario no balanceado");
+         return token("ERROR", "Error comentario no balanceado");
       }
 [^] {/*nada*/}
 }
@@ -210,5 +210,6 @@ SimpleComment = #.*{LineTerminator}?
   \\\"                           { string.append('\"'); }
   \\                             { string.append('\\'); }
 }
+<<EOF>>     {return null;}
 /* error fallback */
 [^]                              { return token("ERROR", "Illegal character <"+yytext()+">"); }

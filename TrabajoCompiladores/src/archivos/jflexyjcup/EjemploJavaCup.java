@@ -24,7 +24,6 @@ public class EjemploJavaCup {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
 }
