@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
 import java.util.Arrays;
+import java_cup.runtime.Symbol;
 
 /**
  *
  * @author Merce
  */
-class MiToken extends java_cup.runtime.Symbol{
+class MiToken extends Symbol{
 
     public final String nombre;
     public final int linea;

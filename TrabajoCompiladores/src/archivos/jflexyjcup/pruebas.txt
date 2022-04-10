@@ -9,10 +9,12 @@ program.section
     display("ewr") (* donde “ewr” debe ser una cte literal string *)
     display(5.5 + aux)
     display(7 <= mi_var)
-    while(f<a) do
+    while((f<a) and (4<c)) do
         display("hola")
         if (b==c) then
             b:=b+1
         end
     end
 endprogram.section
+
+(*

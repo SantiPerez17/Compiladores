@@ -1,10 +1,7 @@
-package ejemplo.jflex;
-
-import java_cup.runtime.Scanner;
+package archivos.jflexyjcup;
 
 import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import archivos.jflexyjcup.*;
 
 /**
  *
@@ -19,10 +16,10 @@ public class EjemploJavaCup {
         // TODO code application logic here
 
         try {
-            String path = "Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt";
+            String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
             System.out.println("Análisis sintáctico iniciado:");
             MiLexico lexer = new MiLexico(new FileReader(path));
-            MiParser parser = new MiParser(lexer);
+            archivos.jflexyjcup.MiParser parser = new MiParser(lexer);
             parser.parse();
         } catch (Exception ex) {
         }

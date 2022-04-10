@@ -1,4 +1,4 @@
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
 import java_cup.runtime.*;
 import java.util.ArrayList;

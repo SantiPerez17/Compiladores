@@ -1,9 +1,7 @@
 /* JFlex example: partial Java language lexer specification */
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
-import java_cup.runtime.*;
-import java.util.ArrayList;
-import java_cup.sym;
+import archivos.jflexyjcup.MiToken;
 /**
  * This class is a simple example lexer.
  */
@@ -47,16 +45,7 @@ import java_cup.sym;
     }
 %}
 
-/* comments */
-//Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
 
-//TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
-// Comment can be the last line of the file, without line terminator.
-//EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
-//DocumentationComment = "/**" {CommentContent} "*"+ "/"
-//CommentContent       = ( [^*] | \*+ [^/*] )*
-
-//Identifier = [:jletter:] [:jletterdigit:]*
 Cola = "cola" | "Cola"
 Input_int = "input_int"
 Input_float = "input_float"
@@ -96,7 +85,7 @@ SimpleComment = #.*{LineTerminator}?
       }}
 
 <<EOF>> {
-         return token("ERROR", "Error comentario no balanceado");
+         throw new Exception ("Error comentario no balanceado");
       }
 [^] {/*nada*/}
 }
