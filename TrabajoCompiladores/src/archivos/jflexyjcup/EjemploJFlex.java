@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java_cup.runtime.Symbol;
 
 /**
@@ -26,8 +25,9 @@ public class EjemploJFlex {
         // TODO code application logic here
         //  MiLexico lexico = new MiLexico(new InputStreamReader(System.in));
         //  System.out.printf("Análisis léxico iniciado: %nIngrese por teclado:%n");
+        String error;
         System.out.println("Leyendo entrada...\n");
-        FileReader entrada = new FileReader("Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");
+        FileReader entrada = new FileReader("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");
         MiLexico lexico = new MiLexico(entrada);
         String tokens = "Iniciando analizador lexico... \n ";
         try{
@@ -40,7 +40,11 @@ public class EjemploJFlex {
             System.out.println("\nAnálisis léxico terminado.");
         } catch (Error e){
             System.out.println("error " + e);
-        };
+        } catch (Exception e) {
+            error = String.valueOf(e.getMessage());
+            System.out.println(error);
+        }
+        ;
 
 
 

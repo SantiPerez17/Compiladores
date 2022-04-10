@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java_cup.runtime.*;
+
 /**a
  *
  * @author itt
@@ -22,14 +22,14 @@ public class Generador {
      */
     public static void main(String[] args) {
         //si le cambio el path se rompe asique lo dejo así.
-        String path = "Ejemplo JFlex/src/ejemplo/jflex/lexico.flex";
+        String path = "TrabajoCompiladores/src/archivos/jflexyjcup/lexico.flex";
         generarLexer(path);
         String[] param = new String[5];
         param[0] = "-destdir";
-        param[1] = "Ejemplo JFlex/src/ejemplo/jflex";
+        param[1] = "TrabajoCompiladores/src/archivos/jflexyjcup";
         param[2] = "-parser";
         param[3] = "MiParser";
-        param[4] = "Ejemplo JFlex/src/ejemplo/jflex/parser.cup";
+        param[4] = "TrabajoCompiladores/src/archivos/jflexyjcup/parser.cup";
         generarParser(param);
 
     }

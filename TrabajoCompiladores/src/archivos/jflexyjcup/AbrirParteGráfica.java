@@ -1,4 +1,4 @@
-package ejemplo.jflex;
+package archivos.jflexyjcup;
 
 import java_cup.runtime.Symbol;
 
@@ -9,9 +9,9 @@ import java.io.*;
 import java.util.Objects;
 import javax.swing.*;
 
-public class AbrirArchivoTexto extends JFrame implements ActionListener {
+public class AbrirParteGráfica extends JFrame implements ActionListener {
 
-    public AbrirArchivoTexto() {
+    public AbrirParteGráfica() {
         JFrame frame = new JFrame("Compilador");
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
@@ -158,8 +158,7 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
             MiLexico lexico = new MiLexico(entrada);
             StringBuilder tokens = new StringBuilder();
             StringBuilder errores = new StringBuilder("Errores: ");
-
-            while (!(lexico.yyatEOF())) {
+            while (true) {
                 Symbol token = lexico.next_token();
                 if (token.value == null) {
                     break;
@@ -169,17 +168,17 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
                 }
                 else {
                     tokens.append("Token: ").append(token).append("\n\n");
+                    }
                 }
-            }
-            if (errores.toString().equals("Errores: ")){
-                tokens.append("\nAnálisis léxico terminado.");
-                txp2.setText(tokens.toString());
-            } else {
-                errores.append("\n\nEl análisis léxico se ejecuto con errores.");
-                txp2.setText(errores.toString());
-            }
+                if (errores.toString().equals("Errores: ")){
+                    tokens.append("\nAnálisis léxico terminado.");
+                    txp2.setText(tokens.toString());
+                } else {
+                    errores.append("\n\nEl análisis léxico se ejecuto con errores.");
+                    JOptionPane.showMessageDialog(rootPane, errores.toString());
+                }
         } catch(Exception ex){
-            JOptionPane.showMessageDialog(rootPane,"Error en linea 182: " + ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane,"Error" + ex.getMessage());
         }
     }
 
@@ -194,11 +193,11 @@ public class AbrirArchivoTexto extends JFrame implements ActionListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new AbrirArchivoTexto();
+        new AbrirParteGráfica();
     }
 
     JTextPane txp;
     JTextPane txp2;
     JFileChooser abrirArchivo;
-    File archivo = new File("Ejemplo JFlex/src/ejemplo/jflex/pruebas.txt");;
+    File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");;
 }
