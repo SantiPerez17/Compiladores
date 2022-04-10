@@ -7,7 +7,7 @@ package archivos.jflexyjcup;
 
 import archivos.jflexyjcup.MiToken;
 import java_cup.runtime.Symbol;
-import java_cup.sym;
+import jflex.core.sym;
 
 /**
  * This class is a simple example lexer.
@@ -1063,7 +1063,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             }  // fall though
             case 175: break;
             default:
-          { return new java_cup.runtime.Symbol(sym.EOF); }
+          { return new Symbol(sym.EOF); }
         }
       }
       else {

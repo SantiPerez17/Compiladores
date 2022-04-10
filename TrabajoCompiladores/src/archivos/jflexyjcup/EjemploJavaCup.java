@@ -1,7 +1,7 @@
 package archivos.jflexyjcup;
 
 import java.io.FileReader;
-import archivos.jflexyjcup.*;
+import archivos.jflexyjcup.MiParser;
 
 /**
  *
@@ -19,9 +19,10 @@ public class EjemploJavaCup {
             String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
             System.out.println("Análisis sintáctico iniciado:");
             MiLexico lexer = new MiLexico(new FileReader(path));
-            archivos.jflexyjcup.MiParser parser = new MiParser(lexer);
+            MiParser parser = new MiParser(lexer);
             parser.parse();
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
 
     }

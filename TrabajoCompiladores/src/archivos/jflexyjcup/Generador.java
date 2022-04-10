@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java_cup.Main;
 
 /**a
  *
@@ -47,7 +48,7 @@ public class Generador {
     }
     public static void generarParser(String[] param){
         try {
-            java_cup.Main.main(param);
+            Main.main(param);
         } catch (IOException ex) {
             Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
