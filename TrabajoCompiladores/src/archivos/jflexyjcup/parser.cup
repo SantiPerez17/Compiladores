@@ -18,14 +18,29 @@ action code {:
 
 parser code
 {:
-    public void syntax_error(Symbol s){
-        concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-        +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
-    }
+    public void syntax_error(Symbol s) {
+                    if (s.sym==33){
+                                concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+                                        +s.value+"' . Simbolo n° "+s.sym);
+                        try {
+                            throw new Exception((String) s.value);
+                        } catch (Exception e) {
+
+                        }
+                    }
+                            else
+                            {concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+                                    +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}
+            }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-        +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
+        if (s.sym == 33){
+            throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+                    +s.value+"' . Simbolo n° "+s.sym+ "" );
+        }
+        else
+                                    {throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
+                                            +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}
     }
 
     public String reglas;
@@ -41,7 +56,7 @@ parser code
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
-terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
+terminal String IDENTIFIER, ERROR, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 
 nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
@@ -58,7 +73,8 @@ program ::= sector_declaraciones:sd programa:p //programa
     programa:p {:
     concat_rules("Regla 0.1: program --> programa " + "\n\t --> " + p );
     RESULT= p;
-    :};
+    :}
+    |;
 sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
     {: concat_rules("Regla 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE.SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
        RESULT = "DECLARE_SECTION" + ld + "ENDDECLARE_SECTION"; :};

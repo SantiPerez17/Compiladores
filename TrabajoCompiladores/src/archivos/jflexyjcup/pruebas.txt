@@ -2,12 +2,12 @@ program.section
     display("hola")  
     display("holanda")
     display("ewr") (* donde “ewr” debe ser una cte literal string *)
-    display(5.57777777777777777777777777777777777777777 + aux)
+    display(5.5777 + aux)
     display(7 <= mi_var)
-    while((f<a) and (4<c)) do
+    while((f<a) and (4<c)) do adas,d.msdas,l.das
         display("hola")(**)
         if (b==c) then
-            b:=b+1
+            b:=b+1 
         end
     end 
-endprogram.section (*
+endprogram.section 

@@ -126,8 +126,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
                 Parsing(txp.getText());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-            
 
 
         }
@@ -205,7 +206,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(rootPane,"Error" + ex.getMessage());
         }
     }
-    public void Parsing(String contenido) throws IOException {
+    public void Parsing(String contenido) throws IOException,Exception {
         String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
         MiLexico lexer = new MiLexico(new FileReader(path));
         MiParser parser = new MiParser(lexer);
@@ -218,7 +219,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             txp3.setText(parser.reglas);
         }
         catch (Exception e){
-            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         };
 
 
