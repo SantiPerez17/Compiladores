@@ -2,12 +2,12 @@ package archivos.jflexyjcup;
 
 import java_cup.runtime.Symbol;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Objects;
-import javax.swing.*;
 
 public class AbrirParteGráfica extends JFrame implements ActionListener {
 
@@ -209,10 +209,13 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
         MiLexico lexer = new MiLexico(new FileReader(path));
         MiParser parser = new MiParser(lexer);
+        parser.reglas = "";
         
         StringBuilder Reglas = new StringBuilder();
         try{
-            txp3.setText(String.valueOf(parser.parse().right));
+            Symbol p = parser.parse();
+            Reglas.append(parser.reglas);
+            txp3.setText(parser.reglas);
         }
         catch (Exception e){
             System.out.println(e.getMessage());
