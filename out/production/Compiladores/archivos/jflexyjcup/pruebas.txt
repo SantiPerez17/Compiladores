@@ -2,7 +2,7 @@ program.section
     display("hola")  
     display("holanda")
     display("ewr") (* donde “ewr” debe ser una cte literal string *)
-    display(5.5 + aux)
+    display(5.57777777777777777777777777777777777777777 + aux)
     display(7 <= mi_var)
     while((f<a) and (4<c)) do
         display("hola")(**)
@@ -10,4 +10,4 @@ program.section
             b:=b+1
         end
     end 
-endprogram.section
+endprogram.section (*
