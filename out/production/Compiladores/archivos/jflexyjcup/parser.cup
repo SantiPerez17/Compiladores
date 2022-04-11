@@ -6,9 +6,13 @@ import java.util.List;
 import java.io.FileReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java_cup.runtime.*;
+import java.util.Hashtable;
 
 class MiParser;
+
+action code {:
+    Hashtable table = new Hashtable();
+:};
 
 parser code
 {:
@@ -21,14 +25,15 @@ parser code
         System.out.println("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
         +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );
     }
+
 :};
 //action code para hacer tabla de simbolos
 
-terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, LLAVEO, CORCHETEO, CORCHETEC,  LLAVEc, PUNTOCOMA,
-PUNTO, COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, IGUAL, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
+terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
+COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
 terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 
-nonterminal String ids, program, programa, sector_declaraciones, programa_main,lista_declaraciones, declaracion, tipo_de_dato,
+nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
 
@@ -340,12 +345,29 @@ factor ::=
         System.out.println("REGLA 8.6: factor --> " + id );
         RESULT = id;
     :}
-    ;
+    |
+    INPUT_BOOL:ib PARENTESISO PARENTESISC {:
+        System.out.println("REGLA 8.7: factor --> INPUT_BOOL()");
+        System.out.println("REGLA 8.7: factor --> " + ib + "()" );
+        RESULT = ib + "()";
+    :}
+    |
+    INPUT_INT:ii PARENTESISO PARENTESISC {:
+        System.out.println("REGLA 8.8: factor --> INPUT_INT()");
+        System.out.println("REGLA 8.8: factor --> " + ii + "()" );
+        RESULT = ii + "()";
+    :}
+    |
+    INPUT_FLOAT:ifl PARENTESISO PARENTESISC {:
+        System.out.println("REGLA 8.9: factor --> INPUT_FLOAT()");
+        System.out.println("REGLA 8.9: factor --> " + ifl + "()" );
+        RESULT = ifl + "()";
+    :}    ;
 
 funcion_especial ::=
-    COLA PARENTESISO pivot:p PUNTOCOMA LLAVEO lista_expresiones:le LLAVEc PARENTESISC
+    COLA PARENTESISO pivot:p PUNTOCOMA CORCHETEO lista_expresiones:le CORCHETEC PARENTESISC
     {:
-        System.out.println("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA LLAVEO lista_expresiones LLAVEc PARENTESISC");
+        System.out.println("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC");
         System.out.println("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         RESULT = "cola( "+p+";["+le+"])"  ;
     :};

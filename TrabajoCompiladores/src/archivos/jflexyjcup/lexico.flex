@@ -171,16 +171,16 @@ SimpleComment = #.*{LineTerminator}?
     //“\)” :parentesisc
     "\)" {return token("PARENTESISC", yytext());}
     //“\[“ : llaveo
-    "\[" {return token("LLAVEO", yytext());}
+    "\[" {return token("CORCHETEO", yytext());}
     //“]” : llavec
-    "\]" {return token("LLAVEc", yytext());}
+    "\]" {return token("CORCHETEC", yytext());}
     // “#” : comentario; -> ESO SE MANEJA EN EL OTRO LADO.
     //“{“ : corcheteo
-    "\{" {return token("CORCHETEO", yytext());}
+    /*"\{" {return token("LLAVEO", yytext());}
     //“}” :corchetec
-    "\}" {return token("CORCHETEC", yytext());}
+    "\}" {return token("LLAVEC", yytext());}
     //“\.” : punto
-    "\." {return token("PUNTO", yytext());}
+    "\." {return token("PUNTO", yytext());} */
     // “\;” : puntocoma
     "\;" {return token("PUNTOCOMA", yytext());}
     // “,” : coma
