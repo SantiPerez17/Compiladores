@@ -158,7 +158,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             MiLexico lexico = new MiLexico(entrada);
             StringBuilder tokens = new StringBuilder();
             StringBuilder errores = new StringBuilder("Errores: ");
-            while (true) {
+            while (!lexico.yyatEOF()) {
                 Symbol token = lexico.next_token();
                 if (token.value == null) {
                     break;

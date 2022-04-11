@@ -210,6 +210,6 @@ SimpleComment = #.*{LineTerminator}?
   \\\"                           { string.append('\"'); }
   \\                             { string.append('\\'); }
 }
-<<EOF>>     {return null;}
+<<EOF>>     {return token("EOF");}
 /* error fallback */
 [^]                              { return token("ERROR", "Illegal character <"+yytext()+">"); }

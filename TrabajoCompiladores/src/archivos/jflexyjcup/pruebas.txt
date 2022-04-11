@@ -1,5 +1,5 @@
 program.section
-    display("hola") (*
+    display("hola") 
     display("holanda")
     display("ewr") (* donde “ewr” debe ser una cte literal string *)
     display(5.5 + aux)

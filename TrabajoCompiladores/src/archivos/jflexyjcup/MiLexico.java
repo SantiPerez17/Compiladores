@@ -1061,7 +1061,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
             case 175: break;
             default:
               {
-                return null;
+                return token("EOF");
               }
         }
       }
