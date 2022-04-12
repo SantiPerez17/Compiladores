@@ -9,50 +9,47 @@ package archivos.jflexyjcup;
 public class MiParserSym {
   /* terminals */
   public static final int DISPLAY = 7;
-  public static final int DOSPUNTOS = 20;
-  public static final int ENDDECLARE_SECTION = 41;
-  public static final int STRING_LITERAL = 44;
-  public static final int CORCHETEO = 14;
+  public static final int DOSPUNTOS = 17;
+  public static final int ENDDECLARE_SECTION = 38;
+  public static final int STRING_LITERAL = 41;
+  public static final int CORCHETEO = 13;
   public static final int MULT = 4;
   public static final int PARENTESISO = 11;
   public static final int RESTA = 3;
-  public static final int CORCHETEC = 15;
-  public static final int INT = 37;
-  public static final int PUNTOCOMA = 17;
+  public static final int CORCHETEC = 14;
+  public static final int INT = 34;
+  public static final int PUNTOCOMA = 15;
   public static final int PARENTESISC = 12;
-  public static final int OPCOMP = 31;
-  public static final int NOT = 30;
-  public static final int AND = 28;
-  public static final int IGUAL = 27;
-  public static final int OR = 29;
-  public static final int BOOL = 39;
+  public static final int OPCOMP = 27;
+  public static final int NOT = 26;
+  public static final int AND = 24;
+  public static final int OR = 25;
+  public static final int BOOL = 36;
   public static final int DIV = 5;
   public static final int SUMA = 2;
-  public static final int IF = 23;
+  public static final int IF = 20;
   public static final int EOF = 0;
   public static final int INPUT_INT = 8;
   public static final int error = 1;
-  public static final int COMA = 19;
+  public static final int COMA = 16;
   public static final int INPUT_BOOL = 9;
-  public static final int LLAVEc = 16;
-  public static final int TIPO_INT = 32;
-  public static final int ELSE = 25;
-  public static final int PUNTO = 18;
-  public static final int WHILE = 21;
-  public static final int FLOAT = 38;
-  public static final int THEN = 24;
-  public static final int LLAVEO = 13;
-  public static final int TIPO_FLOAT = 33;
-  public static final int PROGRAM_SECTION = 42;
-  public static final int TIPO_BOOL = 34;
+  public static final int TIPO_INT = 28;
+  public static final int ERROR = 33;
+  public static final int ELSE = 22;
+  public static final int WHILE = 18;
+  public static final int FLOAT = 35;
+  public static final int THEN = 21;
+  public static final int TIPO_FLOAT = 29;
+  public static final int PROGRAM_SECTION = 39;
+  public static final int TIPO_BOOL = 30;
   public static final int ASIGN = 6;
-  public static final int END = 26;
+  public static final int END = 23;
   public static final int INPUT_FLOAT = 10;
-  public static final int COLA = 35;
-  public static final int ENDPROGRAM_SECTION = 43;
-  public static final int DO = 22;
-  public static final int DECLARE_SECTION = 40;
-  public static final int IDENTIFIER = 36;
+  public static final int COLA = 31;
+  public static final int ENDPROGRAM_SECTION = 40;
+  public static final int DO = 19;
+  public static final int DECLARE_SECTION = 37;
+  public static final int IDENTIFIER = 32;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -67,12 +64,9 @@ public class MiParserSym {
   "INPUT_FLOAT",
   "PARENTESISO",
   "PARENTESISC",
-  "LLAVEO",
   "CORCHETEO",
   "CORCHETEC",
-  "LLAVEc",
   "PUNTOCOMA",
-  "PUNTO",
   "COMA",
   "DOSPUNTOS",
   "WHILE",
@@ -81,7 +75,6 @@ public class MiParserSym {
   "THEN",
   "ELSE",
   "END",
-  "IGUAL",
   "AND",
   "OR",
   "NOT",
@@ -91,6 +84,7 @@ public class MiParserSym {
   "TIPO_BOOL",
   "COLA",
   "IDENTIFIER",
+  "ERROR",
   "INT",
   "FLOAT",
   "BOOL",

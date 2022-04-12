@@ -2,12 +2,12 @@ package archivos.jflexyjcup;
 
 import java_cup.runtime.Symbol;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Objects;
-import javax.swing.*;
 
 public class AbrirParteGráfica extends JFrame implements ActionListener {
 
@@ -35,10 +35,15 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         btn2.addActionListener(this);
         panel1.add( btn2 );
 
-        //Se crea un boton para compilar el archivo
-        JButton btn3 = new JButton("Compilar");
+        //Se crea un boton para generar tokens del archivo
+        JButton btn3 = new JButton("Generar Tokens");
         btn3.addActionListener(this);
         panel1.add( btn3 );
+
+        //Se cre boton para generar parser del archivo
+        JButton btn4 = new JButton("Generar Parser");
+        btn4.addActionListener(this);
+        panel1.add( btn4 );
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
@@ -88,7 +93,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,ex.getMessage());
             }
-        } else if( btn.getText().equals( "Compilar" ) ){
+        } else if( btn.getText().equals( "Generar Tokens" ) ){
             JFrame frame2 = new JFrame("Tokens");
             frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
@@ -99,12 +104,32 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             jsp2.setViewportView(txp2);
             frame2.add(jsp2, BorderLayout.CENTER);
             frame2.setVisible( true );
-
             try {
                 Compilar(txp.getText());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
             }
+
+        }
+        else if (btn.getText().equals("Generar Parser")){
+            JFrame frame2 = new JFrame("Parser");
+            frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame2.setLayout(new BorderLayout());
+            frame2.setSize( 800, 800 );
+            frame2.setLocationRelativeTo( null );
+            txp3 = new JTextPane();
+            JScrollPane jsp2 = new JScrollPane();
+            jsp2.setViewportView(txp3);
+            frame2.add(jsp2, BorderLayout.CENTER);
+            frame2.setVisible( true );
+            try {
+                Parsing(txp.getText());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
 
         }
     }
@@ -158,7 +183,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             MiLexico lexico = new MiLexico(entrada);
             StringBuilder tokens = new StringBuilder();
             StringBuilder errores = new StringBuilder("Errores: ");
-            while (true) {
+            while (!lexico.yyatEOF()) {
                 Symbol token = lexico.next_token();
                 if (token.value == null) {
                     break;
@@ -181,6 +206,25 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(rootPane,"Error" + ex.getMessage());
         }
     }
+    public void Parsing(String contenido) throws IOException,Exception {
+        String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
+        MiLexico lexer = new MiLexico(new FileReader(path));
+        MiParser parser = new MiParser(lexer);
+        parser.reglas = "";
+        
+        StringBuilder Reglas = new StringBuilder();
+        try{
+            Symbol p = parser.parse();
+            Reglas.append(parser.reglas);
+            txp3.setText(parser.reglas);
+        }
+        catch (Exception e){
+            JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
+        };
+
+
+
+    }
 
     public static void main( String[] arg ){
         try {
@@ -198,6 +242,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
 
     JTextPane txp;
     JTextPane txp2;
+    JTextPane txp3;
     JFileChooser abrirArchivo;
     File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");;
 }
