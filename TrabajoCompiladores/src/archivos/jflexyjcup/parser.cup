@@ -56,13 +56,13 @@ parser code
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
-terminal String IDENTIFIER, ERROR, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
+terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 
 nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
-sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, condicion,
+sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, expr_or,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
 
-precedence left OPCOMP, sentencia;
+//precedence left OPCOMP, sentencia;
 
 start with program;
 
@@ -163,8 +163,8 @@ sentencia ::=
         :};
 
 sentencia_while ::=
-        WHILE PARENTESISO condicion:c PARENTESISC DO lista_sentencias:ls END {:
-            concat_rules("Regla 4: sentencia_while --> WHILE PARENTESISO condicion PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
+        WHILE PARENTESISO expr_or:c PARENTESISC DO lista_sentencias:ls END {:
+            concat_rules("Regla 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
             //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
             RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
         :};
@@ -182,14 +182,14 @@ sentencia_if ::=
             RESULT = ie;
          :};
 if_simple ::=
-        IF PARENTESISO condicion:cond PARENTESISC THEN lista_sentencias:ls END {:
-            concat_rules("Regla 5.1: if_simple --> IF PARENTESISO condicion PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
+        IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls END {:
+            concat_rules("Regla 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
             //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
             RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
         :};
 if_else ::=
-        IF PARENTESISO condicion:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
-            concat_rules("Regla 5.2: if_else --> IF PARENTESISO condicion PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
+        IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
+            concat_rules("Regla 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
             //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
             RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
         :};
@@ -201,25 +201,11 @@ sentencia_display ::=
             RESULT = "display(" + sl + ")";
         :}
         |
-        DISPLAY PARENTESISO comparacion:c PARENTESISC {:
-            concat_rules("Regla 6: sentencia_display --> DISPLAY ( comparacion ) " + "\n\t --> " + " display( " + c + " ) ");
+        DISPLAY PARENTESISO exp_or:c PARENTESISC {:
+            concat_rules("Regla 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
             RESULT = "display(" + c + ")";
-        :}
-        ;
-condicion ::=
-    exp_or:e1 OPCOMP:op exp_or:e2 {:
-        concat_rules("Regla 6.1: condicion --> exp_or OPCOMP exp_or " + "\n\t --> " + e1 + " " + op + " " + e2);
-        //concat_rules("Regla 6.1: condicion -->" + e1 + op + e2 );
-        RESULT = e1 + op + e2;
-    :}
-    |
-    exp_or:e1 {:
-        concat_rules("Regla 6.2: condicion --> exp_or " + "\n\t --> " + e1);
-        //concat_rules("Regla 6.2: condicion -->" + e1 );
-        RESULT = e1; :}
-    ;
-
+        :};
 
 sentencia_asignacion ::=
     IDENTIFIER:id  ASIGN exp_or:eo {:

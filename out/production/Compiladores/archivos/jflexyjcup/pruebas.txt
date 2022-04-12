@@ -1,13 +1,14 @@
 program.section
-    display("hola")  
-    display("holanda")
+    display("hola")
+    b:=c and d - 5 > f * -3
+    (*display("holanda")
     display("ewr") (* donde “ewr” debe ser una cte literal string *)
     display(5.5777 + aux)
     display(7 <= mi_var)
-    while((f<a) and (4<c)) do 
+    while((f<a) and (4<c)) do
         display("hola")(**)
         if (b==c) then
-            b:=b+1 IF
+            b:=b+1
         end
-    end 
+    end*)*)
 endprogram.section 
