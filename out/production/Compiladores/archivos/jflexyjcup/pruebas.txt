@@ -6,8 +6,8 @@ enddeclare.section
 program.section
     b:=c and d - 5 > f * -3
     xd:= c>=4
-    display("holanda")
-    display("aewr") (* donde “ewr” debe ser una cte literal string *)
+    display(a)
+    display("aewr") (* donde “ewr�? debe ser una cte literal string *)
     display(5.572387912381723891738912378912379182371293712371277 + aux)
     display( 7 <= mi_var )
     while ( (f<a) and (4<c) ) do

@@ -217,8 +217,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
     }
     public void Parsing(String contenido) throws IOException,Exception {
-        String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
-        MiLexico lexer = new MiLexico(new FileReader(path));
+        MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
         parser.reglas = "";
         parser.simbolos = "";
@@ -257,5 +256,6 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp3;
     JTextPane txp4;
     JFileChooser abrirArchivo;
-    File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");;
+    File archivo = new File("C:\\Users\\santi\\Documents\\GitHub\\Compiladores\\TrabajoCompiladores\\src\\archivos\\jflexyjcup\\pruebas.txt");
+    //hay que copiar el path del archivo pruebas para que pueda trabajar el lexer-parser.
 }
