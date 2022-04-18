@@ -1,18 +1,19 @@
 declare.section
-    int : a;
+    int : a,b,c;
     float : z;
-    bool : xd;
+    bool : xd; 
 enddeclare.section
 program.section
     b:=c and d - 5 > f * -3
-    (*display("holanda")
-    display("ewr") (* donde “ewr” debe ser una cte literal string *)
-    display(5.5777 + aux)
-    display(7 <= mi_var)
-    while((f<a) and (4<c)) do
-        display("hola")(**)
+    xd:= c>=4
+    display("holanda")
+    display("aewr") (* donde “ewr” debe ser una cte literal string *)
+    display(5.572387912381723891738912378912379182371293712371277 + aux)
+    display( 7 <= mi_var )
+    while ( (f<a) and (4<c) ) do
+        display("hola")
         if (b==c) then
             b:=b+1
         end
-    end*)
+    end 
 endprogram.section 

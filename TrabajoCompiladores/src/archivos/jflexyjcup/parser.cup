@@ -20,7 +20,7 @@ action code {:
 parser code
 {:
     public void syntax_error(Symbol s) {
-                    if (s.sym==33){
+                    if (s.sym==32){
                                 concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
                                         +s.value+"' . Simbolo n° "+s.sym);
                         try {
@@ -35,13 +35,13 @@ parser code
             }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        if (s.sym == 33){
+        if (s.sym == 32){
             throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
                     +s.value+"' . Simbolo n° "+s.sym+ "" );
         }
         else
                                     {throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-                                            +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}
+                                            +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }
     }
 
     public String reglas;
@@ -55,12 +55,12 @@ parser code
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
-COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
+COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA,ERROR;
 terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 
 nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
-sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, expr_or,
-factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot, lista_expresiones;
+sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, exp_or,
+factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and, pivot, lista_expresiones;
 
 //precedence left OPCOMP, sentencia;
 
@@ -165,8 +165,8 @@ sentencia ::=
         :};
 
 sentencia_while ::=
-        WHILE PARENTESISO expr_or:c PARENTESISC DO lista_sentencias:ls END {:
-            concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
+        WHILE PARENTESISO exp_or:c PARENTESISC DO lista_sentencias:ls END {:
+            concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
             //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
             RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
         :};
@@ -184,14 +184,14 @@ sentencia_if ::=
             RESULT = ie;
          :};
 if_simple ::=
-        IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls END {:
-            concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
+        IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls END {:
+            concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
             //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
             RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
         :};
 if_else ::=
-        IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
-            concat_rules("REGLA 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
+        IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
+            concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
             //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
             RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
         :};
