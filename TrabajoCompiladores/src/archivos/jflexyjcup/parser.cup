@@ -10,10 +10,11 @@ import java.util.Hashtable;
 
 class MiParser;
 
-
-
 action code {:
-    Hashtable table = new Hashtable();
+    Hashtable tablaSimbolo = new Hashtable();
+
+    //public String simbolos;
+
 :};
 
 parser code
@@ -49,10 +50,9 @@ parser code
         reglas += regla + "\n\n";
     }
 
-
+    public String simbolos;
 
 :};
-//action code para hacer tabla de simbolos
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA;
@@ -60,149 +60,151 @@ terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION,
 
 nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, expr_or,
-factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot,lista_expresiones;
+factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and,exp_or, pivot, lista_expresiones;
 
 //precedence left OPCOMP, sentencia;
 
 start with program;
 
 program ::= sector_declaraciones:sd programa:p //programa
-    {:  concat_rules("Regla 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
+    {:  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
     RESULT= sd + p ;:}
     |
     programa:p {:
-    concat_rules("Regla 0.1: program --> programa " + "\n\t --> " + p );
+    concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
     RESULT= p;
     :}
     |;
 sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
-    {: concat_rules("Regla 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE.SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
+    {: concat_rules("REGLA 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE_SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
        RESULT = "DECLARE_SECTION" + ld + "ENDDECLARE_SECTION"; :};
 
 lista_declaraciones ::= declaracion:d {:
-    concat_rules ( "Regla 1.1: lista_declaraciones --> declaracion " + "\n\t --> " + d + " ");
+    concat_rules ( "REGLA 1.1: lista_declaraciones --> declaracion " + "\n\t --> " + d + " ");
     RESULT = d; :}
     |
     lista_declaraciones:ld declaracion:d {:
-    concat_rules ("Regla 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
+    concat_rules ("REGLA 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
     RESULT = ld + d ; :};
 
 declaracion ::=
     tipo_de_dato:td DOSPUNTOS ids:i PUNTOCOMA {:
-        concat_rules("Regla 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
-        RESULT = td + ":" + i + ";";:};
+        concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
+        RESULT = td + ":" + i + ";";
+        tablaSimbolo.put(i, td);
+        simbolos = tablaSimbolo.toString() + "\n\n"; :};
 
 ids ::=
     IDENTIFIER:id {:
-        concat_rules("Regla 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
+        concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
         RESULT = id; :}
     |
     ids:i COMA IDENTIFIER:id {:
-        concat_rules("Regla 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
+        concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
         RESULT = i + "," + id; :};
 
 tipo_de_dato ::=
     TIPO_INT:ti {:
-        concat_rules("Regla 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
+        concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
         //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
         RESULT = "int"; :}
     |
     TIPO_FLOAT:tf {:
-        concat_rules("Regla 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
+        concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
         //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
         RESULT = "float"; :}
     |
     TIPO_BOOL:tb {:
-        concat_rules("Regla 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
+        concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
         //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
         RESULT = "bool";:};
 
 programa ::=
         PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
-            concat_rules("Regla 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
+            concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
             RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
         :};
 lista_sentencias ::=
         sentencia:s {:
-            concat_rules("Regla 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
+            concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
             RESULT = s; :}
         |
         lista_sentencias:ls sentencia:s {:
-            concat_rules("Regla 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
+            concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
             //concat_rules("Regla 3.2: lista_sentencias --> " + ls + s);
             RESULT = ls + s; :};
 
 sentencia ::=
         sentencia_while:sw {:
-            concat_rules("Regla 3.1.1: sentencia --> sentencia_while " + "\n\t --> " + sw + " ");
+            concat_rules("REGLA 3.1.1: sentencia --> sentencia_while " + "\n\t --> " + sw + " ");
             //concat_rules("Regla 3.1.1: sentencia --> " + sw);
             RESULT = sw; :}
         |
         sentencia_if:si {:
-            concat_rules("Regla 3.1.2: sentencia --> sentencia_if " + "\n\t --> " + si + " ");
+            concat_rules("REGLA 3.1.2: sentencia --> sentencia_if " + "\n\t --> " + si + " ");
             //concat_rules("Regla 3.1.2: sentencia --> " + si);
             RESULT = si; :}
         |
         sentencia_display:sd {:
-            concat_rules("Regla 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
+            concat_rules("REGLA 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
             //concat_rules("Regla 3.1.3: sentencia --> " + sd);
             RESULT = sd; :}
         |
          sentencia_input:sinput {:
-            concat_rules("Regla 3.1.4: sentencia --> sentencia_input " + "\n\t --> " + sinput + " ");
+            concat_rules("REGLA 3.1.4: sentencia --> sentencia_input " + "\n\t --> " + sinput + " ");
             //concat_rules("Regla 3.1.4: sentencia --> " + sinput);
             RESULT = sinput;
         :}
         |
         sentencia_asignacion:sa{:
-            concat_rules("Regla 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");
+            concat_rules("REGLA 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");
             //concat_rules("Regla 3.1.5: sentencia --> " + sa);
             RESULT = sa;
         :};
 
 sentencia_while ::=
         WHILE PARENTESISO expr_or:c PARENTESISC DO lista_sentencias:ls END {:
-            concat_rules("Regla 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
+            concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
             //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
             RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
         :};
 
 sentencia_if ::=
         if_simple:ifs {:
-            concat_rules("Regla 5: sentencia_if --> if_simple " + "\n\t --> " + ifs + " ");
+            concat_rules("REGLA 5: sentencia_if --> if_simple " + "\n\t --> " + ifs + " ");
             //concat_rules("Regla 5: sentencia_if --> " + ifs );
             RESULT = ifs;
          :}
         |
         if_else:ie {:
-            concat_rules("Regla 5: sentencia_if --> if_else " + "\n\t --> " + ie + " ");
+            concat_rules("REGLA 5: sentencia_if --> if_else " + "\n\t --> " + ie + " ");
             //concat_rules("Regla 5: sentencia_if --> " + ie );
             RESULT = ie;
          :};
 if_simple ::=
         IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls END {:
-            concat_rules("Regla 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
+            concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
             //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
             RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
         :};
 if_else ::=
         IF PARENTESISO expr_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
-            concat_rules("Regla 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
+            concat_rules("REGLA 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
             //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
             RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
         :};
 
 sentencia_display ::=
         DISPLAY PARENTESISO STRING_LITERAL:sl PARENTESISC {:
-            concat_rules("Regla 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
+            concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             RESULT = "display(" + sl + ")";
         :}
         |
         DISPLAY PARENTESISO exp_or:c PARENTESISC {:
-            concat_rules("Regla 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
+            concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
             RESULT = "display(" + c + ")";
         :};

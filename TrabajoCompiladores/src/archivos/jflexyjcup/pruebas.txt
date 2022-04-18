@@ -1,5 +1,9 @@
+declare.section
+    int : a;
+    float : z;
+    bool : xd;
+enddeclare.section
 program.section
-    display(+)
     b:=c and d - 5 > f * -3
     (*display("holanda")
     display("ewr") (* donde “ewr” debe ser una cte literal string *)

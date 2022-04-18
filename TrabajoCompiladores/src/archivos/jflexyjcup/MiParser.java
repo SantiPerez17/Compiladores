@@ -353,7 +353,7 @@ public class MiParser extends java_cup.runtime.lr_parser {
         reglas += regla + "\n\n";
     }
 
-
+    public String simbolos;
 
 
 
@@ -362,7 +362,10 @@ public class MiParser extends java_cup.runtime.lr_parser {
 class CUP$MiParser$actions {
 
 
-    Hashtable table = new Hashtable();
+    Hashtable tablaSimbolo = new Hashtable();
+
+    //public String simbolos;
+
 
   private final MiParser parser;
 
@@ -409,7 +412,7 @@ class CUP$MiParser$actions {
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
-		  concat_rules("Regla 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
+		  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
     RESULT= sd + p ;
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -423,7 +426,7 @@ class CUP$MiParser$actions {
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-    concat_rules("Regla 0.1: program --> programa " + "\n\t --> " + p );
+    concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
     RESULT= p;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -446,7 +449,7 @@ class CUP$MiParser$actions {
 		int ldleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int ldright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String ld = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
-		 concat_rules("Regla 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE.SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
+		 concat_rules("REGLA 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE_SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
        RESULT = "DECLARE_SECTION" + ld + "ENDDECLARE_SECTION"; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sector_declaraciones",3, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -460,7 +463,7 @@ class CUP$MiParser$actions {
 		int dright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-    concat_rules ( "Regla 1.1: lista_declaraciones --> declaracion " + "\n\t --> " + d + " ");
+    concat_rules ( "REGLA 1.1: lista_declaraciones --> declaracion " + "\n\t --> " + d + " ");
     RESULT = d; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",4, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -477,7 +480,7 @@ class CUP$MiParser$actions {
 		int dright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String d = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-    concat_rules ("Regla 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
+    concat_rules ("REGLA 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
     RESULT = ld + d ; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",4, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -494,8 +497,10 @@ class CUP$MiParser$actions {
 		int iright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String i = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-        concat_rules("Regla 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
+        concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
+        tablaSimbolo.put(i, td);
+        simbolos = tablaSimbolo.toString() + "\n\n"; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("declaracion",5, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
@@ -508,7 +513,7 @@ class CUP$MiParser$actions {
 		int idright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-        concat_rules("Regla 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
+        concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
         RESULT = id; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -525,7 +530,7 @@ class CUP$MiParser$actions {
 		int idright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-        concat_rules("Regla 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
+        concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
         RESULT = i + "," + id; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -539,7 +544,7 @@ class CUP$MiParser$actions {
 		int tiright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Object ti = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-        concat_rules("Regla 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
+        concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
         //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
         RESULT = "int"; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",6, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -554,7 +559,7 @@ class CUP$MiParser$actions {
 		int tfright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Object tf = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-        concat_rules("Regla 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
+        concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
         //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
         RESULT = "float"; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",6, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -569,7 +574,7 @@ class CUP$MiParser$actions {
 		int tbright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Object tb = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-        concat_rules("Regla 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
+        concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
         //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
         RESULT = "bool";
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",6, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -584,7 +589,7 @@ class CUP$MiParser$actions {
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String ls = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
+            concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
             RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
         
@@ -600,7 +605,7 @@ class CUP$MiParser$actions {
 		int sright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String s = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
+            concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
             RESULT = s; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_sentencias",8, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -618,7 +623,7 @@ class CUP$MiParser$actions {
 		int sright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String s = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
+            concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
             //concat_rules("Regla 3.2: lista_sentencias --> " + ls + s);
             RESULT = ls + s; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_sentencias",8, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -633,7 +638,7 @@ class CUP$MiParser$actions {
 		int swright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String sw = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1.1: sentencia --> sentencia_while " + "\n\t --> " + sw + " ");
+            concat_rules("REGLA 3.1.1: sentencia --> sentencia_while " + "\n\t --> " + sw + " ");
             //concat_rules("Regla 3.1.1: sentencia --> " + sw);
             RESULT = sw; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",7, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -648,7 +653,7 @@ class CUP$MiParser$actions {
 		int siright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String si = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1.2: sentencia --> sentencia_if " + "\n\t --> " + si + " ");
+            concat_rules("REGLA 3.1.2: sentencia --> sentencia_if " + "\n\t --> " + si + " ");
             //concat_rules("Regla 3.1.2: sentencia --> " + si);
             RESULT = si; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",7, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -663,7 +668,7 @@ class CUP$MiParser$actions {
 		int sdright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String sd = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
+            concat_rules("REGLA 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
             //concat_rules("Regla 3.1.3: sentencia --> " + sd);
             RESULT = sd; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",7, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -678,7 +683,7 @@ class CUP$MiParser$actions {
 		int sinputright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String sinput = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1.4: sentencia --> sentencia_input " + "\n\t --> " + sinput + " ");
+            concat_rules("REGLA 3.1.4: sentencia --> sentencia_input " + "\n\t --> " + sinput + " ");
             //concat_rules("Regla 3.1.4: sentencia --> " + sinput);
             RESULT = sinput;
         
@@ -694,7 +699,7 @@ class CUP$MiParser$actions {
 		int saright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String sa = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");
+            concat_rules("REGLA 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");
             //concat_rules("Regla 3.1.5: sentencia --> " + sa);
             RESULT = sa;
         
@@ -713,7 +718,7 @@ class CUP$MiParser$actions {
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String ls = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
+            concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO expr_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
             //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
             RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
         
@@ -729,7 +734,7 @@ class CUP$MiParser$actions {
 		int ifsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String ifs = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 5: sentencia_if --> if_simple " + "\n\t --> " + ifs + " ");
+            concat_rules("REGLA 5: sentencia_if --> if_simple " + "\n\t --> " + ifs + " ");
             //concat_rules("Regla 5: sentencia_if --> " + ifs );
             RESULT = ifs;
          
@@ -745,7 +750,7 @@ class CUP$MiParser$actions {
 		int ieright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String ie = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-            concat_rules("Regla 5: sentencia_if --> if_else " + "\n\t --> " + ie + " ");
+            concat_rules("REGLA 5: sentencia_if --> if_else " + "\n\t --> " + ie + " ");
             //concat_rules("Regla 5: sentencia_if --> " + ie );
             RESULT = ie;
          
@@ -764,7 +769,7 @@ class CUP$MiParser$actions {
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String ls = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
+            concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
             //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
             RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
         
@@ -786,7 +791,7 @@ class CUP$MiParser$actions {
 		int ls2right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String ls2 = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
+            concat_rules("REGLA 5.2: if_else --> IF PARENTESISO expr_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
             //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
             RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
         
@@ -802,7 +807,7 @@ class CUP$MiParser$actions {
 		int slright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String sl = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
+            concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             RESULT = "display(" + sl + ")";
         
@@ -818,7 +823,7 @@ class CUP$MiParser$actions {
 		int cright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String c = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
-            concat_rules("Regla 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
+            concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
             RESULT = "display(" + c + ")";
         

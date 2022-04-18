@@ -40,7 +40,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         btn3.addActionListener(this);
         panel1.add( btn3 );
 
-        //Se cre boton para generar parser del archivo
+        //Se crea boton para generar parser del archivo
         JButton btn4 = new JButton("Generar Parser");
         btn4.addActionListener(this);
         panel1.add( btn4 );
@@ -77,7 +77,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
                     String nombre = f.getName();
                     String path = f.getAbsolutePath();
                     String contenido = getArchivo(path);
-                    //Colocamos en el titulo de la aplicacion el
+                    //Colocamos en el título de la aplicación el
                     //nombre del archivo
                     this.setTitle(nombre);
 
@@ -113,15 +113,25 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
         else if (btn.getText().equals("Generar Parser")){
             JFrame frame2 = new JFrame("Parser");
+            JFrame frame3 = new JFrame("Tabla de Simbolos");
             frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
+            frame3.setLayout(new BorderLayout());
             frame2.setSize( 800, 800 );
+            frame3.setSize( 300, 300 );
             frame2.setLocationRelativeTo( null );
+            frame3.setLocationRelativeTo( null );
             txp3 = new JTextPane();
+            txp4 = new JTextPane();
             JScrollPane jsp2 = new JScrollPane();
+            JScrollPane jsp3 = new JScrollPane();
             jsp2.setViewportView(txp3);
+            jsp3.setViewportView(txp4);
             frame2.add(jsp2, BorderLayout.CENTER);
+            frame3.add(jsp3, BorderLayout.CENTER);
             frame2.setVisible( true );
+            frame3.setVisible( true );
             try {
                 Parsing(txp.getText());
             } catch (IOException ex) {
@@ -148,14 +158,14 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             br = new BufferedReader( fr );
 
             String linea;
-            //Obtenemos el contenido del archivo linea por linea
+            //Obtenemos el contenido del archivo línea por línea
             while( ( linea = br.readLine() ) != null ){
                 contenido += linea + "\n";
             }
 
         }catch( Exception e ){  }
         //finally se utiliza para que si todo ocurre correctamente o si ocurre
-        //algun error se cierre el archivo que anteriormente abrimos
+        //algún error se cierre el archivo que anteriormente abrimos
         finally
         {
             try{
@@ -211,18 +221,20 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         MiLexico lexer = new MiLexico(new FileReader(path));
         MiParser parser = new MiParser(lexer);
         parser.reglas = "";
+        parser.simbolos = "";
         
         StringBuilder Reglas = new StringBuilder();
+        StringBuilder Simbolos = new StringBuilder();
         try{
             Symbol p = parser.parse();
             Reglas.append(parser.reglas);
+            Simbolos.append(parser.simbolos);
             txp3.setText(parser.reglas);
+            txp4.setText("TABLA DE SIMBOLOS \n\n" + parser.simbolos);
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         };
-
-
 
     }
 
@@ -243,6 +255,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp;
     JTextPane txp2;
     JTextPane txp3;
+    JTextPane txp4;
     JFileChooser abrirArchivo;
     File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");;
 }
