@@ -1,19 +1,19 @@
-declare.section
+(*declare.section
     int : a,b,c;
     float : z;
     bool : xd; 
-enddeclare.section
+enddeclare.section *)
 program.section
-    b:=c and d - 5 > f * -3
+   (* b:=c and d - 5 > f * -3
     xd:= c>=4
     display(a)
-    display("aewr") (* donde “ewr�? debe ser una cte literal string *)
+    display("aewr") (* donde “ewr�? debe ser una cte literal string *)
     display(5.5723877 + aux)
     display( 7 <= mi_var )
-    while ( (f<a) and (4<c) ) do
+    while ( (cola(2;[1,2,3] )> 1 )) do
         display("hola")
         if (b==c) then
             b:=b+1
         end
-    end 
+    end *)
 endprogram.section 

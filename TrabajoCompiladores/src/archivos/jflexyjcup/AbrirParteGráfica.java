@@ -256,6 +256,6 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp3;
     JTextPane txp4;
     JFileChooser abrirArchivo;
-    File archivo = new File("C:\\Users\\santi\\Documents\\GitHub\\Compiladores\\TrabajoCompiladores\\src\\archivos\\jflexyjcup\\pruebas.txt");
-    //hay que copiar el path del archivo pruebas para que pueda trabajar el lexer-parser.
+    File archivo = new File("pruebas.txt");
+    //hay que copiar el path del archivo pruebas.txt para que pueda trabajar el lexer-parser.
 }
