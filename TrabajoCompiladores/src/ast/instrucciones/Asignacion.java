@@ -38,7 +38,7 @@ public class Asignacion extends Sentencia{
         return String.format("%s", this.getNombreOperacion());
     }
 
-    @Override
+   /* @Override
     public <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance{
         return v.visit(this);
     }
@@ -46,6 +46,6 @@ public class Asignacion extends Sentencia{
     @Override
     public Asignacion accept_transfomer(Transformer t) throws ExcepcionDeTipos{
         return t.transform(this);
-    }
+    }*/
 
 }

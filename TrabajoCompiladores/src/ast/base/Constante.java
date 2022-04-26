@@ -30,7 +30,7 @@ public class Constante extends Expresion {
     public String getEtiqueta() {
         return String.format(String.format("Const %s %s", getValor(), this.getTipo()));
     }
-
+/*
     @Override
     public <T> T accept(Visitor<T> v) {
         return v.visit(this);
@@ -39,5 +39,5 @@ public class Constante extends Expresion {
     @Override
     public Constante accept_transfomer(Transformer t) {
         return t.transform(this);
-    }
+    }*/
 }

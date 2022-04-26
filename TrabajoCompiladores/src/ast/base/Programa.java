@@ -16,7 +16,7 @@ public class Programa extends Nodo{
         this.cuerpo = cuerpo;
     }
 
-    @Override
+    /*@Override
     public <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance{
         return v.visit(this);
     }
@@ -24,6 +24,6 @@ public class Programa extends Nodo{
     @Override
     public Programa accept_transfomer(Transformer t) throws ExcepcionDeTipos{
         return t.transform(this);
-    }
+    }*/
 
 }

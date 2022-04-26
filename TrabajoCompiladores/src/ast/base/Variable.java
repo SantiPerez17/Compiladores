@@ -1,5 +1,7 @@
 package ast.base;
 
+import ast.instrucciones.DeclaracionVariable;
+
 public class Variable extends Expresion{
 
     private DeclaracionVariable declaracion;
@@ -16,7 +18,7 @@ public class Variable extends Expresion{
         this.declaracion = declaracion;
     }
 
-    @Override
+    /*@Override
     public <T> T accept(Visitor<T> v) {
         return v.visit(this);
     }
@@ -24,6 +26,6 @@ public class Variable extends Expresion{
     @Override
     public Variable accept_transfomer(Transformer t) {
         return t.transform(this);
-    }
+    }*/
 
 }

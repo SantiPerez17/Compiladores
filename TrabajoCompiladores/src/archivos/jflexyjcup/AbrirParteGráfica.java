@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class AbrirParteGráfica extends JFrame implements ActionListener {
@@ -230,6 +232,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             Simbolos.append(parser.simbolos);
             txp3.setText(parser.reglas);
             txp4.setText("TABLA DE SIMBOLOS \n\n" + parser.simbolos);
+            PrintWriter writer = new PrintWriter("TrabajoCompiladores/src/archivos/ts.txt", StandardCharsets.UTF_8);
+            writer.println(parser.simbolos.toString());
+            writer.close();
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
@@ -256,6 +261,6 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp3;
     JTextPane txp4;
     JFileChooser abrirArchivo;
-    File archivo = new File("pruebas.txt");
+    File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt"); //cambiar por pruebas.txt para pruebas en la gui
     //hay que copiar el path del archivo pruebas.txt para que pueda trabajar el lexer-parser.
 }

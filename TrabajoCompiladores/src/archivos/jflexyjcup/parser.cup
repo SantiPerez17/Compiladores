@@ -151,12 +151,12 @@ sentencia ::=
             concat_rules("REGLA 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
             //concat_rules("Regla 3.1.3: sentencia --> " + sd);
             RESULT = sd; :}
-        |
+        /*|
          sentencia_input:sinput {:
             concat_rules("REGLA 3.1.4: sentencia --> sentencia_input " + "\n\t --> " + sinput + " ");
             //concat_rules("Regla 3.1.4: sentencia --> " + sinput);
             RESULT = sinput;
-        :}
+        :}*/
         |
         sentencia_asignacion:sa{:
             concat_rules("REGLA 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");

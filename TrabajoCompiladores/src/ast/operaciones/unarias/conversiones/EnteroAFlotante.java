@@ -11,7 +11,7 @@ public class EnteroAFlotante extends OperacionConversion{
         super("entero a flotante", expresion, Tipo.FLOAT);
     }
 
-    @Override
+   /* @Override
     public <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance {
         return v.visit(this);
     }
@@ -20,5 +20,5 @@ public class EnteroAFlotante extends OperacionConversion{
     public EnteroAFlotante accept_transfomer(Transformer t) throws ExcepcionDeTipos{
         return t.transform(this);
     }
-
+*/
 }

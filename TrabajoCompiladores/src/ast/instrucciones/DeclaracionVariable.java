@@ -29,7 +29,7 @@ public class DeclaracionVariable extends Sentencia{
         this.tipo = tipo;
     }
 
-    @Override
+   /* @Override
     public <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance{
         return v.visit(this);
     }
@@ -37,6 +37,6 @@ public class DeclaracionVariable extends Sentencia{
     @Override
     public DeclaracionVariable accept_transfomer(Transformer t) {
         return t.transform(this);
-    }
+    }*/
 
 }

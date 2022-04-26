@@ -16,7 +16,7 @@ public class Identificador extends Expresion{
         return String.format(String.format("Ident %s %s", this.getNombre(), this.getTipo()));
     }
 
-    @Override
+    /*@Override
     public <T> T accept(Visitor<T> v) {
         return v.visit(this);
     }
@@ -24,6 +24,6 @@ public class Identificador extends Expresion{
     @Override
     public Identificador accept_transfomer(Transformer t) throws ExcepcionDeTipos{
         return t.transform(this);
-    }
+    }*/
 
 }

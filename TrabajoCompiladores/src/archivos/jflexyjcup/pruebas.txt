@@ -1,10 +1,10 @@
-(*declare.section
+declare.section
     int : a,b,c;
     float : z;
     bool : xd; 
-enddeclare.section *)
+enddeclare.section
 program.section
-   (* b:=c and d - 5 > f * -3
+    b:=c and d - 5 > f * -3
     xd:= c>=4
     display(a)
     display("aewr") (* donde “ewr�? debe ser una cte literal string *)
@@ -15,5 +15,5 @@ program.section
         if (b==c) then
             b:=b+1
         end
-    end *)
+    end 
 endprogram.section 

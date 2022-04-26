@@ -58,7 +58,7 @@ public class Bloque extends Nodo{
         this.sentencias = sentencias;
     }
 
-    @Override
+   /* @Override
     public <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance{
         return v.visit(this);
     }
@@ -66,7 +66,7 @@ public class Bloque extends Nodo{
     @Override
     public Bloque accept_transfomer(Transformer t) throws ExcepcionDeTipos{
         return t.transform(this);
-    }
+    }*/
 
 
 }
