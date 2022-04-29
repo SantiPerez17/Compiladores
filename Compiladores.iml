@@ -10,5 +10,6 @@
     <orderEntry type="library" name="java-cup-11b-runtime" level="project" />
     <orderEntry type="library" name="java-cup-11b" level="project" />
     <orderEntry type="library" name="jflex-full-1.8.2" level="project" />
+    <orderEntry type="library" name="guava-31.1-jre" level="project" />
   </component>
 </module>
