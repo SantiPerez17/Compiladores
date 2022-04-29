@@ -1,15 +1,19 @@
 declare.section
     int : a,b,c;
+    float : r;
     float : z;
     bool : xd; 
 enddeclare.section
 program.section
     b:=c and d - 5 > f * -3
+    c:=3.3
+    r:=45.123 
     xd:= c>=4
     display(a)
     display("aewr") (* donde “ewr�? debe ser una cte literal string *)
     display(5.5723877 + aux)
     display( 7 <= mi_var )
+    a:=cola(2;[])
     while ( (cola(2;[1,2,3] )> 1 )) do
         display("hola")
         if (b==c) then

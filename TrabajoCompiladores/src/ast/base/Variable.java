@@ -1,6 +1,6 @@
 package ast.base;
 
-import ast.instrucciones.DeclaracionVariable;
+import ast.Sentencias.DeclaracionVariable;
 
 public class Variable extends Expresion{
 

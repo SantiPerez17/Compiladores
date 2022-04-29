@@ -6,7 +6,7 @@ import ast.base.Tipo;
 public class FlotanteAEntero extends OperacionConversion{
 
     public FlotanteAEntero(Expresion expresion) {
-        super("flotante a entero", expresion, Tipo.INTEGER);
+        super("FLOAT a INT", expresion, Tipo.INTEGER);
     }
 
   /*  @Override

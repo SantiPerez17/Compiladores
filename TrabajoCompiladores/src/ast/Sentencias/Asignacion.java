@@ -1,4 +1,4 @@
-package ast.instrucciones;
+package ast.Sentencias;
 
 import ast.base.Expresion;
 import ast.base.Identificador;
@@ -30,7 +30,7 @@ public class Asignacion extends Sentencia{
     }
 
     protected String getNombreOperacion() {
-        return "=";
+        return ":=";
     }
 
     @Override

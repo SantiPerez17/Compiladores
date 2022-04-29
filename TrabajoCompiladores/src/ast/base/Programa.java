@@ -1,7 +1,7 @@
 package ast.base;
 
 public class Programa extends Nodo{
-
+    private SectorDeclaraciones SectorDeclaraciones;
     private Bloque cuerpo;
 
     public Programa(Bloque cuerpo) {

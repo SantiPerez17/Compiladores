@@ -1,6 +1,6 @@
 package ast.base;
 
-import ast.instrucciones.Sentencia;
+import ast.Sentencias.Sentencia;
 
 import java.util.List;
 

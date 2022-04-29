@@ -103,7 +103,9 @@ declaracion ::=
                 else{
                         tablaSimbolos2.put(i, td);
                     }
-        simbolos = tablaSimbolos2.toString() + "\n\n"; :};
+        simbolos = tablaSimbolos2.toString() + "\n\n";
+        //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
+        :};
 
 ids ::=
     IDENTIFIER:id {:
@@ -412,4 +414,7 @@ lista_expresiones ::=
         concat_rules("REGLA 10.3: lista_expresiones --> lista_expresiones COMA expresion " + "\n\t --> " + le + ", " + e);
         //concat_rules("REGLA 10.3: lista_expresiones --> " +le+ ", " + e );
         RESULT = le+", " + e;
-    :};
+    :}
+    |
+    //puede ser vacia agregado
+    ;

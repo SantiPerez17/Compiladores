@@ -1,4 +1,4 @@
-package ast.instrucciones;
+package ast.Sentencias;
 
 import ast.base.Identificador;
 import ast.base.Tipo;

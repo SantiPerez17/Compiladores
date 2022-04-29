@@ -861,7 +861,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
    * match-all fallback rule) this method will only be called with things that
    * "Can't Possibly Happen".
    *
-   * <p>If this method is called, something is seriously wrong (e.g. a JFlex bug producing a faulty
+   * <p>a this method is called, something is seriously wrong (e.g. a JFlex bug producing a faulty
    * scanner etc.).
    *
    * <p>Usual syntax/scanner level error handling should be done in error fallback rules.

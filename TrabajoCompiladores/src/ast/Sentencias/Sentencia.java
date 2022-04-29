@@ -1,4 +1,4 @@
-package ast.instrucciones;
+package ast.Sentencias;
 
 import ast.base.Nodo;
 
@@ -6,7 +6,7 @@ public abstract class Sentencia extends Nodo {
     public Sentencia() {
     }
 
-    public Sentencia(String name) {
-        super();
+    public Sentencia(String nombre) {
+        super(nombre);
     }
 }
