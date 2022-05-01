@@ -95,6 +95,7 @@ declaracion ::=
     tipo_de_dato:td DOSPUNTOS ids:i PUNTOCOMA {:
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
+
         if (i.contains(",")){
                     String[] parts = i.split(",");
                     for (String s : parts){
@@ -220,7 +221,13 @@ sentencia_asignacion ::=
     IDENTIFIER:id  ASIGN exp_or:eo {:
         concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN FLOAT " + "\n\t --> " + id + " := " + eo);
         //concat_rules("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
-        RESULT = id + " := " + eo ;
+        if (!tablaSimbolos2.containsKey(id)){
+                    throw new Exception("Variable " + id + " no declarada.");
+                    }
+         else {
+            RESULT=id + " := " + eo;
+         }
+
         :};
 
 exp_or ::=

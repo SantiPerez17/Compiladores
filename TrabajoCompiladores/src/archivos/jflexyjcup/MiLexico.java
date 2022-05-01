@@ -634,6 +634,7 @@ public class MiLexico implements java_cup.runtime.Scanner {
     int string_yycolumn = 1;
     int count_comment = 0;
     int cota_int = 20;
+    int cota_ID = 28;
     int cota_float = 25;
     int cantMax_string = 100;
 
@@ -1152,7 +1153,9 @@ public class MiLexico implements java_cup.runtime.Scanner {
             // fall through
           case 70: break;
           case 16:
-            { return token("IDENTIFIER", yytext());
+            { if ( yytext().length() < cota_ID) {return token("IDENTIFIER", yytext());}
+                                                else{
+                                                    return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
             }
             // fall through
           case 71: break;

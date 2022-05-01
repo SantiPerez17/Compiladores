@@ -26,6 +26,7 @@ import archivos.jflexyjcup.MiToken;import java_cup.runtime.Symbol;
     int string_yycolumn = 1;
     int count_comment = 0;
     int cota_int = 20;
+    int cota_ID = 28;
     int cota_float = 25;
     int cantMax_string = 100;
 
@@ -190,7 +191,11 @@ SimpleComment = #.*{LineTerminator}?
     {Comilla} {return token("COMILLA", yytext());}
 
   /* identifiers */
-  {Identifier}                   { return token("IDENTIFIER", yytext()); }
+  {Identifier}                   {
+          if ( yytext().length() < cota_ID) {return token("IDENTIFIER", yytext());}
+                                                else{
+                                                    return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
+          }
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }
 }

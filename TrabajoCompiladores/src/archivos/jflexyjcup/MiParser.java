@@ -506,6 +506,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
+
         if (i.contains(",")){
                     String[] parts = i.split(",");
                     for (String s : parts){
@@ -844,7 +845,13 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN FLOAT " + "\n\t --> " + id + " := " + eo);
         //concat_rules("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
-        RESULT = id + " := " + eo ;
+        if (!tablaSimbolos2.containsKey(id)){
+                    throw new Exception("Variable " + id + " no declarada.");
+                    }
+         else {
+            RESULT=id + " := " + eo;
+         }
+
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_asignacion",10, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
