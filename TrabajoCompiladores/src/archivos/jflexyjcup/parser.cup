@@ -91,11 +91,10 @@ lista_declaraciones ::= declaracion:d {:
     concat_rules ("REGLA 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
     RESULT = ld + d ; :};
 
-declaracion ::=
+declaracion ::= //no es necesario generar el nodo este.
     tipo_de_dato:td DOSPUNTOS ids:i PUNTOCOMA {:
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
-
         if (i.contains(",")){
                     String[] parts = i.split(",");
                     for (String s : parts){
@@ -137,7 +136,7 @@ programa ::=
         PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
-            RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
+            RESULT = new Pror //"PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
         :};
 lista_sentencias ::=
         sentencia:s {:
@@ -227,7 +226,6 @@ sentencia_asignacion ::=
          else {
             RESULT=id + " := " + eo;
          }
-
         :};
 
 exp_or ::=

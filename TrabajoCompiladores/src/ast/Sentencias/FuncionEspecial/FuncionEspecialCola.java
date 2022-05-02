@@ -5,6 +5,12 @@ import ast.base.Tipo;
 
 import java.util.ArrayList;
 import java.util.List;
+/// no es necesaria esta clase.. se arma directo en el cup.
+
+
+//int a = 5.5+ 4
+//int a = 9.5 ??? a == 9 ERROR y advertir que se pierde precision
+//float a = 5.5 + 4 == a = 9.5 te deja
 
 public class FuncionEspecialCola extends Expresion {
     private String Pivot;

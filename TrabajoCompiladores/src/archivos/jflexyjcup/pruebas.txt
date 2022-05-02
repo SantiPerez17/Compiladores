@@ -5,7 +5,7 @@ declare.section
     bool : xd; 
 enddeclare.section
 program.section
-    asdasjsdkalsdjaksldjaksldjaksldjkasljdkasljdkasljdaskldjaskldjaskldjaslkjdklqjweklqwjeklqwjeklqwejklqwjeklqwjeklqwjeklqwjeklqwjeklwqjkelqw:=c and d - 5 > f * -3
+    asdaslqw:=c and d - 5 > f * -3
     c:=3.3
     r:=45.123 
     xd:= c>=4
