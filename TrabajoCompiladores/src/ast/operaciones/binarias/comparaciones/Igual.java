@@ -10,7 +10,7 @@ public class Igual extends OperacionBinaria {
     }
 
     public Igual(Expresion izquierda, Expresion derecha, String nombre) {
-        super(izquierda, derecha, nombre);
+        super(izquierda, derecha, "Igual");
     }
 
     public Igual(Expresion izquierda, Expresion derecha, Tipo tipo) {

@@ -17,6 +17,6 @@ public class NOT extends OperacionUnaria{
     }
 
     public NOT(String nombre, Expresion expresion, Tipo tipo) {
-        super(nombre, expresion, tipo);
+        super("NOT", expresion, tipo);
     }
 }

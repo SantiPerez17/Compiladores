@@ -11,7 +11,7 @@ public class Menor extends OperacionBinaria {
     }
 
     public Menor(Expresion izquierda, Expresion derecha, String nombre) {
-        super(izquierda, derecha, nombre);
+        super(izquierda, derecha, "Menor");
     }
 
     public Menor(Expresion izquierda, Expresion derecha, Tipo tipo) {
@@ -19,6 +19,6 @@ public class Menor extends OperacionBinaria {
     }
 
     public Menor(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, tipo, nombre);
+        super(izquierda, derecha, tipo, "Menor");
     }
 }

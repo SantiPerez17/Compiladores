@@ -10,7 +10,7 @@ public class Distinto extends OperacionBinaria {
     }
 
     public Distinto(Expresion izquierda, Expresion derecha, String nombre) {
-        super(izquierda, derecha, nombre);
+        super(izquierda, derecha, "Distinto");
     }
 
     public Distinto(Expresion izquierda, Expresion derecha, Tipo tipo) {
@@ -18,6 +18,6 @@ public class Distinto extends OperacionBinaria {
     }
 
     public Distinto(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, tipo, nombre); //!= <>
+        super(izquierda, derecha, tipo, "Distinto"); //!= <>
     }
 }

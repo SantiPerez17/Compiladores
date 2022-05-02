@@ -10,7 +10,7 @@ public class AND extends OperacionBinaria {
     }
 
     public AND(Expresion izquierda, Expresion derecha, String nombre) {
-        super(izquierda, derecha, nombre);
+        super(izquierda, derecha, "AND");
     }
 
     public AND(Expresion izquierda, Expresion derecha, Tipo tipo) {
