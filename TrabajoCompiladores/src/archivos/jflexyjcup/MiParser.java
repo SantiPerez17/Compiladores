@@ -5,6 +5,7 @@
 
 package archivos.jflexyjcup;
 
+import archivos.jflexyjcup.ast.Base.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -40,10 +41,10 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\073\000\002\002\004\000\002\003\004\000\002\003" +
-    "\003\000\002\003\002\000\002\005\005\000\002\006\003" +
-    "\000\002\006\004\000\002\007\006\000\002\002\003\000" +
-    "\002\002\005\000\002\010\003\000\002\010\003\000\002" +
+    "\000\073\000\002\002\004\000\002\002\004\000\002\002" +
+    "\003\000\002\002\002\000\002\005\005\000\002\006\003" +
+    "\000\002\006\004\000\002\007\006\000\002\003\003\000" +
+    "\002\003\005\000\002\010\003\000\002\010\003\000\002" +
     "\010\003\000\002\004\005\000\002\012\003\000\002\012" +
     "\004\000\002\011\003\000\002\011\003\000\002\011\003" +
     "\000\002\011\003\000\002\013\011\000\002\015\003\000" +
@@ -228,14 +229,14 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\161\000\010\003\004\004\005\005\003\001\001\000" +
+    "\000\161\000\010\002\004\004\005\005\003\001\001\000" +
     "\004\004\162\001\001\000\002\001\001\000\002\001\001" +
     "\000\022\011\030\012\041\013\027\014\032\015\040\016" +
     "\037\017\035\020\033\001\001\000\010\006\014\007\013" +
     "\010\011\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\006\007\017\010\011" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\002\021\001\001\000\002\001\001\000\002" +
+    "\001\000\004\003\021\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
@@ -361,6 +362,11 @@ public class MiParser extends java_cup.runtime.lr_parser {
 
     public String simbolos;
 
+    Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    public Multimap getTabladeSimbolos(){
+                return tablaSimbolos2;
+        }
+
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -369,7 +375,11 @@ class CUP$MiParser$actions {
 
 
     Hashtable tablaSimbolo = new Hashtable();
-    Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    //Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    //public Multimap getTabladeSimbolos(){
+     //       return tablaSimbolos2;
+   // }
+
 
     //public String simbolos;
 
@@ -401,7 +411,7 @@ class CUP$MiParser$actions {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int start_valright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
-		String start_val = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
+		Programa start_val = (Programa)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		RESULT = start_val;
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -412,7 +422,7 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 1: // program ::= sector_declaraciones programa 
             {
-              String RESULT =null;
+              Programa RESULT =null;
 		int sdleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int sdright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		String sd = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
@@ -420,32 +430,34 @@ class CUP$MiParser$actions {
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
-    RESULT= sd + p ;
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+    RESULT = new Programa(tablaSimbolos2);
+    //RESULT= sd + p ;
+    
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 2: // program ::= programa 
             {
-              String RESULT =null;
+              Programa RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
-    RESULT= p;
+    RESULT=p ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // program ::= 
             {
-              String RESULT =null;
+              Programa RESULT =null;
 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -506,7 +518,6 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
-
         if (i.contains(",")){
                     String[] parts = i.split(",");
                     for (String s : parts){
@@ -532,7 +543,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
         RESULT = id; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -549,7 +560,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
         RESULT = i + "," + id; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -851,7 +862,6 @@ class CUP$MiParser$actions {
          else {
             RESULT=id + " := " + eo;
          }
-
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_asignacion",10, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1011,6 +1021,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
+        //RESULT = new Suma(e1,e2);
         RESULT = e1+" + "+e2 ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",21, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);

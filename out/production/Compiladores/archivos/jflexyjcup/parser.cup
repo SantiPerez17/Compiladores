@@ -1,5 +1,6 @@
 package archivos.jflexyjcup;
 
+import archivos.jflexyjcup.ast.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -13,9 +14,14 @@ import java_cup.runtime.XMLElement;
 
 class MiParser;
 
+
 action code {:
     Hashtable tablaSimbolo = new Hashtable();
-    Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    //Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    //public Multimap getTabladeSimbolos(){
+     //       return tablaSimbolos2;
+   // }
+
 
     //public String simbolos;
 
@@ -56,13 +62,18 @@ parser code
 
     public String simbolos;
 
+    Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
+    public Multimap getTabladeSimbolos(){
+                return tablaSimbolos2;
+        }
+
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA,ERROR;
 terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
-
-nonterminal String ids, program, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
+nonterminal Programa program;
+nonterminal String ids, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, exp_or,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and, pivot, lista_expresiones;
 
@@ -72,7 +83,9 @@ start with program;
 
 program ::= sector_declaraciones:sd programa:p //programa
     {:  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
-    RESULT= sd + p ;:}
+    RESULT = new Programa(tablaSimbolos2);
+    //RESULT= sd + p ;
+    :}
     |
     programa:p {:
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
@@ -136,7 +149,7 @@ programa ::=
         PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
-            RESULT = new Pror //"PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
+            RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
         :};
 lista_sentencias ::=
         sentencia:s {:
@@ -284,6 +297,7 @@ expresion ::=
     expresion:e1 SUMA termino:e2 {:
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
+        //RESULT = new Suma(e1,e2);
         RESULT = e1+" + "+e2 ;
     :}
     |
