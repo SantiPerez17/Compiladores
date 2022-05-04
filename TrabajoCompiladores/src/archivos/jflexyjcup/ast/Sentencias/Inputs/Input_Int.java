@@ -5,7 +5,7 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class Input_Int extends Expresion {
     public Input_Int(Tipo tipo) {
-        super(Tipo.INTEGER);
+        super(Tipo.Int);
     }
 
     public Input_Int(String nombre) {
@@ -13,6 +13,6 @@ public class Input_Int extends Expresion {
     }
 
     public Input_Int(Tipo tipo, String nombre) {
-        super(Tipo.INTEGER, nombre);
+        super(Tipo.Int, nombre);
     }
 }

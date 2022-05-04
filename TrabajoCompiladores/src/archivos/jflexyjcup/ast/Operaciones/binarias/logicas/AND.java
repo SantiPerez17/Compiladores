@@ -8,10 +8,10 @@ public class AND extends OperacionBinaria {
 
 
     public AND(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.BOOL);
+        super(izquierda, derecha, Tipo.Bool);
     }
 
     public AND(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.BOOL, "AND");
+        super(izquierda, derecha, Tipo.Bool, "AND");
     }
 }

@@ -6,6 +6,10 @@ public class Identificador extends Expresion{
         super(tipo, nombre);
     }
 
+    public Identificador(String nombre) {
+        super(nombre);
+    }
+
     @Override
     public String getEtiqueta() {
         return String.format(String.format("Ident %s %s", this.getNombre(), this.getTipo()));

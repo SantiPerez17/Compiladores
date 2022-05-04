@@ -7,10 +7,10 @@ import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 public class Igual extends OperacionBinaria {
 
     public Igual(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.BOOL);
+        super(izquierda, derecha, Tipo.Bool);
     }
 
     public Igual(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.BOOL, nombre);
+        super(izquierda, derecha, Tipo.Bool, nombre);
     }
 }

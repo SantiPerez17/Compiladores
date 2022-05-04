@@ -8,10 +8,10 @@ public class Mayor extends OperacionBinaria {
 
 
     public Mayor(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.BOOL);
+        super(izquierda, derecha, Tipo.Bool);
     }
 
     public Mayor(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.BOOL, "Mayor");
+        super(izquierda, derecha, Tipo.Bool, "Mayor");
     }
 }

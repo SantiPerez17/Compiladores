@@ -9,10 +9,10 @@ public class Menor extends OperacionBinaria {
 
 
     public Menor(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.BOOL);
+        super(izquierda, derecha, Tipo.Bool);
     }
 
     public Menor(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.BOOL, "Menor");
+        super(izquierda, derecha, Tipo.Bool, "Menor");
     }
 }

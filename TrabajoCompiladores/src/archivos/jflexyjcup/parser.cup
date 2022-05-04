@@ -1,10 +1,16 @@
 package archivos.jflexyjcup;
 
+import archivos.jflexyjcup.ast.Base.Constantes.*;
 import archivos.jflexyjcup.ast.Base.*;
-import archivos.jflexyjcup.ast.Sentencias.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.*;
-import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.Displays.*;
 import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.comparaciones.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.conversiones.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
 import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.*;
 import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
@@ -75,31 +81,31 @@ parser code
 
 :};
 
-terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
-COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA,ERROR;
-terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
+terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
+COMA, DOSPUNTOS, DISPLAY, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
+terminal String IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
+
 nonterminal Programa program;
 nonterminal Tipo tipo_de_dato;
-nonterminal Sentencia sentencia;
+nonterminal Programa programa;
+nonterminal Sentencia sentencia, sentencia_if, sentencia_display;
 nonterminal List<Sentencia> lista_sentencias;
 nonterminal While sentencia_while;
 nonterminal Asignacion sentencia_asignacion;
 nonterminal IfSimple if_simple;
 nonterminal IfElse if_else;
-nonterminal DisplayCadenaCaracteres sentencia_display;
-nonterminal DisplayExpresion sentencia_display;
 terminal ConstanteBool BOOL;
+terminal Input_Bool INPUT_BOOL;
 terminal ConstanteEntera INT;
+terminal Input_Int INPUT_INT;
 terminal ConstanteFloat FLOAT;
-terminal Identificador IDENTIFIER;
+terminal Input_Float INPUT_FLOAT;
 terminal ConstanteString STRING_LITERAL;
 nonterminal OR exp_or;
 nonterminal AND exp_and;
-nonterminal not exp_not;
-
-nonterminal String ids, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
-sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, exp_or,
-factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and, pivot, lista_expresiones;
+nonterminal NOT exp_not;
+nonterminal Expresion expresion, factor,menos_unario,termino, comparacion;
+nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot, lista_expresiones, funcion_especial;
 
 //precedence left OPCOMP, sentencia;
 
@@ -135,10 +141,10 @@ declaracion ::= //no es necesario generar el nodo este.
         if (i.contains(",")){
                     String[] parts = i.split(",");
                     for (String s : parts){
-                        tablaSimbolos2.put(s,td);
+                        tablaSimbolos2.put(s,td.name());
                 }}
                 else{
-                        tablaSimbolos2.put(i, td);
+                        tablaSimbolos2.put(i, td.name());
                     }
         simbolos = tablaSimbolos2.toString() + "\n\n";
         //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
@@ -147,7 +153,7 @@ declaracion ::= //no es necesario generar el nodo este.
 ids ::=
     IDENTIFIER:id {:
         concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
-        RESULT = new Identificador(id); :}
+        RESULT = id; :}
     |
     ids:i COMA IDENTIFIER:id {:
         concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
@@ -157,17 +163,17 @@ tipo_de_dato ::=
     TIPO_INT:ti {:
         concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
         //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
-        RESULT = new Tipo(ti); :}
+        RESULT = Tipo.Int; :}
     |
     TIPO_FLOAT:tf {:
         concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
         //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
-        RESULT = new Tipo(tf); :}
+        RESULT = Tipo.Float; :}
     |
     TIPO_BOOL:tb {:
         concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
         //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
-        RESULT = new Tipo(tb);:};
+        RESULT = Tipo.Bool;:};
 
 programa ::=
         PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
@@ -180,14 +186,15 @@ lista_sentencias ::=
         sentencia:s {:
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
-            RESULT = new Sentencia(s); :}
+            List<Sentencia> lista_sentencias = new ArrayList<>();
+            lista_sentencias.add(s);
+            RESULT = lista_sentencias;  :}
         |
         lista_sentencias:ls sentencia:s {:
             concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
             //concat_rules("Regla 3.2: lista_sentencias --> " + ls + s);
-            List<Sentencia> lista_sentencias = new ArrayList<>();
-            lista_sentencias.add(s);
-            RESULT = ls + s; :};
+            ls.add(s);
+            RESULT = ls; :};
 
 sentencia ::=
         sentencia_while:sw {:
@@ -251,7 +258,7 @@ sentencia_display ::=
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
-            RESULT = new DisplayCadenaCaracteres(sl);
+            RESULT = new DisplayCadenaCaracteres((String) sl.getValor());
         :}
         |
         DISPLAY PARENTESISO exp_or:c PARENTESISC {:
@@ -270,7 +277,7 @@ sentencia_asignacion ::=
                     }
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
-            RESULT = new Asignacion(id,eo);
+            RESULT = new Asignacion(new Identificador(id),eo);
             //RESULT=id + " := " + eo;
          }
         :};
@@ -279,7 +286,7 @@ exp_or ::=
     exp_or:e1 OR exp_and:e2 {:
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
         //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
-        RESULT = new OR(e1,e2);
+        RESULT = new OR(e1,e2,Tipo.Bool);
         //RESULT = e1+" OR "+e2 ;
     :}
     |

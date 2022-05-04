@@ -9,10 +9,10 @@ public class ConstanteEntera extends Constante{
     }
 
     public ConstanteEntera(String valor, Tipo tipo, String nombre) {
-        super(valor, Tipo.INTEGER, nombre);
+        super(valor, Tipo.Int, nombre);
     }
 
     public ConstanteEntera(String valor, Tipo tipo) {
-        super(valor, Tipo.INTEGER);
+        super(valor, Tipo.Int);
     }
 }

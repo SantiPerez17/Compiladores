@@ -2,19 +2,15 @@ package archivos.jflexyjcup.ast.Sentencias.Displays;
 
 import archivos.jflexyjcup.ast.Sentencias.Sentencia;
 
-public class DisplayCadenaCaracteres extends Sentencia {
+public class DisplayCadenaCaracteres extends Display {
     private final String CadenaCaracteres;
 
-    public String getCadenaCaracteres() {
-        return this.CadenaCaracteres;
-    }
-
     public DisplayCadenaCaracteres(String cadenaCaracteres) {
-        CadenaCaracteres = cadenaCaracteres;
+        this.CadenaCaracteres = cadenaCaracteres;
     }
 
     public DisplayCadenaCaracteres(String nombre, String cadenaCaracteres) {
-        super("DisplayCadenaCaracteres");
+        super(nombre);
         this.CadenaCaracteres = cadenaCaracteres;
     }
 }

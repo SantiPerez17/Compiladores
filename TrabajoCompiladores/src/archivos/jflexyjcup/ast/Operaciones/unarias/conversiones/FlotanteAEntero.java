@@ -6,6 +6,6 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 public class FlotanteAEntero extends OperacionConversion{
 
     public FlotanteAEntero(Expresion expresion) {
-        super("FLOAT a INT", expresion, Tipo.INTEGER);
+        super("FLOAT a INT", expresion, Tipo.Int);
     }
 }

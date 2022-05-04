@@ -8,10 +8,10 @@ public class ConstanteFloat extends Constante{
     }
 
     public ConstanteFloat(String valor, Tipo tipo, String nombre) {
-        super(valor, Tipo.FLOAT, nombre);
+        super(valor, Tipo.Float, nombre);
     }
 
     public ConstanteFloat(String valor, Tipo tipo) {
-        super(valor, Tipo.FLOAT);
+        super(valor, Tipo.Float);
     }
 }

@@ -5,7 +5,7 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class Input_Float extends Expresion {
     public Input_Float(Tipo tipo) {
-        super(Tipo.FLOAT);
+        super(Tipo.Float);
     }
 
     public Input_Float(String nombre) {
@@ -13,6 +13,6 @@ public class Input_Float extends Expresion {
     }
 
     public Input_Float(Tipo tipo, String nombre) {
-        super(Tipo.FLOAT, nombre);
+        super(Tipo.Float, nombre);
     }
 }

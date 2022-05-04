@@ -8,10 +8,10 @@ public class Distinto extends OperacionBinaria {
 
 
     public Distinto(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.BOOL);
+        super(izquierda, derecha, Tipo.Bool);
     }
 
     public Distinto(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.BOOL, "Distinto"); //!= <>
+        super(izquierda, derecha, Tipo.Bool, "Distinto"); //!= <>
     }
 }

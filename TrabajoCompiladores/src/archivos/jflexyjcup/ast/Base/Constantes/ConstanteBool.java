@@ -9,10 +9,10 @@ public class ConstanteBool extends Constante {
     }
 
     public ConstanteBool(String valor, Tipo tipo, String nombre) {
-        super(valor, Tipo.BOOL, nombre);
+        super(valor, Tipo.Bool, nombre);
     }
 
     public ConstanteBool(String valor, Tipo tipo) {
-        super(valor, Tipo.BOOL);
+        super(valor, Tipo.Bool);
     }
 }

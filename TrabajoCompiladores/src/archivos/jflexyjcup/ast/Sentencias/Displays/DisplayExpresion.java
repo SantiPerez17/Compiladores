@@ -3,17 +3,16 @@ package archivos.jflexyjcup.ast.Sentencias.Displays;
 import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Sentencias.Sentencia;
 
-public class DisplayExpresion extends Sentencia {
+public class DisplayExpresion extends Display {
 
     private final Expresion expresion;
 
-    public DisplayExpresion(Expresion e) {
-        super("DisplayExpresion");
-        this.expresion = e;
+    public DisplayExpresion(Expresion expresion) {
+        this.expresion = expresion;
     }
 
-    public Expresion getExpresion(){
-        return this.expresion;
+    public DisplayExpresion(String nombre, Expresion expresion) {
+        super(nombre);
+        this.expresion = expresion;
     }
-
 }
