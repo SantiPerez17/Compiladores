@@ -1,6 +1,12 @@
 package archivos.jflexyjcup;
 
-import archivos.jflexyjcup.ast.*;
+import archivos.jflexyjcup.ast.Base.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -73,6 +79,20 @@ terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA,ERROR;
 terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 nonterminal Programa program;
+nonterminal Tipo tipo_de_dato;
+nonterminal Sentencia sentencia;
+nonterminal List<Sentencia> lista_sentencias;
+nonterminal While sentencia_while;
+nonterminal Asignacion sentencia_asignacion;
+nonterminal IfSimple if_simple;
+nonterminal IfElse if_else;
+nonterminal DisplayCadenaCaracteres sentencia_display;
+nonterminal DisplayExpresion sentencia_display;
+terminal ConstanteBool BOOL;
+terminal ConstanteEntera INT;
+terminal ConstanteFloat FLOAT;
+terminal Identificador IDENTIFIER;
+terminal ConstanteString STRING_LITERAL;
 nonterminal String ids, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, exp_or,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and, pivot, lista_expresiones;

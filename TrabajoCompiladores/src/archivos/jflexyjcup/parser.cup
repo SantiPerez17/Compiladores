@@ -1,6 +1,12 @@
 package archivos.jflexyjcup;
 
-import archivos.jflexyjcup.ast.*;
+import archivos.jflexyjcup.ast.Base.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -73,6 +79,24 @@ terminal SUMA,RESTA,MULT,DIV, ASIGN, DISPLAY, INPUT_INT, INPUT_BOOL, INPUT_FLOAT
 COMA, DOSPUNTOS, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, TIPO_INT, TIPO_FLOAT, TIPO_BOOL,COLA,ERROR;
 terminal String IDENTIFIER, INT,FLOAT,BOOL, DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION,STRING_LITERAL;
 nonterminal Programa program;
+nonterminal Tipo tipo_de_dato;
+nonterminal Sentencia sentencia;
+nonterminal List<Sentencia> lista_sentencias;
+nonterminal While sentencia_while;
+nonterminal Asignacion sentencia_asignacion;
+nonterminal IfSimple if_simple;
+nonterminal IfElse if_else;
+nonterminal DisplayCadenaCaracteres sentencia_display;
+nonterminal DisplayExpresion sentencia_display;
+terminal ConstanteBool BOOL;
+terminal ConstanteEntera INT;
+terminal ConstanteFloat FLOAT;
+terminal Identificador IDENTIFIER;
+terminal ConstanteString STRING_LITERAL;
+nonterminal OR exp_or;
+nonterminal AND exp_and;
+nonterminal not exp_not;
+
 nonterminal String ids, programa, sector_declaraciones,lista_declaraciones, declaracion, tipo_de_dato,
 sentencia, lista_sentencias,sentencia_while,sentencia_asignacion, sentencia_if,if_simple, if_else,sentencia_display, sentencia_input, exp_or,
 factor, funcion_especial, menos_unario, termino, expresion, comparacion, exp_not,exp_and, pivot, lista_expresiones;
@@ -89,7 +113,7 @@ program ::= sector_declaraciones:sd programa:p //programa
     |
     programa:p {:
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
-    RESULT= p;
+    RESULT = p;
     :}
     |;
 sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
@@ -123,7 +147,7 @@ declaracion ::= //no es necesario generar el nodo este.
 ids ::=
     IDENTIFIER:id {:
         concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
-        RESULT = id; :}
+        RESULT = new Identificador(id); :}
     |
     ids:i COMA IDENTIFIER:id {:
         concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
@@ -133,33 +157,36 @@ tipo_de_dato ::=
     TIPO_INT:ti {:
         concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
         //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
-        RESULT = "int"; :}
+        RESULT = new Tipo(ti); :}
     |
     TIPO_FLOAT:tf {:
         concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
         //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
-        RESULT = "float"; :}
+        RESULT = new Tipo(tf); :}
     |
     TIPO_BOOL:tb {:
         concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
         //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
-        RESULT = "bool";:};
+        RESULT = new Tipo(tb);:};
 
 programa ::=
         PROGRAM_SECTION lista_sentencias:ls ENDPROGRAM_SECTION {:
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
-            RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
+            //RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
+            RESULT = new Programa(ls);
         :};
 lista_sentencias ::=
         sentencia:s {:
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
-            RESULT = s; :}
+            RESULT = new Sentencia(s); :}
         |
         lista_sentencias:ls sentencia:s {:
             concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
             //concat_rules("Regla 3.2: lista_sentencias --> " + ls + s);
+            List<Sentencia> lista_sentencias = new ArrayList<>();
+            lista_sentencias.add(s);
             RESULT = ls + s; :};
 
 sentencia ::=
@@ -188,7 +215,8 @@ sentencia_while ::=
         WHILE PARENTESISO exp_or:c PARENTESISC DO lista_sentencias:ls END {:
             concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
             //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
-            RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
+            //RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
+            RESULT = new While("While",c,ls);
         :};
 
 sentencia_if ::=
@@ -207,26 +235,30 @@ if_simple ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls END {:
             concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
             //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
-            RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
+            //RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
+            RESULT = new IfSimple("IfSimple", cond, ls);
         :};
 if_else ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
             concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
             //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
-            RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
+            //RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
+            RESULT = new IfElse("IfElse", cond, ls, ls2);
         :};
 
 sentencia_display ::=
         DISPLAY PARENTESISO STRING_LITERAL:sl PARENTESISC {:
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
-            RESULT = "display(" + sl + ")";
+            //RESULT = "display(" + sl + ")";
+            RESULT = new DisplayCadenaCaracteres(sl);
         :}
         |
         DISPLAY PARENTESISO exp_or:c PARENTESISC {:
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
-            RESULT = "display(" + c + ")";
+            //RESULT = "display(" + c + ")";
+            RESULT = new DisplayExpresion(c);
         :};
 
 sentencia_asignacion ::=
@@ -237,7 +269,9 @@ sentencia_asignacion ::=
                     throw new Exception("Variable " + id + " no declarada.");
                     }
          else {
-            RESULT=id + " := " + eo;
+            //checkTipos(id,eo); hacer esa funcion arriba.
+            RESULT = new Asignacion(id,eo);
+            //RESULT=id + " := " + eo;
          }
         :};
 
@@ -245,7 +279,8 @@ exp_or ::=
     exp_or:e1 OR exp_and:e2 {:
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
         //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
-        RESULT = e1+" OR "+e2 ;
+        RESULT = new OR(e1,e2);
+        //RESULT = e1+" OR "+e2 ;
     :}
     |
     exp_and:e {:
@@ -258,8 +293,8 @@ exp_and ::=
     exp_and:e1 AND exp_not:e2 {:
         concat_rules("REGLA 7.3: exp_and --> exp_and AND exp_not " + "\n\t --> " + e1+ " AND "+ e2);
         //concat_rules("REGLA 7.3: exp_and --> "+e1+ " AND "+ e2 );
-        RESULT = e1+" AND "+e2 ;
-
+        //RESULT = e1+" AND "+e2 ;
+        RESULT = new AND(e1,e2);
     :}
     |
     exp_not:e {:
@@ -272,7 +307,8 @@ exp_not ::=
     NOT exp_not:e1 {:
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
-        RESULT = e1 ;
+        //RESULT = e1 ;
+        RESULT = new NOT(e1);
     :}
     |
     comparacion:c {:

@@ -23,6 +23,9 @@ public class Programa extends Nodo{
         this.tablaSimbolos2 = tablaSimbolos2;
         this.sentencias = sentencias;
     }
+    public Programa(List<Sentencia> sentencias){
+        this.sentencias=sentencias;
+    }
 
     public Programa(String nombre, Multimap<String, String> tablaSimbolos2, List<Sentencia> sentencias) {
         super(nombre);

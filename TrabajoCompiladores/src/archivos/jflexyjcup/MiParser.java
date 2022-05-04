@@ -6,6 +6,10 @@
 package archivos.jflexyjcup;
 
 import archivos.jflexyjcup.ast.Base.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
@@ -446,7 +450,7 @@ class CUP$MiParser$actions {
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
-    RESULT=p ;
+    RESULT= null;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
