@@ -21,6 +21,7 @@ import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.io.FileReader;
 import java.util.logging.Level;
@@ -61,17 +62,17 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\004\000\002\005\003\000\002\005\003\000\002\005\003" +
     "\000\002\005\003\000\002\011\011\000\002\006\003\000" +
     "\002\006\003\000\002\013\011\000\002\014\013\000\002" +
-    "\007\006\000\002\007\006\000\002\012\005\000\002\015" +
-    "\005\000\002\015\003\000\002\016\005\000\002\016\003" +
-    "\000\002\017\004\000\002\017\003\000\002\024\005\000" +
-    "\002\024\003\000\002\020\005\000\002\020\005\000\002" +
-    "\020\003\000\002\023\005\000\002\023\005\000\002\023" +
-    "\003\000\002\022\004\000\002\022\003\000\002\021\003" +
-    "\000\002\021\003\000\002\021\003\000\002\021\003\000" +
-    "\002\021\005\000\002\021\003\000\002\021\005\000\002" +
-    "\021\005\000\002\021\005\000\002\033\012\000\002\031" +
-    "\003\000\002\031\003\000\002\032\003\000\002\032\005" +
-    "\000\002\032\002" });
+    "\007\006\000\002\007\006\000\002\012\005\000\002\022" +
+    "\005\000\002\022\003\000\002\023\005\000\002\023\003" +
+    "\000\002\024\004\000\002\024\003\000\002\021\005\000" +
+    "\002\021\003\000\002\015\005\000\002\015\005\000\002" +
+    "\015\003\000\002\020\005\000\002\020\005\000\002\020" +
+    "\003\000\002\017\004\000\002\017\003\000\002\016\003" +
+    "\000\002\016\003\000\002\016\003\000\002\016\003\000" +
+    "\002\016\005\000\002\016\003\000\002\016\005\000\002" +
+    "\016\005\000\002\016\005\000\002\032\012\000\002\031" +
+    "\003\000\002\031\003\000\002\033\003\000\002\033\005" +
+    "\000\002\033\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -255,37 +256,37 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\020\005\043\006\040\007" +
     "\033\011\027\012\032\013\037\014\035\001\001\000\002" +
-    "\001\001\000\002\001\001\000\024\015\066\016\053\017" +
-    "\061\020\047\021\056\022\054\023\057\024\062\033\065" +
+    "\001\001\000\002\001\001\000\024\015\047\016\056\017" +
+    "\054\020\057\021\062\022\066\023\053\024\061\032\065" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\020\017\112\020\047\021\056\022\054\023\057" +
-    "\024\062\033\065\001\001\000\002\001\001\000\002\001" +
+    "\001\000\020\015\047\016\056\017\054\020\057\021\062" +
+    "\024\112\032\065\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\024\015\102\016" +
-    "\053\017\061\020\047\021\056\022\054\023\057\024\062" +
-    "\033\065\001\001\000\002\001\001\000\002\001\001\000" +
+    "\000\002\001\001\000\002\001\001\000\024\015\047\016" +
+    "\056\017\054\020\057\021\062\022\102\023\053\024\061" +
+    "\032\065\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\010\021\056\022\071\033" +
+    "\001\001\000\002\001\001\000\010\016\056\017\071\032" +
     "\065\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\022\016\075\017\061\020\047\021\056\022" +
-    "\054\023\057\024\062\033\065\001\001\000\002\001\001" +
-    "\000\020\017\077\020\047\021\056\022\054\023\057\024" +
-    "\062\033\065\001\001\000\002\001\001\000\002\001\001" +
+    "\001\001\000\022\015\047\016\056\017\054\020\057\021" +
+    "\062\023\075\024\061\032\065\001\001\000\002\001\001" +
+    "\000\020\015\047\016\056\017\054\020\057\021\062\024" +
+    "\077\032\065\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\010\021\056\022\107\033\065\001\001\000\010\021\056" +
-    "\022\106\033\065\001\001\000\002\001\001\000\002\001" +
+    "\010\016\056\017\107\032\065\001\001\000\010\016\056" +
+    "\017\106\032\065\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\012\021\056\022\054\023\120\033\065\001\001\000" +
-    "\014\020\117\021\056\022\054\023\057\033\065\001\001" +
-    "\000\012\021\056\022\054\023\116\033\065\001\001\000" +
+    "\000\012\016\056\017\054\020\120\032\065\001\001\000" +
+    "\014\015\117\016\056\017\054\020\057\032\065\001\001" +
+    "\000\012\016\056\017\054\020\116\032\065\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
     "\031\122\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\016\020\127\021\056" +
-    "\022\054\023\057\032\130\033\065\001\001\000\002\001" +
-    "\001\000\002\001\001\000\014\020\134\021\056\022\054" +
-    "\023\057\033\065\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\024\015\136\016\053\017\061" +
-    "\020\047\021\056\022\054\023\057\024\062\033\065\001" +
+    "\002\001\001\000\002\001\001\000\016\015\127\016\056" +
+    "\017\054\020\057\032\065\033\130\001\001\000\002\001" +
+    "\001\000\002\001\001\000\014\015\134\016\056\017\054" +
+    "\020\057\032\065\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\024\015\047\016\056\017\054" +
+    "\020\057\021\062\022\136\023\053\024\061\032\065\001" +
     "\001\000\002\001\001\000\002\001\001\000\022\005\030" +
     "\006\040\007\033\010\141\011\027\012\032\013\037\014" +
     "\035\001\001\000\020\005\043\006\040\007\033\011\027" +
@@ -293,11 +294,11 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\040\007\033\010\144\011\027\012\032\013\037\014\035" +
     "\001\001\000\002\001\001\000\020\005\043\006\040\007" +
     "\033\011\027\012\032\013\037\014\035\001\001\000\002" +
-    "\001\001\000\024\015\150\016\053\017\061\020\047\021" +
-    "\056\022\054\023\057\024\062\033\065\001\001\000\002" +
+    "\001\001\000\024\015\047\016\056\017\054\020\057\021" +
+    "\062\022\150\023\053\024\061\032\065\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\024\015\154\016\053\017\061\020\047\021\056" +
-    "\022\054\023\057\024\062\033\065\001\001\000\002\001" +
+    "\001\000\024\015\047\016\056\017\054\020\057\021\062" +
+    "\022\154\023\053\024\061\032\065\001\001\000\002\001" +
     "\001\000\002\001\001\000\022\005\030\006\040\007\033" +
     "\010\157\011\027\012\032\013\037\014\035\001\001\000" +
     "\020\005\043\006\040\007\033\011\027\012\032\013\037" +
@@ -752,7 +753,7 @@ class CUP$MiParser$actions {
               While RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).right;
-		OR c = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).value;
+		Expresion c = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).value;
 		int lsleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
@@ -804,7 +805,7 @@ class CUP$MiParser$actions {
               IfSimple RESULT =null;
 		int condleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).left;
 		int condright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).right;
-		OR cond = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).value;
+		Expresion cond = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-4)).value;
 		int lsleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
@@ -824,7 +825,7 @@ class CUP$MiParser$actions {
               IfElse RESULT =null;
 		int condleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)).left;
 		int condright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)).right;
-		OR cond = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)).value;
+		Expresion cond = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)).value;
 		int lsleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)).left;
 		int lsright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)).right;
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)).value;
@@ -865,7 +866,7 @@ class CUP$MiParser$actions {
               Sentencia RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
-		OR c = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
+		Expresion c = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
@@ -885,7 +886,7 @@ class CUP$MiParser$actions {
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		int eoleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int eoright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		OR eo = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion eo = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN FLOAT " + "\n\t --> " + id + " := " + eo);
         //concat_rules("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
@@ -916,96 +917,96 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // exp_or ::= exp_or OR exp_and 
             {
-              OR RESULT =null;
+              Expresion RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).right;
-		OR e1 = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
+		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		int e2left = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		AND e2 = (AND)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
         //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
         RESULT = new OR(e1,e2,Tipo.Bool);
         //RESULT = e1+" OR "+e2 ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // exp_or ::= exp_and 
             {
-              OR RESULT =null;
+              Expresion RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		AND e = (AND)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.2: exp_or --> exp_and " + "\n\t --> " + e);
         //concat_rules("REGLA 7.2: exp_or --> "+e );
         RESULT = e ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // exp_and ::= exp_and AND exp_not 
             {
-              AND RESULT =null;
+              Expresion RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).right;
-		AND e1 = (AND)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
+		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		int e2left = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int e2right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		NOT e2 = (NOT)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.3: exp_and --> exp_and AND exp_not " + "\n\t --> " + e1+ " AND "+ e2);
         //concat_rules("REGLA 7.3: exp_and --> "+e1+ " AND "+ e2 );
         //RESULT = e1+" AND "+e2 ;
         RESULT = new AND(e1,e2,Tipo.Bool);
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // exp_and ::= exp_not 
             {
-              AND RESULT =null;
+              Expresion RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		NOT e = (NOT)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.4: exp_and --> exp_not " + "\n\t --> " +e);
         //concat_rules("REGLA 7.4: exp_or --> "+e );
         RESULT = e ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // exp_not ::= NOT exp_not 
             {
-              NOT RESULT =null;
+              Expresion RESULT =null;
 		int e1left = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int e1right = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
-		NOT e1 = (NOT)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
+		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
         RESULT = new NOT(e1,e1.getTipo());
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",13, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 33: // exp_not ::= comparacion 
             {
-              NOT RESULT =null;
+              Expresion RESULT =null;
 		int cleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int cright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Expresion c = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
@@ -1014,7 +1015,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.6: exp_not --> "+c );
         //RESULT = c ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",13, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1049,7 +1050,7 @@ class CUP$MiParser$actions {
                                 }
                             }}}
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1065,7 +1066,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.6.2: comparacion --> "+e1);
         RESULT = e1 ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1086,7 +1087,7 @@ class CUP$MiParser$actions {
 
         RESULT = new Suma(e1,e2,null) ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1105,7 +1106,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
         RESULT = new Resta(e1,e2,null) ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1121,7 +1122,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.9: expresion --> "+ t );
         RESULT = t ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1140,7 +1141,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
         RESULT = new Multiplicacion(t,mu,null) ; ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1159,7 +1160,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
         RESULT = new Division(t,mu,null);
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1175,7 +1176,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 7.9.3: termino --> " + mu );
         RESULT = mu;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1192,7 +1193,7 @@ class CUP$MiParser$actions {
         RESULT = mu;
 
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("menos_unario",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("menos_unario",13, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1208,7 +1209,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.2: menos_unario --> " + f );
         RESULT = f;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("menos_unario",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("menos_unario",13, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1224,7 +1225,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.1: factor --> " + i );
         RESULT = new ConstanteEntera(i, Tipo.Int, "Factor_Int");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1240,7 +1241,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.2: factor --> " + f );
         RESULT = new ConstanteFloat(f, Tipo.Float, "Factor_Float");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1256,7 +1257,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.3: factor --> " + b );
         RESULT = new ConstanteBool(b, Tipo.Bool, "Factor_Bool");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1272,7 +1273,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.4: factor --> " + fe );
         RESULT = null;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1282,13 +1283,13 @@ class CUP$MiParser$actions {
               Expresion RESULT =null;
 		int eoleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
 		int eoright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).right;
-		OR eo = (OR)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
+		Expresion eo = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
         concat_rules("REGLA 8.5: factor --> PARENTESISO exp_or PARENTESISC " + "\n\t --> " + " ( " + eo + " ) ");
         //concat_rules("REGLA 8.5: factor --> " + "(" + eo + ")" );
         RESULT = eo;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1309,7 +1310,7 @@ class CUP$MiParser$actions {
         if (tipo == "float"){RESULT = new Identificador(id, Tipo.Float);}
         if (tipo == "bool"){RESULT = new Identificador(id, Tipo.Bool);}
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1325,7 +1326,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
         RESULT = new Input_Bool(Tipo.Bool, "Input_Bool");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1341,7 +1342,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
         RESULT = new Input_Int(Tipo.Int, "Input_Int");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1357,7 +1358,7 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.9: factor --> " + ifl + "()" );
         RESULT = new Input_Float(Tipo.Float, "Input_Float");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1370,13 +1371,13 @@ class CUP$MiParser$actions {
 		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).value;
 		int leleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).left;
 		int leright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).right;
-		String le = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
+		List<Expresion> le = (List<Expresion>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         RESULT = "cola( "+p+";["+le+"])"  ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",25, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1415,44 +1416,49 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 56: // lista_expresiones ::= expresion 
             {
-              String RESULT =null;
+              List<Expresion> RESULT =null;
 		int eleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.2: lista_expresiones --> expresion " + "\n\t --> " + e);
         //concat_rules("REGLA 10.1: lista_expresiones --> " + e );
-        RESULT = e;
+        //RESULT = e;
+        List<Expresion> lista_expresiones = new ArrayList<>();
+        lista_expresiones.add(e);
+        RESULT = lista_expresiones;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",25, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 57: // lista_expresiones ::= lista_expresiones COMA expresion 
             {
-              String RESULT =null;
+              List<Expresion> RESULT =null;
 		int leleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).left;
 		int leright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).right;
-		String le = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
+		List<Expresion> le = (List<Expresion>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		int eleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int eright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.3: lista_expresiones --> lista_expresiones COMA expresion " + "\n\t --> " + le + ", " + e);
         //concat_rules("REGLA 10.3: lista_expresiones --> " +le+ ", " + e );
-        RESULT = le+", " + e;
+        //RESULT = le+", " + e;
+        le.add(e);
+        RESULT = le;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",25, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 58: // lista_expresiones ::= 
             {
-              String RESULT =null;
+              List<Expresion> RESULT =null;
 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_expresiones",25, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 

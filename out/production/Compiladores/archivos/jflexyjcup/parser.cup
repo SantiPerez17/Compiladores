@@ -16,6 +16,7 @@ import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
 import java_cup.runtime.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.io.FileReader;
 import java.util.logging.Level;
@@ -108,12 +109,9 @@ nonterminal IfElse if_else;
 terminal Input_Bool INPUT_BOOL;
 terminal Input_Int INPUT_INT;
 terminal Input_Float INPUT_FLOAT;
-nonterminal OR exp_or;
-nonterminal AND exp_and;
-nonterminal NOT exp_not;
-nonterminal Expresion expresion, factor,menos_unario,termino, comparacion;
-nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot, lista_expresiones, funcion_especial;
-
+nonterminal Expresion expresion, factor,menos_unario,termino, comparacion, exp_or,exp_and,exp_not;
+nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot, funcion_especial;
+nonterminal List<Expresion> lista_expresiones;
 //precedence left OPCOMP, sentencia;
 
 start with program;
@@ -507,13 +505,18 @@ lista_expresiones ::=
     expresion:e {:
         concat_rules("REGLA 10.2: lista_expresiones --> expresion " + "\n\t --> " + e);
         //concat_rules("REGLA 10.1: lista_expresiones --> " + e );
-        RESULT = e;
+        //RESULT = e;
+        List<Expresion> lista_expresiones = new ArrayList<>();
+        lista_expresiones.add(e);
+        RESULT = lista_expresiones;
     :}
     |
     lista_expresiones:le COMA expresion:e{:
         concat_rules("REGLA 10.3: lista_expresiones --> lista_expresiones COMA expresion " + "\n\t --> " + le + ", " + e);
         //concat_rules("REGLA 10.3: lista_expresiones --> " +le+ ", " + e );
-        RESULT = le+", " + e;
+        //RESULT = le+", " + e;
+        le.add(e);
+        RESULT = le;
     :}
     |
     //puede ser vacia agregado
