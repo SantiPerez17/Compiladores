@@ -10,46 +10,46 @@ public class MiParserSym {
   /* terminals */
   public static final int DISPLAY = 14;
   public static final int DOSPUNTOS = 13;
-  public static final int ENDDECLARE_SECTION = 32;
-  public static final int STRING_LITERAL = 41;
+  public static final int ENDDECLARE_SECTION = 36;
   public static final int CORCHETEO = 9;
+  public static final int STRING_LITERAL = 30;
   public static final int MULT = 4;
   public static final int PARENTESISO = 7;
   public static final int RESTA = 3;
   public static final int CORCHETEC = 10;
-  public static final int INT = 37;
+  public static final int INT = 32;
   public static final int PUNTOCOMA = 11;
   public static final int PARENTESISC = 8;
   public static final int OPCOMP = 24;
   public static final int NOT = 23;
   public static final int AND = 21;
   public static final int OR = 22;
-  public static final int BOOL = 35;
+  public static final int BOOL = 31;
   public static final int DIV = 5;
   public static final int SUMA = 2;
   public static final int IF = 17;
   public static final int EOF = 0;
-  public static final int INPUT_INT = 38;
+  public static final int INPUT_INT = 40;
   public static final int error = 1;
   public static final int COMA = 12;
-  public static final int INPUT_BOOL = 36;
+  public static final int INPUT_BOOL = 39;
   public static final int TIPO_INT = 27;
   public static final int ERROR = 26;
   public static final int ELSE = 19;
   public static final int WHILE = 15;
-  public static final int FLOAT = 39;
+  public static final int FLOAT = 33;
   public static final int THEN = 18;
   public static final int TIPO_FLOAT = 28;
+  public static final int PROGRAM_SECTION = 37;
   public static final int TIPO_BOOL = 29;
-  public static final int PROGRAM_SECTION = 33;
   public static final int ASIGN = 6;
   public static final int END = 20;
-  public static final int INPUT_FLOAT = 40;
+  public static final int INPUT_FLOAT = 41;
   public static final int COLA = 25;
-  public static final int ENDPROGRAM_SECTION = 34;
+  public static final int ENDPROGRAM_SECTION = 38;
   public static final int DO = 16;
-  public static final int DECLARE_SECTION = 31;
-  public static final int IDENTIFIER = 30;
+  public static final int DECLARE_SECTION = 35;
+  public static final int IDENTIFIER = 34;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -81,18 +81,18 @@ public class MiParserSym {
   "TIPO_INT",
   "TIPO_FLOAT",
   "TIPO_BOOL",
+  "STRING_LITERAL",
+  "BOOL",
+  "INT",
+  "FLOAT",
   "IDENTIFIER",
   "DECLARE_SECTION",
   "ENDDECLARE_SECTION",
   "PROGRAM_SECTION",
   "ENDPROGRAM_SECTION",
-  "BOOL",
   "INPUT_BOOL",
-  "INT",
   "INPUT_INT",
-  "FLOAT",
-  "INPUT_FLOAT",
-  "STRING_LITERAL"
+  "INPUT_FLOAT"
   };
 }
 

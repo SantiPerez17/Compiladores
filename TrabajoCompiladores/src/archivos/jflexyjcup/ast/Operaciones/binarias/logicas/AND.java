@@ -12,6 +12,6 @@ public class AND extends OperacionBinaria {
     }
 
     public AND(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.Bool, "AND");
+        super(izquierda, derecha, Tipo.Bool, nombre);
     }
 }

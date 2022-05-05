@@ -79,11 +79,22 @@ parser code
                 return tablaSimbolos2;
         }
 
+   public Tipo checkTipos(Tipo t1,Tipo t2) throws Exception
+       {
+           if (t1 == t2){
+               return t1;
+           }
+           if (t1 ==Tipo.Float && t2 ==Tipo.Int ) {
+               return t2;
+           }
+           throw new Exception("Tipos no compatibles.");
+       }
+
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
 COMA, DOSPUNTOS, DISPLAY, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
-terminal String IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
+terminal String STRING_LITERAL,BOOL, INT, FLOAT, IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
 
 nonterminal Programa program;
 nonterminal Tipo tipo_de_dato;
@@ -94,13 +105,9 @@ nonterminal While sentencia_while;
 nonterminal Asignacion sentencia_asignacion;
 nonterminal IfSimple if_simple;
 nonterminal IfElse if_else;
-terminal ConstanteBool BOOL;
 terminal Input_Bool INPUT_BOOL;
-terminal ConstanteEntera INT;
 terminal Input_Int INPUT_INT;
-terminal ConstanteFloat FLOAT;
 terminal Input_Float INPUT_FLOAT;
-terminal ConstanteString STRING_LITERAL;
 nonterminal OR exp_or;
 nonterminal AND exp_and;
 nonterminal NOT exp_not;
@@ -258,14 +265,15 @@ sentencia_display ::=
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
-            RESULT = new Display();
+            ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "CC");
+            RESULT = new DisplayCadenaCaracteres(CC.toString());
         :}
         |
         DISPLAY PARENTESISO exp_or:c PARENTESISC {:
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
             //RESULT = "display(" + c + ")";
-            RESULT = new Display(c);
+            RESULT = new DisplayExpresion(c);
         :};
 
 sentencia_asignacion ::=
@@ -277,7 +285,18 @@ sentencia_asignacion ::=
                     }
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
-            RESULT = new Asignacion(new Identificador(id),eo);
+            if( tablaSimbolos2.get(id).contains("int")){
+                            RESULT = new Asignacion(new Identificador(id,Tipo.Int),eo);
+                        }
+                        else{
+                            if (tablaSimbolos2.get(id).contains("float")){
+                                RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);
+                            }
+                            else{
+                                if(tablaSimbolos2.get(id).contains("bool")){
+                                    RESULT = new Asignacion(new Identificador(id,Tipo.Bool),eo);
+                            }}
+                        }
             //RESULT=id + " := " + eo;
          }
         :};
@@ -286,7 +305,7 @@ exp_or ::=
     exp_or:e1 OR exp_and:e2 {:
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
         //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
-        RESULT = new OR(e1,e2);
+        RESULT = new OR(e1,e2,Tipo.Bool);
         //RESULT = e1+" OR "+e2 ;
     :}
     |
@@ -301,7 +320,7 @@ exp_and ::=
         concat_rules("REGLA 7.3: exp_and --> exp_and AND exp_not " + "\n\t --> " + e1+ " AND "+ e2);
         //concat_rules("REGLA 7.3: exp_and --> "+e1+ " AND "+ e2 );
         //RESULT = e1+" AND "+e2 ;
-        RESULT = new AND(e1,e2);
+        RESULT = new AND(e1,e2,Tipo.Bool);
     :}
     |
     exp_not:e {:
@@ -315,20 +334,33 @@ exp_not ::=
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
-        RESULT = new NOT(e1);
+        RESULT = new NOT(e1,e1.getTipo());
     :}
     |
     comparacion:c {:
         concat_rules("REGLA 7.6: exp_not --> comparacion " + "\n\t --> " + c);
         //concat_rules("REGLA 7.6: exp_not --> "+c );
-        RESULT = c ;
+        //RESULT = c ;
     :};
 
 comparacion ::=
     expresion:e1 OPCOMP:oc expresion:e2 {:
         concat_rules("REGLA 7.6.1: comparacion --> expresion OPCOMP expresion " + "\n\t --> " + e1+" "+ oc +" "+ e2);
         //concat_rules("REGLA 7.6.1: comparacion --> "+e1+" "+ oc +" "+ e2  );
-        RESULT = e1+oc+e2 ;
+        //RESULT = e1+oc+e2 ;
+        if (oc==">"){
+                           RESULT = new Mayor(e1,e2,Tipo.Bool,"ComparacionMayor");
+                        }
+                        else{
+                            if (oc == "<"){RESULT = new Menor(e1,e2,Tipo.Bool,"ComparacionMenor");
+                            }
+                            else
+                            {
+                                if (oc == "=="){RESULT = new Igual(e1,e2,Tipo.Bool,"ComparacionIgual");}
+                                else {
+                                    if (oc == "!="){RESULT = new Distinto(e1,e2,Tipo.Bool,"ComparacionDistinto");
+                                }
+                            }}}
     :}
     |
     expresion:e1 {:
@@ -341,13 +373,14 @@ expresion ::=
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        RESULT = e1+" + "+e2 ;
+
+        RESULT = new Suma(e1,e2,null) ;
     :}
     |
     expresion:e1 RESTA termino:e2 {:
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
-        RESULT = e1+" - "+e2 ;
+        RESULT = new Resta(e1,e2,null) ;
     :}
     |
     termino:t {:
@@ -360,13 +393,13 @@ termino ::=
     termino:t MULT menos_unario:mu {:
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
-        RESULT = t+" * "+ mu ;
+        RESULT = new Multiplicacion(t,mu,null) ; ;
     :}
     |
     termino:t DIV menos_unario:mu {:
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
-        RESULT = t+" / "+ mu ;
+        RESULT = new Division(t,mu,null);
     :}
     |
     menos_unario:mu {:
@@ -379,7 +412,7 @@ menos_unario ::=
     RESTA menos_unario:mu {:
         concat_rules("REGLA 8.1: menos_unario --> - menor_unario " + "\n\t --> " + "- " +mu);
         //concat_rules("REGLA 8.1: menos_unario --> -" + mu );
-        RESULT = "-"+ mu;
+        RESULT = mu;
 
     :}
     |
@@ -393,55 +426,60 @@ factor ::=
     INT:i {:
         concat_rules("REGLA 8.1: factor --> INT " + "\n\t --> " + i);
         //concat_rules("REGLA 8.1: factor --> " + i );
-        RESULT = i;
+        RESULT = new ConstanteEntera(i, Tipo.Int, "Factor_Int");
     :}
     |
     FLOAT:f {:
         concat_rules("REGLA 8.2: factor --> FLOAT " + "\n\t --> " + f);
         //concat_rules("REGLA 8.2: factor --> " + f );
-        RESULT = f;
+        RESULT = new ConstanteFloat(f, Tipo.Float, "Factor_Float");
     :}
     |
     BOOL:b {:
         concat_rules("REGLA 8.3: factor --> BOOL " + "\n\t --> " + b);
         //concat_rules("REGLA 8.3: factor --> " + b );
-        RESULT = b;
+        RESULT = new ConstanteBool(b, Tipo.Bool, "Factor_Bool");
     :}
     |
     funcion_especial:fe {:
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
         //concat_rules("REGLA 8.4: factor --> " + fe );
-        RESULT = fe;
+        RESULT = null;
     :}
     |
     PARENTESISO exp_or:eo PARENTESISC {:
         concat_rules("REGLA 8.5: factor --> PARENTESISO exp_or PARENTESISC " + "\n\t --> " + " ( " + eo + " ) ");
         //concat_rules("REGLA 8.5: factor --> " + "(" + eo + ")" );
-        RESULT = "(" + eo + ")";
+        RESULT = eo;
     :}
     |
     IDENTIFIER:id {:
         concat_rules("REGLA 8.6: factor --> IDENTIFIER " + "\n\t --> " + id + " ");
         //concat_rules("REGLA 8.6: factor --> " + id );
-        RESULT = id;
+        //RESULT = id;
+        Collection e = tablaSimbolos2.get(id);
+        String tipo = e.stream().findFirst().toString();
+        if (tipo == "int"){RESULT = new Identificador(id,Tipo.Int);}
+        if (tipo == "float"){RESULT = new Identificador(id, Tipo.Float);}
+        if (tipo == "bool"){RESULT = new Identificador(id, Tipo.Bool);}
     :}
     |
     INPUT_BOOL:ib PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
         //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
-        RESULT = ib + "()";
+        RESULT = new Input_Bool(Tipo.Bool, "Input_Bool");
     :}
     |
     INPUT_INT:ii PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.8: factor --> INPUT_INT() " + "\n\t --> " + ii + "()");
         //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
-        RESULT = ii + "()";
+        RESULT = new Input_Int(Tipo.Int, "Input_Int");
     :}
     |
     INPUT_FLOAT:ifl PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.9: factor --> INPUT_FLOAT() " + "\n\t --> " + ifl + "()");
         //concat_rules("REGLA 8.9: factor --> " + ifl + "()" );
-        RESULT = ifl + "()";
+        RESULT = new Input_Float(Tipo.Float, "Input_Float");
     :}    ;
 
 funcion_especial ::=
