@@ -284,6 +284,7 @@ sentencia_asignacion ::=
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
             if( tablaSimbolos2.get(id).contains("int")){
+
                             RESULT = new Asignacion(new Identificador(id,Tipo.Int),eo);
                         }
                         else{

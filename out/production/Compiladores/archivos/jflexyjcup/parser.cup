@@ -109,8 +109,8 @@ nonterminal IfElse if_else;
 terminal Input_Bool INPUT_BOOL;
 terminal Input_Int INPUT_INT;
 terminal Input_Float INPUT_FLOAT;
-nonterminal Expresion expresion, factor,menos_unario,termino, comparacion, exp_or,exp_and,exp_not;
-nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot, funcion_especial;
+nonterminal Expresion expresion, factor, menos_unario,termino, comparacion, exp_or,exp_and,exp_not, funcion_especial;
+nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot;
 nonterminal List<Expresion> lista_expresiones;
 //precedence left OPCOMP, sentencia;
 
@@ -284,6 +284,7 @@ sentencia_asignacion ::=
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
             if( tablaSimbolos2.get(id).contains("int")){
+
                             RESULT = new Asignacion(new Identificador(id,Tipo.Int),eo);
                         }
                         else{
@@ -442,7 +443,7 @@ factor ::=
     funcion_especial:fe {:
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
         //concat_rules("REGLA 8.4: factor --> " + fe );
-        RESULT = null;
+        RESULT = fe;
     :}
     |
     PARENTESISO exp_or:eo PARENTESISC {:
