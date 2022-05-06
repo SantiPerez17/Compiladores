@@ -13,8 +13,9 @@ public class MenosUnario extends OperacionUnaria{
         super(nombre, expresion, tipo);
     }
 
-    public void graficar (String idPadre){
+    public String graficar (String idPadre){
         //getExpresion().getEtiqueta()
+        return idPadre;
     }
 
 

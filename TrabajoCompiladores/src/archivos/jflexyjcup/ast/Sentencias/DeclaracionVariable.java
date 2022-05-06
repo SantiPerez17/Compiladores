@@ -13,8 +13,8 @@ public class DeclaracionVariable extends Sentencia{
         this.tipo = tipo;
     }
 
-    public Identificador getId() {
-        return id;
+    public String getId() {
+        return id.getEtiqueta();
     }
 
     public void setId(Identificador id) {

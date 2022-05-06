@@ -25,8 +25,14 @@ public abstract class Nodo{
         final int pos = name.lastIndexOf('.') + 1;
         return name.substring(pos);
     }
-
-    //public abstract <T> T accept(Visitor<T> v) throws ExcepcionDeAlcance;
-
-    //public abstract <R> R accept_transfomer(Transformer t) throws ExcepcionDeTipos;
+    protected String getId() {
+        return "nodo_" + this.hashCode();
+    }
+    protected String graficar(String idPadre){
+        StringBuilder grafico = new StringBuilder();
+        grafico.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId(), this.getEtiqueta()));
+        if(idPadre != null)
+            grafico.append(String.format("%1$s--%2$s\n", idPadre, this.getId()));
+        return grafico.toString();
+    }
 }
