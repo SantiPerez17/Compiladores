@@ -124,7 +124,7 @@ program ::= sector_declaraciones:sd programa:p //programa
     |
     programa:p {:
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
-    RESULT = p;
+    RESULT = new Programa("Programa");
     :}
     |;
 sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
@@ -284,8 +284,7 @@ sentencia_asignacion ::=
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
             if( tablaSimbolos2.get(id).contains("int")){
-
-                            RESULT = new Asignacion(new Identificador(id,Tipo.Int),eo);
+                            RESULT = new Asignacion(new Identificador(id,Tipo.Int), eo);
                         }
                         else{
                             if (tablaSimbolos2.get(id).contains("float")){
@@ -333,13 +332,13 @@ exp_not ::=
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
-        RESULT = new NOT(e1,e1.getTipo());
+        RESULT = new NOT(e1,Tipo.Bool);
     :}
     |
     comparacion:c {:
         concat_rules("REGLA 7.6: exp_not --> comparacion " + "\n\t --> " + c);
         //concat_rules("REGLA 7.6: exp_not --> "+c );
-        //RESULT = c ;
+        RESULT = c ;
     :};
 
 comparacion ::=
@@ -372,7 +371,6 @@ expresion ::=
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-
         RESULT = new Suma(e1,e2,null) ;
     :}
     |
