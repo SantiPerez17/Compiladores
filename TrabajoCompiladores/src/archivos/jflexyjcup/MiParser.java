@@ -854,7 +854,7 @@ class CUP$MiParser$actions {
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
             ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "CC");
-            RESULT = new DisplayCadenaCaracteres(CC.toString());
+            RESULT = new DisplayCadenaCaracteres(CC);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_display",5, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

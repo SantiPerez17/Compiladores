@@ -17,6 +17,8 @@ public abstract class Expresion extends Nodo{
         this.tipo = tipo;
     }
 
+    public Expresion() {
+    }
 
     public Tipo getTipo() {
         return tipo;

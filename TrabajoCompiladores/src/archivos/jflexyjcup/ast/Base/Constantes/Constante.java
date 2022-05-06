@@ -6,8 +6,6 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 public class Constante extends Expresion {
     private final String valor;
 
-
-
     public Constante(String valor, String nombre) {
         super(nombre);
         this.valor = valor;

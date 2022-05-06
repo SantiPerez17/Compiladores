@@ -9,10 +9,10 @@ public class Input_Float extends Expresion {
     }
 
     public Input_Float(String nombre) {
-        super(nombre);
+        super("Input_Float");
     }
 
     public Input_Float(Tipo tipo, String nombre) {
-        super(Tipo.Float, nombre);
+        super(Tipo.Float, "Input_Float");
     }
 }

@@ -35,4 +35,15 @@ public class IfSimple extends Sentencia {
         this.condicion = condicion;
         Sentencias = sentencias;
     }
+
+    @Override
+    public String graficar(String idPadre) {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(this.condicion.graficar(this.getId()));
+        resultado.append("Then"); // preguntar
+        for (Sentencia s:Sentencias){
+            resultado.append(s.graficar(this.getId()));
+        }
+        return super.graficar(idPadre);
+    }
 }

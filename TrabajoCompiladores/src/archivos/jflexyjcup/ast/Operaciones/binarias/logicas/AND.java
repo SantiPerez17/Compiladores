@@ -5,7 +5,9 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 
 public class AND extends OperacionBinaria {
-
+    public AND(String nombre, Expresion izquierda, Expresion derecha) {
+        super("AND", izquierda, derecha);
+    }
 
     public AND(Expresion izquierda, Expresion derecha, Tipo tipo) {
         super(izquierda, derecha, Tipo.Bool);

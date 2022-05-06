@@ -7,12 +7,14 @@ public abstract class OperacionBinaria extends Expresion {
     private Expresion izquierda;
     private Expresion derecha;
 
-
-
-
-
     public OperacionBinaria(Expresion izquierda, Expresion derecha, Tipo tipo) {
         super(tipo);
+        this.izquierda = izquierda;
+        this.derecha = derecha;
+    }
+
+    public OperacionBinaria(String nombre, Expresion izquierda, Expresion derecha) {
+        super(nombre);
         this.izquierda = izquierda;
         this.derecha = derecha;
     }
@@ -47,4 +49,11 @@ public abstract class OperacionBinaria extends Expresion {
         return String.format("%s", this.getNombre());
     }
 
+    @Override
+    public String graficar(String idPadre) {
+        final String miId = this.getId();
+        return super.graficar(idPadre) +
+                izquierda.graficar(miId) +
+                derecha.graficar(miId);
+    }
 }

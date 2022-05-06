@@ -9,4 +9,5 @@ public class Display extends Sentencia {
     public Display(String nombre) {
         super(nombre);
     }
+
 }

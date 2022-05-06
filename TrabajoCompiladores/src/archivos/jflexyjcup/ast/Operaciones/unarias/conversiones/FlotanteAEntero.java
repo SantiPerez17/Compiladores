@@ -8,4 +8,8 @@ public class FlotanteAEntero extends OperacionConversion{
     public FlotanteAEntero(Expresion expresion) {
         super("FLOAT a INT", expresion, Tipo.Int);
     }
+
+    public FlotanteAEntero(String nombre, Expresion expresion) {
+        super("FLOAT a INT", expresion);
+    }
 }

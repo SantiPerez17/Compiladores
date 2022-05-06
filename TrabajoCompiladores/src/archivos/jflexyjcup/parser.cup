@@ -264,7 +264,7 @@ sentencia_display ::=
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
             ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "CC");
-            RESULT = new DisplayCadenaCaracteres(CC.toString());
+            RESULT = new DisplayCadenaCaracteres(CC);
         :}
         |
         DISPLAY PARENTESISO exp_or:c PARENTESISC {:

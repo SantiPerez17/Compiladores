@@ -9,10 +9,10 @@ public class Input_Int extends Expresion {
     }
 
     public Input_Int(String nombre) {
-        super(nombre);
+        super("Input_Int");
     }
 
     public Input_Int(Tipo tipo, String nombre) {
-        super(Tipo.Int, nombre);
+        super(Tipo.Int, "Input_Int");
     }
 }

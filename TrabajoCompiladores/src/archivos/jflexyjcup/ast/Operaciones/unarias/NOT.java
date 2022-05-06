@@ -8,6 +8,10 @@ public class NOT extends OperacionUnaria{
         super(expresion, tipo);
     }
 
+    public NOT(String nombre, Expresion expresion) {
+        super("NOT",expresion);
+    }
+
     public NOT(String nombre, Expresion expresion, Tipo tipo) {
         super("NOT", expresion, tipo);
     }

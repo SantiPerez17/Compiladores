@@ -46,4 +46,11 @@ public class Asignacion extends Sentencia{
     public String getEtiqueta() {
         return String.format("%s", this.getNombreOperacion());
     }
+
+    @Override
+    public String graficar(String idPadre) {
+        StringBuilder grafico = new StringBuilder();
+        grafico.append(identificador.graficar(this.getId())).append(expresion.graficar(this.getId()));
+        return grafico.toString();
+    }
 }

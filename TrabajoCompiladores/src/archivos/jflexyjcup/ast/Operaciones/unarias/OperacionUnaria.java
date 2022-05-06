@@ -6,8 +6,10 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 public abstract class  OperacionUnaria extends Expresion{
     private Expresion expresion;
 
-
-
+    public OperacionUnaria(String nombre, Expresion expresion) {
+        super(nombre);
+        this.expresion = expresion;
+    }
 
     public OperacionUnaria(Expresion expresion, Tipo tipo) {
         super(tipo);
@@ -25,6 +27,12 @@ public abstract class  OperacionUnaria extends Expresion{
 
     public void setExpresion(Expresion expresion) {
         this.expresion = expresion;
+    }
+
+    @Override
+    public String graficar(String idPadre) {
+        final String miId = this.getId();
+        return super.graficar(idPadre) +  expresion.graficar(miId);
     }
 
 }
