@@ -11,3 +11,7 @@ En la primera parte se plantea la idea de generar un lexer, el cual tiene que co
 
 En la segunda parte se genera una GLC, que actuará junto con los tokens que reconozca de la primera parte.
 Se estableceran una serie de reglas que serviran para saber como parsea el compilador.
+
+## Tercera parte 🖥
+
+En la tercera parte se arma, basandose en las reglas anteriores el AST. Con los diferentes nodos que se inicializan en la gramática.
