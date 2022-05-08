@@ -38,8 +38,10 @@ public class Programa extends Nodo{
         StringBuilder resultado = new StringBuilder();
         resultado.append("graph G {");
         resultado.append(this.graficar(null));
-        for(Sentencia s : sentencias){
-            resultado.append(s.graficar(this.getId()));
+        if (sentencias != null){
+            for(Sentencia s : sentencias){
+                resultado.append(s.graficar(this.getId()));
+            }
         }
         resultado.append("}");
         return resultado.toString();
