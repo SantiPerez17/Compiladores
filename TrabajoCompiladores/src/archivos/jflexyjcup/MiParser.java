@@ -57,8 +57,8 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\000\073\000\002\002\004\000\002\002\004\000\002\002" +
     "\003\000\002\002\002\000\002\026\005\000\002\027\003" +
     "\000\002\027\004\000\002\030\006\000\002\025\003\000" +
-    "\002\025\005\000\002\003\003\000\002\003\003\000\002" +
-    "\003\003\000\002\004\005\000\002\010\003\000\002\010" +
+    "\002\025\005\000\002\004\003\000\002\004\003\000\002" +
+    "\004\003\000\002\003\005\000\002\010\003\000\002\010" +
     "\004\000\002\005\003\000\002\005\003\000\002\005\003" +
     "\000\002\005\003\000\002\011\011\000\002\006\003\000" +
     "\002\006\003\000\002\013\011\000\002\014\013\000\002" +
@@ -242,12 +242,12 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\161\000\010\002\004\004\005\026\003\001\001\000" +
-    "\004\004\162\001\001\000\002\001\001\000\002\001\001" +
+    "\000\161\000\010\002\004\003\005\026\003\001\001\000" +
+    "\004\003\162\001\001\000\002\001\001\000\002\001\001" +
     "\000\022\005\030\006\040\007\033\010\041\011\027\012" +
-    "\032\013\037\014\035\001\001\000\010\003\011\027\014" +
+    "\032\013\037\014\035\001\001\000\010\004\011\027\014" +
     "\030\013\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\003\011\030\017" +
+    "\002\001\001\000\002\001\001\000\006\004\011\030\017" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\004\025\021\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
@@ -454,7 +454,7 @@ class CUP$MiParser$actions {
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
-    RESULT = new Programa(tablaSimbolos2);
+    RESULT = p;
     //RESULT= sd + p ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -599,7 +599,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
         //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
         RESULT = Tipo.Int; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -614,7 +614,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
         //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
         RESULT = Tipo.Float; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -629,7 +629,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
         //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
         RESULT = Tipo.Bool;
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -644,9 +644,9 @@ class CUP$MiParser$actions {
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
             //RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
-            RESULT = new Programa(ls);
+            RESULT = new Programa(tablaSimbolos2, ls);
         
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -660,7 +660,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
-            List<Sentencia> lista_sentencias = new ArrayList<>();
+            List<Sentencia> lista_sentencias = new ArrayList<Sentencia>();
             lista_sentencias.add(s);
             RESULT = lista_sentencias;  
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_sentencias",6, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -896,7 +896,7 @@ class CUP$MiParser$actions {
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
             if( tablaSimbolos2.get(id).contains("int")){
-                            RESULT = new Asignacion(new Identificador(id,Tipo.Int),eo);
+                            RESULT = new Asignacion(new Identificador(id,Tipo.Int), eo);
                         }
                         else{
                             if (tablaSimbolos2.get(id).contains("float")){
@@ -997,7 +997,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
-        RESULT = new NOT(e1,e1.getTipo());
+        RESULT = new NOT(e1,Tipo.Bool);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1013,7 +1013,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.6: exp_not --> comparacion " + "\n\t --> " + c);
         //concat_rules("REGLA 7.6: exp_not --> "+c );
-        //RESULT = c ;
+        RESULT = c ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1084,7 +1084,6 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-
         RESULT = new Suma(e1,e2,null) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1305,7 +1304,8 @@ class CUP$MiParser$actions {
         //concat_rules("REGLA 8.6: factor --> " + id );
         //RESULT = id;
         Collection e = tablaSimbolos2.get(id);
-        String tipo = e.stream().findFirst().toString();
+        String tipo = String.valueOf(e.stream().findFirst());
+
         if (tipo == "int"){RESULT = new Identificador(id,Tipo.Int);}
         if (tipo == "float"){RESULT = new Identificador(id, Tipo.Float);}
         if (tipo == "bool"){RESULT = new Identificador(id, Tipo.Bool);}

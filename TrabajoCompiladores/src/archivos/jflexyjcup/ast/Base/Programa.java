@@ -27,6 +27,11 @@ public class Programa extends Nodo{
         this.sentencias=sentencias;
     }
 
+    public Programa(String nombre, List<Sentencia> sentencias) {
+        super(nombre);
+        this.sentencias = sentencias;
+    }
+
     public Programa(String nombre, Multimap<String, String> tablaSimbolos2, List<Sentencia> sentencias) {
         super(nombre);
         this.tablaSimbolos2 = tablaSimbolos2;
@@ -39,7 +44,13 @@ public class Programa extends Nodo{
         resultado.append("graph G {");
         resultado.append(this.graficar(null));
         for(Sentencia s : sentencias){
-            resultado.append(s.graficar(this.getId()));
+            if (s == null){
+
+            }
+            else{
+                resultado.append(s.graficar(this.getId()));
+            }
+
         }
         resultado.append("}");
         return resultado.toString();

@@ -14,8 +14,7 @@ program.section
     display("aewr") (* donde “ewr�? debe ser una cte literal string *)
     display(5.5723877 + aux)
     display( 7 <= mi_var )
-    a:=cola(2;[])
-    while ( (cola(2;[1,2,3] )> 1 )) do
+    while ( g > 1 ) do
         display("hola")
         if (b==c) then
             b:=b+1

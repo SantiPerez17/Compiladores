@@ -97,9 +97,8 @@ terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHE
 COMA, DOSPUNTOS, DISPLAY, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
 terminal String STRING_LITERAL,BOOL, INT, FLOAT, IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
 
-nonterminal Programa program;
+nonterminal Programa program, programa;
 nonterminal Tipo tipo_de_dato;
-nonterminal Programa programa;
 nonterminal Sentencia sentencia, sentencia_if, sentencia_display;
 nonterminal List<Sentencia> lista_sentencias;
 nonterminal While sentencia_while;
@@ -118,13 +117,13 @@ start with program;
 
 program ::= sector_declaraciones:sd programa:p //programa
     {:  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
-    RESULT = new Programa(tablaSimbolos2);
+    RESULT = sd + p;
     //RESULT= sd + p ;
     :}
     |
     programa:p {:
     concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
-    RESULT = new Programa("Programa");
+    RESULT = p;
     :}
     |;
 sector_declaraciones ::= DECLARE_SECTION lista_declaraciones:ld ENDDECLARE_SECTION
@@ -185,13 +184,13 @@ programa ::=
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
             //RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
-            RESULT = new Programa(ls);
+            RESULT = new Programa(tablaSimbolos2, ls);
         :};
 lista_sentencias ::=
         sentencia:s {:
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
-            List<Sentencia> lista_sentencias = new ArrayList<>();
+            List<Sentencia> lista_sentencias = new ArrayList<Sentencia>();
             lista_sentencias.add(s);
             RESULT = lista_sentencias;  :}
         |
@@ -441,7 +440,7 @@ factor ::=
     funcion_especial:fe {:
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
         //concat_rules("REGLA 8.4: factor --> " + fe );
-        RESULT = fe;
+        RESULT = null;
     :}
     |
     PARENTESISO exp_or:eo PARENTESISC {:
@@ -455,7 +454,7 @@ factor ::=
         //concat_rules("REGLA 8.6: factor --> " + id );
         //RESULT = id;
         Collection e = tablaSimbolos2.get(id);
-        String tipo = e[0]
+        String tipo = String.valueOf(e.stream().findFirst());
 
         if (tipo == "int"){RESULT = new Identificador(id,Tipo.Int);}
         if (tipo == "float"){RESULT = new Identificador(id, Tipo.Float);}
