@@ -1,6 +1,7 @@
 
         package archivos.jflexyjcup;
 
+        import archivos.jflexyjcup.ast.Base.Programa;
         import java_cup.runtime.Symbol;
 
         import javax.swing.*;
@@ -9,8 +10,8 @@
         import java.awt.event.ActionListener;
         import java.io.*;
         import java.nio.charset.StandardCharsets;
-        import java.util.Arrays;
         import java.util.Objects;
+
 
 public class AbrirParteGráfica extends JFrame implements ActionListener {
 
@@ -47,6 +48,11 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         JButton btn4 = new JButton("Generar Parser");
         btn4.addActionListener(this);
         panel1.add( btn4 );
+
+        //Se crea boton para generar parser del archivo
+        JButton btn5 = new JButton("Generar AST");
+        btn5.addActionListener(this);
+        panel1.add( btn5 );
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
@@ -142,7 +148,15 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
+        }
+        else if (btn.getText().equals("Generar AST")){
+            try {
+                Graficar(txp.getText());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
         }
     }
@@ -219,6 +233,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(rootPane,"Error" + ex.getMessage());
         }
     }
+
     public void Parsing(String contenido) throws IOException,Exception {
         MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
@@ -240,7 +255,23 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         catch (Exception e){
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         };
+    }
 
+    public void Graficar(String contenido) throws IOException,Exception {
+        MiLexico lexer = new MiLexico(new FileReader(archivo));
+        MiParser parser = new MiParser(lexer);
+        final Programa programa = (Programa) parser.parse().value;
+
+        try {
+            PrintWriter grafico = new PrintWriter(new FileWriter("arbol.dot"));
+            grafico.println(programa.graficar());
+            grafico.close();
+            String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
+            Runtime.getRuntime().exec(cmdDot);
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public static void main( String[] arg ){
