@@ -97,7 +97,8 @@ terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHE
 COMA, DOSPUNTOS, DISPLAY, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
 terminal String STRING_LITERAL,BOOL, INT, FLOAT, IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
 
-nonterminal Programa program, programa;
+nonterminal Nodo program;
+nonterminal Programa programa;
 nonterminal Tipo tipo_de_dato;
 nonterminal Sentencia sentencia, sentencia_if, sentencia_display;
 nonterminal List<Sentencia> lista_sentencias;
@@ -117,7 +118,7 @@ start with program;
 
 program ::= sector_declaraciones:sd programa:p //programa
     {:  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
-    RESULT = sd + p;
+    RESULT = p;
     //RESULT= sd + p ;
     :}
     |
@@ -484,7 +485,8 @@ funcion_especial ::=
     {:
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
-        RESULT = "cola( "+p+";["+le+"])"  ;
+        //RESULT = "cola( "+p+";["+le+"])"  ;
+        RESULT = null;
     :};
 
 pivot ::=

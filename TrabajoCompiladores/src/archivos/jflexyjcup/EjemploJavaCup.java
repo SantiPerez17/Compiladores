@@ -1,7 +1,10 @@
 package archivos.jflexyjcup;
 
 import java.io.FileReader;
+import java.io.StringWriter;
+
 import archivos.jflexyjcup.MiParser;
+import java_cup.runtime.Symbol;
 
 import javax.swing.*;
 
@@ -20,7 +23,10 @@ public class EjemploJavaCup {
         System.out.println("Análisis sintáctico iniciado:");
         MiLexico lexer = new MiLexico(new FileReader(path));
         MiParser parser = new MiParser(lexer);
-        try{Object a = parser.parse();System.out.println("Análisis sintáctico finalizado.");}
+        Symbol p = parser.parse();
+        StringWriter Reglas = new StringWriter();
+        Reglas.append(parser.reglas);
+        try{Object a = parser.parse().toString();System.out.println(Reglas+"Análisis sintáctico finalizado.");}
         catch (Exception e){System.out.println(e.getMessage());};
 
     }

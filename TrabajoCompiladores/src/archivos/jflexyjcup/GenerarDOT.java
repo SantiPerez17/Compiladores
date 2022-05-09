@@ -22,7 +22,7 @@ public class GenerarDOT {
             Runtime.getRuntime().exec(cmdDot);
 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }
