@@ -39,7 +39,7 @@ public class Programa extends Nodo{
     }
     public String graficar() {
         // Acá se dispara la invocación a los métodos graficar() de los nodos.
-        // Como la Impresion no tiene padre, se inicia pasando null.
+        // Como la impresión no tiene padre, se inicia pasando null.
         StringBuilder resultado = new StringBuilder();
         resultado.append("graph G {");
         resultado.append(this.graficar(null));

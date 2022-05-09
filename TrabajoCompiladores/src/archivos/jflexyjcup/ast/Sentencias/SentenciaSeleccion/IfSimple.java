@@ -7,7 +7,7 @@ import java.util.List;
 
 public class IfSimple extends Sentencia {
     private Expresion condicion;
-    private List<Sentencia> Sentencias; //hacer lista con entencias
+    private List<Sentencia> Sentencias; //hacer lista con sentencias
 
     public Expresion getCondicion() {
         return condicion;

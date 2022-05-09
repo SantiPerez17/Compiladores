@@ -7,7 +7,7 @@ import java.util.List;
 
 public class While extends Sentencia {
     private Expresion condicion;
-    private List<Sentencia> Sentencias;
+    private List<Sentencia> Sentencias; // Lista con sentencias.
 
     public Expresion getCondicion() {
         return condicion;
@@ -34,5 +34,16 @@ public class While extends Sentencia {
         super(nombre);
         this.condicion = condicion;
         Sentencias = sentencias;
+    }
+
+    @Override
+    public String graficar(String idPadre) {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(this.condicion.graficar(this.getId()));
+        resultado.append("Do"); // Preguntar!
+        for (Sentencia s:Sentencias){
+            resultado.append(s.graficar(this.getId()));
+        }
+        return super.graficar(idPadre);
     }
 }
