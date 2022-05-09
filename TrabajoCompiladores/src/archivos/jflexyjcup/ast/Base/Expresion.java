@@ -1,25 +1,6 @@
 package archivos.jflexyjcup.ast.Base;
 
 public abstract class Expresion extends Nodo{
-
-    private Tipo tipo;
-
-    public Expresion(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
-    public Expresion(String nombre) {
-        super(nombre);
-    }
-
-    public Expresion(Tipo tipo, String nombre) {
-        super(nombre);
-        this.tipo = tipo;
-    }
-
-    public Expresion() {
-    }
-
     public Tipo getTipo() {
         return tipo;
     }
@@ -28,4 +9,21 @@ public abstract class Expresion extends Nodo{
         this.tipo = tipo;
     }
 
+    private Tipo tipo;
+
+    public Expresion(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public Expresion() {
+    }
+
+    public Expresion(String nombre) {
+        super(nombre);
+    }
+
+    public Expresion(String nombre, Tipo tipo) {
+        super(nombre);
+        this.tipo = tipo;
+    }
 }

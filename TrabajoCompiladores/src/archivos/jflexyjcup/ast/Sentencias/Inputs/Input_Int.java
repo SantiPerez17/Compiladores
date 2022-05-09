@@ -13,6 +13,6 @@ public class Input_Int extends Expresion {
     }
 
     public Input_Int(Tipo tipo, String nombre) {
-        super(Tipo.Int, "Input_Int");
+        super("Input_Int", Tipo.Int);
     }
 }

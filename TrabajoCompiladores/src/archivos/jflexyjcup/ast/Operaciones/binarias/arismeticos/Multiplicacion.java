@@ -10,6 +10,6 @@ public class Multiplicacion extends OperacionBinaria {
     }
 
     public Multiplicacion(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, tipo, "*");
+        super( "*",tipo, izquierda, derecha);
     }
 }

@@ -11,6 +11,6 @@ public class Division extends OperacionBinaria {
     }
 
     public Division(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, tipo, "/");
+        super("/", tipo, izquierda, derecha);
     }
 }

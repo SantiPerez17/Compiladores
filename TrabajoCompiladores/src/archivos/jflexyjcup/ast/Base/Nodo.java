@@ -28,6 +28,7 @@ public abstract class Nodo{
     protected String getId() {
         return "nodo_" + this.hashCode();
     }
+
     public String graficar(String idPadre){
         StringBuilder grafico = new StringBuilder();
         grafico.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId(), this.getEtiqueta()));

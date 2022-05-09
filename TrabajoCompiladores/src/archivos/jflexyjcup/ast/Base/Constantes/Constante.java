@@ -12,7 +12,7 @@ public class Constante extends Expresion {
     }
 
     public Constante(String valor, Tipo tipo, String nombre) {
-        super(tipo, nombre);
+        super(nombre, tipo);
         this.valor = valor;
     }
 
@@ -27,6 +27,6 @@ public class Constante extends Expresion {
 
     @Override
     public String getEtiqueta() {
-        return String.format(String.format("Const %s %s", getValor(), this.getTipo()));
+        return String.format(String.format("Const \n%s  \n%s \n%s", this.getNombre(), getValor(), getTipo()));
     }
 }

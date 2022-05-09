@@ -6,36 +6,18 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class Asignacion extends Sentencia{
 
-    private Identificador identificador;
-    private Expresion expresion;
+    private final Identificador identificador;
+    private final Expresion expresion;
 
-    public Asignacion(Identificador id, Expresion e){
-        this.identificador = id;
-        this.expresion = e;
-    }
-
-    public void setIdentificador(Identificador identificador) {
+    public Asignacion(Identificador identificador, Expresion expresion) {
         this.identificador = identificador;
-    }
-
-    public void setExpresion(Expresion expresion) {
         this.expresion = expresion;
     }
 
-    public Tipo getTipoExpresion(Expresion expresion) {
-        return  expresion.getTipo();
-    }
-
-    public Tipo getTipoIdentificador(Identificador identificador) {
-        return  identificador.getTipo();
-    }
-
-    public Identificador getIdentificador(){
-        return identificador;
-    }
-
-    public Expresion getExpresion(){
-        return expresion;
+    public Asignacion(String nombre, Identificador identificador, Expresion expresion) {
+        super(nombre);
+        this.identificador = identificador;
+        this.expresion = expresion;
     }
 
     protected String getNombreOperacion() {

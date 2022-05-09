@@ -5,15 +5,20 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 
 public class OR extends OperacionBinaria {
+
+    public OR(Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(Tipo.Bool, izquierda, derecha);
+    }
+
+    public OR(Expresion izquierda, Expresion derecha) {
+        super(izquierda, derecha);
+    }
+
     public OR(String nombre, Expresion izquierda, Expresion derecha) {
         super("OR", izquierda, derecha);
     }
 
-    public OR(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.Bool);
-    }
-
-    public OR(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.Bool, nombre);
+    public OR(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super("OR", Tipo.Bool, izquierda, derecha);
     }
 }

@@ -12,7 +12,7 @@ public class DisplayCadenaCaracteres extends Display {
     }
 
     public DisplayCadenaCaracteres(String nombre, ConstanteString cadenaCaracteres) {
-        super(nombre);
+        super("Cadena de Caracteres");
         this.CadenaCaracteres = cadenaCaracteres;
     }
 

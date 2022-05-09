@@ -2,13 +2,15 @@ declare.section
     int : a,b,c;
     float : r;
     float : z;
-    bool : xd; 
+    bool : xd;
 enddeclare.section
 program.section
-    a:=2
+    display("hola")
+    display("s")
+    display("asd")
     (*r:=c and d - 5 > f * -3
     c:=3.3
-    r:=45.123 
+    r:=45.123
     xd:= c>=4
     display(a)
     display("aewr") (* donde “ewr�? debe ser una cte literal string *)
@@ -21,4 +23,4 @@ program.section
         end
     end
    display("hola") *)
-endprogram.section 
+endprogram.section

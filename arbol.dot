@@ -1,0 +1,17 @@
+graph G {nodo_584634336[label="Programa"]
+nodo_1177096266[label="Const 
+Cadena de Caracteres  
+hola 
+CTE_STRING"]
+nodo_128893786--nodo_1177096266
+nodo_670576685[label="Const 
+Cadena de Caracteres  
+s 
+CTE_STRING"]
+nodo_1732398722--nodo_670576685
+nodo_1299641336[label="Const 
+Cadena de Caracteres  
+asd 
+CTE_STRING"]
+nodo_1108411398--nodo_1299641336
+}

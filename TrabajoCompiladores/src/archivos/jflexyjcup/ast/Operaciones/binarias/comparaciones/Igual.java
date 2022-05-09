@@ -5,15 +5,19 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 
 public class Igual extends OperacionBinaria {
+    public Igual(Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(tipo, izquierda, derecha);
+    }
+
+    public Igual(Expresion izquierda, Expresion derecha) {
+        super(izquierda, derecha);
+    }
+
     public Igual(String nombre, Expresion izquierda, Expresion derecha) {
-        super("==", izquierda, derecha);
+        super(nombre, izquierda, derecha);
     }
 
-    public Igual(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super(izquierda, derecha, Tipo.Bool);
-    }
-
-    public Igual(Expresion izquierda, Expresion derecha, Tipo tipo, String nombre) {
-        super(izquierda, derecha, Tipo.Bool, nombre);
+    public Igual(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(nombre, tipo, izquierda, derecha);
     }
 }

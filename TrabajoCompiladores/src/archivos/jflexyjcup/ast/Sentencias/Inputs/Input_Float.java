@@ -13,6 +13,6 @@ public class Input_Float extends Expresion {
     }
 
     public Input_Float(Tipo tipo, String nombre) {
-        super(Tipo.Float, "Input_Float");
+        super("Input_Float", Tipo.Float);
     }
 }

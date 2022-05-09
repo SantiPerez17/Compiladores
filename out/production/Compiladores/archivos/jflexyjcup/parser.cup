@@ -185,15 +185,17 @@ programa ::=
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
             //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
             //RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
-            RESULT = new Programa(tablaSimbolos2, ls);
+            RESULT = new Programa("Programa", tablaSimbolos2, ls);
+
         :};
+
 lista_sentencias ::=
         sentencia:s {:
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
             //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
-            List<Sentencia> lista_sentencias = new ArrayList<Sentencia>();
+            List<Sentencia> lista_sentencias = new ArrayList<>();
             lista_sentencias.add(s);
-            RESULT = lista_sentencias;  :}
+            RESULT = lista_sentencias; :}
         |
         lista_sentencias:ls sentencia:s {:
             concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
@@ -276,7 +278,7 @@ sentencia_display ::=
 
 sentencia_asignacion ::=
     IDENTIFIER:id  ASIGN exp_or:eo {:
-        concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN FLOAT " + "\n\t --> " + id + " := " + eo);
+        concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN exp_or " + "\n\t --> " + id + " := " + eo);
         //concat_rules("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
         if (!tablaSimbolos2.containsKey(id)){
                     throw new Exception("Variable " + id + " no declarada.");
@@ -284,7 +286,8 @@ sentencia_asignacion ::=
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
             if( tablaSimbolos2.get(id).contains("int")){
-                            RESULT = new Asignacion(new Identificador(id,Tipo.Int), eo);
+                            Identificador ide =  new Identificador(id, Tipo.Int);
+                            RESULT = new Asignacion(ide, eo);
                         }
                         else{
                             if (tablaSimbolos2.get(id).contains("float")){
@@ -303,7 +306,7 @@ exp_or ::=
     exp_or:e1 OR exp_and:e2 {:
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
         //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
-        RESULT = new OR(e1,e2,Tipo.Bool);
+        RESULT = new OR("OR",Tipo.Bool,e1,e2);
         //RESULT = e1+" OR "+e2 ;
     :}
     |
@@ -318,7 +321,7 @@ exp_and ::=
         concat_rules("REGLA 7.3: exp_and --> exp_and AND exp_not " + "\n\t --> " + e1+ " AND "+ e2);
         //concat_rules("REGLA 7.3: exp_and --> "+e1+ " AND "+ e2 );
         //RESULT = e1+" AND "+e2 ;
-        RESULT = new AND(e1,e2,Tipo.Bool);
+        RESULT = new AND("AND",Tipo.Bool,e1,e2);
     :}
     |
     exp_not:e {:
@@ -347,16 +350,16 @@ comparacion ::=
         //concat_rules("REGLA 7.6.1: comparacion --> "+e1+" "+ oc +" "+ e2  );
         //RESULT = e1+oc+e2 ;
         if (oc==">"){
-                           RESULT = new Mayor(e1,e2,Tipo.Bool,"ComparacionMayor");
+                           RESULT = new Mayor("ComparacionMayor",Tipo.Bool,e1,e2);
                         }
                         else{
-                            if (oc == "<"){RESULT = new Menor(e1,e2,Tipo.Bool,"ComparacionMenor");
+                            if (oc == "<"){RESULT = new Menor("ComparacionMenor",Tipo.Bool,e1,e2);
                             }
                             else
                             {
-                                if (oc == "=="){RESULT = new Igual(e1,e2,Tipo.Bool,"ComparacionIgual");}
+                                if (oc == "=="){RESULT = new Igual("ComparacionIgual",Tipo.Bool,e1,e2);}
                                 else {
-                                    if (oc == "!="){RESULT = new Distinto(e1,e2,Tipo.Bool,"ComparacionDistinto");
+                                    if (oc == "!="){RESULT = new Distinto("ComparacionDistinto",Tipo.Bool,e1,e2);
                                 }
                             }}}
     :}
@@ -371,13 +374,13 @@ expresion ::=
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        RESULT = new Suma(e1,e2,null) ;
+        RESULT = new Suma("+",e1,e2) ;
     :}
     |
     expresion:e1 RESTA termino:e2 {:
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
-        RESULT = new Resta(e1,e2,null) ;
+        RESULT = new Resta("-",e1,e2) ;
     :}
     |
     termino:t {:

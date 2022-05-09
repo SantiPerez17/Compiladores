@@ -13,6 +13,6 @@ public class Input_Bool extends Expresion {
     }
 
     public Input_Bool(Tipo tipo, String nombre) {
-        super(tipo, "Input_Bool");
+        super("Input_Bool", tipo);
     }
 }
