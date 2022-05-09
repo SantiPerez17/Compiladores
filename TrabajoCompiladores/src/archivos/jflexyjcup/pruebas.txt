@@ -6,7 +6,7 @@ declare.section
 enddeclare.section
 program.section
     a:=2
-    r:=c and d - 5 > f * -3
+    (*r:=c and d - 5 > f * -3
     c:=3.3
     r:=45.123 
     xd:= c>=4
@@ -20,5 +20,5 @@ program.section
             b:=b+1
         end
     end
-   display("hola") 
+   display("hola") *)
 endprogram.section 
