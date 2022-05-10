@@ -39,11 +39,13 @@ public class While extends Sentencia {
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(super.graficar(idPadre));
         resultado.append(this.condicion.graficar(this.getId()));
-        resultado.append("Do"); // Preguntar!
+        resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, "DO"));
+        resultado.append(String.format("%1$s--%2$s\n", this.getId(), this.getId()+1));
         for (Sentencia s:Sentencias){
-            resultado.append(s.graficar(this.getId()));
+            resultado.append(s.graficar(this.getId()+1));
         }
-        return super.graficar(idPadre);
+        return resultado.toString();
     }
 }

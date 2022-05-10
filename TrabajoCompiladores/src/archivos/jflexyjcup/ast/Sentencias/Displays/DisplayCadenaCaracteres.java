@@ -19,7 +19,9 @@ public class DisplayCadenaCaracteres extends Display {
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
+        grafico.append(super.graficar(idPadre));
         grafico.append(CadenaCaracteres.graficar(this.getId()));
+        //grafico.append(idPadre+"--"+getId()+ "\n" );
         return grafico.toString();
     }
 }

@@ -119,9 +119,13 @@ SimpleComment = #.*{LineTerminator}?
   "*" {return token("MULT", yytext());}
   "/" {return token("DIV", yytext());}
 
-  {OpComparacion} {return token("OPCOMP", yytext());}
-
-
+  //{OpComparacion} {return token("OPCOMP", yytext());}
+  {Mayor} {return token("MAYOR",yytext());}
+  {Menor} {return token("MENOR",yytext());}
+  {Igual} {return token("IGUAL",yytext());}
+  {Distinto} {return token("DISTINTO",yytext());}
+  {Mayor_Igual} {return token("MAYOR_IGUAL",yytext());}
+  {Menor_Igual} {return token("MENOR_IGUAL",yytext());}
 
   /* OP LOGICOS*/
       "and" {return token("AND",yytext());}

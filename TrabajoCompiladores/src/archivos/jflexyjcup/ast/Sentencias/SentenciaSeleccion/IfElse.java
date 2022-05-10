@@ -46,4 +46,24 @@ public class IfElse extends Sentencia {
         this.sentencias1 = sentencias1;
         this.sentencias2 = sentencias2;
     }
+
+    @Override
+    public String graficar(String idPadre) {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(super.graficar(idPadre));
+        resultado.append(this.condicion.graficar(this.getId()));
+        resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, "THEN"));
+        resultado.append(String.format("%1$s--%2$s\n", this.getId(), this.getId()+1));
+        for (Sentencia s:sentencias1){
+            resultado.append(s.graficar(this.getId()+1));
+        }
+        resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+2, "ELSE"));
+        resultado.append(String.format("%1$s--%2$s\n", this.getId(), this.getId()+2));
+        for (Sentencia s:sentencias2){
+            resultado.append(s.graficar(this.getId()+2));
+        }
+
+        return resultado.toString();
+    }
+
 }

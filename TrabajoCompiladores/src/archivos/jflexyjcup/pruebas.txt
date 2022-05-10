@@ -5,10 +5,22 @@ declare.section
     bool : xd;
 enddeclare.section
 program.section
-    display("hola")
+    b:=input_int()
+    if(a==b) then
+        display("hola")
+        a:=3
+       else
+       display("chau")
+       a:=6
+       end
+    while(a==b) do
+            display("hola")
+            a:=3
+           end
+    (*a:=b+3
     display("s")
     display("asd")
-    (*r:=c and d - 5 > f * -3
+    r:=c and d - 5 > f * -3
     c:=3.3
     r:=45.123
     xd:= c>=4

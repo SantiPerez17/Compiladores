@@ -94,7 +94,7 @@ parser code
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
-COMA, DOSPUNTOS, DISPLAY, WHILE, DO, IF, THEN, ELSE, END, AND, OR, NOT, OPCOMP, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
+COMA, DOSPUNTOS, DISPLAY, WHILE, DO, INPUT_INT, INPUT_FLOAT,INPUT_BOOL, IF, THEN, ELSE, END, AND, OR, NOT, MAYOR,MENOR,IGUAL,DISTINTO,MAYOR_IGUAL,MENOR_IGUAL, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
 terminal String STRING_LITERAL,BOOL, INT, FLOAT, IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
 
 nonterminal Nodo program;
@@ -106,10 +106,7 @@ nonterminal While sentencia_while;
 nonterminal Asignacion sentencia_asignacion;
 nonterminal IfSimple if_simple;
 nonterminal IfElse if_else;
-terminal Input_Bool INPUT_BOOL;
-terminal Input_Int INPUT_INT;
-terminal Input_Float INPUT_FLOAT;
-nonterminal Expresion expresion, factor, menos_unario,termino, comparacion, exp_or,exp_and,exp_not, funcion_especial;
+nonterminal Expresion expresion, factor, menos_unario, termino, comparacion, exp_or,exp_and,exp_not, funcion_especial;
 nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot;
 nonterminal List<Expresion> lista_expresiones;
 //precedence left OPCOMP, sentencia;
@@ -285,19 +282,14 @@ sentencia_asignacion ::=
                     }
          else {
             //checkTipos(id,eo); hacer esa funcion arriba.
-            if( tablaSimbolos2.get(id).contains("int")){
-                            Identificador ide =  new Identificador(id, Tipo.Int);
-                            RESULT = new Asignacion(ide, eo);
-                        }
-                        else{
-                            if (tablaSimbolos2.get(id).contains("float")){
-                                RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);
-                            }
-                            else{
-                                if(tablaSimbolos2.get(id).contains("bool")){
-                                    RESULT = new Asignacion(new Identificador(id,Tipo.Bool),eo);
-                            }}
-                        }
+            Collection e = tablaSimbolos2.get(id);
+            String tipo = String.valueOf(e.stream().findFirst());
+            if (tipo.contains("Int")){
+            RESULT = new Asignacion(new Identificador(id, Tipo.Int),eo);
+            }
+            if (tipo.contains("Float")){RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);}
+            if (tipo.contains("Bool")){RESULT = new Asignacion(new Identificador(id, Tipo.Bool),eo);}
+
             //RESULT=id + " := " + eo;
          }
         :};
@@ -345,30 +337,43 @@ exp_not ::=
     :};
 
 comparacion ::=
-    expresion:e1 OPCOMP:oc expresion:e2 {:
-        concat_rules("REGLA 7.6.1: comparacion --> expresion OPCOMP expresion " + "\n\t --> " + e1+" "+ oc +" "+ e2);
-        //concat_rules("REGLA 7.6.1: comparacion --> "+e1+" "+ oc +" "+ e2  );
-        //RESULT = e1+oc+e2 ;
-        if (oc==">"){
-                           RESULT = new Mayor("ComparacionMayor",Tipo.Bool,e1,e2);
-                        }
-                        else{
-                            if (oc == "<"){RESULT = new Menor("ComparacionMenor",Tipo.Bool,e1,e2);
-                            }
-                            else
-                            {
-                                if (oc == "=="){RESULT = new Igual("ComparacionIgual",Tipo.Bool,e1,e2);}
-                                else {
-                                    if (oc == "!="){RESULT = new Distinto("ComparacionDistinto",Tipo.Bool,e1,e2);
-                                }
-                            }}}
+    expresion:e1 MAYOR:m expresion:e2{:
+        concat_rules("REGLA 7.6.1: comparacion --> expresion MAYOR expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+        RESULT = new Mayor(">",Tipo.Bool,e1,e2);
     :}
+    |
+    expresion:e1 MENOR:m expresion:e2{:
+            concat_rules("REGLA 7.6.1.1: comparacion --> expresion MENOR expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+            RESULT = new Menor("<",Tipo.Bool,e1,e2);
+        :}
+    |
+    expresion:e1 IGUAL:m expresion:e2{:
+            concat_rules("REGLA 7.6.1: comparacion --> expresion IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+            RESULT = new Igual("==",Tipo.Bool,e1,e2);
+        :}
+    |
+    expresion:e1 DISTINTO:m expresion:e2{:
+            concat_rules("REGLA 7.6.1: comparacion --> expresion DISTINTO expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+            RESULT = new Distinto("!=",Tipo.Bool,e1,e2);
+        :}
+    |
+    expresion:e1 MAYOR_IGUAL:m expresion:e2{:
+            concat_rules("REGLA 7.6.1: comparacion --> expresion MAYOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+            RESULT = new MayorOIgual(">=",Tipo.Bool,e1,e2);
+        :}
+    |
+    expresion:e1 MENOR_IGUAL:m expresion:e2{:
+            concat_rules("REGLA 7.6.1: comparacion --> expresion MENOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
+            RESULT = new MenorOIgual("<=",Tipo.Bool,e1,e2);
+        :}
     |
     expresion:e1 {:
         concat_rules("REGLA 7.6.2: comparacion --> expresion " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.6.2: comparacion --> "+e1);
         RESULT = e1 ;
     :};
+
+
 expresion ::=
     expresion:e1 SUMA termino:e2 {:
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
@@ -412,7 +417,7 @@ menos_unario ::=
     RESTA menos_unario:mu {:
         concat_rules("REGLA 8.1: menos_unario --> - menor_unario " + "\n\t --> " + "- " +mu);
         //concat_rules("REGLA 8.1: menos_unario --> -" + mu );
-        RESULT = mu;
+        RESULT = new MenosUnario(mu, null);
 
     :}
     |
@@ -459,28 +464,27 @@ factor ::=
         //RESULT = id;
         Collection e = tablaSimbolos2.get(id);
         String tipo = String.valueOf(e.stream().findFirst());
-
-        if (tipo == "int"){RESULT = new Identificador(id,Tipo.Int);}
-        if (tipo == "float"){RESULT = new Identificador(id, Tipo.Float);}
-        if (tipo == "bool"){RESULT = new Identificador(id, Tipo.Bool);}
+        if (tipo.contains("Int")){RESULT = new Identificador(id,Tipo.Int);}
+        if (tipo.contains("Float")){RESULT = new Identificador(id, Tipo.Float);}
+        if (tipo.contains("Bool")){RESULT = new Identificador(id, Tipo.Bool);}
     :}
     |
     INPUT_BOOL:ib PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
         //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
-        RESULT = new Input_Bool(Tipo.Bool, "Input_Bool");
+        RESULT = new Input_Bool("BOOL",Tipo.Bool);
     :}
     |
     INPUT_INT:ii PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.8: factor --> INPUT_INT() " + "\n\t --> " + ii + "()");
         //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
-        RESULT = new Input_Int(Tipo.Int, "Input_Int");
+        RESULT = new Input_Int(Tipo.Int);
     :}
     |
     INPUT_FLOAT:ifl PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.9: factor --> INPUT_FLOAT() " + "\n\t --> " + ifl + "()");
         //concat_rules("REGLA 8.9: factor --> " + ifl + "()" );
-        RESULT = new Input_Float(Tipo.Float, "Input_Float");
+        RESULT = new Input_Float(Tipo.Float);
     :}    ;
 
 funcion_especial ::=

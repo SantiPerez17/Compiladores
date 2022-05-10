@@ -7,7 +7,7 @@ public abstract class  OperacionUnaria extends Expresion{
     private Expresion expresion;
 
     public OperacionUnaria(String nombre, Expresion expresion) {
-        super(nombre);
+        super(Tipo.valueOf(nombre));
         this.expresion = expresion;
     }
 

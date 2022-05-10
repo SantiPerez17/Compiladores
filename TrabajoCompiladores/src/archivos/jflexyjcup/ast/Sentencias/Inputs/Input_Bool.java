@@ -13,6 +13,6 @@ public class Input_Bool extends Expresion {
     }
 
     public Input_Bool(Tipo tipo, String nombre) {
-        super("Input_Bool", tipo);
+        super("Input_Bool", Tipo.Bool);
     }
 }

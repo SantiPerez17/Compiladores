@@ -4,6 +4,7 @@ import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class MenosUnario extends OperacionUnaria{
+
     public MenosUnario(Expresion expresion, Tipo tipo) {
         super(expresion, tipo);
     }

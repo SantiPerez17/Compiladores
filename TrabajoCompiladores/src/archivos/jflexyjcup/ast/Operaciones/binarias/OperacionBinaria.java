@@ -33,9 +33,10 @@ public abstract class OperacionBinaria extends Expresion {
 
     @Override
     public String graficar(String idPadre) {
-        final String miId = this.getId();
-        return super.graficar(idPadre) +
-                izquierda.graficar(miId) +
-                derecha.graficar(miId);
+        StringBuilder grafico = new StringBuilder();
+        grafico.append(super.graficar(idPadre));
+        grafico.append(izquierda.graficar(this.getId()));
+        grafico.append(derecha.graficar(this.getId()));
+        return grafico.toString();
     }
 }

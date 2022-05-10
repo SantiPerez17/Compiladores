@@ -5,14 +5,17 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class Input_Int extends Expresion {
     public Input_Int(Tipo tipo) {
-        super(Tipo.Int);
+        super(tipo);
+    }
+
+    public Input_Int() {
     }
 
     public Input_Int(String nombre) {
-        super("Input_Int");
+        super(nombre);
     }
 
-    public Input_Int(Tipo tipo, String nombre) {
-        super("Input_Int", Tipo.Int);
+    public Input_Int(String nombre, Tipo tipo) {
+        super(nombre, tipo);
     }
 }

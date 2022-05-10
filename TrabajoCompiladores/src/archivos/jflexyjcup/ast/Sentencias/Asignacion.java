@@ -32,7 +32,9 @@ public class Asignacion extends Sentencia{
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
-        grafico.append(identificador.graficar(this.getId())).append(expresion.graficar(this.getId()));
+        grafico.append(super.graficar(idPadre));
+        grafico.append(identificador.graficar(this.getId()));
+        grafico.append(expresion.graficar(this.getId()));
         return grafico.toString();
     }
 }

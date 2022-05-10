@@ -1,6 +1,7 @@
 package archivos.jflexyjcup.ast.Base;
 
 public class Identificador extends Expresion{
+
     public Identificador(Tipo tipo) {
         super(tipo);
     }
