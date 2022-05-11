@@ -1434,11 +1434,16 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 8.6: factor --> IDENTIFIER " + "\n\t --> " + id + " ");
         //concat_rules("REGLA 8.6: factor --> " + id );
         //RESULT = id;
+        if (!tablaSimbolos2.containsKey(id)){
+                            throw new Exception("Variable " + id + " no declarada.");
+                            }
+                 else {
         Collection e = tablaSimbolos2.get(id);
         String tipo = String.valueOf(e.stream().findFirst());
         if (tipo.contains("Int")){RESULT = new Identificador(id,Tipo.Int);}
         if (tipo.contains("Float")){RESULT = new Identificador(id, Tipo.Float);}
         if (tipo.contains("Bool")){RESULT = new Identificador(id, Tipo.Bool);}
+        }
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1454,7 +1459,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
         //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
-        RESULT = new Input_Bool(Tipo.Bool);
+        RESULT = new Input_Bool(Tipo.Bool, "BOOL");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

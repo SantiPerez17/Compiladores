@@ -1,11 +1,12 @@
 declare.section
-    int : a,b,c;
-    float : r;
+    int :f, a,b,c;
+    float :t, r;
     float : z;
     bool : xd;
 enddeclare.section
 program.section
-    b:=input_int()
+   xd:=true
+   b:=50 + t + 2.4
     if(a==b) then
         display("hola")
         a:=3
@@ -17,22 +18,22 @@ program.section
             display("hola")
             a:=3
            end
-    (*a:=b+3
+    a:=b+3
     display("s")
     display("asd")
-    r:=c and d - 5 > f * -3
+    r:=c and xd - 5 > a * -3
     c:=3.3
-    r:=45.123
-    xd:= c>=4
+    c:=45.123
+    f:= c>=4
     display(a)
     display("aewr") (* donde “ewr�? debe ser una cte literal string *)
-    display(5.5723877 + aux)
-    display( 7 <= mi_var )
-    while ( g > 1 ) do
+    display(5.5723877 + a)
+    display( 7 <= b )
+    while ( a > 1 ) do
         display("hola")
         if (b==c) then
             b:=b+1
         end
     end
-   display("hola") *)
+   display("hola")
 endprogram.section

@@ -462,29 +462,34 @@ factor ::=
         concat_rules("REGLA 8.6: factor --> IDENTIFIER " + "\n\t --> " + id + " ");
         //concat_rules("REGLA 8.6: factor --> " + id );
         //RESULT = id;
+        if (!tablaSimbolos2.containsKey(id)){
+                            throw new Exception("Variable " + id + " no declarada.");
+                            }
+                 else {
         Collection e = tablaSimbolos2.get(id);
         String tipo = String.valueOf(e.stream().findFirst());
         if (tipo.contains("Int")){RESULT = new Identificador(id,Tipo.Int);}
         if (tipo.contains("Float")){RESULT = new Identificador(id, Tipo.Float);}
         if (tipo.contains("Bool")){RESULT = new Identificador(id, Tipo.Bool);}
+        }
     :}
     |
     INPUT_BOOL:ib PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
         //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
-        RESULT = new Input_Bool("BOOL",Tipo.Bool);
+        RESULT = new Input_Bool(Tipo.Bool,"INPUT_BOOL");
     :}
     |
     INPUT_INT:ii PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.8: factor --> INPUT_INT() " + "\n\t --> " + ii + "()");
         //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
-        RESULT = new Input_Int(Tipo.Int);
+        RESULT = new Input_Int(Tipo.Int,"INPUT_INT");
     :}
     |
     INPUT_FLOAT:ifl PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.9: factor --> INPUT_FLOAT() " + "\n\t --> " + ifl + "()");
         //concat_rules("REGLA 8.9: factor --> " + ifl + "()" );
-        RESULT = new Input_Float(Tipo.Float);
+        RESULT = new Input_Float(Tipo.Float, "INPUT_FLOAT");
     :}    ;
 
 funcion_especial ::=

@@ -261,17 +261,18 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     public void Graficar(String contenido) throws IOException,Exception {
         MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
-        final Programa programa = (Programa) parser.parse().value;
-
         try {
+            final Programa programa = (Programa) parser.parse().value;
             PrintWriter grafico = new PrintWriter(new FileWriter("arbol.dot"));
             grafico.println(programa.graficar());
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
-
         } catch (Exception e) {
-            System.out.println(e);
+            UIManager.put("OptionPane.background", Color.GRAY);
+            UIManager.put("OptionPane.messagebackground", Color.GRAY);
+            UIManager.put("Panel.background", Color.GRAY);
+            JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         }
     }
 

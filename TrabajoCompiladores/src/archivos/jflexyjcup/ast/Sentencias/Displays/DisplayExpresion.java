@@ -18,11 +18,9 @@ public class DisplayExpresion extends Display {
 
     @Override
     public String graficar(String idPadre) {
-        StringBuilder grafico = new StringBuilder();
-        if (expresion==null){}
-        else {
-            grafico.append(expresion.graficar(this.getId()));
-        }
-        return grafico.toString();
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(super.graficar(idPadre));
+        resultado.append(this.expresion.graficar(this.getId()));
+        return resultado.toString();
     }
 }
