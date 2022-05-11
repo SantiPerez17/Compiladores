@@ -29,4 +29,9 @@ public abstract class  OperacionUnaria extends Expresion{
         this.expresion = expresion;
     }
 
+    @Override
+    public String getEtiqueta() {
+        return " Op_Unaria - [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.getTipo();
+    }
+
 }

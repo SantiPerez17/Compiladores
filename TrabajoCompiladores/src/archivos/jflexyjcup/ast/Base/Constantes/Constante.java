@@ -27,6 +27,6 @@ public class Constante extends Expresion {
 
     @Override
     public String getEtiqueta() {
-        return String.format(String.format("Const \n%s  \n%s \n%s", this.getNombre(), getValor(), getTipo()));
+        return String.format(String.format("%s  \n Valor: %s \n%s", this.getNombre(), getValor(), getTipo()));
     }
 }

@@ -28,6 +28,6 @@ public abstract class Expresion extends Nodo{
     }
 
     public String getEtiqueta() {
-       return "- { " + this.getNombre() + " } - " + "\n Tipo: "+ this.tipo;
+       return "- [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.tipo;
     }
 }

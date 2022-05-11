@@ -32,6 +32,11 @@ public abstract class OperacionBinaria extends Expresion {
     }
 
     @Override
+    public String getEtiqueta() {
+        return " Op_Binaria - [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.getTipo();
+    }
+
+    @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
         grafico.append(super.graficar(idPadre));
