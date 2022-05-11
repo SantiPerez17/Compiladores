@@ -16,4 +16,9 @@ public class Identificador extends Expresion{
     public Identificador(String nombre, Tipo tipo) {
         super(nombre, tipo);
     }
+
+    @Override
+    public String getEtiqueta() {
+        return " ID - { " + this.getNombre() + " } - " + "\n Tipo: "+ this.getTipo();
+    }
 }

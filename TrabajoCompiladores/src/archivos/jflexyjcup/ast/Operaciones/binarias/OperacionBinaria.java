@@ -8,7 +8,7 @@ public abstract class OperacionBinaria extends Expresion {
     private final Expresion derecha;
 
     public OperacionBinaria(Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(tipo);
+        super(Tipo.Unknown);
         this.izquierda = izquierda;
         this.derecha = derecha;
     }
@@ -26,7 +26,7 @@ public abstract class OperacionBinaria extends Expresion {
 
 
     public OperacionBinaria(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(nombre, tipo);
+        super(nombre, Tipo.Unknown);
         this.izquierda = izquierda;
         this.derecha = derecha;
     }

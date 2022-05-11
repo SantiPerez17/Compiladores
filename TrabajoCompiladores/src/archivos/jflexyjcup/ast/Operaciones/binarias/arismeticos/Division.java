@@ -10,7 +10,21 @@ public class Division extends OperacionBinaria {
         super("/", izquierda, derecha);
     }
 
-    public Division(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super("/", tipo, izquierda, derecha);
+    public Division(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(nombre, tipo, izquierda, derecha);
     }
+
+    public Division(Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(tipo, izquierda, derecha);
+    }
+
+    public Division(Expresion izquierda, Expresion derecha) {
+        super(izquierda, derecha);
+    }
+
+    public Division(Expresion izquierda, Expresion derecha, Tipo tipo) {
+        super("/", Tipo.Unknown, izquierda, derecha);
+    }
+
+
 }

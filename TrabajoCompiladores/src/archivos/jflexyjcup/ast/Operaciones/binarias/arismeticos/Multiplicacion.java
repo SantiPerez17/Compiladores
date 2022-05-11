@@ -9,7 +9,19 @@ public class Multiplicacion extends OperacionBinaria {
         super("*", izquierda, derecha);
     }
 
+    public Multiplicacion(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(nombre, tipo, izquierda, derecha);
+    }
+
+    public Multiplicacion(Tipo tipo, Expresion izquierda, Expresion derecha) {
+        super(tipo, izquierda, derecha);
+    }
+
+    public Multiplicacion(Expresion izquierda, Expresion derecha) {
+        super(izquierda, derecha);
+    }
+
     public Multiplicacion(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super( "*",tipo, izquierda, derecha);
+        super( "*",Tipo.Unknown, izquierda, derecha);
     }
 }

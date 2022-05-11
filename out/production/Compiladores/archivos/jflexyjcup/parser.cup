@@ -398,13 +398,13 @@ termino ::=
     termino:t MULT menos_unario:mu {:
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
-        RESULT = new Multiplicacion(t,mu,null) ; ;
+        RESULT = new Multiplicacion("*",t,mu) ; ;
     :}
     |
     termino:t DIV menos_unario:mu {:
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
-        RESULT = new Division(t,mu,null);
+        RESULT = new Division("/",t,mu);
     :}
     |
     menos_unario:mu {:
@@ -417,7 +417,7 @@ menos_unario ::=
     RESTA menos_unario:mu {:
         concat_rules("REGLA 8.1: menos_unario --> - menor_unario " + "\n\t --> " + "- " +mu);
         //concat_rules("REGLA 8.1: menos_unario --> -" + mu );
-        RESULT = new MenosUnario(mu, null);
+        RESULT = new MenosUnario("MenosUnario", mu, Tipo.Unknown);
 
     :}
     |
@@ -483,7 +483,7 @@ factor ::=
     INPUT_INT:ii PARENTESISO PARENTESISC {:
         concat_rules("REGLA 8.8: factor --> INPUT_INT() " + "\n\t --> " + ii + "()");
         //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
-        RESULT = new Input_Int(Tipo.Int,"INPUT_INT");
+        RESULT = new Input_Int("INPUT_INT", Tipo.Int);
     :}
     |
     INPUT_FLOAT:ifl PARENTESISO PARENTESISC {:

@@ -6,7 +6,7 @@ import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 
 public class Resta extends OperacionBinaria {
     public Resta(Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(tipo, izquierda, derecha);
+        super(Tipo.Unknown, izquierda, derecha);
     }
 
     public Resta(Expresion izquierda, Expresion derecha) {
@@ -14,10 +14,10 @@ public class Resta extends OperacionBinaria {
     }
 
     public Resta(String nombre, Expresion izquierda, Expresion derecha) {
-        super(nombre, izquierda, derecha);
+        super("-", izquierda, derecha);
     }
 
     public Resta(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(nombre, tipo, izquierda, derecha);
+        super("-", Tipo.Unknown, izquierda, derecha);
     }
 }

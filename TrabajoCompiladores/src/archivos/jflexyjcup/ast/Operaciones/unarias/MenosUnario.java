@@ -4,16 +4,23 @@ import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class MenosUnario extends OperacionUnaria{
-
     public MenosUnario(Expresion expresion, Tipo tipo) {
         super(expresion, tipo);
     }
 
     public MenosUnario(String nombre, Expresion expresion, Tipo tipo) {
-        super(nombre, expresion, tipo);
+        super("MenosUnario", expresion, Tipo.Unknown);
     }
 
-    public MenosUnario(String nombre, Expresion expresion, String signo) {
+    public MenosUnario(String nombre, Expresion expresion) {
         super("-", expresion);
+    }
+
+    @Override
+    public String graficar(String idPadre) {
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(super.graficar(idPadre));
+        resultado.append(this.getExpresion().graficar(this.getId()));
+        return resultado.toString();
     }
 }

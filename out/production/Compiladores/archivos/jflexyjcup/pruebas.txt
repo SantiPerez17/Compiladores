@@ -5,7 +5,7 @@ declare.section
     bool : xd;
 enddeclare.section
 program.section
-   xd:=true
+   xd:=-true
    b:=50 + t + 2.4
     if(a==b) then
         display("hola")

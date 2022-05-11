@@ -29,10 +29,4 @@ public abstract class  OperacionUnaria extends Expresion{
         this.expresion = expresion;
     }
 
-    @Override
-    public String graficar(String idPadre) {
-        final String miId = this.getId();
-        return super.graficar(idPadre) +  expresion.graficar(miId);
-    }
-
 }
