@@ -2,6 +2,8 @@ package archivos.jflexyjcup;
 
 import archivos.jflexyjcup.ast.Base.Programa;
 
+import java.awt.*;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -20,6 +22,7 @@ public class GenerarDOT {
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
+            Desktop.getDesktop().open(new File("C:\\Users\\santi\\Documents\\GitHub\\Compiladores\\arbol.png"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

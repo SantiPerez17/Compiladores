@@ -90,7 +90,6 @@ parser code
            }
            throw new Exception("Tipos no compatibles.");
        }
-
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
@@ -270,7 +269,7 @@ sentencia_display ::=
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
             //RESULT = "display(" + c + ")";
-            RESULT = new DisplayExpresion(c);
+            RESULT = new DisplayExpresion("DisplayExpresion",c);
         :};
 
 sentencia_asignacion ::=
@@ -327,7 +326,7 @@ exp_not ::=
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
-        RESULT = new NOT(e1,Tipo.Bool);
+        RESULT = new NOT("NOT",e1,e1.getTipo());
     :}
     |
     comparacion:c {:
@@ -417,7 +416,7 @@ menos_unario ::=
     RESTA menos_unario:mu {:
         concat_rules("REGLA 8.1: menos_unario --> - menor_unario " + "\n\t --> " + "- " +mu);
         //concat_rules("REGLA 8.1: menos_unario --> -" + mu );
-        RESULT = new MenosUnario("MenosUnario", mu, Tipo.Unknown);
+        RESULT = new MenosUnario("MenosUnario", mu,mu.getTipo());
 
     :}
     |

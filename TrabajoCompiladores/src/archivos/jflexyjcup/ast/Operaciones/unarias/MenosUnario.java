@@ -5,15 +5,15 @@ import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class MenosUnario extends OperacionUnaria{
     public MenosUnario(Expresion expresion, Tipo tipo) {
-        super(expresion, tipo);
+        super(expresion, expresion.getTipo());
     }
 
     public MenosUnario(String nombre, Expresion expresion, Tipo tipo) {
-        super("MenosUnario", expresion, Tipo.Unknown);
+        super(nombre, expresion, expresion.getTipo());
     }
 
     public MenosUnario(String nombre, Expresion expresion) {
-        super("-", expresion);
+        super(nombre, expresion);
     }
 
     @Override
