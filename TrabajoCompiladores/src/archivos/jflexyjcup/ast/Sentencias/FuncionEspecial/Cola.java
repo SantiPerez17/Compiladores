@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Cola extends Expresion {
     private List<Sentencia> lista_sentencias = new ArrayList<>();
-    private Identificador acum;
+    private final Identificador acum;
 
     public Cola(Tipo tipo, List<Sentencia> lista_sentencias, Identificador acum) {
         super(tipo);
@@ -29,15 +29,21 @@ public class Cola extends Expresion {
     }
 
     public Cola(String nombre, Tipo tipo, List<Sentencia> lista_sentencias, Identificador acum) {
-        super(nombre, tipo);
+        super(nombre, Tipo.Int);
         this.lista_sentencias = lista_sentencias;
         this.acum = acum;
+    }
+
+    @Override
+    public String getEtiqueta() {
+        return " Cola - [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.getTipo();
     }
 
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));
+        resultado.append(this.acum.graficar(idPadre));
         for (Sentencia s:lista_sentencias){
             resultado.append(s.graficar("nodo_programa"));
         }
