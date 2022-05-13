@@ -8,6 +8,7 @@ package archivos.jflexyjcup;
 import archivos.jflexyjcup.ast.Base.Constantes.*;
 import archivos.jflexyjcup.ast.Base.*;
 import archivos.jflexyjcup.ast.Sentencias.Displays.*;
+import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
 import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
 import archivos.jflexyjcup.ast.Operaciones.binarias.*;
 import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.*;
@@ -55,9 +56,9 @@ public class MiParser extends java_cup.runtime.lr_parser {
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
     "\000\100\000\002\002\004\000\002\002\004\000\002\002" +
-    "\003\000\002\002\002\000\002\027\005\000\002\030\003" +
-    "\000\002\030\004\000\002\031\006\000\002\026\003\000" +
-    "\002\026\005\000\002\004\003\000\002\004\003\000\002" +
+    "\003\000\002\002\002\000\002\030\005\000\002\031\003" +
+    "\000\002\031\004\000\002\032\006\000\002\027\003\000" +
+    "\002\027\005\000\002\004\003\000\002\004\003\000\002" +
     "\004\003\000\002\003\005\000\002\010\003\000\002\010" +
     "\004\000\002\005\003\000\002\005\003\000\002\005\003" +
     "\000\002\005\003\000\002\011\011\000\002\006\003\000" +
@@ -72,7 +73,7 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\002\017\003\000\002\016\003\000\002\016\003\000\002" +
     "\016\003\000\002\016\003\000\002\016\005\000\002\016" +
     "\003\000\002\016\005\000\002\016\005\000\002\016\005" +
-    "\000\002\025\012\000\002\032\003\000\002\032\003\000" +
+    "\000\002\025\012\000\002\026\003\000\002\026\003\000" +
     "\002\033\003\000\002\033\005\000\002\033\002" });
 
   /** Access to production table. */
@@ -278,14 +279,14 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\173\000\010\002\004\003\005\027\003\001\001\000" +
+    "\000\173\000\010\002\004\003\005\030\003\001\001\000" +
     "\004\003\174\001\001\000\002\001\001\000\002\001\001" +
     "\000\022\005\030\006\040\007\033\010\041\011\027\012" +
-    "\032\013\037\014\035\001\001\000\010\004\011\030\014" +
-    "\031\013\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\004\011\031\017" +
+    "\032\013\037\014\035\001\001\000\010\004\011\031\014" +
+    "\032\013\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\006\004\011\032\017" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\026\021\001\001\000\002\001\001\000\002" +
+    "\001\000\004\027\021\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
@@ -322,7 +323,7 @@ public class MiParser extends java_cup.runtime.lr_parser {
     "\065\001\001\000\014\015\123\016\056\017\054\020\057" +
     "\025\065\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\004\032" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\026" +
     "\134\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\016\015\141\016\056\017" +
     "\054\020\057\025\065\033\142\001\001\000\002\001\001" +
@@ -536,7 +537,7 @@ class CUP$MiParser$actions {
 		String ld = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		 concat_rules("REGLA 1: sector_declaraciones --> DECLARE_SECTION lista_declaraciones ENDDECLARE_SECTION " + "\n\t --> " + "declare.section" + " " + ld + " " + "enddeclare.section" );
        RESULT = "DECLARE_SECTION" + ld + "ENDDECLARE_SECTION"; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sector_declaraciones",21, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sector_declaraciones",22, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -550,7 +551,7 @@ class CUP$MiParser$actions {
 		
     concat_rules ( "REGLA 1.1: lista_declaraciones --> declaracion " + "\n\t --> " + d + " ");
     RESULT = d; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",22, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",23, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -567,7 +568,7 @@ class CUP$MiParser$actions {
 		
     concat_rules ("REGLA 1.2: lista_declaraciones --> lista_declaraciones declaracion " + "\n\t --> " + " " + ld + d );
     RESULT = ld + d ; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",22, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_declaraciones",23, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -595,7 +596,7 @@ class CUP$MiParser$actions {
         simbolos = tablaSimbolos2.toString() + "\n\n";
         //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
         
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("declaracion",23, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("declaracion",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -609,7 +610,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2.2: ids --> IDENTIFIER " + "\n\t --> " + id);
         RESULT = id; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",21, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -626,7 +627,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 2.2: ids --> ids IDENTIFIER " + "\n\t --> " + i + ", "+ id);
         RESULT = i + "," + id; 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("ids",21, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1400,7 +1401,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
         //concat_rules("REGLA 8.4: factor --> " + fe );
-        RESULT = null;
+        RESULT = fe;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1499,10 +1500,10 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 58: // funcion_especial ::= COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC 
             {
-              Expresion RESULT =null;
+              Cola RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).right;
-		String p = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).value;
+		Expresion p = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).value;
 		int leleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).left;
 		int leright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).right;
 		List<Expresion> le = (List<Expresion>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
@@ -1510,7 +1511,45 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         //RESULT = "cola( "+p+";["+le+"])"  ;
-        RESULT = null;
+        Identificador acum = new Identificador("acum");
+        List<Sentencia> sents = new ArrayList<>();
+        Integer pos = 0;
+        for (Expresion e:le)
+        {
+            //Mayor m = new Mayor("Mayor", p,0);
+            Integer i = le.size();
+            String a = i.toString();
+            ConstanteEntera cc = new ConstanteEntera("LenLista", a);
+            Resta r = new Resta("Resta", cc,p);
+            String pos_String = pos.toString();
+            //ConstanteEntera posID = new ConstanteEntera(pos_String,"ID_pos");
+            Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
+            Igual cond = new Igual("Igual", r,pos1);
+            MenorOIgual moi = new MenorOIgual("MenorOIgual", p, cc);
+            AND and_c = new AND("AND", cond, moi);
+            Suma suma = new Suma("Suma", acum,e);
+            Asignacion asig1 = new Asignacion("Asignacion", acum, suma );
+            Suma sum = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
+            Asignacion asig2 = new Asignacion("Asignacion", pos1, sum);
+            Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
+            Identificador pivot = new Identificador("pivot");
+            Asignacion asig3 = new Asignacion("Asignacion", pivot, resta);
+            List<Sentencia> sentencias1 = new ArrayList<>();
+            sentencias1.add(asig1);
+            sentencias1.add(asig2);
+            sentencias1.add(asig3);
+
+            /* ---------------------------------- --------------------------------------------- */
+
+            Suma sum2 = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
+            Asignacion asig4 = new Asignacion("Asignacion", pos1, sum2);
+            List<Sentencia> sentencias2 = new ArrayList<>();
+            sentencias2.add(asig4);
+            IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
+            sents.add(ie);
+            pos++;
+        }
+        RESULT=new Cola("Cola",sents,acum);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1519,32 +1558,32 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 59: // pivot ::= IDENTIFIER 
             {
-              String RESULT =null;
+              Expresion RESULT =null;
 		int idleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
-        RESULT = id;
+        RESULT = new Identificador(id);
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 60: // pivot ::= INT 
             {
-              String RESULT =null;
+              Expresion RESULT =null;
 		int ileft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int iright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		String i = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.1: pivot --> INT " + "\n\t --> " + i);
         //concat_rules("REGLA 10.1: pivot --> " + i );
-        RESULT = i;
+        RESULT = new ConstanteEntera(i,"Pivot");
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 

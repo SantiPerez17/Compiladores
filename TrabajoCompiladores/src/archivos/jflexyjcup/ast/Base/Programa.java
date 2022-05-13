@@ -8,9 +8,14 @@ import com.google.common.collect.Multimap;
 import java.util.List;
 
 public class Programa extends Nodo{
+
     Multimap<String, String> tablaSimbolos2;
     private final List<Sentencia> sentencias;
 
+
+    public String getId() {
+        return "nodo_programa";
+    }
 
     public Programa(List<Sentencia> sentencias) {
         this.sentencias = sentencias;

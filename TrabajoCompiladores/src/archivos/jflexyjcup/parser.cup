@@ -105,8 +105,8 @@ nonterminal While sentencia_while;
 nonterminal Asignacion sentencia_asignacion;
 nonterminal IfSimple if_simple;
 nonterminal IfElse if_else;
-nonterminal Expresion expresion, factor, menos_unario, termino, comparacion, exp_or,exp_and,exp_not, funcion_especial;
-nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion, pivot;
+nonterminal Expresion expresion, factor, menos_unario, termino, comparacion, exp_or,exp_and,exp_not, funcion_especial,pivot;
+nonterminal String ids, sector_declaraciones,lista_declaraciones, declaracion;
 nonterminal List<Expresion> lista_expresiones;
 //precedence left OPCOMP, sentencia;
 
@@ -448,7 +448,7 @@ factor ::=
     funcion_especial:fe {:
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
         //concat_rules("REGLA 8.4: factor --> " + fe );
-        RESULT = null;
+        RESULT = fe;
     :}
     |
     PARENTESISO exp_or:eo PARENTESISC {:
@@ -497,14 +497,49 @@ funcion_especial ::=
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         //RESULT = "cola( "+p+";["+le+"])"  ;
-        RESULT = null;
+        List<Sentencia> sents = new Arraylu
+        Integer pos = 0;
+                for (Expresion e:le)
+                {
+                    //Mayor m = new Mayor("Mayor", p,0);
+                    Integer i = le.size();
+                    String a = i.toString();
+                    ConstanteEntera cc = new ConstanteEntera("LenLista", a);
+                    Resta r = new Resta("Resta", cc,p);
+                    String pos_String = pos.toString();
+                    //ConstanteEntera posID = new ConstanteEntera(pos_String,"ID_pos");
+                    Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
+                    Igual cond = new Igual("Igual", r,pos1);
+                    MenorOIgual moi = new MenorOIgual("MenorOIgual", p, cc);
+                    AND and_c = new AND("AND", cond, moi);
+                    Identificador acum = new Identificador("acum");
+                    Suma suma = new Suma("Suma", acum,e);
+                    Asignacion asig1 = new Asignacion("Asignacion", acum, suma );
+                    Suma sum = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
+                    Asignacion asig2 = new Asignacion("Asignacion", pos1, sum);
+                    Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
+                    Identificador pivot = new Identificador("pivot");
+                    Asignacion asig3 = new Asignacion("Asignacion", pivot, resta);
+                    List<Sentencia> sentencias1 = new ArrayList<>();
+                    sentencias1.add(asig1);
+                    sentencias1.add(asig2);
+                    sentencias1.add(asig3);
+                    /* ---------------------------------- --------------------------------------------- */
+                    Suma sum2 = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
+                    Asignacion asig4 = new Asignacion("Asignacion", pos1, sum2);
+                    List<Sentencia> sentencias2 = new ArrayList<>();
+                    sentencias2.add(asig4);
+                    IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
+                    RESULT=new Cola(ie);
+                    pos++;
+                }
     :};
 
 pivot ::=
     IDENTIFIER:id {:
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
-        RESULT = id;
+        RESULT = new Identificador("Pivot");
     :}
     |
     INT:i {:

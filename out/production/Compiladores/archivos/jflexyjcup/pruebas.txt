@@ -5,9 +5,10 @@ declare.section
     bool : xd;
 enddeclare.section
 program.section
-    xd:=a or not b
+    a:=cola(2;[a,20+b,c,123,123,123,11,1,a+c,1,1,6])
+    (*xd:=a or not b,b
     display(1+3.3)
-   (*xd:=-true
+   xd:=-true
    b:=50 + t + 2.4
     if(a==b) then
         display("hola")
