@@ -1511,7 +1511,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         //RESULT = "cola( "+p+";["+le+"])"  ;
-        Identificador acum = new Identificador("acum");
+        //Identificador acum = new Identificador("acum");
         List<Sentencia> sents = new ArrayList<>();
         Integer pos = 0;
         for (Expresion e:le)
@@ -1519,21 +1519,21 @@ class CUP$MiParser$actions {
             //Mayor m = new Mayor("Mayor", p,0);
             Integer i = le.size();
             String a = i.toString();
-            ConstanteEntera cc = new ConstanteEntera("LenLista", a);
-            Resta r = new Resta("Resta", cc,p);
+            //ConstanteEntera cc = new ConstanteEntera(a,"LenLista");
+            //Resta r = new Resta("Resta", cc,p);
             String pos_String = pos.toString();
             //ConstanteEntera posID = new ConstanteEntera(pos_String,"ID_pos");
-            Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
-            Igual cond = new Igual("Igual", r,pos1);
-            MenorOIgual moi = new MenorOIgual("MenorOIgual", p, cc);
-            AND and_c = new AND("AND", cond, moi);
-            Suma suma = new Suma("Suma", acum,e);
-            Asignacion asig1 = new Asignacion("Asignacion", acum, suma );
-            Suma sum = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig2 = new Asignacion("Asignacion", pos1, sum);
-            Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
-            Identificador pivot = new Identificador("pivot");
-            Asignacion asig3 = new Asignacion("Asignacion", pivot, resta);
+            //Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
+            //Igual cond = new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int););
+            //MenorOIgual moi = new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista"));
+            AND and_c = new AND("AND", new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista")));
+            //Suma suma = new Suma("Suma", new Identificador("acum"),e);
+            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum"), new Suma("Suma", new Identificador("acum"),e));
+            //Suma sum = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
+            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera")));
+            //Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
+            //Identificador pivot = new Identificador("pivot");
+            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot"), new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera")));
             List<Sentencia> sentencias1 = new ArrayList<>();
             sentencias1.add(asig1);
             sentencias1.add(asig2);
@@ -1541,15 +1541,15 @@ class CUP$MiParser$actions {
 
             /* ---------------------------------- --------------------------------------------- */
 
-            Suma sum2 = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig4 = new Asignacion("Asignacion", pos1, sum2);
+            //Suma sum2 = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
+            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera")));
             List<Sentencia> sentencias2 = new ArrayList<>();
             sentencias2.add(asig4);
             IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
             sents.add(ie);
             pos++;
         }
-        RESULT=new Cola("Cola",sents,acum);
+        RESULT=new Cola("Cola",sents,new Identificador("acum"));
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

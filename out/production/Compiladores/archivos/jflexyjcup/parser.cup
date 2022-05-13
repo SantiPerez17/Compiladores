@@ -497,8 +497,9 @@ funcion_especial ::=
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         //RESULT = "cola( "+p+";["+le+"])"  ;
-        List<Sentencia> sents = new Arraylu
-        Integer pos = 0;
+        Identificador acum = new Identificador("acum");
+                List<Sentencia> sents = new ArrayList<>();
+                Integer pos = 0;
                 for (Expresion e:le)
                 {
                     //Mayor m = new Mayor("Mayor", p,0);
@@ -512,7 +513,6 @@ funcion_especial ::=
                     Igual cond = new Igual("Igual", r,pos1);
                     MenorOIgual moi = new MenorOIgual("MenorOIgual", p, cc);
                     AND and_c = new AND("AND", cond, moi);
-                    Identificador acum = new Identificador("acum");
                     Suma suma = new Suma("Suma", acum,e);
                     Asignacion asig1 = new Asignacion("Asignacion", acum, suma );
                     Suma sum = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
@@ -524,13 +524,15 @@ funcion_especial ::=
                     sentencias1.add(asig1);
                     sentencias1.add(asig2);
                     sentencias1.add(asig3);
+
                     /* ---------------------------------- --------------------------------------------- */
+
                     Suma sum2 = new Suma("Suma", pos1, new ConstanteEntera("1","Constante_Entera"));
                     Asignacion asig4 = new Asignacion("Asignacion", pos1, sum2);
                     List<Sentencia> sentencias2 = new ArrayList<>();
                     sentencias2.add(asig4);
                     IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
-                    RESULT=new Cola(ie);
+                    sents.add(ie);
                     pos++;
                 }
     :};
