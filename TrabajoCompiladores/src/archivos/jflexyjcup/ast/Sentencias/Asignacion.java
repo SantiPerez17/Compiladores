@@ -2,7 +2,6 @@ package archivos.jflexyjcup.ast.Sentencias;
 
 import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Identificador;
-import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class Asignacion extends Sentencia{
 
@@ -32,9 +31,17 @@ public class Asignacion extends Sentencia{
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
-        grafico.append(super.graficar(idPadre));
-        grafico.append(identificador.graficar(this.getId()));
-        grafico.append(expresion.graficar(this.getId()));
+        if(expresion.getNombre() == "Cola"){
+            grafico.append(expresion.graficar("nodo_programa"));
+            grafico.append(super.graficar("nodo_programa"));
+            grafico.append(identificador.graficar(this.getId()));
+            Identificador identificador1 = new Identificador("acum",expresion.getTipo());
+            grafico.append(identificador1.graficar(this.getId()));
+        } else {
+            grafico.append(super.graficar(idPadre));
+            grafico.append(identificador.graficar(this.getId()));
+            grafico.append(expresion.graficar(this.getId()));
+        }
         return grafico.toString();
     }
 }

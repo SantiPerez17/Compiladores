@@ -5,32 +5,39 @@
 
 package archivos.jflexyjcup;
 
-import archivos.jflexyjcup.ast.Base.Constantes.*;
+import archivos.jflexyjcup.ast.Base.Constantes.ConstanteBool;
+import archivos.jflexyjcup.ast.Base.Constantes.ConstanteEntera;
+import archivos.jflexyjcup.ast.Base.Constantes.ConstanteFloat;
+import archivos.jflexyjcup.ast.Base.Constantes.ConstanteString;
 import archivos.jflexyjcup.ast.Base.*;
-import archivos.jflexyjcup.ast.Sentencias.Displays.*;
-import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
-import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Division;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Multiplicacion;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Resta;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Suma;
 import archivos.jflexyjcup.ast.Operaciones.binarias.comparaciones.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.*;
-import archivos.jflexyjcup.ast.Operaciones.unarias.conversiones.*;
-import archivos.jflexyjcup.ast.Operaciones.unarias.*;
-import archivos.jflexyjcup.ast.Sentencias.*;
-import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.*;
-import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.AND;
+import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.OR;
+import archivos.jflexyjcup.ast.Operaciones.unarias.MenosUnario;
+import archivos.jflexyjcup.ast.Operaciones.unarias.NOT;
+import archivos.jflexyjcup.ast.Sentencias.Asignacion;
+import archivos.jflexyjcup.ast.Sentencias.Displays.DisplayCadenaCaracteres;
+import archivos.jflexyjcup.ast.Sentencias.Displays.DisplayExpresion;
+import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Bool;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Float;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Int;
+import archivos.jflexyjcup.ast.Sentencias.Sentencia;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.While;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.IfElse;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import com.google.common.collect.ArrayListMultimap;
-import java_cup.runtime.*;
+import com.google.common.collect.Multimap;
+import java_cup.runtime.Symbol;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.io.FileReader;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Hashtable;
-import com.google.common.collect.Multimap;
-import java_cup.runtime.XMLElement;
-import java_cup.runtime.XMLElement;
+import java.util.List;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1526,14 +1533,15 @@ class CUP$MiParser$actions {
             //Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
             //Igual cond = new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int););
             //MenorOIgual moi = new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista"));
-            AND and_c = new AND("AND", new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista")));
+
+            AND and_c = new AND("AND", new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),new Identificador("pivot")),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual", new Identificador("pivot"), new ConstanteEntera(a,"LenLista")));
             //Suma suma = new Suma("Suma", new Identificador("acum"),e);
             Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum"), new Suma("Suma", new Identificador("acum"),e));
             //Suma sum = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
             Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera")));
             //Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
             //Identificador pivot = new Identificador("pivot");
-            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot"), new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera")));
+            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot"), new Resta("Resta", new Identificador("pivot"), new ConstanteEntera("1","Constante_Entera")));
             List<Sentencia> sentencias1 = new ArrayList<>();
             sentencias1.add(asig1);
             sentencias1.add(asig2);
@@ -1549,7 +1557,7 @@ class CUP$MiParser$actions {
             sents.add(ie);
             pos++;
         }
-        RESULT=new Cola("Cola",sents,new Identificador("acum"));
+        RESULT=new Cola("Cola",sents);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

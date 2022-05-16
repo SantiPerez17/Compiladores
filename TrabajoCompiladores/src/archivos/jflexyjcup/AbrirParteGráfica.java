@@ -268,7 +268,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
-            Desktop.getDesktop().open(new File("C:\\Users\\santi\\Documents\\GitHub\\Compiladores\\arbol.png"));
+            Desktop.getDesktop().open(new File("C:\\Users\\agusa\\OneDrive\\Documentos\\GitHub\\Compiladores\\arbol.png"));
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
             UIManager.put("OptionPane.messagebackground", Color.GRAY);
