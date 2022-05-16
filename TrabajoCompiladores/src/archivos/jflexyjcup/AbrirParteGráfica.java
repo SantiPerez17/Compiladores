@@ -249,7 +249,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             Simbolos.append(parser.simbolos);
             txp3.setText(parser.reglas);
             txp4.setText("TABLA DE SIMBOLOS \n\n" + parser.simbolos);
-            PrintWriter writer = new PrintWriter("TrabajoCompiladores/src/archivos/ts.txt", StandardCharsets.UTF_8);
+            PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
             writer.println(parser.simbolos.toString());
             writer.close();
         }
