@@ -268,7 +268,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
-            Desktop.getDesktop().open(new File("C:\\Users\\agusa\\OneDrive\\Documentos\\GitHub\\Compiladores\\arbol.png"));
+            Desktop.getDesktop().open(new File("arbol.png"));
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
             UIManager.put("OptionPane.messagebackground", Color.GRAY);
@@ -296,6 +296,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp3;
     JTextPane txp4;
     JFileChooser abrirArchivo;
-    File archivo = new File("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt"); //cambiar por pruebas.txt para pruebas en la gui
+    File archivo = new File("pruebas.txt"); //cambiar por pruebas.txt para pruebas en la gui
     //hay que copiar el path del archivo pruebas.txt para que pueda trabajar el lexer-parser.
+
 }
