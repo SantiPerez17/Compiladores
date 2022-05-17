@@ -24,7 +24,7 @@ public class OR extends OperacionBinaria {
 
     @Override
     protected String getNombreOperacion() {
-        return null;
+        return "OR";
     }
 
     @Override

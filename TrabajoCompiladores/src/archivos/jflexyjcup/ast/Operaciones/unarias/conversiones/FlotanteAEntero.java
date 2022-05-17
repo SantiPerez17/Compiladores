@@ -13,6 +13,7 @@ public class FlotanteAEntero extends OperacionConversion{
         super("FLOAT a INT", expresion);
     }
 
+
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();

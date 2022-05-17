@@ -5,11 +5,11 @@ import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Tipo;
 
 public abstract class OperacionBinaria extends Expresion {
-    private final Expresion izquierda;
-    private final Expresion derecha;
+    private Expresion izquierda;
+    private Expresion derecha;
 
     public OperacionBinaria(Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(Tipo.Unknown);
+        super(tipo);
         this.izquierda = izquierda;
         this.derecha = derecha;
     }
@@ -27,7 +27,7 @@ public abstract class OperacionBinaria extends Expresion {
 
 
     public OperacionBinaria(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
-        super(nombre, Tipo.Unknown);
+        super(nombre, tipo);
         this.izquierda = izquierda;
         this.derecha = derecha;
     }
@@ -62,11 +62,18 @@ public abstract class OperacionBinaria extends Expresion {
         return resultado.toString();
     }
 
-    private Expresion getDerecha() {
+    public Expresion getDerecha() {
         return this.derecha;
     }
 
-    private Expresion getIzquierda() {
+    public Expresion getIzquierda() {
         return this.izquierda;
+    }
+
+    public void setIzquierda(Expresion izquierda) {
+        this.izquierda=izquierda;
+    }
+    public void setDerecha(Expresion derecha) {
+        this.derecha=derecha;
     }
 }

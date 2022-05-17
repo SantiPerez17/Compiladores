@@ -1,6 +1,7 @@
 package archivos.jflexyjcup.ast.Base;
 
 public abstract class Expresion extends Nodo{
+
     public Tipo getTipo() {
         return tipo;
     }

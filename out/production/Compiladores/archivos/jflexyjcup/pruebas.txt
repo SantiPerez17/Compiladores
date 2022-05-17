@@ -2,11 +2,13 @@ declare.section
     int :res, a,b,c;
     float :t, r;
     float : z;
-    bool : xd;
+    bool : xd,y;
 enddeclare.section
 program.section
-    res:=cola(c;[a,20+b])
-    (*xd:=a or not b,b
+    y:=true
+    xd:= true or not (y and y)
+    (*res:=cola(c;[a,20+b])
+    xd:=a or not b,b
     display(1+3.3)
    xd:=-true
    b:=50 + t + 2.4

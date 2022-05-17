@@ -24,7 +24,7 @@ public class AND extends OperacionBinaria {
 
     @Override
     protected String getNombreOperacion() {
-        return null;
+        return "AND";
     }
 
     @Override

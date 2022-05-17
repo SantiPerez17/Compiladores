@@ -8,11 +8,11 @@ package archivos.jflexyjcup;
 import archivos.jflexyjcup.ast.Base.Constantes.*;
 import archivos.jflexyjcup.ast.Base.*;
 import archivos.jflexyjcup.ast.Sentencias.Displays.*;
-import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
 import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
 import archivos.jflexyjcup.ast.Operaciones.binarias.*;
 import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.*;
 import archivos.jflexyjcup.ast.Operaciones.binarias.comparaciones.*;
+import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
 import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.*;
 import archivos.jflexyjcup.ast.Operaciones.unarias.conversiones.*;
 import archivos.jflexyjcup.ast.Operaciones.unarias.*;
@@ -424,16 +424,44 @@ public class MiParser extends java_cup.runtime.lr_parser {
                 return tablaSimbolos2;
         }
 
-   public Tipo checkTipos(Tipo t1,Tipo t2) throws Exception
-       {
-           if (t1 == t2){
-               return t1;
-           }
-           if (t1 ==Tipo.Float && t2 ==Tipo.Int ) {
-               return t2;
-           }
-           throw new Exception("Tipos no compatibles.");
-       }
+   public Tipo tipo_en_comun(Tipo t1,Tipo t2) throws java.lang.Exception
+          {
+              if (t1 == t2){
+                  return t1;
+              }
+              if (t1==Tipo.Float && t2==Tipo.Int) {
+                  return t2;
+              }
+              throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", t1, t2 ));
+          }
+       private static Expresion convertir_a_tipo(Expresion expresion, Tipo tipo_destino) throws java.lang.Exception{
+              Tipo tipo_origen = expresion.getTipo();
+              if(tipo_origen == tipo_destino){
+                  return expresion;
+              }
+              if(tipo_origen == Tipo.Float && tipo_destino == Tipo.Int){
+                  return new FlotanteAEntero(expresion);
+              }
+              throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", tipo_origen, tipo_destino ));
+          }
+
+    private OperacionUnaria transformarOperacionUnaria(OperacionUnaria ou) throws Exception{
+            if(ou.getTipo() == Tipo.Unknown){
+                ou.setTipo(ou.getExpresion().getTipo());
+            }else{
+                ou.setExpresion(convertir_a_tipo(ou.getExpresion(), ou.getTipo()));
+            }
+            return ou;
+        }
+    private OperacionBinaria transformarOperacionBinaria(OperacionBinaria ob) throws Exception{
+            Tipo tipo_en_comun = tipo_en_comun(ob.getIzquierda().getTipo(), ob.getDerecha().getTipo());
+            ob.setIzquierda(convertir_a_tipo(ob.getIzquierda(),tipo_en_comun));
+            ob.setDerecha(convertir_a_tipo(ob.getDerecha(), tipo_en_comun));
+            if (ob.getTipo() == null || ob.getTipo() == Tipo.Unknown){
+                ob.setTipo(tipo_en_comun);
+            }
+            return ob;
+        }
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -938,15 +966,15 @@ class CUP$MiParser$actions {
                     throw new Exception("Variable " + id + " no declarada.");
                     }
          else {
-            //checkTipos(id,eo); hacer esa funcion arriba.
             Collection e = tablaSimbolos2.get(id);
             String tipo = String.valueOf(e.stream().findFirst());
             if (tipo.contains("Int")){
-            RESULT = new Asignacion(new Identificador(id, Tipo.Int),eo);
-            }
-            if (tipo.contains("Float")){RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);}
-            if (tipo.contains("Bool")){RESULT = new Asignacion(new Identificador(id, Tipo.Bool),eo);}
-
+                Expresion exp = convertir_a_tipo(eo, Tipo.Int);
+                RESULT = new Asignacion(new Identificador(id, Tipo.Int),exp);}
+            if (tipo.contains("Float")){
+                RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);}
+            if (tipo.contains("Bool")){
+                RESULT = new Asignacion(new Identificador(id, Tipo.Bool),eo);}
             //RESULT=id + " := " + eo;
          }
         
@@ -1037,7 +1065,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
         //concat_rules("REGLA 7.5: exp_not --> "+e1 );
         //RESULT = e1 ;
-        RESULT = new NOT("NOT",e1,e1.getTipo());
+        RESULT = new NOT("NOT",e1,Tipo.Bool);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1215,7 +1243,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        RESULT = new Suma("+",e1,e2) ;
+        RESULT = new Suma("+",Tipo.Unknown,e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1234,7 +1262,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
-        RESULT = new Resta("-",e1,e2) ;
+        RESULT = new Resta("-",Tipo.Unknown,e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1269,7 +1297,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
-        RESULT = new Multiplicacion("*",t,mu) ; ;
+        RESULT = new Multiplicacion("*",Tipo.Unknown,t,mu) ; ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1288,7 +1316,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
-        RESULT = new Division("/",t,mu);
+        RESULT = new Division("/",Tipo.Unknown,t,mu);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
