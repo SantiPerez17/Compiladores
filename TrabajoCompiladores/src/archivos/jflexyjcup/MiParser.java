@@ -5,39 +5,32 @@
 
 package archivos.jflexyjcup;
 
-import archivos.jflexyjcup.ast.Base.Constantes.ConstanteBool;
-import archivos.jflexyjcup.ast.Base.Constantes.ConstanteEntera;
-import archivos.jflexyjcup.ast.Base.Constantes.ConstanteFloat;
-import archivos.jflexyjcup.ast.Base.Constantes.ConstanteString;
+import archivos.jflexyjcup.ast.Base.Constantes.*;
 import archivos.jflexyjcup.ast.Base.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Division;
-import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Multiplicacion;
-import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Resta;
-import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.Suma;
-import archivos.jflexyjcup.ast.Operaciones.binarias.comparaciones.*;
-import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.AND;
-import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.OR;
-import archivos.jflexyjcup.ast.Operaciones.unarias.MenosUnario;
-import archivos.jflexyjcup.ast.Operaciones.unarias.NOT;
-import archivos.jflexyjcup.ast.Sentencias.Asignacion;
-import archivos.jflexyjcup.ast.Sentencias.Displays.DisplayCadenaCaracteres;
-import archivos.jflexyjcup.ast.Sentencias.Displays.DisplayExpresion;
+import archivos.jflexyjcup.ast.Sentencias.Displays.*;
 import archivos.jflexyjcup.ast.Sentencias.FuncionEspecial.Cola;
-import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Bool;
-import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Float;
-import archivos.jflexyjcup.ast.Sentencias.Inputs.Input_Int;
-import archivos.jflexyjcup.ast.Sentencias.Sentencia;
-import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.While;
-import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.IfElse;
-import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.IfSimple;
+import archivos.jflexyjcup.ast.Sentencias.Inputs.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.arismeticos.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.comparaciones.*;
+import archivos.jflexyjcup.ast.Operaciones.binarias.logicas.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.conversiones.*;
+import archivos.jflexyjcup.ast.Operaciones.unarias.*;
+import archivos.jflexyjcup.ast.Sentencias.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaInteraciones.*;
+import archivos.jflexyjcup.ast.Sentencias.SentenciaSeleccion.*;
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-import java_cup.runtime.Symbol;
-
+import java_cup.runtime.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.List;
+import java.io.FileReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Hashtable;
+import com.google.common.collect.Multimap;
+import java_cup.runtime.XMLElement;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1222,7 +1215,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        RESULT = new Suma("+",Tipo.Unknown,e1,e2) ;
+        RESULT = new Suma("+",e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1241,7 +1234,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
-        RESULT = new Resta("-",Tipo.Unknown,e1,e2) ;
+        RESULT = new Resta("-",e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1276,7 +1269,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
-        RESULT = new Multiplicacion("*",Tipo.Unknown,t,mu) ; ;
+        RESULT = new Multiplicacion("*",t,mu) ; ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1295,7 +1288,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
-        RESULT = new Division("/",Tipo.Unknown,t,mu);
+        RESULT = new Division("/",t,mu);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1507,7 +1500,7 @@ class CUP$MiParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 58: // funcion_especial ::= COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC 
             {
-              Cola RESULT =null;
+              Expresion RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).right;
 		Expresion p = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-5)).value;
@@ -1518,46 +1511,29 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
         //RESULT = "cola( "+p+";["+le+"])"  ;
-        //Identificador acum = new Identificador("acum");
-        List<Sentencia> sents = new ArrayList<>();
-        Integer pos = 0;
-        for (Expresion e:le)
-        {
-            //Mayor m = new Mayor("Mayor", p,0);
-            Integer i = le.size();
-            String a = i.toString();
-            //ConstanteEntera cc = new ConstanteEntera(a,"LenLista");
-            //Resta r = new Resta("Resta", cc,p);
-            String pos_String = pos.toString();
-            //ConstanteEntera posID = new ConstanteEntera(pos_String,"ID_pos");
-            //Identificador pos1 = new Identificador("ID_pos",Tipo.Int);
-            //Igual cond = new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int););
-            //MenorOIgual moi = new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista"));
-
-            AND and_c = new AND("AND",Tipo.Bool, new Igual("Igual",Tipo.Bool, new Resta("Resta",Tipo.Unknown, new ConstanteEntera(a,Tipo.Int,"LenLista"),new Identificador("pivot",Tipo.Int)),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual",Tipo.Bool, new Identificador("pivot", Tipo.Int), new ConstanteEntera(a,Tipo.Int,"LenLista")));
-            //Suma suma = new Suma("Suma", new Identificador("acum"),e);
-            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("acum",Tipo.Int),e));
-            //Suma sum = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
-            //Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
-            //Identificador pivot = new Identificador("pivot");
-            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot",Tipo.Int), new Resta("Resta",Tipo.Unknown, new Identificador("pivot",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
-            List<Sentencia> sentencias1 = new ArrayList<>();
-            sentencias1.add(asig1);
-            sentencias1.add(asig2);
-            sentencias1.add(asig3);
-
-            /* ---------------------------------- --------------------------------------------- */
-
-            //Suma sum2 = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1", Tipo.Int,"Constante_Entera")));
-            List<Sentencia> sentencias2 = new ArrayList<>();
-            sentencias2.add(asig4);
-            IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
-            sents.add(ie);
-            pos++;
-        }
-        RESULT=new Cola("Cola",sents);
+         List<Sentencia> sents = new ArrayList<>();
+                Integer pos = 0;
+                for (Expresion e:le){
+                    Integer i = le.size();
+                    String a = i.toString();
+                    String pos_String = pos.toString();
+                    AND and_c = new AND("AND",Tipo.Bool, new Igual("Igual",Tipo.Bool, new Resta("Resta",Tipo.Unknown, new ConstanteEntera(a,Tipo.Int,"LenLista"),new Identificador("pivot",Tipo.Int)),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual",Tipo.Bool, new Identificador("pivot", Tipo.Int), new ConstanteEntera(a,Tipo.Int,"LenLista")));
+                    Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("acum",Tipo.Int),e));
+                    Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
+                    Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot",Tipo.Int), new Resta("Resta",Tipo.Unknown, new Identificador("pivot",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
+                    List<Sentencia> sentencias1 = new ArrayList<>();
+                    sentencias1.add(asig1);
+                    sentencias1.add(asig2);
+                    sentencias1.add(asig3);
+                    /*                                   */
+                    Asignacion asig4 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1", Tipo.Int,"Constante_Entera")));
+                    List<Sentencia> sentencias2 = new ArrayList<>();
+                    sentencias2.add(asig4);
+                    IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
+                    sents.add(ie);
+                    pos++;
+                }
+                RESULT=new Cola("Cola",sents);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1573,7 +1549,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
-        RESULT = new Identificador(id);
+        RESULT = new Identificador("Pivot",Tipo.Int);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1589,7 +1565,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 10.1: pivot --> INT " + "\n\t --> " + i);
         //concat_rules("REGLA 10.1: pivot --> " + i );
-        RESULT = new ConstanteEntera(i,"Pivot");
+        RESULT = new ConstanteEntera(i,Tipo.Int,"Pivot");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
