@@ -1534,14 +1534,14 @@ class CUP$MiParser$actions {
             //Igual cond = new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),p),new Identificador("ID_pos",Tipo.Int););
             //MenorOIgual moi = new MenorOIgual("MenorOIgual", p, new ConstanteEntera(a,"LenLista"));
 
-            AND and_c = new AND("AND", new Igual("Igual", new Resta("Resta", new ConstanteEntera(a,"LenLista"),new Identificador("pivot")),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual", new Identificador("pivot"), new ConstanteEntera(a,"LenLista")));
+            AND and_c = new AND("AND",Tipo.Bool, new Igual("Igual",Tipo.Bool, new Resta("Resta",Tipo.Unknown, new ConstanteEntera(a,Tipo.Int,"LenLista"),new Identificador("pivot",Tipo.Int)),new Identificador("ID_pos",Tipo.Int)), new MenorOIgual("MenorOIgual",Tipo.Bool, new Identificador("pivot", Tipo.Int), new ConstanteEntera(a,Tipo.Int,"LenLista")));
             //Suma suma = new Suma("Suma", new Identificador("acum"),e);
-            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum"), new Suma("Suma", new Identificador("acum"),e));
+            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("acum",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("acum",Tipo.Int),e));
             //Suma sum = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera")));
+            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
             //Resta resta = new Resta("Resta", p, new ConstanteEntera("1","Constante_Entera"));
             //Identificador pivot = new Identificador("pivot");
-            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot"), new Resta("Resta", new Identificador("pivot"), new ConstanteEntera("1","Constante_Entera")));
+            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("pivot",Tipo.Int), new Resta("Resta",Tipo.Unknown, new Identificador("pivot",Tipo.Int), new ConstanteEntera("1",Tipo.Int,"Constante_Entera")));
             List<Sentencia> sentencias1 = new ArrayList<>();
             sentencias1.add(asig1);
             sentencias1.add(asig2);
@@ -1550,7 +1550,7 @@ class CUP$MiParser$actions {
             /* ---------------------------------- --------------------------------------------- */
 
             //Suma sum2 = new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera"));
-            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma", new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1","Constante_Entera")));
+            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("ID_pos",Tipo.Int), new Suma("Suma",Tipo.Unknown, new Identificador("ID_pos",Tipo.Int), new ConstanteEntera("1", Tipo.Int,"Constante_Entera")));
             List<Sentencia> sentencias2 = new ArrayList<>();
             sentencias2.add(asig4);
             IfElse ie = new IfElse("IFELSE", and_c,sentencias1, sentencias2);
