@@ -26,5 +26,18 @@ public class Division extends OperacionBinaria {
         super("/", Tipo.Unknown, izquierda, derecha);
     }
 
+    @Override
+    protected String getNombreOperacion() {
+        return "/";
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        if(tipo == Tipo.Int){
+            return "sdiv";
+        } else {
+            return "fsdiv";
+        }
+    }
 
 }

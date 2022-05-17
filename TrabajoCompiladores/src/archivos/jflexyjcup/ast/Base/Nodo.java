@@ -36,4 +36,7 @@ public abstract class Nodo{
             grafico.append(String.format("%1$s--%2$s\n", idPadre, this.getId()));
         return grafico.toString();
     }
+
+    public abstract String generarCodigo();
+
 }

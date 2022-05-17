@@ -25,7 +25,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         frame.setLayout(new BorderLayout());
         panel1.setLayout(new FlowLayout());
         panel2.setLayout(new BorderLayout());
-        frame.setSize( 500, 500 );
+        frame.setSize( 700, 700 );
         frame.setLocationRelativeTo( null );
         frame.add(panel1, BorderLayout.NORTH);
         frame.add(panel2, BorderLayout.CENTER);
@@ -54,6 +54,10 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         JButton btn5 = new JButton("Generar AST");
         btn5.addActionListener(this);
         panel1.add( btn5 );
+
+        JButton btn6 = new JButton("Generar LLVM");
+        btn6.addActionListener(this);
+        panel1.add( btn6 );
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
@@ -153,6 +157,25 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         else if (btn.getText().equals("Generar AST")){
             try {
                 Graficar(txp.getText());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        else if (btn.getText().equals("Generar LLVM")){
+            JFrame frame4 = new JFrame("LLVM");
+            frame4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            frame4.setLayout(new BorderLayout());
+            frame4.setSize( 800, 800 );
+            frame4.setLocationRelativeTo( null );
+            txp5 = new JTextPane();
+            JScrollPane jsp4 = new JScrollPane();
+            jsp4.setViewportView(txp5);
+            frame4.add(jsp4, BorderLayout.CENTER);
+            frame4.setVisible( true );
+            try {
+                GenerarLLVM(txp.getText());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
             } catch (Exception ex) {
@@ -277,6 +300,51 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
     }
 
+    public void GenerarLLVM(String contenido) throws IOException,Exception {
+        MiLexico lexer = new MiLexico(new FileReader(archivo));
+        MiParser parser = new MiParser(lexer);
+        final Programa programa = (Programa) parser.parse().value;
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter("arbol.dot"));
+            pw.println(programa.graficar());
+            pw.close();
+            String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
+            Runtime.getRuntime().exec(cmdDot);
+            System.out.println("Gráfico AST generado");
+
+            //generar codigo IR para el LLVM
+            pw = new PrintWriter(new FileWriter("programa.ll"));
+            pw.println(programa.generarCodigo());
+            pw.close();
+            System.out.println("Código generado");
+
+            Process process = Runtime.getRuntime().exec("clang -c -o programa.o programa.ll");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+            System.out.println("Archivo objeto generado");
+
+            Process process2 = Runtime.getRuntime().exec("clang -o programa.exe programa.o");
+            BufferedReader reader2 = new BufferedReader(new InputStreamReader(process2.getInputStream()));
+            String line2;
+            while ((line2 = reader2.readLine()) != null) {
+                txp5.setText(line2);
+                System.out.println(line2);
+            }
+
+            System.out.println("Ejecutable generado");
+
+
+        } catch (Exception e) {
+            UIManager.put("OptionPane.background", Color.GRAY);
+            UIManager.put("OptionPane.messagebackground", Color.GRAY);
+            UIManager.put("Panel.background", Color.GRAY);
+            JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
+        }
+    }
+
     public static void main( String[] arg ){
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -295,6 +363,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp2;
     JTextPane txp3;
     JTextPane txp4;
+    JTextPane txp5;
     JFileChooser abrirArchivo;
     File archivo = new File("pruebas.txt"); //cambiar por pruebas.txt para pruebas en la gui
     //hay que copiar el path del archivo pruebas.txt para que pueda trabajar el lexer-parser.

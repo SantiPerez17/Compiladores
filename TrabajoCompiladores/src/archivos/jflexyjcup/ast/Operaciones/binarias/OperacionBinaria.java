@@ -1,5 +1,6 @@
 package archivos.jflexyjcup.ast.Operaciones.binarias;
 
+import archivos.jflexyjcup.CodeGeneratorHelper;
 import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Tipo;
 
@@ -43,5 +44,29 @@ public abstract class OperacionBinaria extends Expresion {
         grafico.append(izquierda.graficar(this.getId()));
         grafico.append(derecha.graficar(this.getId()));
         return grafico.toString();
+    }
+
+    protected abstract String getNombreOperacion();
+
+    public abstract String get_llvm_op_code(Tipo tipo);
+
+    @Override
+    public String generarCodigo(){
+        StringBuilder resultado = new StringBuilder();
+        resultado.append(this.getIzquierda().generarCodigo());
+        resultado.append(this.getDerecha().generarCodigo());
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(String.format("%1$s = %2$s i32 %3$s, %4$s\n", this.getIr_ref(),
+                this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
+                this.getDerecha().getIr_ref()));
+        return resultado.toString();
+    }
+
+    private Expresion getDerecha() {
+        return this.derecha;
+    }
+
+    private Expresion getIzquierda() {
+        return this.izquierda;
     }
 }
