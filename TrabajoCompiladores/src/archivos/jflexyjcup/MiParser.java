@@ -1222,7 +1222,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        RESULT = new Suma("+",e1,e2) ;
+        RESULT = new Suma("+",Tipo.Unknown,e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1241,7 +1241,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
         //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
-        RESULT = new Resta("-",e1,e2) ;
+        RESULT = new Resta("-",Tipo.Unknown,e1,e2) ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1276,7 +1276,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
         //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
-        RESULT = new Multiplicacion("*",t,mu) ; ;
+        RESULT = new Multiplicacion("*",Tipo.Unknown,t,mu) ; ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1295,7 +1295,7 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
         //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
-        RESULT = new Division("/",t,mu);
+        RESULT = new Division("/",Tipo.Unknown,t,mu);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

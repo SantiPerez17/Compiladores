@@ -1,1226 +1,738 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1701522828[label="IFELSE"]
-nodo_programa--nodo_1701522828
-nodo_1265263244[label=" Op_Binaria - [ AND ] - 
+nodo_426110135[label="IFELSE"]
+nodo_programa--nodo_426110135
+nodo_269464565[label=" Op_Binaria - [ AND ] - 
  Tipo: Unknown"]
-nodo_1701522828--nodo_1265263244
-nodo_359793360[label=" Op_Binaria - [ Igual ] - 
+nodo_426110135--nodo_269464565
+nodo_1040300014[label=" Op_Binaria - [ Igual ] - 
  Tipo: Unknown"]
-nodo_1265263244--nodo_359793360
-nodo_1835405741[label=" Op_Binaria - [ - ] - 
+nodo_269464565--nodo_1040300014
+nodo_1643459140[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_359793360--nodo_1835405741
-nodo_1373460160[label="LenLista  
+nodo_1040300014--nodo_1643459140
+nodo_1472428697[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1835405741--nodo_1373460160
-nodo_1228615797[label=" ID - [ pivot ] - 
+nodo_1643459140--nodo_1472428697
+nodo_985590671[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1835405741--nodo_1228615797
-nodo_1289412352[label=" ID - [ ID_pos ] - 
+nodo_1643459140--nodo_985590671
+nodo_154375665[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_359793360--nodo_1289412352
-nodo_292312143[label=" Op_Binaria - [ MenorOIgual ] - 
+nodo_1040300014--nodo_154375665
+nodo_1092411777[label=" Op_Binaria - [ MenorOIgual ] - 
  Tipo: Unknown"]
-nodo_1265263244--nodo_292312143
-nodo_708606964[label=" ID - [ pivot ] - 
+nodo_269464565--nodo_1092411777
+nodo_231165065[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_292312143--nodo_708606964
-nodo_974409310[label="LenLista  
+nodo_1092411777--nodo_231165065
+nodo_1088957485[label="LenLista  
  Valor: 4 
 Int"]
-nodo_292312143--nodo_974409310
-nodo_17015228281[label="THEN"]
-nodo_1701522828--nodo_17015228281
-nodo_539800771[label=":="]
-nodo_17015228281--nodo_539800771
-nodo_1393644197[label=" ID - [ acum ] - 
+nodo_1092411777--nodo_1088957485
+nodo_4261101351[label="THEN"]
+nodo_426110135--nodo_4261101351
+nodo_1440851420[label=":="]
+nodo_4261101351--nodo_1440851420
+nodo_1935099400[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_539800771--nodo_1393644197
-nodo_448491752[label=" Op_Binaria - [ + ] - 
+nodo_1440851420--nodo_1935099400
+nodo_1145303023[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_539800771--nodo_448491752
-nodo_38124383[label=" ID - [ acum ] - 
+nodo_1440851420--nodo_1145303023
+nodo_1170946574[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_448491752--nodo_38124383
-nodo_1673267188[label=" ID - [ a ] - 
+nodo_1145303023--nodo_1170946574
+nodo_1824451875[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_448491752--nodo_1673267188
-nodo_1200266616[label=":="]
-nodo_17015228281--nodo_1200266616
-nodo_509045590[label=" ID - [ ID_pos ] - 
+nodo_1145303023--nodo_1824451875
+nodo_501000238[label=":="]
+nodo_4261101351--nodo_501000238
+nodo_1416809115[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1200266616--nodo_509045590
-nodo_1596613700[label=" Op_Binaria - [ + ] - 
+nodo_501000238--nodo_1416809115
+nodo_261454701[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1200266616--nodo_1596613700
-nodo_1889186749[label=" ID - [ ID_pos ] - 
+nodo_501000238--nodo_261454701
+nodo_319957979[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1596613700--nodo_1889186749
-nodo_1676181899[label="Constante_Entera  
+nodo_261454701--nodo_319957979
+nodo_1802992719[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1596613700--nodo_1676181899
-nodo_1178622843[label=":="]
-nodo_17015228281--nodo_1178622843
-nodo_1245974451[label=" ID - [ pivot ] - 
+nodo_261454701--nodo_1802992719
+nodo_689128872[label=":="]
+nodo_4261101351--nodo_689128872
+nodo_234429940[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1178622843--nodo_1245974451
-nodo_1877363229[label=" Op_Binaria - [ - ] - 
+nodo_689128872--nodo_234429940
+nodo_263697251[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_1178622843--nodo_1877363229
-nodo_1210415795[label=" ID - [ pivot ] - 
+nodo_689128872--nodo_263697251
+nodo_1609708510[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1877363229--nodo_1210415795
-nodo_209349455[label="Constante_Entera  
+nodo_263697251--nodo_1609708510
+nodo_1820263309[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1877363229--nodo_209349455
-nodo_17015228282[label="ELSE"]
-nodo_1701522828--nodo_17015228282
-nodo_1722406116[label=":="]
-nodo_17015228282--nodo_1722406116
-nodo_994233486[label=" ID - [ ID_pos ] - 
+nodo_263697251--nodo_1820263309
+nodo_4261101352[label="ELSE"]
+nodo_426110135--nodo_4261101352
+nodo_690795851[label=":="]
+nodo_4261101352--nodo_690795851
+nodo_456271782[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1722406116--nodo_994233486
-nodo_1490147767[label=" Op_Binaria - [ + ] - 
+nodo_690795851--nodo_456271782
+nodo_1435540445[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1722406116--nodo_1490147767
-nodo_128901617[label=" ID - [ ID_pos ] - 
+nodo_690795851--nodo_1435540445
+nodo_1105697161[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1490147767--nodo_128901617
-nodo_797448980[label="Constante_Entera  
+nodo_1435540445--nodo_1105697161
+nodo_229505555[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1490147767--nodo_797448980
-nodo_42173655[label="IFELSE"]
-nodo_programa--nodo_42173655
-nodo_1414134097[label=" Op_Binaria - [ AND ] - 
+nodo_1435540445--nodo_229505555
+nodo_128512791[label="IFELSE"]
+nodo_programa--nodo_128512791
+nodo_1446501964[label=" Op_Binaria - [ AND ] - 
  Tipo: Unknown"]
-nodo_42173655--nodo_1414134097
-nodo_613952320[label=" Op_Binaria - [ Igual ] - 
+nodo_128512791--nodo_1446501964
+nodo_727789266[label=" Op_Binaria - [ Igual ] - 
  Tipo: Unknown"]
-nodo_1414134097--nodo_613952320
-nodo_1269290108[label=" Op_Binaria - [ - ] - 
+nodo_1446501964--nodo_727789266
+nodo_1241396431[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_613952320--nodo_1269290108
-nodo_1427920099[label="LenLista  
+nodo_727789266--nodo_1241396431
+nodo_151934636[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1269290108--nodo_1427920099
-nodo_1308933216[label=" ID - [ pivot ] - 
+nodo_1241396431--nodo_151934636
+nodo_1629695103[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1269290108--nodo_1308933216
-nodo_732126411[label=" ID - [ ID_pos ] - 
+nodo_1241396431--nodo_1629695103
+nodo_1125554487[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_613952320--nodo_732126411
-nodo_1582459383[label=" Op_Binaria - [ MenorOIgual ] - 
+nodo_727789266--nodo_1125554487
+nodo_2071369174[label=" Op_Binaria - [ MenorOIgual ] - 
  Tipo: Unknown"]
-nodo_1414134097--nodo_1582459383
-nodo_1776190866[label=" ID - [ pivot ] - 
+nodo_1446501964--nodo_2071369174
+nodo_11929378[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1582459383--nodo_1776190866
-nodo_38978421[label="LenLista  
+nodo_2071369174--nodo_11929378
+nodo_2014217119[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1582459383--nodo_38978421
-nodo_421736551[label="THEN"]
-nodo_42173655--nodo_421736551
-nodo_858166000[label=":="]
-nodo_421736551--nodo_858166000
-nodo_2121681074[label=" ID - [ acum ] - 
+nodo_2071369174--nodo_2014217119
+nodo_1285127911[label="THEN"]
+nodo_128512791--nodo_1285127911
+nodo_262566536[label=":="]
+nodo_1285127911--nodo_262566536
+nodo_1076989583[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_858166000--nodo_2121681074
-nodo_1671016699[label=" Op_Binaria - [ + ] - 
+nodo_262566536--nodo_1076989583
+nodo_1888362172[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_858166000--nodo_1671016699
-nodo_2009370262[label=" ID - [ acum ] - 
+nodo_262566536--nodo_1888362172
+nodo_2089843017[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_1671016699--nodo_2009370262
-nodo_41491388[label=" Op_Binaria - [ + ] - 
+nodo_1888362172--nodo_2089843017
+nodo_935777084[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_1671016699--nodo_41491388
-nodo_112895857[label="Factor_Int  
+nodo_1888362172--nodo_935777084
+nodo_1467550373[label="Factor_Int  
  Valor: 20 
 Int"]
-nodo_41491388--nodo_112895857
-nodo_994709792[label=" ID - [ b ] - 
+nodo_935777084--nodo_1467550373
+nodo_1349404787[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_41491388--nodo_994709792
-nodo_1894921100[label=":="]
-nodo_421736551--nodo_1894921100
-nodo_1015928568[label=" ID - [ ID_pos ] - 
+nodo_935777084--nodo_1349404787
+nodo_1084126817[label=":="]
+nodo_1285127911--nodo_1084126817
+nodo_202886411[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1894921100--nodo_1015928568
-nodo_314419194[label=" Op_Binaria - [ + ] - 
+nodo_1084126817--nodo_202886411
+nodo_208427467[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1894921100--nodo_314419194
-nodo_1105079045[label=" ID - [ ID_pos ] - 
+nodo_1084126817--nodo_208427467
+nodo_1942561598[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_314419194--nodo_1105079045
-nodo_542183137[label="Constante_Entera  
+nodo_208427467--nodo_1942561598
+nodo_1079475800[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_314419194--nodo_542183137
-nodo_1916347909[label=":="]
-nodo_421736551--nodo_1916347909
-nodo_222617039[label=" ID - [ pivot ] - 
+nodo_208427467--nodo_1079475800
+nodo_1914342604[label=":="]
+nodo_1285127911--nodo_1914342604
+nodo_475410757[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1916347909--nodo_222617039
-nodo_1039288673[label=" Op_Binaria - [ - ] - 
+nodo_1914342604--nodo_475410757
+nodo_649867554[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_1916347909--nodo_1039288673
-nodo_360480312[label=" ID - [ pivot ] - 
+nodo_1914342604--nodo_649867554
+nodo_1566715411[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1039288673--nodo_360480312
-nodo_785283996[label="Constante_Entera  
+nodo_649867554--nodo_1566715411
+nodo_2067314079[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1039288673--nodo_785283996
-nodo_421736552[label="ELSE"]
-nodo_42173655--nodo_421736552
-nodo_97476911[label=":="]
-nodo_421736552--nodo_97476911
-nodo_710515126[label=" ID - [ ID_pos ] - 
+nodo_649867554--nodo_2067314079
+nodo_1285127912[label="ELSE"]
+nodo_128512791--nodo_1285127912
+nodo_1447657380[label=":="]
+nodo_1285127912--nodo_1447657380
+nodo_297496942[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_97476911--nodo_710515126
-nodo_1545777019[label=" Op_Binaria - [ + ] - 
+nodo_1447657380--nodo_297496942
+nodo_1575344124[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_97476911--nodo_1545777019
-nodo_32325112[label=" ID - [ ID_pos ] - 
+nodo_1447657380--nodo_1575344124
+nodo_1674511762[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1545777019--nodo_32325112
-nodo_2136335091[label="Constante_Entera  
+nodo_1575344124--nodo_1674511762
+nodo_2129064464[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1545777019--nodo_2136335091
-nodo_422006918[label="IFELSE"]
-nodo_programa--nodo_422006918
-nodo_1354198446[label=" Op_Binaria - [ AND ] - 
+nodo_1575344124--nodo_2129064464
+nodo_874302627[label="IFELSE"]
+nodo_programa--nodo_874302627
+nodo_1194702827[label=" Op_Binaria - [ AND ] - 
  Tipo: Unknown"]
-nodo_422006918--nodo_1354198446
-nodo_954046653[label=" Op_Binaria - [ Igual ] - 
+nodo_874302627--nodo_1194702827
+nodo_1548605706[label=" Op_Binaria - [ Igual ] - 
  Tipo: Unknown"]
-nodo_1354198446--nodo_954046653
-nodo_1750050607[label=" Op_Binaria - [ - ] - 
+nodo_1194702827--nodo_1548605706
+nodo_359847649[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_954046653--nodo_1750050607
-nodo_1263499712[label="LenLista  
+nodo_1548605706--nodo_359847649
+nodo_1197046072[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1750050607--nodo_1263499712
-nodo_545175322[label=" ID - [ pivot ] - 
+nodo_359847649--nodo_1197046072
+nodo_767104215[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1750050607--nodo_545175322
-nodo_1957874648[label=" ID - [ ID_pos ] - 
+nodo_359847649--nodo_767104215
+nodo_521018851[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_954046653--nodo_1957874648
-nodo_1632726206[label=" Op_Binaria - [ MenorOIgual ] - 
+nodo_1548605706--nodo_521018851
+nodo_474481981[label=" Op_Binaria - [ MenorOIgual ] - 
  Tipo: Unknown"]
-nodo_1354198446--nodo_1632726206
-nodo_1373669421[label=" ID - [ pivot ] - 
+nodo_1194702827--nodo_474481981
+nodo_273956661[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1632726206--nodo_1373669421
-nodo_74658668[label="LenLista  
+nodo_474481981--nodo_273956661
+nodo_1974373956[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1632726206--nodo_74658668
-nodo_4220069181[label="THEN"]
-nodo_422006918--nodo_4220069181
-nodo_1719518257[label=":="]
-nodo_4220069181--nodo_1719518257
-nodo_203645148[label=" ID - [ acum ] - 
+nodo_474481981--nodo_1974373956
+nodo_8743026271[label="THEN"]
+nodo_874302627--nodo_8743026271
+nodo_438334487[label=":="]
+nodo_8743026271--nodo_438334487
+nodo_1184754563[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_1719518257--nodo_203645148
-nodo_1498882197[label=" Op_Binaria - [ + ] - 
+nodo_438334487--nodo_1184754563
+nodo_2004998642[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1719518257--nodo_1498882197
-nodo_1151500416[label=" ID - [ acum ] - 
+nodo_438334487--nodo_2004998642
+nodo_1994175976[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_1498882197--nodo_1151500416
-nodo_1766967746[label="Factor_Int  
+nodo_2004998642--nodo_1994175976
+nodo_738912018[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_1498882197--nodo_1766967746
-nodo_1282836585[label=":="]
-nodo_4220069181--nodo_1282836585
-nodo_1531192507[label=" ID - [ ID_pos ] - 
+nodo_2004998642--nodo_738912018
+nodo_1875245032[label=":="]
+nodo_8743026271--nodo_1875245032
+nodo_1185798240[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1282836585--nodo_1531192507
-nodo_997717198[label=" Op_Binaria - [ + ] - 
+nodo_1875245032--nodo_1185798240
+nodo_1058723598[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1282836585--nodo_997717198
-nodo_1795282336[label=" ID - [ ID_pos ] - 
+nodo_1875245032--nodo_1058723598
+nodo_754599664[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_997717198--nodo_1795282336
-nodo_332152169[label="Constante_Entera  
+nodo_1058723598--nodo_754599664
+nodo_1816170032[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_997717198--nodo_332152169
-nodo_1775739479[label=":="]
-nodo_4220069181--nodo_1775739479
-nodo_1837300263[label=" ID - [ pivot ] - 
+nodo_1058723598--nodo_1816170032
+nodo_1141253376[label=":="]
+nodo_8743026271--nodo_1141253376
+nodo_768423977[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1775739479--nodo_1837300263
-nodo_147562210[label=" Op_Binaria - [ - ] - 
+nodo_1141253376--nodo_768423977
+nodo_1409164966[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_1775739479--nodo_147562210
-nodo_2057227751[label=" ID - [ pivot ] - 
+nodo_1141253376--nodo_1409164966
+nodo_992416743[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_147562210--nodo_2057227751
-nodo_781131257[label="Constante_Entera  
+nodo_1409164966--nodo_992416743
+nodo_1325141926[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_147562210--nodo_781131257
-nodo_4220069182[label="ELSE"]
-nodo_422006918--nodo_4220069182
-nodo_1411815885[label=":="]
-nodo_4220069182--nodo_1411815885
-nodo_5120293[label=" ID - [ ID_pos ] - 
+nodo_1409164966--nodo_1325141926
+nodo_8743026272[label="ELSE"]
+nodo_874302627--nodo_8743026272
+nodo_171211296[label=":="]
+nodo_8743026272--nodo_171211296
+nodo_677230294[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1411815885--nodo_5120293
-nodo_204678462[label=" Op_Binaria - [ + ] - 
+nodo_171211296--nodo_677230294
+nodo_728113169[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_1411815885--nodo_204678462
-nodo_1518698900[label=" ID - [ ID_pos ] - 
+nodo_171211296--nodo_728113169
+nodo_88706020[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_204678462--nodo_1518698900
-nodo_973968376[label="Constante_Entera  
+nodo_728113169--nodo_88706020
+nodo_746918935[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_204678462--nodo_973968376
-nodo_1262213781[label="IFELSE"]
-nodo_programa--nodo_1262213781
-nodo_1580473369[label=" Op_Binaria - [ AND ] - 
+nodo_728113169--nodo_746918935
+nodo_1772878935[label="IFELSE"]
+nodo_programa--nodo_1772878935
+nodo_1935093723[label=" Op_Binaria - [ AND ] - 
  Tipo: Unknown"]
-nodo_1262213781--nodo_1580473369
-nodo_684441450[label=" Op_Binaria - [ Igual ] - 
+nodo_1772878935--nodo_1935093723
+nodo_973643006[label=" Op_Binaria - [ Igual ] - 
  Tipo: Unknown"]
-nodo_1580473369--nodo_684441450
-nodo_2114943960[label=" Op_Binaria - [ - ] - 
+nodo_1935093723--nodo_973643006
+nodo_1042878980[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_684441450--nodo_2114943960
-nodo_1802889726[label="LenLista  
+nodo_973643006--nodo_1042878980
+nodo_148248786[label="LenLista  
  Valor: 4 
 Int"]
-nodo_2114943960--nodo_1802889726
-nodo_358610013[label=" ID - [ pivot ] - 
+nodo_1042878980--nodo_148248786
+nodo_1110824932[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_2114943960--nodo_358610013
-nodo_1612327283[label=" ID - [ ID_pos ] - 
+nodo_1042878980--nodo_1110824932
+nodo_1017404464[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_684441450--nodo_1612327283
-nodo_1708019475[label=" Op_Binaria - [ MenorOIgual ] - 
+nodo_973643006--nodo_1017404464
+nodo_1248579730[label=" Op_Binaria - [ MenorOIgual ] - 
  Tipo: Unknown"]
-nodo_1580473369--nodo_1708019475
-nodo_565207117[label=" ID - [ pivot ] - 
+nodo_1935093723--nodo_1248579730
+nodo_1917010309[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1708019475--nodo_565207117
-nodo_1269269818[label="LenLista  
+nodo_1248579730--nodo_1917010309
+nodo_505754334[label="LenLista  
  Valor: 4 
 Int"]
-nodo_1708019475--nodo_1269269818
-nodo_12622137811[label="THEN"]
-nodo_1262213781--nodo_12622137811
-nodo_2051505292[label=":="]
-nodo_12622137811--nodo_2051505292
-nodo_1843794432[label=" ID - [ acum ] - 
+nodo_1248579730--nodo_505754334
+nodo_17728789351[label="THEN"]
+nodo_1772878935--nodo_17728789351
+nodo_8304886[label=":="]
+nodo_17728789351--nodo_8304886
+nodo_344262443[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_2051505292--nodo_1843794432
-nodo_1341564409[label=" Op_Binaria - [ + ] - 
+nodo_8304886--nodo_344262443
+nodo_2091004759[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_2051505292--nodo_1341564409
-nodo_948922216[label=" ID - [ acum ] - 
+nodo_8304886--nodo_2091004759
+nodo_1269194207[label=" ID - [ acum ] - 
  Tipo: Int"]
-nodo_1341564409--nodo_948922216
-nodo_1744496816[label="Factor_Int  
+nodo_2091004759--nodo_1269194207
+nodo_859438100[label="Factor_Int  
  Valor: 2 
 Int"]
-nodo_1341564409--nodo_1744496816
-nodo_2037243881[label=":="]
-nodo_12622137811--nodo_2037243881
-nodo_608613590[label=" ID - [ ID_pos ] - 
+nodo_2091004759--nodo_859438100
+nodo_1047192917[label=":="]
+nodo_17728789351--nodo_1047192917
+nodo_40501740[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_2037243881--nodo_608613590
-nodo_1592067274[label=" Op_Binaria - [ + ] - 
+nodo_1047192917--nodo_40501740
+nodo_1874829949[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_2037243881--nodo_1592067274
-nodo_487758937[label=" ID - [ ID_pos ] - 
+nodo_1047192917--nodo_1874829949
+nodo_378422000[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_1592067274--nodo_487758937
-nodo_177707653[label="Constante_Entera  
+nodo_1874829949--nodo_378422000
+nodo_2141670713[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1592067274--nodo_177707653
-nodo_459702021[label=":="]
-nodo_12622137811--nodo_459702021
-nodo_1842605047[label=" ID - [ pivot ] - 
+nodo_1874829949--nodo_2141670713
+nodo_756041280[label=":="]
+nodo_17728789351--nodo_756041280
+nodo_1060025813[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_459702021--nodo_1842605047
-nodo_1688879680[label=" Op_Binaria - [ - ] - 
+nodo_756041280--nodo_1060025813
+nodo_1540614402[label=" Op_Binaria - [ - ] - 
  Tipo: Unknown"]
-nodo_459702021--nodo_1688879680
-nodo_1382002658[label=" ID - [ pivot ] - 
+nodo_756041280--nodo_1540614402
+nodo_509127108[label=" ID - [ pivot ] - 
  Tipo: Int"]
-nodo_1688879680--nodo_1382002658
-nodo_2062118139[label="Constante_Entera  
+nodo_1540614402--nodo_509127108
+nodo_827706889[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_1688879680--nodo_2062118139
-nodo_12622137812[label="ELSE"]
-nodo_1262213781--nodo_12622137812
-nodo_144161794[label=":="]
-nodo_12622137812--nodo_144161794
-nodo_1050236690[label=" ID - [ ID_pos ] - 
+nodo_1540614402--nodo_827706889
+nodo_17728789352[label="ELSE"]
+nodo_1772878935--nodo_17728789352
+nodo_2074039787[label=":="]
+nodo_17728789352--nodo_2074039787
+nodo_1069561955[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_144161794--nodo_1050236690
-nodo_286707612[label=" Op_Binaria - [ + ] - 
+nodo_2074039787--nodo_1069561955
+nodo_1678618838[label=" Op_Binaria - [ + ] - 
  Tipo: Unknown"]
-nodo_144161794--nodo_286707612
-nodo_548005873[label=" ID - [ ID_pos ] - 
+nodo_2074039787--nodo_1678618838
+nodo_2075598808[label=" ID - [ ID_pos ] - 
  Tipo: Int"]
-nodo_286707612--nodo_548005873
-nodo_367732810[label="Constante_Entera  
+nodo_1678618838--nodo_2075598808
+nodo_2047229256[label="Constante_Entera  
  Valor: 1 
 Int"]
-nodo_286707612--nodo_367732810
-nodo_2127720930[label=":="]
-nodo_programa--nodo_2127720930
-nodo_1631509538[label=" ID - [ res ] - 
+nodo_1678618838--nodo_2047229256
+nodo_1797336705[label=":="]
+nodo_programa--nodo_1797336705
+nodo_1153110347[label=" ID - [ res ] - 
  Tipo: Int"]
-nodo_2127720930--nodo_1631509538
-nodo_1181980086[label=" ID - [ acum ] - 
+nodo_1797336705--nodo_1153110347
+nodo_1295614474[label=" ID - [ acum ] - 
  Tipo: null"]
-nodo_2127720930--nodo_1181980086
-nodo_688547046[label="IFELSE"]
-nodo_programa--nodo_688547046
-nodo_1701814517[label=" Op_Binaria - [ AND ] - 
- Tipo: Unknown"]
-nodo_688547046--nodo_1701814517
-nodo_1915207606[label=" Op_Binaria - [ Igual ] - 
- Tipo: Unknown"]
-nodo_1701814517--nodo_1915207606
-nodo_673405537[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1915207606--nodo_673405537
-nodo_1391732439[label="LenLista  
- Valor: 5 
-Int"]
-nodo_673405537--nodo_1391732439
-nodo_1250188404[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_673405537--nodo_1250188404
-nodo_93425821[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1915207606--nodo_93425821
-nodo_928199196[label=" Op_Binaria - [ MenorOIgual ] - 
- Tipo: Unknown"]
-nodo_1701814517--nodo_928199196
-nodo_1155688639[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_928199196--nodo_1155688639
-nodo_745405355[label="LenLista  
- Valor: 5 
-Int"]
-nodo_928199196--nodo_745405355
-nodo_6885470461[label="THEN"]
-nodo_688547046--nodo_6885470461
-nodo_636584899[label=":="]
-nodo_6885470461--nodo_636584899
-nodo_194811571[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_636584899--nodo_194811571
-nodo_1550627055[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_636584899--nodo_1550627055
-nodo_522172522[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_1550627055--nodo_522172522
-nodo_1445133487[label="Factor_Int  
- Valor: 1 
-Int"]
-nodo_1550627055--nodo_1445133487
-nodo_911855569[label=":="]
-nodo_6885470461--nodo_911855569
-nodo_1495269031[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_911855569--nodo_1495269031
-nodo_1615709859[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_911855569--nodo_1615709859
-nodo_41156136[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1615709859--nodo_41156136
-nodo_2049740528[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1615709859--nodo_2049740528
-nodo_1558232532[label=":="]
-nodo_6885470461--nodo_1558232532
-nodo_1385562165[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1558232532--nodo_1385562165
-nodo_1325999857[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1558232532--nodo_1325999857
-nodo_1372351214[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1325999857--nodo_1372351214
-nodo_136016670[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1325999857--nodo_136016670
-nodo_6885470462[label="ELSE"]
-nodo_688547046--nodo_6885470462
-nodo_1794006400[label=":="]
-nodo_6885470462--nodo_1794006400
-nodo_1817628802[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1794006400--nodo_1817628802
-nodo_1593793788[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1794006400--nodo_1593793788
-nodo_221206462[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1593793788--nodo_221206462
-nodo_364186054[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1593793788--nodo_364186054
-nodo_1337788722[label="IFELSE"]
-nodo_programa--nodo_1337788722
-nodo_1795269765[label=" Op_Binaria - [ AND ] - 
- Tipo: Unknown"]
-nodo_1337788722--nodo_1795269765
-nodo_484740348[label=" Op_Binaria - [ Igual ] - 
- Tipo: Unknown"]
-nodo_1795269765--nodo_484740348
-nodo_555900319[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_484740348--nodo_555900319
-nodo_108078096[label="LenLista  
- Valor: 5 
-Int"]
-nodo_555900319--nodo_108078096
-nodo_1622314455[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_555900319--nodo_1622314455
-nodo_1485405777[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_484740348--nodo_1485405777
-nodo_1811160698[label=" Op_Binaria - [ MenorOIgual ] - 
- Tipo: Unknown"]
-nodo_1795269765--nodo_1811160698
-nodo_1680537264[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1811160698--nodo_1680537264
-nodo_276960215[label="LenLista  
- Valor: 5 
-Int"]
-nodo_1811160698--nodo_276960215
-nodo_13377887221[label="THEN"]
-nodo_1337788722--nodo_13377887221
-nodo_65707104[label=":="]
-nodo_13377887221--nodo_65707104
-nodo_1218860457[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_65707104--nodo_1218860457
-nodo_2064299387[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_65707104--nodo_2064299387
-nodo_2065042790[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_2064299387--nodo_2065042790
-nodo_474524803[label="Factor_Int  
- Valor: 2 
-Int"]
-nodo_2064299387--nodo_474524803
-nodo_742955000[label=":="]
-nodo_13377887221--nodo_742955000
-nodo_1446610117[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_742955000--nodo_1446610117
-nodo_2025210388[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_742955000--nodo_2025210388
-nodo_855641433[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_2025210388--nodo_855641433
-nodo_1537194902[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_2025210388--nodo_1537194902
-nodo_1092227980[label=":="]
-nodo_13377887221--nodo_1092227980
-nodo_192307033[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1092227980--nodo_192307033
-nodo_951050667[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1092227980--nodo_951050667
-nodo_516599331[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_951050667--nodo_516599331
-nodo_266164229[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_951050667--nodo_266164229
-nodo_13377887222[label="ELSE"]
-nodo_1337788722--nodo_13377887222
-nodo_912806448[label=":="]
-nodo_13377887222--nodo_912806448
-nodo_1905090543[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_912806448--nodo_1905090543
-nodo_981290059[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_912806448--nodo_981290059
-nodo_1594177137[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_981290059--nodo_1594177137
-nodo_721946227[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_981290059--nodo_721946227
-nodo_820074202[label="IFELSE"]
-nodo_programa--nodo_820074202
-nodo_1622035353[label=" Op_Binaria - [ AND ] - 
- Tipo: Unknown"]
-nodo_820074202--nodo_1622035353
-nodo_384720707[label=" Op_Binaria - [ Igual ] - 
- Tipo: Unknown"]
-nodo_1622035353--nodo_384720707
-nodo_2109667443[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_384720707--nodo_2109667443
-nodo_1196631704[label="LenLista  
- Valor: 5 
-Int"]
-nodo_2109667443--nodo_1196631704
-nodo_1429426024[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_2109667443--nodo_1429426024
-nodo_826480330[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_384720707--nodo_826480330
-nodo_1001655793[label=" Op_Binaria - [ MenorOIgual ] - 
- Tipo: Unknown"]
-nodo_1622035353--nodo_1001655793
-nodo_1703779321[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1001655793--nodo_1703779321
-nodo_705347631[label="LenLista  
- Valor: 5 
-Int"]
-nodo_1001655793--nodo_705347631
-nodo_8200742021[label="THEN"]
-nodo_820074202--nodo_8200742021
-nodo_64386786[label=":="]
-nodo_8200742021--nodo_64386786
-nodo_404105452[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_64386786--nodo_404105452
-nodo_298658372[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_64386786--nodo_298658372
-nodo_1840942058[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_298658372--nodo_1840942058
-nodo_1487441036[label="Factor_Int  
- Valor: 3 
-Int"]
-nodo_298658372--nodo_1487441036
-nodo_1567330777[label=":="]
-nodo_8200742021--nodo_1567330777
-nodo_1955824592[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1567330777--nodo_1955824592
-nodo_217319436[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1567330777--nodo_217319436
-nodo_891828131[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_217319436--nodo_891828131
-nodo_885820806[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_217319436--nodo_885820806
-nodo_1546192332[label=":="]
-nodo_8200742021--nodo_1546192332
-nodo_1882313261[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1546192332--nodo_1882313261
-nodo_80770727[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1546192332--nodo_80770727
-nodo_1411414790[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_80770727--nodo_1411414790
-nodo_1077084971[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_80770727--nodo_1077084971
-nodo_8200742022[label="ELSE"]
-nodo_820074202--nodo_8200742022
-nodo_1055719866[label=":="]
-nodo_8200742022--nodo_1055719866
-nodo_965688718[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1055719866--nodo_965688718
-nodo_1856018930[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1055719866--nodo_1856018930
-nodo_919790934[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1856018930--nodo_919790934
-nodo_1625608935[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1856018930--nodo_1625608935
-nodo_541581368[label="IFELSE"]
-nodo_programa--nodo_541581368
-nodo_1245872843[label=" Op_Binaria - [ AND ] - 
- Tipo: Unknown"]
-nodo_541581368--nodo_1245872843
-nodo_1796941440[label=" Op_Binaria - [ Igual ] - 
- Tipo: Unknown"]
-nodo_1245872843--nodo_1796941440
-nodo_766419694[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1796941440--nodo_766419694
-nodo_855097667[label="LenLista  
- Valor: 5 
-Int"]
-nodo_766419694--nodo_855097667
-nodo_1828538636[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_766419694--nodo_1828538636
-nodo_1591758133[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1796941440--nodo_1591758133
-nodo_100740565[label=" Op_Binaria - [ MenorOIgual ] - 
- Tipo: Unknown"]
-nodo_1245872843--nodo_100740565
-nodo_175114639[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_100740565--nodo_175114639
-nodo_205751524[label="LenLista  
- Valor: 5 
-Int"]
-nodo_100740565--nodo_205751524
-nodo_5415813681[label="THEN"]
-nodo_541581368--nodo_5415813681
-nodo_1352067516[label=":="]
-nodo_5415813681--nodo_1352067516
-nodo_1609959934[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_1352067516--nodo_1609959934
-nodo_1438666750[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1352067516--nodo_1438666750
-nodo_1169458438[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_1438666750--nodo_1169458438
-nodo_899197722[label="Factor_Int  
- Valor: 4 
-Int"]
-nodo_1438666750--nodo_899197722
-nodo_579362565[label=":="]
-nodo_5415813681--nodo_579362565
-nodo_1306397523[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_579362565--nodo_1306397523
-nodo_439747241[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_579362565--nodo_439747241
-nodo_2068523100[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_439747241--nodo_2068523100
-nodo_467349575[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_439747241--nodo_467349575
-nodo_652354812[label=":="]
-nodo_5415813681--nodo_652354812
-nodo_208361923[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_652354812--nodo_208361923
-nodo_784374234[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_652354812--nodo_784374234
-nodo_1817959757[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_784374234--nodo_1817959757
-nodo_1529467390[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_784374234--nodo_1529467390
-nodo_5415813682[label="ELSE"]
-nodo_541581368--nodo_5415813682
-nodo_232402457[label=":="]
-nodo_5415813682--nodo_232402457
-nodo_662599729[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_232402457--nodo_662599729
-nodo_360544294[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_232402457--nodo_360544294
-nodo_5172566[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_360544294--nodo_5172566
-nodo_1555603872[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_360544294--nodo_1555603872
-nodo_148104694[label="IFELSE"]
-nodo_programa--nodo_148104694
-nodo_1980825730[label=" Op_Binaria - [ AND ] - 
- Tipo: Unknown"]
-nodo_148104694--nodo_1980825730
-nodo_21129035[label=" Op_Binaria - [ Igual ] - 
- Tipo: Unknown"]
-nodo_1980825730--nodo_21129035
-nodo_409887586[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_21129035--nodo_409887586
-nodo_260426188[label="LenLista  
- Valor: 5 
-Int"]
-nodo_409887586--nodo_260426188
-nodo_1911475630[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_409887586--nodo_1911475630
-nodo_1661240551[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_21129035--nodo_1661240551
-nodo_135962262[label=" Op_Binaria - [ MenorOIgual ] - 
- Tipo: Unknown"]
-nodo_1980825730--nodo_135962262
-nodo_703655408[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_135962262--nodo_703655408
-nodo_779405021[label="LenLista  
- Valor: 5 
-Int"]
-nodo_135962262--nodo_779405021
-nodo_1481046941[label="THEN"]
-nodo_148104694--nodo_1481046941
-nodo_1771064392[label=":="]
-nodo_1481046941--nodo_1771064392
-nodo_891453890[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_1771064392--nodo_891453890
-nodo_462648827[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1771064392--nodo_462648827
-nodo_332995194[label=" ID - [ acum ] - 
- Tipo: Int"]
-nodo_462648827--nodo_332995194
-nodo_834362859[label=" Op_Binaria - [ - ] - 
- Tipo: null"]
-nodo_462648827--nodo_834362859
-nodo_1948188290[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_834362859--nodo_1948188290
-nodo_770406454[label=" ID - [ c ] - 
- Tipo: Int"]
-nodo_834362859--nodo_770406454
-nodo_2025907781[label=":="]
-nodo_1481046941--nodo_2025907781
-nodo_1506624526[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_2025907781--nodo_1506624526
-nodo_1500630625[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_2025907781--nodo_1500630625
-nodo_44041727[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1500630625--nodo_44041727
-nodo_2108500256[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1500630625--nodo_2108500256
-nodo_1324613551[label=":="]
-nodo_1481046941--nodo_1324613551
-nodo_421929686[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_1324613551--nodo_421929686
-nodo_455824368[label=" Op_Binaria - [ - ] - 
- Tipo: Unknown"]
-nodo_1324613551--nodo_455824368
-nodo_266046876[label=" ID - [ pivot ] - 
- Tipo: Int"]
-nodo_455824368--nodo_266046876
-nodo_1585714511[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_455824368--nodo_1585714511
-nodo_1481046942[label="ELSE"]
-nodo_148104694--nodo_1481046942
-nodo_1989979355[label=":="]
-nodo_1481046942--nodo_1989979355
-nodo_938071339[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1989979355--nodo_938071339
-nodo_1678575911[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_1989979355--nodo_1678575911
-nodo_450709124[label=" ID - [ ID_pos ] - 
- Tipo: Int"]
-nodo_1678575911--nodo_450709124
-nodo_154458992[label="Constante_Entera  
- Valor: 1 
-Int"]
-nodo_1678575911--nodo_154458992
-nodo_884872786[label=":="]
-nodo_programa--nodo_884872786
-nodo_1879902192[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_884872786--nodo_1879902192
-nodo_2084924647[label=" ID - [ acum ] - 
- Tipo: null"]
-nodo_884872786--nodo_2084924647
-nodo_1163097779[label=":="]
-nodo_programa--nodo_1163097779
-nodo_215809165[label=" ID - [ xd ] - 
+nodo_1797336705--nodo_1295614474
+nodo_904735493[label=":="]
+nodo_programa--nodo_904735493
+nodo_238226858[label=" ID - [ xd ] - 
  Tipo: Bool"]
-nodo_1163097779--nodo_215809165
-nodo_1222357826[label=" Op_Binaria - [ OR ] - 
+nodo_904735493--nodo_238226858
+nodo_124699803[label=" Op_Binaria - [ OR ] - 
  Tipo: Unknown"]
-nodo_1163097779--nodo_1222357826
-nodo_1602310443[label=" ID - [ a ] - 
+nodo_904735493--nodo_124699803
+nodo_394573485[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1222357826--nodo_1602310443
-nodo_1784872816[label=" Op_Unaria - [ NOT ] - 
+nodo_124699803--nodo_394573485
+nodo_1708764039[label=" Op_Unaria - [ NOT ] - 
  Tipo: Int"]
-nodo_1222357826--nodo_1784872816
-nodo_1100078206[label=" ID - [ b ] - 
+nodo_124699803--nodo_1708764039
+nodo_908966682[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1784872816--nodo_1100078206
-nodo_927591364[label="DisplayExpresion"]
-nodo_programa--nodo_927591364
-nodo_338463629[label=" Op_Binaria - [ + ] - 
+nodo_1708764039--nodo_908966682
+nodo_1799116451[label="DisplayExpresion"]
+nodo_programa--nodo_1799116451
+nodo_928376399[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_927591364--nodo_338463629
-nodo_651148992[label="Factor_Int  
+nodo_1799116451--nodo_928376399
+nodo_1858315209[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_338463629--nodo_651148992
-nodo_2041508561[label="Factor_Float  
+nodo_928376399--nodo_1858315209
+nodo_1181661189[label="Factor_Float  
  Valor: 3.3 
 Float"]
-nodo_338463629--nodo_2041508561
-nodo_1404681722[label=":="]
-nodo_programa--nodo_1404681722
-nodo_589060413[label=" ID - [ xd ] - 
+nodo_928376399--nodo_1181661189
+nodo_871414993[label=":="]
+nodo_programa--nodo_871414993
+nodo_1167363417[label=" ID - [ xd ] - 
  Tipo: Bool"]
-nodo_1404681722--nodo_589060413
-nodo_1650896740[label=" Op_Unaria - [ MenosUnario ] - 
+nodo_871414993--nodo_1167363417
+nodo_722423905[label=" Op_Unaria - [ MenosUnario ] - 
  Tipo: Bool"]
-nodo_1404681722--nodo_1650896740
-nodo_1011028588[label="Factor_Bool  
+nodo_871414993--nodo_722423905
+nodo_412253670[label="Factor_Bool  
  Valor: true 
 Bool"]
-nodo_1650896740--nodo_1011028588
-nodo_1856774539[label=":="]
-nodo_programa--nodo_1856774539
-nodo_1001846825[label=" ID - [ b ] - 
+nodo_722423905--nodo_412253670
+nodo_1820878734[label=":="]
+nodo_programa--nodo_1820878734
+nodo_1505357289[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1856774539--nodo_1001846825
-nodo_1523526484[label=" Op_Binaria - [ + ] - 
+nodo_1820878734--nodo_1505357289
+nodo_1876450208[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_1856774539--nodo_1523526484
-nodo_2003035477[label=" Op_Binaria - [ + ] - 
+nodo_1820878734--nodo_1876450208
+nodo_1459332688[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_1523526484--nodo_2003035477
-nodo_1745396012[label="Factor_Int  
+nodo_1876450208--nodo_1459332688
+nodo_980450626[label="Factor_Int  
  Valor: 50 
 Int"]
-nodo_2003035477--nodo_1745396012
-nodo_1046562496[label=" ID - [ t ] - 
+nodo_1459332688--nodo_980450626
+nodo_822495911[label=" ID - [ t ] - 
  Tipo: Float"]
-nodo_2003035477--nodo_1046562496
-nodo_1764479975[label="Factor_Float  
+nodo_1459332688--nodo_822495911
+nodo_1616615614[label="Factor_Float  
  Valor: 2.4 
 Float"]
-nodo_1523526484--nodo_1764479975
-nodo_40205350[label="IfElse"]
-nodo_programa--nodo_40205350
-nodo_305689745[label=" Op_Binaria - [ == ] - 
+nodo_1876450208--nodo_1616615614
+nodo_1197332594[label="IfElse"]
+nodo_programa--nodo_1197332594
+nodo_1983917100[label=" Op_Binaria - [ == ] - 
  Tipo: Unknown"]
-nodo_40205350--nodo_305689745
-nodo_1496277842[label=" ID - [ a ] - 
+nodo_1197332594--nodo_1983917100
+nodo_1344965833[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_305689745--nodo_1496277842
-nodo_823032943[label=" ID - [ b ] - 
+nodo_1983917100--nodo_1344965833
+nodo_1533573562[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_305689745--nodo_823032943
-nodo_402053501[label="THEN"]
-nodo_40205350--nodo_402053501
-nodo_826959219[label="DisplayCadenaCaracteres"]
-nodo_402053501--nodo_826959219
-nodo_1816365548[label="Cadena de Caracteres  
+nodo_1983917100--nodo_1533573562
+nodo_11973325941[label="THEN"]
+nodo_1197332594--nodo_11973325941
+nodo_1499169149[label="DisplayCadenaCaracteres"]
+nodo_11973325941--nodo_1499169149
+nodo_1485901062[label="Cadena de Caracteres  
  Valor: hola 
 CTE_STRING"]
-nodo_826959219--nodo_1816365548
-nodo_1718767976[label=":="]
-nodo_402053501--nodo_1718767976
-nodo_118503549[label=" ID - [ a ] - 
+nodo_1499169149--nodo_1485901062
+nodo_1160648186[label=":="]
+nodo_11973325941--nodo_1160648186
+nodo_1322849763[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1718767976--nodo_118503549
-nodo_180879861[label="Factor_Int  
+nodo_1160648186--nodo_1322849763
+nodo_1569919579[label="Factor_Int  
  Valor: 3 
 Int"]
-nodo_1718767976--nodo_180879861
-nodo_402053502[label="ELSE"]
-nodo_40205350--nodo_402053502
-nodo_1583768576[label="DisplayCadenaCaracteres"]
-nodo_402053502--nodo_1583768576
-nodo_1183075347[label="Cadena de Caracteres  
+nodo_1160648186--nodo_1569919579
+nodo_11973325942[label="ELSE"]
+nodo_1197332594--nodo_11973325942
+nodo_846753855[label="DisplayCadenaCaracteres"]
+nodo_11973325942--nodo_846753855
+nodo_793163556[label="Cadena de Caracteres  
  Valor: chau 
 CTE_STRING"]
-nodo_1583768576--nodo_1183075347
-nodo_1994951298[label=":="]
-nodo_402053502--nodo_1994951298
-nodo_1249874778[label=" ID - [ a ] - 
+nodo_846753855--nodo_793163556
+nodo_1927905808[label=":="]
+nodo_11973325942--nodo_1927905808
+nodo_965136768[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1994951298--nodo_1249874778
-nodo_1021698882[label="Factor_Int  
+nodo_1927905808--nodo_965136768
+nodo_925716324[label="Factor_Int  
  Valor: 6 
 Int"]
-nodo_1994951298--nodo_1021698882
-nodo_207173431[label="While"]
-nodo_programa--nodo_207173431
-nodo_1311532762[label=" Op_Binaria - [ == ] - 
+nodo_1927905808--nodo_925716324
+nodo_1721528260[label="While"]
+nodo_programa--nodo_1721528260
+nodo_1427732630[label=" Op_Binaria - [ == ] - 
  Tipo: Unknown"]
-nodo_207173431--nodo_1311532762
-nodo_1875791374[label=" ID - [ a ] - 
+nodo_1721528260--nodo_1427732630
+nodo_911585582[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1311532762--nodo_1875791374
-nodo_2082623302[label=" ID - [ b ] - 
+nodo_1427732630--nodo_911585582
+nodo_1801359087[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1311532762--nodo_2082623302
-nodo_2071734311[label="DO"]
-nodo_207173431--nodo_2071734311
-nodo_1728165749[label="DisplayCadenaCaracteres"]
-nodo_2071734311--nodo_1728165749
-nodo_981696272[label="Cadena de Caracteres  
+nodo_1427732630--nodo_1801359087
+nodo_17215282601[label="DO"]
+nodo_1721528260--nodo_17215282601
+nodo_2091824143[label="DisplayCadenaCaracteres"]
+nodo_17215282601--nodo_2091824143
+nodo_1764688523[label="Cadena de Caracteres  
  Valor: hola 
 CTE_STRING"]
-nodo_1728165749--nodo_981696272
-nodo_345248712[label=":="]
-nodo_2071734311--nodo_345248712
-nodo_1012296685[label=" ID - [ a ] - 
+nodo_2091824143--nodo_1764688523
+nodo_2019517841[label=":="]
+nodo_17215282601--nodo_2019517841
+nodo_1868522560[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_345248712--nodo_1012296685
-nodo_2057452453[label="Factor_Int  
+nodo_2019517841--nodo_1868522560
+nodo_1743369845[label="Factor_Int  
  Valor: 3 
 Int"]
-nodo_345248712--nodo_2057452453
-nodo_628625330[label=":="]
-nodo_programa--nodo_628625330
-nodo_1482050720[label=" ID - [ a ] - 
+nodo_2019517841--nodo_1743369845
+nodo_1140640709[label=":="]
+nodo_programa--nodo_1140640709
+nodo_1966739736[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_628625330--nodo_1482050720
-nodo_1616735233[label=" Op_Binaria - [ + ] - 
+nodo_1140640709--nodo_1966739736
+nodo_1176202893[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_628625330--nodo_1616735233
-nodo_674754951[label=" ID - [ b ] - 
+nodo_1140640709--nodo_1176202893
+nodo_1864085972[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1616735233--nodo_674754951
-nodo_1676976950[label="Factor_Int  
+nodo_1176202893--nodo_1864085972
+nodo_1164703836[label="Factor_Int  
  Valor: 3 
 Int"]
-nodo_1616735233--nodo_1676976950
-nodo_2143930054[label=":="]
-nodo_programa--nodo_2143930054
-nodo_1845879219[label=" ID - [ b ] - 
+nodo_1176202893--nodo_1164703836
+nodo_1989844198[label=":="]
+nodo_programa--nodo_1989844198
+nodo_2059388142[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_2143930054--nodo_1845879219
-nodo_1954513196[label=" Op_Unaria - [ NOT ] - 
+nodo_1989844198--nodo_2059388142
+nodo_1802037248[label=" Op_Unaria - [ NOT ] - 
  Tipo: Int"]
-nodo_2143930054--nodo_1954513196
-nodo_852781395[label=" ID - [ a ] - 
+nodo_1989844198--nodo_1802037248
+nodo_1910196095[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1954513196--nodo_852781395
-nodo_447304466[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_447304466
-nodo_1340045468[label="Cadena de Caracteres  
+nodo_1802037248--nodo_1910196095
+nodo_1402852115[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_1402852115
+nodo_1796586088[label="Cadena de Caracteres  
  Valor: s 
 CTE_STRING"]
-nodo_447304466--nodo_1340045468
-nodo_187056101[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_187056101
-nodo_1087994761[label="Cadena de Caracteres  
+nodo_1402852115--nodo_1796586088
+nodo_2018940576[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_2018940576
+nodo_2138877486[label="Cadena de Caracteres  
  Valor: asd 
 CTE_STRING"]
-nodo_187056101--nodo_1087994761
-nodo_1136095695[label=":="]
-nodo_programa--nodo_1136095695
-nodo_704646270[label=" ID - [ r ] - 
+nodo_2018940576--nodo_2138877486
+nodo_1851888977[label=":="]
+nodo_programa--nodo_1851888977
+nodo_1517011464[label=" ID - [ r ] - 
  Tipo: Float"]
-nodo_1136095695--nodo_704646270
-nodo_1407554246[label=" Op_Binaria - [ AND ] - 
+nodo_1851888977--nodo_1517011464
+nodo_1780842559[label=" Op_Binaria - [ AND ] - 
  Tipo: Unknown"]
-nodo_1136095695--nodo_1407554246
-nodo_56142156[label=" ID - [ c ] - 
+nodo_1851888977--nodo_1780842559
+nodo_1423067458[label=" ID - [ c ] - 
  Tipo: Int"]
-nodo_1407554246--nodo_56142156
-nodo_1793456413[label=" Op_Binaria - [ > ] - 
+nodo_1780842559--nodo_1423067458
+nodo_241566428[label=" Op_Binaria - [ > ] - 
  Tipo: Unknown"]
-nodo_1407554246--nodo_1793456413
-nodo_608573195[label=" Op_Binaria - [ - ] - 
+nodo_1780842559--nodo_241566428
+nodo_1815986447[label=" Op_Binaria - [ - ] - 
  Tipo: null"]
-nodo_1793456413--nodo_608573195
-nodo_848732183[label=" ID - [ xd ] - 
+nodo_241566428--nodo_1815986447
+nodo_1980600978[label=" ID - [ xd ] - 
  Tipo: Bool"]
-nodo_608573195--nodo_848732183
-nodo_1660376212[label="Factor_Int  
+nodo_1815986447--nodo_1980600978
+nodo_1261814283[label="Factor_Int  
  Valor: 5 
 Int"]
-nodo_608573195--nodo_1660376212
-nodo_922180872[label=" Op_Binaria - [ * ] - 
+nodo_1815986447--nodo_1261814283
+nodo_1049053426[label=" Op_Binaria - [ * ] - 
  Tipo: null"]
-nodo_1793456413--nodo_922180872
-nodo_1477744184[label=" ID - [ a ] - 
+nodo_241566428--nodo_1049053426
+nodo_127577691[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_922180872--nodo_1477744184
-nodo_433183592[label=" Op_Unaria - [ MenosUnario ] - 
+nodo_1049053426--nodo_127577691
+nodo_1539828763[label=" Op_Unaria - [ MenosUnario ] - 
  Tipo: Int"]
-nodo_922180872--nodo_433183592
-nodo_515917503[label="Factor_Int  
+nodo_1049053426--nodo_1539828763
+nodo_1103396787[label="Factor_Int  
  Valor: 3 
 Int"]
-nodo_433183592--nodo_515917503
-nodo_48822618[label=":="]
-nodo_programa--nodo_48822618
-nodo_1808361716[label=" ID - [ c ] - 
+nodo_1539828763--nodo_1103396787
+nodo_1385728927[label=":="]
+nodo_programa--nodo_1385728927
+nodo_1593308447[label=" ID - [ c ] - 
  Tipo: Int"]
-nodo_48822618--nodo_1808361716
-nodo_1199623590[label="Factor_Float  
+nodo_1385728927--nodo_1593308447
+nodo_1817576491[label="Factor_Float  
  Valor: 3.3 
 Float"]
-nodo_48822618--nodo_1199623590
-nodo_1149835238[label=":="]
-nodo_programa--nodo_1149835238
-nodo_1600579209[label=" ID - [ c ] - 
+nodo_1385728927--nodo_1817576491
+nodo_720911605[label=":="]
+nodo_programa--nodo_720911605
+nodo_418894419[label=" ID - [ c ] - 
  Tipo: Int"]
-nodo_1149835238--nodo_1600579209
-nodo_86316825[label=" Op_Unaria - [ MenosUnario ] - 
+nodo_720911605--nodo_418894419
+nodo_1993541976[label=" Op_Unaria - [ MenosUnario ] - 
  Tipo: Float"]
-nodo_1149835238--nodo_86316825
-nodo_2112104547[label="Factor_Float  
+nodo_720911605--nodo_1993541976
+nodo_351985035[label="Factor_Float  
  Valor: 45.123 
 Float"]
-nodo_86316825--nodo_2112104547
-nodo_578075722[label=":="]
-nodo_programa--nodo_578075722
-nodo_1424542687[label=" ID - [ f ] - 
+nodo_1993541976--nodo_351985035
+nodo_2080234739[label=":="]
+nodo_programa--nodo_2080234739
+nodo_39846589[label=" ID - [ f ] - 
  Tipo: Float"]
-nodo_578075722--nodo_1424542687
-nodo_2095049845[label=" Op_Binaria - [ >= ] - 
+nodo_2080234739--nodo_39846589
+nodo_277431683[label=" Op_Binaria - [ >= ] - 
  Tipo: Unknown"]
-nodo_578075722--nodo_2095049845
-nodo_32375812[label=" ID - [ c ] - 
+nodo_2080234739--nodo_277431683
+nodo_1017814598[label=" ID - [ c ] - 
  Tipo: Int"]
-nodo_2095049845--nodo_32375812
-nodo_1561690986[label="Factor_Int  
+nodo_277431683--nodo_1017814598
+nodo_2122189533[label="Factor_Int  
  Valor: 4 
 Int"]
-nodo_2095049845--nodo_1561690986
-nodo_684118322[label="DisplayExpresion"]
-nodo_programa--nodo_684118322
-nodo_802668142[label=" Op_Binaria - [ + ] - 
+nodo_277431683--nodo_2122189533
+nodo_1385910276[label="DisplayExpresion"]
+nodo_programa--nodo_1385910276
+nodo_1200883265[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_684118322--nodo_802668142
-nodo_549950546[label=" ID - [ a ] - 
+nodo_1385910276--nodo_1200883265
+nodo_332215652[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_802668142--nodo_549950546
-nodo_753419202[label=" ID - [ b ] - 
+nodo_1200883265--nodo_332215652
+nodo_502000930[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_802668142--nodo_753419202
-nodo_884979068[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_884979068
-nodo_2116116160[label="Cadena de Caracteres  
+nodo_1200883265--nodo_502000930
+nodo_671557926[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_671557926
+nodo_111143803[label="Cadena de Caracteres  
  Valor: aewr 
 CTE_STRING"]
-nodo_884979068--nodo_2116116160
-nodo_530430734[label="DisplayExpresion"]
-nodo_programa--nodo_530430734
-nodo_1447096559[label=" Op_Binaria - [ + ] - 
+nodo_671557926--nodo_111143803
+nodo_340446119[label="DisplayExpresion"]
+nodo_programa--nodo_340446119
+nodo_93690922[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_530430734--nodo_1447096559
-nodo_1512511098[label="Factor_Float  
+nodo_340446119--nodo_93690922
+nodo_1783055353[label="Factor_Float  
  Valor: 5.5723877 
 Float"]
-nodo_1447096559--nodo_1512511098
-nodo_1209137054[label=" ID - [ a ] - 
+nodo_93690922--nodo_1783055353
+nodo_218556158[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1447096559--nodo_1209137054
-nodo_429950181[label="DisplayExpresion"]
-nodo_programa--nodo_429950181
-nodo_1805059922[label=" Op_Binaria - [ <= ] - 
+nodo_93690922--nodo_218556158
+nodo_365001909[label="DisplayExpresion"]
+nodo_programa--nodo_365001909
+nodo_1460961795[label=" Op_Binaria - [ <= ] - 
  Tipo: Unknown"]
-nodo_429950181--nodo_1805059922
-nodo_2104228417[label="Factor_Int  
+nodo_365001909--nodo_1460961795
+nodo_1145178716[label="Factor_Int  
  Valor: 7 
 Int"]
-nodo_1805059922--nodo_2104228417
-nodo_973164405[label=" ID - [ b ] - 
+nodo_1460961795--nodo_1145178716
+nodo_2127115580[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1805059922--nodo_973164405
-nodo_795522128[label="While"]
-nodo_programa--nodo_795522128
-nodo_1485794620[label=" Op_Binaria - [ > ] - 
+nodo_1460961795--nodo_2127115580
+nodo_1616721873[label="While"]
+nodo_programa--nodo_1616721873
+nodo_86354209[label=" Op_Binaria - [ > ] - 
  Tipo: Unknown"]
-nodo_795522128--nodo_1485794620
-nodo_1002163298[label=" ID - [ a ] - 
+nodo_1616721873--nodo_86354209
+nodo_1090880699[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1485794620--nodo_1002163298
-nodo_200361607[label="Factor_Int  
+nodo_86354209--nodo_1090880699
+nodo_1985096050[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_1485794620--nodo_200361607
-nodo_7955221281[label="DO"]
-nodo_795522128--nodo_7955221281
-nodo_1159023972[label="DisplayCadenaCaracteres"]
-nodo_7955221281--nodo_1159023972
-nodo_1586431800[label="Cadena de Caracteres  
+nodo_86354209--nodo_1985096050
+nodo_16167218731[label="DO"]
+nodo_1616721873--nodo_16167218731
+nodo_455035364[label="DisplayCadenaCaracteres"]
+nodo_16167218731--nodo_455035364
+nodo_1738652090[label="Cadena de Caracteres  
  Valor: hola 
 CTE_STRING"]
-nodo_1159023972--nodo_1586431800
-nodo_1560890847[label="IfSimple"]
-nodo_7955221281--nodo_1560890847
-nodo_44667144[label=" Op_Binaria - [ == ] - 
+nodo_455035364--nodo_1738652090
+nodo_577316936[label="IfSimple"]
+nodo_16167218731--nodo_577316936
+nodo_963135428[label=" Op_Binaria - [ == ] - 
  Tipo: Unknown"]
-nodo_1560890847--nodo_44667144
-nodo_547897720[label=" ID - [ b ] - 
+nodo_577316936--nodo_963135428
+nodo_1993483872[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_44667144--nodo_547897720
-nodo_560791188[label=" ID - [ c ] - 
+nodo_963135428--nodo_1993483872
+nodo_296519793[label=" ID - [ c ] - 
  Tipo: Int"]
-nodo_44667144--nodo_560791188
-nodo_15608908471[label="THEN"]
-nodo_1560890847--nodo_15608908471
-nodo_122192834[label=":="]
-nodo_15608908471--nodo_122192834
-nodo_909500622[label=" ID - [ b ] - 
+nodo_963135428--nodo_296519793
+nodo_5773169361[label="THEN"]
+nodo_577316936--nodo_5773169361
+nodo_828925256[label=":="]
+nodo_5773169361--nodo_828925256
+nodo_1096981079[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_122192834--nodo_909500622
-nodo_1227319871[label=" Op_Binaria - [ + ] - 
+nodo_828925256--nodo_1096981079
+nodo_1254448563[label=" Op_Binaria - [ + ] - 
  Tipo: null"]
-nodo_122192834--nodo_1227319871
-nodo_1832419924[label=" ID - [ b ] - 
+nodo_828925256--nodo_1254448563
+nodo_1482254692[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1227319871--nodo_1832419924
-nodo_268025098[label="Factor_Int  
+nodo_1254448563--nodo_1482254692
+nodo_1063236905[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_1227319871--nodo_268025098
-nodo_13553700[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_13553700
-nodo_613508068[label="Cadena de Caracteres  
+nodo_1254448563--nodo_1063236905
+nodo_1431212[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_1431212
+nodo_1133845804[label="Cadena de Caracteres  
  Valor: hola 
 CTE_STRING"]
-nodo_13553700--nodo_613508068
+nodo_1431212--nodo_1133845804
 }
