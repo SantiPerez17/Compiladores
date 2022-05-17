@@ -10,6 +10,15 @@ public abstract class Expresion extends Nodo{
     }
 
     private Tipo tipo;
+    private String ir_ref;
+
+    public String getIr_ref() {
+        return ir_ref;
+    }
+
+    public void setIr_ref(String ir_ref) {
+        this.ir_ref = ir_ref;
+    }
 
     public Expresion(Tipo tipo) {
         this.tipo = tipo;

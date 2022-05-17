@@ -20,4 +20,18 @@ public class Resta extends OperacionBinaria {
     public Resta(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
         super("-", Tipo.Unknown, izquierda, derecha);
     }
+
+    @Override
+    protected String getNombreOperacion() {
+        return "-";
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        if(tipo == Tipo.Int){
+            return "sub";
+        } else {
+            return "fsub";
+        }
+    }
 }

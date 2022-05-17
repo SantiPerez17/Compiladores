@@ -23,4 +23,12 @@ public class MenosUnario extends OperacionUnaria{
         resultado.append(this.getExpresion().graficar(this.getId()));
         return resultado.toString();
     }
+
+    @Override
+    public String generarCodigo() {
+        StringBuilder resultado = new StringBuilder();
+        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        return resultado.toString();
+    }
 }

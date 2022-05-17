@@ -24,4 +24,19 @@ public class Multiplicacion extends OperacionBinaria {
     public Multiplicacion(Expresion izquierda, Expresion derecha, Tipo tipo) {
         super( "*",Tipo.Unknown, izquierda, derecha);
     }
+
+    @Override
+    protected String getNombreOperacion() {
+        return "*";
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        if(tipo == Tipo.Int){
+            return "mul";
+        } else {
+            return "fmul";
+        }
+    }
+
 }
