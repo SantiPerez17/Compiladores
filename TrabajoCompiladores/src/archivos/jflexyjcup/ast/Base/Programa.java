@@ -9,9 +9,8 @@ import java.util.List;
 
 public class Programa extends Nodo{
 
-    Multimap<String, String> tablaSimbolos2;
+    public Multimap<String, String[]> tablaSimbolos2;
     private final List<Sentencia> sentencias;
-
 
     public String getId() {
         return "nodo_programa";
@@ -26,12 +25,12 @@ public class Programa extends Nodo{
         this.sentencias = sentencias;
     }
 
-    public Programa(Multimap<String, String> tablaSimbolos2, List<Sentencia> sentencias) {
+    public Programa(Multimap<String, String[]> tablaSimbolos2, List<Sentencia> sentencias) {
         this.tablaSimbolos2 = tablaSimbolos2;
         this.sentencias = sentencias;
     }
 
-    public Programa(String nombre, Multimap<String, String> tablaSimbolos2, List<Sentencia> sentencias) {
+    public Programa(String nombre, Multimap<String, String[]> tablaSimbolos2, List<Sentencia> sentencias) {
         super(nombre);
         this.tablaSimbolos2 = tablaSimbolos2;
         this.sentencias = sentencias;

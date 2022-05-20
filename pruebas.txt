@@ -1,13 +1,17 @@
 declare.section
     float:m;
-    int :res, a,b,c;
+    int :res, a,b,c,d;
     float :t, r;
     float : z,f;
-    bool : xd;
+    bool : xd; 
 enddeclare.section
 program.section
-    res:=cola(2;[a,20+b,1+c*3,2+5/2])
-    (*xd:=a or not b
+    display("Testeo de TS")
+display("chau")
+display("prueba")
+    display(1+2)
+    (*res:=cola(2;[a,20+b,1+c*3,2+5/2])
+    xd:=a or not b
     display(1+3.3)
    xd:=-true
    b:=50 + t + 2.4

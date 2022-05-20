@@ -1,5 +1,6 @@
 package archivos.jflexyjcup.ast.Base.Constantes;
 
+import archivos.jflexyjcup.ast.Base.Programa;
 import archivos.jflexyjcup.ast.Base.Tipo;
 
 public class ConstanteString extends  Constante{

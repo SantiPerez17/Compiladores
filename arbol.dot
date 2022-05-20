@@ -1,35 +1,33 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1274370218[label=":="]
-nodo_programa--nodo_1274370218
-nodo_1190035432[label=" ID - [ y ] - 
- Tipo: Bool"]
-nodo_1274370218--nodo_1190035432
-nodo_1267032364[label="Factor_Bool  
- Valor: true 
-Bool"]
-nodo_1274370218--nodo_1267032364
-nodo_2117255219[label=":="]
-nodo_programa--nodo_2117255219
-nodo_1963387170[label=" ID - [ xd ] - 
- Tipo: Bool"]
-nodo_2117255219--nodo_1963387170
-nodo_517380410[label=" Op_Binaria - [ OR ] - 
- Tipo: Bool"]
-nodo_2117255219--nodo_517380410
-nodo_758705033[label="Factor_Bool  
- Valor: true 
-Bool"]
-nodo_517380410--nodo_758705033
-nodo_1067938912[label=" Op_Unaria - [ NOT ] - 
- Tipo: Bool"]
-nodo_517380410--nodo_1067938912
-nodo_764308918[label=" Op_Binaria - [ AND ] - 
- Tipo: Bool"]
-nodo_1067938912--nodo_764308918
-nodo_1604839423[label=" ID - [ y ] - 
- Tipo: Bool"]
-nodo_764308918--nodo_1604839423
-nodo_1177096266[label=" ID - [ y ] - 
- Tipo: Bool"]
-nodo_764308918--nodo_1177096266
+nodo_148001436[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_148001436
+nodo_1786285017[label="Cadena de Caracteres  
+ Valor: hola 
+CTE_STRING"]
+nodo_148001436--nodo_1786285017
+nodo_335696039[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_335696039
+nodo_864354359[label="Cadena de Caracteres  
+ Valor: chau 
+CTE_STRING"]
+nodo_335696039--nodo_864354359
+nodo_496582665[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_496582665
+nodo_163767072[label="Cadena de Caracteres  
+ Valor: prueba 
+CTE_STRING"]
+nodo_496582665--nodo_163767072
+nodo_880899254[label="DisplayExpresion"]
+nodo_programa--nodo_880899254
+nodo_1674570190[label=" Op_Binaria - [ + ] - 
+ Tipo: Unknown"]
+nodo_880899254--nodo_1674570190
+nodo_2140336484[label="Factor_Int  
+ Valor: 1 
+Int"]
+nodo_1674570190--nodo_2140336484
+nodo_1708006072[label="Factor_Int  
+ Valor: 2 
+Int"]
+nodo_1674570190--nodo_1708006072
 }

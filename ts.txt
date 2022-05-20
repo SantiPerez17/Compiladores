@@ -1,3 +1,18 @@
-{res=[Int], a=[Int], b=[Int], c=[Int], f=[Float], xd=[Bool], m=[Float], r=[Float], t=[Float], z=[Float]}
+TABLA DE SIMBOLOS 
+              NOMBRE               TOKEN                TIPO               VALOR                LONG
 
+                   m                  ID               Float                   _                   _
+                 res                  ID                 Int                   _                   _
+                   a                  ID                 Int                   _                   _
+                   b                  ID                 Int                   _                   _
+                   c                  ID                 Int                   _                   _
+                   d                  ID                 Int                   _                   _
+                   t                  ID               Float                   _                   _
+                   r                  ID               Float                   _                   _
+                   z                  ID               Float                   _                   _
+                   f                  ID               Float                   _                   _
+                  xd                  ID                Bool                   _                   _
+                   _      STRING_LITERAL          CTE_STRING        Testeo de TS                  12
+                   _      STRING_LITERAL          CTE_STRING                chau                   4
+                   _      STRING_LITERAL          CTE_STRING              prueba                   6
 

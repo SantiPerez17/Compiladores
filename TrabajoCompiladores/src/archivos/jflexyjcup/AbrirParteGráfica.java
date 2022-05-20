@@ -25,7 +25,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         frame.setLayout(new BorderLayout());
         panel1.setLayout(new FlowLayout());
         panel2.setLayout(new BorderLayout());
-        frame.setSize( 700, 700 );
+        frame.setSize( 1360, 768 );
         frame.setLocationRelativeTo( null );
         frame.add(panel1, BorderLayout.NORTH);
         frame.add(panel2, BorderLayout.CENTER);
@@ -49,7 +49,6 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         JButton btn4 = new JButton("Generar Parser");
         btn4.addActionListener(this);
         panel1.add( btn4 );
-
         //Se crea boton para generar parser del archivo
         JButton btn5 = new JButton("Generar AST");
         btn5.addActionListener(this);
@@ -61,10 +60,12 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
 
         //Se crea el editor de texto y se agrega a un scroll
         txp = new JTextPane();
+        txp.setBackground(Color.BLACK);
+        txp.setForeground(Color.GRAY);
         JScrollPane jsp = new JScrollPane();
+        jsp.setBackground(Color.orange);
         jsp.setViewportView(txp);
         panel2.add(jsp, BorderLayout.CENTER);
-
         String path = archivo.getAbsolutePath();
         String contenido = getArchivo(path);
         txp.setText(contenido);
@@ -96,6 +97,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
                     this.setTitle(nombre);
 
                     //En el editor de texto colocamos su contenido
+
+                    txp.setBackground(Color.orange);
+                    txp.setBackground(Color.BLACK);
                     txp.setText(contenido);
 
                 } catch (Exception exp) {
@@ -111,7 +115,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             JFrame frame2 = new JFrame("Tokens");
             frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
-            frame2.setSize( 500, 500 );
+            frame2.setSize( 400, 600 );
             frame2.setLocationRelativeTo( null );
             txp2 = new JTextPane();
             JScrollPane jsp2 = new JScrollPane();
@@ -132,8 +136,8 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
             frame3.setLayout(new BorderLayout());
-            frame2.setSize( 800, 800 );
-            frame3.setSize( 300, 300 );
+            frame2.setSize( 1280, 720 );
+            frame3.setSize( 900, 700 );
             frame2.setLocationRelativeTo( null );
             frame3.setLocationRelativeTo( null );
             txp3 = new JTextPane();
@@ -143,9 +147,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             jsp2.setViewportView(txp3);
             jsp3.setViewportView(txp4);
             frame2.add(jsp2, BorderLayout.CENTER);
-            frame3.add(jsp3, BorderLayout.CENTER);
+            //frame3.add(jsp3, BorderLayout.CENTER);
             frame2.setVisible( true );
-            frame3.setVisible( true );
+            //frame3.setVisible( true );
             try {
                 Parsing(txp.getText());
             } catch (IOException ex) {
@@ -170,6 +174,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             frame4.setSize( 800, 800 );
             frame4.setLocationRelativeTo( null );
             txp5 = new JTextPane();
+            txp5.setForeground(Color.gray);
             JScrollPane jsp4 = new JScrollPane();
             jsp4.setViewportView(txp5);
             frame4.add(jsp4, BorderLayout.CENTER);
@@ -248,6 +253,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             }
             if (errores.toString().equals("Errores: ")){
                 tokens.append("\nAnálisis léxico terminado.");
+                txp2.setForeground(Color.gray);
                 txp2.setText(tokens.toString());
             } else {
                 errores.append("\n\nEl análisis léxico se ejecuto con errores.");
@@ -262,7 +268,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
         parser.reglas = "";
-        parser.simbolos = "";
+        parser.simbolos = new StringBuilder("");
 
         StringBuilder Reglas = new StringBuilder();
         StringBuilder Simbolos = new StringBuilder();
@@ -271,9 +277,13 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             Reglas.append(parser.reglas);
             Simbolos.append(parser.simbolos);
             txp3.setText(parser.reglas);
-            txp4.setText("TABLA DE SIMBOLOS \n\n" + parser.simbolos);
+            txp3.setForeground(Color.gray);
+            txp4.setForeground(Color.gray);
+            txp4.setText("                          TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG")+parser.simbolos);
             PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
+            writer.println("TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG"));
             writer.println(parser.simbolos.toString());
+            Desktop.getDesktop().open(new File("ts.txt"));
             writer.close();
         }
         catch (Exception e){

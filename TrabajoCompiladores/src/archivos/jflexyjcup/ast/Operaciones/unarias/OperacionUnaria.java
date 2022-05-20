@@ -35,6 +35,14 @@ public abstract class  OperacionUnaria extends Expresion{
     }
 
     @Override
+    public String graficar(String idPadre) {
+        StringBuilder grafico = new StringBuilder();
+        grafico.append(super.graficar(idPadre));
+        grafico.append(expresion.graficar(this.getId()));
+        return grafico.toString();
+    }
+
+    @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         //this.setIr_ref(CodeGeneratorHelper.getNewPointer());

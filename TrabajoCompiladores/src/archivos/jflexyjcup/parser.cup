@@ -30,7 +30,7 @@ class MiParser;
 
 
 action code {:
-    Hashtable tablaSimbolo = new Hashtable();
+    //Hashtable tablaSimbolo = new Hashtable();
     //Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
     //public Multimap getTabladeSimbolos(){
      //       return tablaSimbolos2;
@@ -74,12 +74,8 @@ parser code
         reglas += regla + "\n\n";
     }
 
-    public String simbolos;
-
-    Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
-    public Multimap getTabladeSimbolos(){
-                return tablaSimbolos2;
-        }
+    public StringBuilder simbolos=new StringBuilder("");
+    Multimap<String, String[]> tablaSimbolos2 = ArrayListMultimap.create();
 
    public Tipo tipo_en_comun(Tipo t1,Tipo t2) throws java.lang.Exception
           {
@@ -168,16 +164,31 @@ declaracion ::= //no es necesario generar el nodo este.
     tipo_de_dato:td DOSPUNTOS ids:i PUNTOCOMA {:
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
-        if (i.contains(",")){
-                    String[] parts = i.split(",");
-                    for (String s : parts){
-                        tablaSimbolos2.put(s,td.name());
-                }}
-                else{
-                        tablaSimbolos2.put(i, td.name());
-                    }
-        simbolos = tablaSimbolos2.toString() + "\n\n";
-        //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
+                        if (i.contains(",")){
+                            String[] parts = i.split(",");
+                            for (String s : parts){
+                                if (tablaSimbolos2.containsKey(s)){
+                                    throw new Exception("Variable " + s + " ya declarada." );
+                                    }
+                                else{
+
+                                    String[] hg = new String[]{"ID",td.name(),"_","_"};
+                                    tablaSimbolos2.put(s,hg);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n",
+                                            s, hg[0], hg[1], hg[2], hg[3]));
+                                    }
+                            }
+                        }
+                        else{
+                            String[] hg = new String[]{"ID",td.name(),"_","_"};
+                            tablaSimbolos2.put(i,hg);
+                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n",
+                                    i, hg[0], hg[1], hg[2], hg[3]));
+                        }
+                //para traer Tipo de la tabla de simbolos
+                        // String t = tablaSimbolos2.get(i).stream().findFirst().get();
+                //simbolos = new StringBuilder(tablaSimbolos2.toString() + "\n\n");
+                //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
         :};
 
 ids ::=
@@ -290,6 +301,13 @@ sentencia_display ::=
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
             //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
+            //tablaSimbolos2.put(sl,Tipo.CTE_STRING.name());
+            String[] hg = new String[]{"STRING_LITERAL",Tipo.CTE_STRING.name(),sl,String.valueOf(sl.length())};
+                            tablaSimbolos2.put(" ",hg);
+                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n",
+                                    "_", hg[0], hg[1], hg[2], hg[3]));
+
+            //simbolos.append("{ '").append(sl).append("' - TIPO = String - LONG = ").append(sl.length()).append(" }\n");
             ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "CC");
             RESULT = new DisplayCadenaCaracteres(CC);
         :}
@@ -315,8 +333,10 @@ sentencia_asignacion ::=
                 Expresion exp = convertir_a_tipo(eo, Tipo.Int);
                 RESULT = new Asignacion(new Identificador(id, Tipo.Int),exp);}
             if (tipo.contains("Float")){
+                Expresion exp = convertir_a_tipo(eo, Tipo.Float);
                 RESULT = new Asignacion(new Identificador(id, Tipo.Float),eo);}
             if (tipo.contains("Bool")){
+                Expresion exp = convertir_a_tipo(eo, Tipo.Bool);
                 RESULT = new Asignacion(new Identificador(id, Tipo.Bool),eo);}
             //RESULT=id + " := " + eo;
          }
@@ -407,7 +427,7 @@ expresion ::=
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
         //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
         //RESULT = new Suma(e1,e2);
-        
+
         RESULT = new Suma("+",Tipo.Unknown,e1,e2) ;
     :}
     |

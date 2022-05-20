@@ -13,6 +13,10 @@ public class FlotanteAEntero extends OperacionConversion{
         super("FLOAT a INT", expresion);
     }
 
+    @Override
+    public void setTipo(Tipo tipo) {
+        getExpresion().setTipo(Tipo.Int);
+    }
 
     @Override
     public String generarCodigo() {
