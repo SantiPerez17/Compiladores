@@ -16,7 +16,7 @@ import java_cup.Main;
  *
  * @author itt
  */
-public class Generador {
+public class GenerarFlexyCup {
 
     /**
      * @param args the command line arguments
@@ -50,9 +50,9 @@ public class Generador {
         try {
             Main.main(param);
         } catch (IOException ex) {
-            Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenerarFlexyCup.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(Generador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GenerarFlexyCup.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

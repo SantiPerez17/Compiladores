@@ -10,5 +10,4 @@ TABLA DE SIMBOLOS
                    d                  ID                 Int                   _                   _
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
-                   _      STRING_LITERAL          CTE_STRINGhola esto es una pruebaasdwwww                  30
 

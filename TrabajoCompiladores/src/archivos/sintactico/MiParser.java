@@ -1601,7 +1601,12 @@ class CUP$MiParser$actions {
 		
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
-        RESULT = new Identificador("Pivot",Tipo.Int);
+        if(tablaSimbolos2.containsKey(id)){
+            RESULT = new Identificador("Pivot",Tipo.Int);
+        }
+        else{
+            throw new Exception("Variable Pivot no declarada.");
+        }
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

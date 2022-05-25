@@ -579,7 +579,12 @@ pivot ::=
     IDENTIFIER:id {:
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
-        RESULT = new Identificador("Pivot",Tipo.Int);
+        if(tablaSimbolos2.containsKey(id)){
+            RESULT = new Identificador("Pivot",Tipo.Int);
+        }
+        else{
+            throw new Exception("Variable Pivot no declarada.");
+        }
     :}
     |
     INT:i {:
