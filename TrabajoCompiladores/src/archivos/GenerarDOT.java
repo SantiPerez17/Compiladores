@@ -24,7 +24,7 @@ public class GenerarDOT {
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
-            Desktop.getDesktop().open(new File("C:\\Users\\santi\\Documents\\GitHub\\Compiladores\\arbol.png"));
+            Desktop.getDesktop().open(new File("arbol.png"));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
