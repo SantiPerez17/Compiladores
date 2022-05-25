@@ -1,52 +1,70 @@
 graph G {nodo_programa[label="Programa"]
-nodo_672469113[label=":="]
-nodo_programa--nodo_672469113
-nodo_840726430[label=" ID - [ f ] - 
+nodo_104256715[label=":="]
+nodo_programa--nodo_104256715
+nodo_1674979384[label=" ID - [ f ] - 
  Tipo: Float"]
-nodo_672469113--nodo_840726430
-nodo_47138098[label=" Op_Binaria - [ + ] - 
+nodo_104256715--nodo_1674979384
+nodo_2128132455[label=" Op_Binaria - [ + ] - 
  Tipo: Int"]
-nodo_672469113--nodo_47138098
-nodo_654562294[label=" Op_Binaria - [ - ] - 
+nodo_104256715--nodo_2128132455
+nodo_2015117408[label=" Op_Binaria - [ - ] - 
  Tipo: Int"]
-nodo_47138098--nodo_654562294
-nodo_1430676718[label=" Op_Binaria - [ + ] - 
+nodo_2128132455--nodo_2015117408
+nodo_1063537243[label=" Op_Binaria - [ + ] - 
  Tipo: Int"]
-nodo_654562294--nodo_1430676718
-nodo_524192918[label="Factor_Int  
+nodo_2015117408--nodo_1063537243
+nodo_1745994662[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_1430676718--nodo_524192918
-nodo_1250054714[label=" Op_Unaria - [ FLOAT a INT ] - 
+nodo_1063537243--nodo_1745994662
+nodo_1812971503[label=" Op_Unaria - [ FLOAT a INT ] - 
  Tipo: Int"]
-nodo_1430676718--nodo_1250054714
-nodo_757500261[label="Factor_Float  
+nodo_1063537243--nodo_1812971503
+nodo_206660276[label="Factor_Float  
  Valor: 23.3 
 Float"]
-nodo_1250054714--nodo_757500261
-nodo_696324478[label="Factor_Int  
+nodo_1812971503--nodo_206660276
+nodo_272548[label="Factor_Int  
  Valor: 33 
 Int"]
-nodo_654562294--nodo_696324478
-nodo_414702955[label=" Op_Binaria - [ / ] - 
+nodo_2015117408--nodo_272548
+nodo_1450867243[label=" Op_Binaria - [ / ] - 
  Tipo: Int"]
-nodo_47138098--nodo_414702955
-nodo_103300233[label="Factor_Int  
+nodo_2128132455--nodo_1450867243
+nodo_1501304527[label="Factor_Int  
  Valor: 5 
 Int"]
-nodo_414702955--nodo_103300233
-nodo_1597795953[label=" Op_Binaria - [ * ] - 
+nodo_1450867243--nodo_1501304527
+nodo_937911987[label=" Op_Binaria - [ * ] - 
  Tipo: Int"]
-nodo_414702955--nodo_1597795953
-nodo_1242826187[label=" Op_Unaria - [ FLOAT a INT ] - 
+nodo_1450867243--nodo_937911987
+nodo_1114565130[label=" Op_Unaria - [ FLOAT a INT ] - 
  Tipo: Int"]
-nodo_1597795953--nodo_1242826187
-nodo_1613711798[label="Factor_Float  
+nodo_937911987--nodo_1114565130
+nodo_1146595625[label="Factor_Float  
  Valor: 3.3 
 Float"]
-nodo_1242826187--nodo_1613711798
-nodo_1721343287[label="Factor_Int  
+nodo_1114565130--nodo_1146595625
+nodo_336698994[label="Factor_Int  
  Valor: 43 
 Int"]
-nodo_1597795953--nodo_1721343287
+nodo_937911987--nodo_336698994
+nodo_736679028[label="DisplayExpresion"]
+nodo_programa--nodo_736679028
+nodo_831400025[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_736679028--nodo_831400025
+nodo_1084299262[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_831400025--nodo_1084299262
+nodo_2119402556[label="Factor_Int  
+ Valor: 33 
+Int"]
+nodo_831400025--nodo_2119402556
+nodo_2032293916[label="DisplayCadenaCaracteres"]
+nodo_programa--nodo_2032293916
+nodo_1206242749[label="Cadena de Caracteres  
+ Valor: hola esto es una pruebaasdwwww 
+CTE_STRING"]
+nodo_2032293916--nodo_1206242749
 }
