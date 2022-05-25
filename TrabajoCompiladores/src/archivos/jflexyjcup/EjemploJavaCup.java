@@ -19,7 +19,7 @@ public class EjemploJavaCup {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
-        String path = "TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt";
+        String path = "pruebas.txt";
         System.out.println("Análisis sintáctico iniciado:");
         MiLexico lexer = new MiLexico(new FileReader(path));
         MiParser parser = new MiParser(lexer);

@@ -1,16 +1,24 @@
 declare.section
-    float:m;
-    int :res, a,b,c,d;
-    float :t, r;
-    float : z,f;
-    bool : xd; 
+    float : f;
+    int : res,res2,a,b,c,d;
+    bool : xd, ahre;
 enddeclare.section
 program.section
+    f:=(1+23.3-33)+5/(3.3*43)
+    (*display(a+33)
+    display("hola esto es una prueba")
+    res:= 1.24+123.23+1
+    xd:=false and false
+    xd:= 1>2
+    ahre:=not (true and xd) or xd
+    #res:=1.4+4
+#display("hola")
+    res:=cola(2;[a,20+b,c])
     display("Testeo de TS")
 display("chau")
 display("prueba")
     display(1+2)
-    (*res:=cola(2;[a,20+b,1+c*3,2+5/2])
+    res:=cola(2;[a,20+b,1+c*3,2+5/2])
     xd:=a or not b
     display(1+3.3)
    xd:=-true

@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 public class GenerarDOT {
 
     public static void main(String[] args) throws Exception {
-        final FileReader entrada = new FileReader("TrabajoCompiladores/src/archivos/jflexyjcup/pruebas.txt");
+        final FileReader entrada = new FileReader("pruebas.txt");
         final MiLexico lexico = new MiLexico(entrada);
         final MiParser sintactico= new MiParser(lexico);
         final Programa programa = (Programa) sintactico.parse().value;

@@ -6,7 +6,7 @@ import archivos.jflexyjcup.ast.Operaciones.binarias.OperacionBinaria;
 
 public class Multiplicacion extends OperacionBinaria {
     public Multiplicacion(String nombre, Expresion izquierda, Expresion derecha) {
-        super("*", izquierda, derecha);
+        super(nombre, izquierda, derecha);
     }
 
     public Multiplicacion(String nombre, Tipo tipo, Expresion izquierda, Expresion derecha) {
@@ -22,7 +22,7 @@ public class Multiplicacion extends OperacionBinaria {
     }
 
     public Multiplicacion(Expresion izquierda, Expresion derecha, Tipo tipo) {
-        super( "*",Tipo.Unknown, izquierda, derecha);
+        super(tipo, izquierda, derecha);
     }
 
     @Override

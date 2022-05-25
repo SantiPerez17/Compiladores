@@ -25,7 +25,7 @@ public class Cola extends Expresion {
     }
 
     public Cola(String nombre, Tipo tipo, List<Sentencia> lista_sentencias) {
-        super(nombre, Tipo.Int);
+        super(nombre, tipo);
         this.lista_sentencias = lista_sentencias;
     }
 

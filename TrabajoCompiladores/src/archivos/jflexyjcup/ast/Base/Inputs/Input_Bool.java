@@ -1,4 +1,4 @@
-package archivos.jflexyjcup.ast.Sentencias.Inputs;
+package archivos.jflexyjcup.ast.Base.Inputs;
 
 import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Tipo;

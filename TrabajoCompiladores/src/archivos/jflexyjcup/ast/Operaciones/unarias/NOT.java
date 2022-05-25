@@ -9,19 +9,19 @@ public class NOT extends OperacionUnaria{
     }
 
     public NOT(String nombre, Expresion expresion) {
-        super("NOT",expresion);
+        super(nombre,expresion);
     }
 
     public NOT(String nombre, Expresion expresion, Tipo tipo) {
-        super("NOT", expresion, expresion.getTipo());
+        super(nombre, expresion, Tipo.Bool);
     }
-    @Override
+    /*@Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));
         resultado.append(this.getExpresion().graficar(this.getId()));
         return resultado.toString();
-    }
+    }*/
 
     @Override
     public String generarCodigo() {

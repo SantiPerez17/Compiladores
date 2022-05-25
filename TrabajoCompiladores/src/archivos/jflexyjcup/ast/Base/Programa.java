@@ -5,11 +5,13 @@ package archivos.jflexyjcup.ast.Base;
 import archivos.jflexyjcup.ast.Sentencias.Sentencia;
 import com.google.common.collect.Multimap;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class Programa extends Nodo{
 
-    public Multimap<String, String[]> tablaSimbolos2;
+    public TreeMap<String, ArrayList<String>> tablaSimbolos2;
     private final List<Sentencia> sentencias;
 
     public String getId() {
@@ -25,12 +27,12 @@ public class Programa extends Nodo{
         this.sentencias = sentencias;
     }
 
-    public Programa(Multimap<String, String[]> tablaSimbolos2, List<Sentencia> sentencias) {
+    public Programa(TreeMap<String, ArrayList<String>> tablaSimbolos2, List<Sentencia> sentencias) {
         this.tablaSimbolos2 = tablaSimbolos2;
         this.sentencias = sentencias;
     }
 
-    public Programa(String nombre, Multimap<String, String[]> tablaSimbolos2, List<Sentencia> sentencias) {
+    public Programa(String nombre, TreeMap<String, ArrayList<String>> tablaSimbolos2, List<Sentencia> sentencias) {
         super(nombre);
         this.tablaSimbolos2 = tablaSimbolos2;
         this.sentencias = sentencias;

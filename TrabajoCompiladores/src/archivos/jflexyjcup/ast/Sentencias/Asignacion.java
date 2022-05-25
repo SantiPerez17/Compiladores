@@ -4,6 +4,7 @@ import archivos.jflexyjcup.ast.Base.Expresion;
 import archivos.jflexyjcup.ast.Base.Identificador;
 
 public class Asignacion extends Sentencia{
+    private static int cont = 1;
 
     private final Identificador identificador;
     private final Expresion expresion;
@@ -35,7 +36,8 @@ public class Asignacion extends Sentencia{
             grafico.append(expresion.graficar("nodo_programa"));
             grafico.append(super.graficar("nodo_programa"));
             grafico.append(identificador.graficar(this.getId()));
-            Identificador identificador1 = new Identificador("acum",expresion.getTipo());
+            Identificador identificador1 = new Identificador("_acum"+cont,expresion.getTipo());
+            cont++;
             grafico.append(identificador1.graficar(this.getId()));
         } else {
             grafico.append(super.graficar(idPadre));

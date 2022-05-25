@@ -1,33 +1,52 @@
 graph G {nodo_programa[label="Programa"]
-nodo_148001436[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_148001436
-nodo_1786285017[label="Cadena de Caracteres  
- Valor: hola 
-CTE_STRING"]
-nodo_148001436--nodo_1786285017
-nodo_335696039[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_335696039
-nodo_864354359[label="Cadena de Caracteres  
- Valor: chau 
-CTE_STRING"]
-nodo_335696039--nodo_864354359
-nodo_496582665[label="DisplayCadenaCaracteres"]
-nodo_programa--nodo_496582665
-nodo_163767072[label="Cadena de Caracteres  
- Valor: prueba 
-CTE_STRING"]
-nodo_496582665--nodo_163767072
-nodo_880899254[label="DisplayExpresion"]
-nodo_programa--nodo_880899254
-nodo_1674570190[label=" Op_Binaria - [ + ] - 
- Tipo: Unknown"]
-nodo_880899254--nodo_1674570190
-nodo_2140336484[label="Factor_Int  
+nodo_672469113[label=":="]
+nodo_programa--nodo_672469113
+nodo_840726430[label=" ID - [ f ] - 
+ Tipo: Float"]
+nodo_672469113--nodo_840726430
+nodo_47138098[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_672469113--nodo_47138098
+nodo_654562294[label=" Op_Binaria - [ - ] - 
+ Tipo: Int"]
+nodo_47138098--nodo_654562294
+nodo_1430676718[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_654562294--nodo_1430676718
+nodo_524192918[label="Factor_Int  
  Valor: 1 
 Int"]
-nodo_1674570190--nodo_2140336484
-nodo_1708006072[label="Factor_Int  
- Valor: 2 
+nodo_1430676718--nodo_524192918
+nodo_1250054714[label=" Op_Unaria - [ FLOAT a INT ] - 
+ Tipo: Int"]
+nodo_1430676718--nodo_1250054714
+nodo_757500261[label="Factor_Float  
+ Valor: 23.3 
+Float"]
+nodo_1250054714--nodo_757500261
+nodo_696324478[label="Factor_Int  
+ Valor: 33 
 Int"]
-nodo_1674570190--nodo_1708006072
+nodo_654562294--nodo_696324478
+nodo_414702955[label=" Op_Binaria - [ / ] - 
+ Tipo: Int"]
+nodo_47138098--nodo_414702955
+nodo_103300233[label="Factor_Int  
+ Valor: 5 
+Int"]
+nodo_414702955--nodo_103300233
+nodo_1597795953[label=" Op_Binaria - [ * ] - 
+ Tipo: Int"]
+nodo_414702955--nodo_1597795953
+nodo_1242826187[label=" Op_Unaria - [ FLOAT a INT ] - 
+ Tipo: Int"]
+nodo_1597795953--nodo_1242826187
+nodo_1613711798[label="Factor_Float  
+ Valor: 3.3 
+Float"]
+nodo_1242826187--nodo_1613711798
+nodo_1721343287[label="Factor_Int  
+ Valor: 43 
+Int"]
+nodo_1597795953--nodo_1721343287
 }

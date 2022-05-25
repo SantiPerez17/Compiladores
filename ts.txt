@@ -1,18 +1,13 @@
 TABLA DE SIMBOLOS 
               NOMBRE               TOKEN                TIPO               VALOR                LONG
 
-                   m                  ID               Float                   _                   _
-                 res                  ID                 Int                   _                   _
+                   f                  ID               Float                   _                   _
+                 res                  ID               Float                   _                   _
                    a                  ID                 Int                   _                   _
                    b                  ID                 Int                   _                   _
                    c                  ID                 Int                   _                   _
                    d                  ID                 Int                   _                   _
-                   t                  ID               Float                   _                   _
-                   r                  ID               Float                   _                   _
-                   z                  ID               Float                   _                   _
-                   f                  ID               Float                   _                   _
                   xd                  ID                Bool                   _                   _
-                   _      STRING_LITERAL          CTE_STRING        Testeo de TS                  12
-                   _      STRING_LITERAL          CTE_STRING                chau                   4
-                   _      STRING_LITERAL          CTE_STRING              prueba                   6
+                ahre                  ID                Bool                   _                   _
+                   _      STRING_LITERAL          CTE_STRINGhola esto es una prueba                  23
 
