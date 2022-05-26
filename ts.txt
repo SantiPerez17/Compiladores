@@ -8,6 +8,8 @@ TABLA DE SIMBOLOS
                    b                  ID                 Int                   _                   _
                    c                  ID                 Int                   _                   _
                    d                  ID                 Int                   _                   _
+                   t                  ID                 Int                   _                   _
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
+                   r                  ID                Bool                   _                   _
 

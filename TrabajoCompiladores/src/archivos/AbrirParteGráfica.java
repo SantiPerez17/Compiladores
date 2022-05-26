@@ -183,7 +183,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             frame4.add(jsp4, BorderLayout.CENTER);
             frame4.setVisible( true );
             try {
-                GenerarLLVM(txp.getText());
+                GenerarLLVM();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
             } catch (Exception ex) {
@@ -318,7 +318,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
     }
 
-    public void GenerarLLVM(String contenido) throws IOException,Exception {
+    public void GenerarLLVM() throws IOException,Exception {
         MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
         final Programa programa = (Programa) parser.parse().value;
@@ -348,12 +348,13 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             BufferedReader reader2 = new BufferedReader(new InputStreamReader(process2.getInputStream()));
             String line2;
             while ((line2 = reader2.readLine()) != null) {
-                txp5.setText(line2);
                 System.out.println(line2);
             }
-
             System.out.println("Ejecutable generado");
 
+            String path = llvm.getAbsolutePath();
+            String contenido = getArchivo(path);
+            txp5.setText(contenido);
 
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
@@ -383,7 +384,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     JTextPane txp4;
     JTextPane txp5;
     JFileChooser abrirArchivo;
-    File archivo = new File("pruebas.txt"); //cambiar por pruebas.txt para pruebas en la gui
+    File archivo = new File("pruebas.txt");
+    File llvm = new File("programa.ll");
+    //cambiar por pruebas.txt para pruebas en la gui
     //hay que copiar el path del archivo pruebas.txt para que pueda trabajar el lexer-parser.
 
 }

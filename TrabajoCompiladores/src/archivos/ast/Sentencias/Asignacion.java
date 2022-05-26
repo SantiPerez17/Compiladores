@@ -1,13 +1,25 @@
 package archivos.ast.Sentencias;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Identificador;
+import archivos.ast.Base.Tipo;
 
 public class Asignacion extends Sentencia{
     private static int cont = 1;
 
     private final Identificador identificador;
     private final Expresion expresion;
+
+    private String ir_ref;
+
+    public String getIr_ref() {
+        return ir_ref;
+    }
+
+    public void setIr_ref(String ir_ref) {
+        this.ir_ref = ir_ref;
+    }
 
     public Asignacion(Identificador identificador, Expresion expresion) {
         this.identificador = identificador;
@@ -50,8 +62,27 @@ public class Asignacion extends Sentencia{
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(this.identificador.generarCodigo());
+        resultado.append(this.expresion.generarCodigo());
+
+        //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
+        //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
+
+        if (expresion.getTipo().equals(Tipo.Int)){
+            resultado.append(String.format("%1$s = load i32, i32* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i32 %1$s, i32* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+        } else if (expresion.getTipo().equals(Tipo.Float)){
+            resultado.append(String.format("%1$s = load double, double* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store double %1$s, double* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+        } else if (expresion.getTipo().equals(Tipo.Bool)){
+            resultado.append(String.format("%1$s = load i1, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i1 %1$s, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+        } else {
+            resultado.append(String.format("%1$s = load i1, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i1 %1$s, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+        }
+
         return resultado.toString();
     }
 }

@@ -4,7 +4,9 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-if (a==b) then
+a:=30+50
+xd:=true
+(*if (a==b) then
     a:=0
     end
 while (a+b != c) do
@@ -14,7 +16,7 @@ display("gola")
 display(1+2)
 a:=-(145+23/(5*3))
 f:=-(145+23/(5.3*3))
-   (*a:=3+4+32+2+3+2/(2312*3)
+   a:=3+4+32+2+3+2/(2312*3)
     f:=1.4+2/123.4+(3*4+2/3)
     f:=-2
     res:=cola(2;[a,20+b,1+c*3,2+5/2])
