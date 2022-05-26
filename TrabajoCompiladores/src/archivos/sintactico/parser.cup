@@ -18,7 +18,7 @@ import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
-import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.FlotanteAEntero;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Nodo;
 import archivos.ast.Base.Programa;
@@ -90,10 +90,10 @@ parser code
                   return t1;
               }
               if (t1==Tipo.Float && t2==Tipo.Int) {
-                  return t2;
+                  return t1;
               }
               if (t1==Tipo.Int && t2==Tipo.Float) {
-                  return t1;
+                  return t2;
               }
               throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", t1, t2 ));
           }
@@ -102,15 +102,15 @@ parser code
               if(tipo_origen == tipo_destino){
                   return expresion;
               }
-              if(tipo_origen == Tipo.Float && tipo_destino == Tipo.Int){
-                  return new FlotanteAEntero(expresion);
+              if(tipo_origen == Tipo.Int && tipo_destino == Tipo.Float){
+                  return new EnteroAFlotante(expresion);
               }
               throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", tipo_origen, tipo_destino ));
           }
 
     private static void tipo_bool(Tipo tipo) throws Exception{
         if (tipo == Tipo.Bool){
-            throw new Exception("No se permiten en operaciones arismeticas tipos booleanos.");
+            throw new Exception("No se permiten tipos booleanos en operaciones arismeticas.");
         }
     }
 :};
@@ -319,17 +319,15 @@ sentencia_asignacion ::=
         else {
             ArrayList<String> a = tablaSimbolos2.get(id);
             if (Objects.equals(a.get(1), "Int")){
-                Tipo tipo_comun = tipo_en_comun(Tipo.Int,eo.getTipo());
-                Expresion exp = convertir_a_tipo(eo, tipo_comun);
-                if (exp.getTipo() == Tipo.Float){
-                    throw new Exception("No se admiten Asignaciones con un Identificador Tipo INT a una Expresion Tipo FLOAT");
+                if (eo.getTipo() == Tipo.Float){
+                    throw new Exception("No se admiten Asignaciones con un Identificador Tipo INT y una Expresion Tipo FLOAT");
                 }
-                else{
-                    RESULT = new Asignacion(new Identificador(id, tipo_comun),exp);}}
+            else{
+                Expresion exp = convertir_a_tipo(eo, Tipo.Int);
+                RESULT = new Asignacion(new Identificador(id, Tipo.Int),exp);}}
             if (Objects.equals(a.get(1), "Float")){
-                Tipo tipo_comun = tipo_en_comun(Tipo.Float,eo.getTipo());
-                Expresion exp = convertir_a_tipo(eo, tipo_comun);
-                RESULT = new Asignacion(new Identificador(id, Tipo.Float),exp);;}
+                Expresion exp = convertir_a_tipo(eo, Tipo.Float);
+                RESULT = new Asignacion(new Identificador(id, Tipo.Float),exp);}
             if (Objects.equals(a.get(1), "Bool")){
                 Tipo tipo_comun = tipo_en_comun(Tipo.Bool,eo.getTipo());
                 Expresion exp = convertir_a_tipo(eo, tipo_comun);

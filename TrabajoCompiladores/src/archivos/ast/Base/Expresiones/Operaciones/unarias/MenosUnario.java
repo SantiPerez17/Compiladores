@@ -16,13 +16,13 @@ public class MenosUnario extends OperacionUnaria{
         super(nombre, expresion);
     }
 
-    @Override
+    /*@Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));
         resultado.append(this.getExpresion().graficar(this.getId()));
         return resultado.toString();
-    }
+    }*/
 
     @Override
     public String generarCodigo() {

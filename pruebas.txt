@@ -4,7 +4,10 @@ declare.section
     bool : xd, ahre;
 enddeclare.section
 program.section
-    res:=cola(d;[a,20+b,c])
+    a:=3+4+32+2+3+2/(2312*3)
+    f:=1.4+2/123.4+(3*4+2/3)
+    f:=-2
+    xd:=not true and false
    (* f:=(1+23.3-33)+5/(3.3*43)
     display(a+33)
     display("hola esto es una pruebaasdwwww")

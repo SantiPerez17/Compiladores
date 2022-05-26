@@ -3,19 +3,19 @@ package archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Tipo;
 
-public class FlotanteAEntero extends OperacionConversion{
+public class EnteroAFlotante extends OperacionConversion{
 
-    public FlotanteAEntero(Expresion expresion) {
-        super("FLOAT a INT", expresion, Tipo.Int);
+    public EnteroAFlotante(Expresion expresion) {
+        super("INT a FLOAT", expresion, Tipo.Float);
     }
 
-    public FlotanteAEntero(String nombre, Expresion expresion) {
-        super("FLOAT a INT", expresion);
+    public EnteroAFlotante(String nombre, Expresion expresion) {
+        super("INT a FLOAT", expresion);
     }
 
     @Override
     public void setTipo(Tipo tipo) {
-        getExpresion().setTipo(Tipo.Int);
+        getExpresion().setTipo(Tipo.Float);
     }
 
     @Override
