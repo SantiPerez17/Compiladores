@@ -30,6 +30,11 @@ public class While extends Sentencia {
         Sentencias = sentencias;
     }
 
+    @Override
+    public String getEtiqueta() {
+        return String.format("Sentencia%n - [ While ] -");
+    }
+
     public While(String nombre, Expresion condicion, List<Sentencia> sentencias) {
         super(nombre);
         this.condicion = condicion;

@@ -9,6 +9,8 @@ public class Display extends Sentencia {
         super(nombre);
     }
 
+
+
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();

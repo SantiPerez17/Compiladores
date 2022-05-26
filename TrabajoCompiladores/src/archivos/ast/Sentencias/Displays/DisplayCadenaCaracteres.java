@@ -15,6 +15,11 @@ public class DisplayCadenaCaracteres extends Display {
     }
 
     @Override
+    public String getEtiqueta() {
+        return String.format("Sentencia%n - [ Display Cad. Caracteres ] -");
+    }
+
+    @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
         grafico.append(super.graficar(idPadre));

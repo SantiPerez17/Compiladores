@@ -26,7 +26,7 @@ public class Asignacion extends Sentencia{
 
     @Override
     public String getEtiqueta() {
-        return String.format("%s", this.getNombreOperacion());
+        return String.format("Sentencia - [ Asignacion ] -%n %s", this.getNombreOperacion());
     }
 
     @Override

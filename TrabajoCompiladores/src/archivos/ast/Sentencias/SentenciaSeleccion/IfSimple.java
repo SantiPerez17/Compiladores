@@ -35,6 +35,10 @@ public class IfSimple extends Sentencia {
         this.condicion = condicion;
         Sentencias = sentencias;
     }
+    @Override
+    public String getEtiqueta() {
+        return String.format("Sentencia%n - [ If Simple ] -");
+    }
 
     @Override
     public String graficar(String idPadre) {

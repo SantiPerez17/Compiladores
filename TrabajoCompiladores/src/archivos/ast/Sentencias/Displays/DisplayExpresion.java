@@ -16,6 +16,11 @@ public class DisplayExpresion extends Display {
     }
 
     @Override
+    public String getEtiqueta() {
+        return String.format("Sentencia%n - [ Display Expresion ] -");
+    }
+
+    @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));

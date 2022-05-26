@@ -48,6 +48,11 @@ public class IfElse extends Sentencia {
     }
 
     @Override
+    public String getEtiqueta() {
+        return String.format("Sentencia%n - [ If Else ] -");
+    }
+
+    @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));
