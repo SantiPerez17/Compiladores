@@ -53,9 +53,32 @@ public abstract class OperacionBinaria extends Expresion {
     @Override
     public String generarCodigo(){
         StringBuilder resultado = new StringBuilder();
-        resultado.append(this.getIzquierda().generarCodigo());
-        resultado.append(this.getDerecha().generarCodigo());
+        this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
+        this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
+        //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
+
+        if (this.getIzquierda().getTipo().equals(Tipo.Int)){
+            resultado.append(String.format("%1$s = load i32, i32* @2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+        } else if (this.getIzquierda().getTipo().equals(Tipo.Float)){
+            resultado.append(String.format("%1$s = load double, double* @2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+        } else if (this.getIzquierda().getTipo().equals(Tipo.Bool)){
+            resultado.append(String.format("%1$s = load i1, i1* @2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+        } else {
+            resultado.append(String.format("%1$s = load i1, i1* @2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+        }
+
+        if (this.getDerecha().getTipo().equals(Tipo.Int)){
+            resultado.append(String.format("%1$s = load i32, i32* @2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+        } else if (this.getDerecha().getTipo().equals(Tipo.Float)){
+            resultado.append(String.format("%1$s = load double, double* @2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+        } else if (this.getDerecha().getTipo().equals(Tipo.Bool)){
+            resultado.append(String.format("%1$s = load i1, i1* @2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+        } else {
+            resultado.append(String.format("%1$s = load i1, i1* @2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+        }
+
         resultado.append(String.format("%1$s = %2$s i32 %3$s, %4$s\n", this.getIr_ref(),
                 this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
                 this.getDerecha().getIr_ref()));

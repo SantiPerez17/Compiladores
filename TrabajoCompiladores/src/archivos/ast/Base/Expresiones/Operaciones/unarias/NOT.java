@@ -15,6 +15,16 @@ public class NOT extends OperacionUnaria{
     public NOT(String nombre, Expresion expresion, Tipo tipo) {
         super(nombre, expresion, Tipo.Bool);
     }
+
+    @Override
+    protected String getNombreOperacion() {
+        return null;
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        return null;
+    }
     /*@Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();

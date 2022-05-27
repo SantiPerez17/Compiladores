@@ -65,24 +65,18 @@ public class Asignacion extends Sentencia{
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(this.identificador.generarCodigo());
         resultado.append(this.expresion.generarCodigo());
-
         //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
         //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
 
         if (expresion.getTipo().equals(Tipo.Int)){
-            resultado.append(String.format("%1$s = load i32, i32* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
-            resultado.append(String.format("store i32 %1$s, i32* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         } else if (expresion.getTipo().equals(Tipo.Float)){
-            resultado.append(String.format("%1$s = load double, double* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
-            resultado.append(String.format("store double %1$s, double* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         } else if (expresion.getTipo().equals(Tipo.Bool)){
-            resultado.append(String.format("%1$s = load i1, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
-            resultado.append(String.format("store i1 %1$s, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         } else {
-            resultado.append(String.format("%1$s = load i1, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
-            resultado.append(String.format("store i1 %1$s, i1* %2$s\n", identificador.getIr_ref(), expresion.getIr_ref()));
+            resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         }
-
         return resultado.toString();
     }
 }

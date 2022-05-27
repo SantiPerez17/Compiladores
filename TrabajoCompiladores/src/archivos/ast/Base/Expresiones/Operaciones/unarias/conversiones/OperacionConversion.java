@@ -1,7 +1,8 @@
 package archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones;
 
-import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Tipo;
 
 public abstract class OperacionConversion extends OperacionUnaria {
@@ -21,8 +22,10 @@ public abstract class OperacionConversion extends OperacionUnaria {
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        //%vdestino = sitofp i32 %vorigen to float
+
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(String.format("%1$s = sitofp i32 %2$s to float\n", this.getIr_ref(), this.getExpresion().getIr_ref()));
         return resultado.toString();
     }
 }

@@ -14,6 +14,16 @@ public class EnteroAFlotante extends OperacionConversion{
     }
 
     @Override
+    protected String getNombreOperacion() {
+        return "INT a FLOAT";
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        return "sitofp";
+    }
+
+    @Override
     public void setTipo(Tipo tipo) {
         getExpresion().setTipo(Tipo.Float);
     }

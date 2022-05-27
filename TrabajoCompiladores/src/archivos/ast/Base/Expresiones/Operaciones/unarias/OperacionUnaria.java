@@ -1,5 +1,6 @@
 package archivos.ast.Base.Expresiones.Operaciones.unarias;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Tipo;
 
@@ -25,6 +26,10 @@ public abstract class  OperacionUnaria extends Expresion{
         return expresion;
     }
 
+    protected abstract String getNombreOperacion();
+
+    public abstract String get_llvm_op_code(Tipo tipo);
+
     public void setExpresion(Expresion expresion) {
         this.expresion = expresion;
     }
@@ -45,8 +50,10 @@ public abstract class  OperacionUnaria extends Expresion{
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        resultado.append(this.expresion.generarCodigo());
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(String.format("%1$s = %2$s i32 %3$s, %4$s\n", this.getIr_ref(),
+                this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
         return resultado.toString();
     }
 }

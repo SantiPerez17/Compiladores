@@ -12,6 +12,16 @@ public class MenosUnario extends OperacionUnaria{
         super(nombre, expresion, expresion.getTipo());
     }
 
+    @Override
+    protected String getNombreOperacion() {
+        return null;
+    }
+
+    @Override
+    public String get_llvm_op_code(Tipo tipo) {
+        return null;
+    }
+
     public MenosUnario(String nombre, Expresion expresion) {
         super(nombre, expresion);
     }
