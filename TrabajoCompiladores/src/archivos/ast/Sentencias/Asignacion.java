@@ -63,7 +63,7 @@ public class Asignacion extends Sentencia{
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(this.identificador.generarCodigo());
+        //resultado.append(this.identificador.generarCodigo());
         resultado.append(this.expresion.generarCodigo());
         //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
         //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3

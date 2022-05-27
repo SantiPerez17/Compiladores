@@ -1,37 +1,37 @@
 graph G {nodo_programa[label="Programa"]
-nodo_26421145[label="Sentencia - [ Asignacion ] -
+nodo_1081524910[label="Sentencia - [ Asignacion ] -
  :="]
-nodo_programa--nodo_26421145
-nodo_1951032265[label=" ID - [ a ] - 
+nodo_programa--nodo_1081524910
+nodo_166321181[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_26421145--nodo_1951032265
-nodo_2110852013[label="Factor_Int  
+nodo_1081524910--nodo_166321181
+nodo_605227633[label="Factor_Int  
  Valor: 30 
 Int"]
-nodo_26421145--nodo_2110852013
-nodo_311350193[label="Sentencia - [ Asignacion ] -
+nodo_1081524910--nodo_605227633
+nodo_1777485983[label="Sentencia - [ Asignacion ] -
  :="]
-nodo_programa--nodo_311350193
-nodo_1583841106[label=" ID - [ b ] - 
+nodo_programa--nodo_1777485983
+nodo_980908631[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_311350193--nodo_1583841106
-nodo_367483838[label="Factor_Int  
+nodo_1777485983--nodo_980908631
+nodo_1897297675[label="Factor_Int  
  Valor: 50 
 Int"]
-nodo_311350193--nodo_367483838
-nodo_1342870732[label="Sentencia - [ Asignacion ] -
+nodo_1777485983--nodo_1897297675
+nodo_1059540439[label="Sentencia - [ Asignacion ] -
  :="]
-nodo_programa--nodo_1342870732
-nodo_848463399[label=" ID - [ res ] - 
+nodo_programa--nodo_1059540439
+nodo_1776336855[label=" ID - [ res ] - 
  Tipo: Int"]
-nodo_1342870732--nodo_848463399
-nodo_1099142436[label=" Op_Binaria - [ + ] - 
+nodo_1059540439--nodo_1776336855
+nodo_1377751868[label=" Op_Binaria - [ + ] - 
  Tipo: Int"]
-nodo_1342870732--nodo_1099142436
-nodo_675765588[label=" ID - [ a ] - 
+nodo_1059540439--nodo_1377751868
+nodo_859768763[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1099142436--nodo_675765588
-nodo_122870089[label=" ID - [ b ] - 
+nodo_1377751868--nodo_859768763
+nodo_1901302008[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_1099142436--nodo_122870089
+nodo_1377751868--nodo_1901302008
 }

@@ -1,6 +1,5 @@
 package archivos.ast.Base;
 
-import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 
 public class Identificador extends Expresion {
@@ -37,16 +36,16 @@ public class Identificador extends Expresion {
         //Int,
         //Float,
         //CTE_STRING
-        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        if (this.getTipo().equals(Tipo.Int)){
-            resultado.append(String.format("@%1$s = global i32 0\n", this.getNombre()));
-        } else if (this.getTipo().equals(Tipo.Float)){
-            resultado.append(String.format("@%1$s = global double 0.0\n", this.getNombre()));
-        } else if (this.getTipo().equals(Tipo.Bool)){
-            resultado.append(String.format("@%1$s = global i1 true\n", this.getNombre()));
-        } else {
-            resultado.append(String.format("@%1$s = global i1 0\n", this.getNombre()));
-        }
+        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //if (this.getTipo().equals(Tipo.Int)){
+        //    resultado.append(String.format("@%1$s = global i32 0\n", this.getNombre()));
+        //} else if (this.getTipo().equals(Tipo.Float)){
+        //    resultado.append(String.format("@%1$s = global double 0.0\n", this.getNombre()));
+        //} else if (this.getTipo().equals(Tipo.Bool)){
+        //    resultado.append(String.format("@%1$s = global i1 true\n", this.getNombre()));
+        //} else {
+        //    resultado.append(String.format("@%1$s = global i1 0\n", this.getNombre()));
+        //}
         return resultado.toString();
     }
 

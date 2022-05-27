@@ -4,9 +4,7 @@ package archivos.ast.Base;
 
 import archivos.ast.Sentencias.Sentencia;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Programa extends Nodo{
 
@@ -53,29 +51,43 @@ public class Programa extends Nodo{
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";Programa: Prueba\n");
-        resultado.append("source_filename = \"Prueba.txt\"\n");
+        resultado.append(";Programa: 'Prueba'\n");
+        resultado.append("source_filename = \"pruebas.txt\"\n");
         resultado.append("target datalayout = \"e-m:w-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128\"\n");
-        resultado.append("target triple = \"x86_64-pc-windows-msvc19.16.27038\"\n\n");
+        resultado.append("target triple = \"x86_64-pc-windows-msvc19.11.0\"\n\n");
+        resultado.append("declare i32 @puts(i8*)\n");
         resultado.append("declare i32 @printf(i8*, ...)\n");
-        resultado.append("\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
-        resultado.append("\n");
-        resultado.append("define i32 @main(i32, i8**) {\n\t");
+        resultado.append("@.float = private constant [4 x i8] c\"%f\\0A\\00\"\n\n");
 
         StringBuilder resultado_programa = new StringBuilder();
 
+        for (String s : tablaSimbolos2.keySet()){
+            String nombre = s;
+            String tipo = tablaSimbolos2.get(s).get(1);
+            String tipoll;
+            if (tipo == "Int"){
+                tipoll = "i32";
+                resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
+            } else if (tipo == "Float") {
+                tipoll = "double";
+                resultado.append("@" + nombre + " = global " + tipoll + " 0.0\n");
+            } else {
+                tipoll = "i1";
+                resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
+            }
+
+        }
+        resultado.append("\n");
+
+        resultado.append("define i32 @main(i32, i8**) {\n\t");
         for (Sentencia s: getSentencias()) {
             resultado_programa.append(s.generarCodigo());
         }
 
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));
-
         //resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", CodeGeneratorHelper.getNewPointer(), this.getExpresion().getIr_ref()));
-
-        resultado.append("\tret i32 0\n");
-        resultado.append("}\n\n");
-
+        resultado.append("\n\tret i32 0\n}\n");
 
         return resultado.toString();
     }
