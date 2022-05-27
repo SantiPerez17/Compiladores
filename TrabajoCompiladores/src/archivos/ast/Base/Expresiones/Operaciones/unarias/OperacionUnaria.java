@@ -26,6 +26,7 @@ public abstract class  OperacionUnaria extends Expresion{
         return expresion;
     }
 
+
     protected abstract String getNombreOperacion();
 
     public abstract String get_llvm_op_code(Tipo tipo);
@@ -50,10 +51,12 @@ public abstract class  OperacionUnaria extends Expresion{
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(this.expresion.generarCodigo());
+        resultado.append(";OperacionUnaria:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(String.format("%1$s = %2$s i32 %3$s, %4$s\n", this.getIr_ref(),
-                this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+        this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
         return resultado.toString();
     }
+
+
 }

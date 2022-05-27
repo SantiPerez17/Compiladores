@@ -4,10 +4,10 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-a:=30
-b:=50
-res:=a+b
-
+    a:=5
+    f:=3.4
+    xd:=true
+    res:=a+7
 (*if (a==b) then
     a:=0
     end

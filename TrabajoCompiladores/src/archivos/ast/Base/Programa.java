@@ -72,9 +72,12 @@ public class Programa extends Nodo{
             } else if (tipo == "Float") {
                 tipoll = "double";
                 resultado.append("@" + nombre + " = global " + tipoll + " 0.0\n");
-            } else {
+            } else if (tipo == "Bool"){
                 tipoll = "i1";
                 resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
+            } else {
+                tipoll = "private constant [8 x i8]";
+                resultado.append("@" + nombre + " = global " + tipoll + " c\"\0A\00\"\n");
             }
 
         }

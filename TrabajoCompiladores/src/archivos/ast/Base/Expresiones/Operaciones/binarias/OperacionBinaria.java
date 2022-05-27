@@ -37,6 +37,21 @@ public abstract class OperacionBinaria extends Expresion {
         return " Op_Binaria - [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.getTipo();
     }
 
+    public Expresion getDerecha() {
+        return this.derecha;
+    }
+
+    public Expresion getIzquierda() {
+        return this.izquierda;
+    }
+
+    public void setIzquierda(Expresion izquierda) {
+        this.izquierda=izquierda;
+    }
+    public void setDerecha(Expresion derecha) {
+        this.derecha=derecha;
+    }
+
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
@@ -53,6 +68,8 @@ public abstract class OperacionBinaria extends Expresion {
     @Override
     public String generarCodigo(){
         StringBuilder resultado = new StringBuilder();
+        resultado.append(";OperacionBinaria:\n");
+
         this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
@@ -79,24 +96,18 @@ public abstract class OperacionBinaria extends Expresion {
             resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
         }
 
-        resultado.append(String.format("%1$s = %2$s i32 %3$s, %4$s\n", this.getIr_ref(),
+        String tipoll;
+        if(this.getTipo().equals(Tipo.Int)){
+            tipoll = "i32";
+        } else if (this.getTipo().equals(Tipo.Float)){
+            tipoll = "double";
+        } else {
+            tipoll = "i1";
+        }
+
+        resultado.append(String.format("%1$s = %2$s " + tipoll + " %3$s, %4$s\n", this.getIr_ref(),
                 this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
                 this.getDerecha().getIr_ref()));
         return resultado.toString();
-    }
-
-    public Expresion getDerecha() {
-        return this.derecha;
-    }
-
-    public Expresion getIzquierda() {
-        return this.izquierda;
-    }
-
-    public void setIzquierda(Expresion izquierda) {
-        this.izquierda=izquierda;
-    }
-    public void setDerecha(Expresion derecha) {
-        this.derecha=derecha;
     }
 }

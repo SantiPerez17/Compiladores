@@ -21,14 +21,24 @@ declare i32 @printf(i8*, ...)
 @xd = global i1 0
 
 define i32 @main(i32, i8**) {
-	%ptro.2 = add i32 0, 30
-	store i32 %ptro.2, i32* @a
-	%ptro.4 = add i32 0, 50
-	store i32 %ptro.4, i32* @b
-	%ptro.6 = load i32, i32* @a
-	%ptro.7 = load i32, i32* @b
-	%ptro.8 = add i32 %ptro.6, %ptro.7
-	store i32 %ptro.8, i32* @res
+	;Asignacion:
+	;ConstanteEntera:
+	%aux10 = add i32 0, 5
+	store i32 %aux10, i32* @a
+	;Asignacion:
+	;ConstanteFloat:
+	%aux12 = add double 0.0, 3.4
+	store double %aux12, double* @f
+	;Asignacion:
+	;ConstanteBool:
+	%aux14 = add i1 0, 1
+	store i1 %aux14, i1* @xd
+	;Asignacion:
+	;OperacionBinaria:
+	%aux16 = load i32, i32* @a
+	%aux17 = load i32, i32* @Factor_Int
+	%aux18 = add i32 %aux16, %aux17
+	store i32 %aux18, i32* @res
 	
 	ret i32 0
 }

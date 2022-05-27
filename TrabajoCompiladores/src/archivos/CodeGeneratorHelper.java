@@ -8,7 +8,7 @@ public class CodeGeneratorHelper {
     public static String getNewPointer(){
         StringBuilder ret = new StringBuilder();
         nextID+=1;
-        ret.append(String.format("%%ptro.%s", nextID));
+        ret.append(String.format("%%aux%s", nextID));
         return ret.toString();
     }
 

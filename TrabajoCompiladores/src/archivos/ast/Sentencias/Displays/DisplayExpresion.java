@@ -31,6 +31,7 @@ public class DisplayExpresion extends Display {
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(";DisplayExpresion:\n");
         //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();

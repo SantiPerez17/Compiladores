@@ -7,6 +7,7 @@ import archivos.ast.Base.Tipo;
 
 public abstract class OperacionConversion extends OperacionUnaria {
 
+
     public OperacionConversion(Expresion expresion, Tipo tipo) {
         super(expresion, tipo);
     }
@@ -22,6 +23,7 @@ public abstract class OperacionConversion extends OperacionUnaria {
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(";OperacionConversion:\n");
         //%vdestino = sitofp i32 %vorigen to float
 
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
