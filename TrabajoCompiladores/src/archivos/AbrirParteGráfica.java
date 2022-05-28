@@ -356,6 +356,11 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             String contenido = getArchivo(path);
             txp5.setText(contenido);
 
+            PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
+            writer.println("TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG"));
+            writer.println(parser.simbolos.toString());
+            Desktop.getDesktop().open(new File("ts.txt"));
+            writer.close();
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
             UIManager.put("OptionPane.messagebackground", Color.GRAY);

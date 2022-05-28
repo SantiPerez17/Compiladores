@@ -3,8 +3,8 @@ declare.section
     int : res,res2,a,b,c,d,t;
     bool : xd, ahre,r;
 enddeclare.section
-program.section
-    display("gola")
+program.section  
+    display(a+b)
 (*if (a==b) then
     a:=0
     end

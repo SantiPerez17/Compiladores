@@ -1,6 +1,8 @@
 package archivos.ast.Sentencias.Displays;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Tipo;
 
 public class DisplayExpresion extends Display {
 
@@ -31,9 +33,14 @@ public class DisplayExpresion extends Display {
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(";DisplayExpresion:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        resultado.append(this.expresion.generarCodigo());
+        if (this.expresion.getTipo().equals(Tipo.Int)){
+            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+        } else if(this.expresion.getTipo().equals(Tipo.Float)){
+            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.float, i32 0, i32 0), float %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+        }
         return resultado.toString();
     }
 }

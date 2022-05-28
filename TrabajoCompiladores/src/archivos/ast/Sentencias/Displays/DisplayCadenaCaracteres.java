@@ -11,7 +11,7 @@ public class DisplayCadenaCaracteres extends Display {
     }
 
     public DisplayCadenaCaracteres(String nombre, ConstanteString cadenaCaracteres) {
-        super("Cadena de Caracteres");
+        super(nombre);
         this.CadenaCaracteres = cadenaCaracteres;
     }
 
@@ -35,9 +35,8 @@ public class DisplayCadenaCaracteres extends Display {
         resultado.append(";DisplayCadenaCaracteres:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String cadena = (String) this.CadenaCaracteres.getValor();
-        String nombreCadena = cadena.replaceAll(" ","_");
         int caracteres = cadena.length() + 3;
-        resultado.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres + " x i8], [" + caracteres + " x i8] * @str%2$s, i32 0, i32 0))\n", this.getIr_ref(), nombreCadena));
+        resultado.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres + " x i8], [" + caracteres + " x i8] * @%2$s, i32 0, i32 0))\n", this.getIr_ref(), this.CadenaCaracteres.getNombre()));
         return resultado.toString();
     }
 }

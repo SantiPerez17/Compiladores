@@ -4,7 +4,9 @@ package archivos.ast.Base;
 
 import archivos.ast.Sentencias.Sentencia;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
 public class Programa extends Nodo{
 
@@ -76,13 +78,11 @@ public class Programa extends Nodo{
                 tipoll = "i1";
                 resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
             } else {
-                String nombreCadena = tablaSimbolos2.get(s).get(2).replaceAll(" ","_");
                 String cadena = tablaSimbolos2.get(s).get(2);
                 int caracteres = cadena.length() + 3;
                 tipoll = "private constant [" + caracteres + " x i8]";
-                resultado.append("@str" + nombreCadena + " = " + tipoll + " c\"\\0A" + cadena + "\\0A\\00\"\n");
+                resultado.append("@" + nombre + " = " + tipoll + " c\"\\0A" + cadena + "\\0A\\00\"\n");
             }
-
         }
         resultado.append("\n");
 

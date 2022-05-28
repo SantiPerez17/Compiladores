@@ -116,7 +116,7 @@ parser code
 :};
 
 terminal SUMA,RESTA,MULT,DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
-COMA, DOSPUNTOS, DISPLAY, WHILE, DO, INPUT_INT, INPUT_FLOAT,INPUT_BOOL, IF, THEN, ELSE, END, AND, OR, NOT, MAYOR,MENOR,IGUAL,DISTINTO,MAYOR_IGUAL,MENOR_IGUAL, COLA, ERROR,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
+COMA, DOSPUNTOS, DISPLAY, WHILE, DO, INPUT_INT, INPUT_FLOAT,INPUT_BOOL, IF, THEN, ELSE, END, AND, OR, NOT, MAYOR,MENOR,IGUAL,DISTINTO,MAYOR_IGUAL,MENOR_IGUAL, COLA,TIPO_INT, TIPO_FLOAT, TIPO_BOOL;
 terminal String STRING_LITERAL,BOOL, INT, FLOAT, IDENTIFIER,DECLARE_SECTION, ENDDECLARE_SECTION, PROGRAM_SECTION, ENDPROGRAM_SECTION;
 
 nonterminal Nodo program;
@@ -296,9 +296,10 @@ sentencia_display ::=
             //tablaSimbolos2.put(sl,Tipo.CTE_STRING.name());
             ArrayList<String> hg = new ArrayList<String>(
                 Arrays.asList("STRING_LITERAL",Tipo.CTE_STRING.name(),sl,String.valueOf(sl.length())));
-            tablaSimbolos2.put(" ",hg);
-            simbolos.append(String.format("%20s%20s%20s%20s%20s%n","_", hg.get(0), hg.get(1), hg.get(2), hg.get(3)));
-            ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "CC");
+            int id_str = tablaSimbolos2.size() +1;
+            tablaSimbolos2.put("str" + id_str,hg);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n","str" + tablaSimbolos2.size(), hg.get(0), hg.get(1), hg.get(2), hg.get(3)));
+            ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "str" + tablaSimbolos2.size());
             RESULT = new DisplayCadenaCaracteres(CC);
         :}
         |

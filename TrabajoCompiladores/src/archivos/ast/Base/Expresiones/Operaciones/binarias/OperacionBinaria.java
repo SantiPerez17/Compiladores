@@ -99,15 +99,21 @@ public abstract class OperacionBinaria extends Expresion {
         String tipoll;
         if(this.getTipo().equals(Tipo.Int)){
             tipoll = "i32";
+            resultado.append(String.format("%1$s = %2$s " + tipoll + " %3$s, %4$s\n", this.getIr_ref(),
+                    this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
+                    this.getDerecha().getIr_ref()));
         } else if (this.getTipo().equals(Tipo.Float)){
             tipoll = "double";
+            resultado.append(String.format("%1$s = %2$s " + tipoll + " %3$s, %4$s\n", this.getIr_ref(),
+                    this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
+                    this.getDerecha().getIr_ref()));
         } else {
-            tipoll = "i1";
+            resultado.append(String.format("%1$s = %2$s %3$s, %4$s\n", this.getIr_ref(),
+                    this.get_llvm_op_code(this.getIzquierda().getTipo()), this.getIzquierda().getIr_ref(),
+                    this.getDerecha().getIr_ref()));
         }
 
-        resultado.append(String.format("%1$s = %2$s " + tipoll + " %3$s, %4$s\n", this.getIr_ref(),
-                this.get_llvm_op_code(this.getTipo()), this.getIzquierda().getIr_ref(),
-                this.getDerecha().getIr_ref()));
+
         return resultado.toString();
     }
 }

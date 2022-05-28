@@ -8,7 +8,6 @@ declare i32 @printf(i8*, ...)
 @.integer = private constant [4 x i8] c"%d\0A\00"
 @.float = private constant [4 x i8] c"%f\0A\00"
 
-@strgola = private constant [7 x i8] c"\0Agola\0A\00"
 @a = global i32 0
 @ahre = global i1 0
 @b = global i32 0
@@ -22,8 +21,12 @@ declare i32 @printf(i8*, ...)
 @xd = global i1 0
 
 define i32 @main(i32, i8**) {
-	;DisplayCadenaCaracteres:
-	%aux1 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @strgola, i32 0, i32 0))
+	;DisplayExpresion:
+	;OperacionBinaria:
+	%aux2 = load i32, i32* @a
+	%aux3 = load i32, i32* @b
+	%aux4 = add i32 %aux2, %aux3
+	%aux1 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux4)
 	
 	ret i32 0
 }

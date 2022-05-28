@@ -15,14 +15,14 @@ public class CodeGeneratorHelper {
     public static String getNewGlobalPointer(){
         StringBuilder ret = new StringBuilder();
         nextID+=1;
-        ret.append(String.format("@gb.%s", nextID));
+        ret.append(String.format("gb%s", nextID));
         return ret.toString();
     }
 
     public static String getNewTag(){
         StringBuilder ret = new StringBuilder();
         nextID+=1;
-        ret.append(String.format("tag.%s", nextID));
+        ret.append(String.format("etiq%s", nextID));
         return ret.toString();
     }
 }

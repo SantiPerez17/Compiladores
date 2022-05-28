@@ -1,5 +1,6 @@
 package archivos.ast.Sentencias.SentenciaSeleccion;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Sentencias.Sentencia;
 
@@ -75,8 +76,36 @@ public class IfElse extends Sentencia {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";IfElse:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(this.getIr_ref()+":\n");
+        resultado.append(this.condicion.generarCodigo());
+        this.sentencias1.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        this.sentencias2.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), "%"+sentencias1.get(0).getIr_ref(), "%"+sentencias2.get(0).getIr_ref()));
+        //etiq1:
+        //  %aux5 = icmp eq i32 %aux4, 10      ;   Comparación %aux4 que tiene c y 10
+        //br i1 %aux5, label %etiq3, label %etiq4
+
+        resultado.append(sentencias1.get(0).getIr_ref()+":\n");
+        for (Sentencia s: sentencias1){
+            resultado.append(s.generarCodigo());
+            //etiq3:
+            //  %temp141 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @gb.141 , i32 0, i32 0))		;Imprime Es 10
+            //br label %fin
+        }
+        resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
+
+        resultado.append(sentencias2.get(0).getIr_ref()+":\n");
+        for (Sentencia s: sentencias2){
+            resultado.append(s.generarCodigo());
+            //etiq4:
+            //  %temp143 = call i32 @puts(i8* getelementptr ([10 x i8], [10 x i8] * @gb.143 , i32 0, i32 0))	;Imprime No es 10
+            //br label %fin
+            //fin:
+        }
+        resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
+        resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();
     }
 
