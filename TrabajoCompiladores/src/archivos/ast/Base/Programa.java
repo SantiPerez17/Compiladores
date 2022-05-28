@@ -76,8 +76,11 @@ public class Programa extends Nodo{
                 tipoll = "i1";
                 resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
             } else {
-                tipoll = "private constant [8 x i8]";
-                resultado.append("@" + nombre + " = global " + tipoll + " c\"\0A\00\"\n");
+                String nombreCadena = tablaSimbolos2.get(s).get(2).replaceAll(" ","_");
+                String cadena = tablaSimbolos2.get(s).get(2);
+                int caracteres = cadena.length() + 3;
+                tipoll = "private constant [" + caracteres + " x i8]";
+                resultado.append("@str" + nombreCadena + " = " + tipoll + " c\"\\0A" + cadena + "\\0A\\00\"\n");
             }
 
         }

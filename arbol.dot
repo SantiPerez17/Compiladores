@@ -1,48 +1,9 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1762537970[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_1762537970
-nodo_137806552[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_1762537970--nodo_137806552
-nodo_2126643241[label="Factor_Int  
- Valor: 5 
-Int"]
-nodo_1762537970--nodo_2126643241
-nodo_198957917[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_198957917
-nodo_1565521273[label=" ID - [ f ] - 
- Tipo: Float"]
-nodo_198957917--nodo_1565521273
-nodo_1508892839[label="Factor_Float  
- Valor: 3.4 
-Float"]
-nodo_198957917--nodo_1508892839
-nodo_1537429624[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_1537429624
-nodo_1936867741[label=" ID - [ xd ] - 
- Tipo: Bool"]
-nodo_1537429624--nodo_1936867741
-nodo_2112847290[label="Factor_Bool  
- Valor: true 
-Bool"]
-nodo_1537429624--nodo_2112847290
-nodo_724612209[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_724612209
-nodo_837660199[label=" ID - [ res ] - 
- Tipo: Int"]
-nodo_724612209--nodo_837660199
-nodo_507077293[label=" Op_Binaria - [ + ] - 
- Tipo: Int"]
-nodo_724612209--nodo_507077293
-nodo_251095394[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_507077293--nodo_251095394
-nodo_1507618178[label="Factor_Int  
- Valor: 7 
-Int"]
-nodo_507077293--nodo_1507618178
+nodo_813239062[label="Sentencia
+ - [ Display Cad. Caracteres ] -"]
+nodo_programa--nodo_813239062
+nodo_1777485983[label="Cadena de Caracteres  
+ Valor: gola 
+CTE_STRING"]
+nodo_813239062--nodo_1777485983
 }

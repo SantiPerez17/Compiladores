@@ -3,13 +3,22 @@ package archivos.ast.Sentencias.Displays;
 import archivos.ast.Sentencias.Sentencia;
 
 public class Display extends Sentencia {
+
+    private String ir_ref;
+
+    public String getIr_ref() {
+        return ir_ref;
+    }
+
+    public void setIr_ref(String ir_ref) {
+        this.ir_ref = ir_ref;
+    }
+
     public Display() {
     }
     public Display(String nombre) {
         super(nombre);
     }
-
-
 
     @Override
     public String generarCodigo() {

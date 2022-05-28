@@ -4,10 +4,7 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-    a:=5
-    f:=3.4
-    xd:=true
-    res:=a+7
+    display("gola")
 (*if (a==b) then
     a:=0
     end
