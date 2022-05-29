@@ -10,6 +10,7 @@ import java.util.List;
 public class Cola extends Expresion {
     private List<Sentencia> lista_sentencias = new ArrayList<>();
 
+
     public Cola(Tipo tipo, List<Sentencia> lista_sentencias) {
         super(tipo);
         this.lista_sentencias = lista_sentencias;
