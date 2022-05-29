@@ -18,9 +18,8 @@ public class ConstanteEntera extends Constante{
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";ConstanteEntera:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();

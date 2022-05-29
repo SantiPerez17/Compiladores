@@ -1,62 +1,22 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1163468963[label="Sentencia
- - [ If Simple ] -"]
-nodo_programa--nodo_1163468963
-nodo_1865948896[label=" Op_Binaria - [ == ] - 
- Tipo: Bool"]
-nodo_1163468963--nodo_1865948896
-nodo_1506064222[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_1865948896--nodo_1506064222
-nodo_2115670593[label=" ID - [ b ] - 
- Tipo: Int"]
-nodo_1865948896--nodo_2115670593
-nodo_11634689631[label="THEN"]
-nodo_1163468963--nodo_11634689631
-nodo_321036101[label="Sentencia - [ Asignacion ] -
+nodo_1886055072[label="Sentencia - [ Asignacion ] -
  :="]
-nodo_11634689631--nodo_321036101
-nodo_2080064714[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_321036101--nodo_2080064714
-nodo_21605442[label="Factor_Int  
- Valor: 0 
-Int"]
-nodo_321036101--nodo_21605442
-nodo_665335669[label="Sentencia
- - [ While ] -"]
-nodo_programa--nodo_665335669
-nodo_254023212[label=" Op_Binaria - [ != ] - 
+nodo_programa--nodo_1886055072
+nodo_1889038844[label=" ID - [ xd ] - 
  Tipo: Bool"]
-nodo_665335669--nodo_254023212
-nodo_1594045449[label=" Op_Binaria - [ + ] - 
- Tipo: Int"]
-nodo_254023212--nodo_1594045449
-nodo_1116096506[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_1594045449--nodo_1116096506
-nodo_904048263[label=" ID - [ b ] - 
- Tipo: Int"]
-nodo_1594045449--nodo_904048263
-nodo_801771421[label=" ID - [ c ] - 
- Tipo: Int"]
-nodo_254023212--nodo_801771421
-nodo_6653356691[label="DO"]
-nodo_665335669--nodo_6653356691
-nodo_1328434004[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_6653356691--nodo_1328434004
-nodo_1524143255[label=" ID - [ c ] - 
- Tipo: Int"]
-nodo_1328434004--nodo_1524143255
-nodo_1620354076[label=" Op_Binaria - [ + ] - 
- Tipo: Int"]
-nodo_1328434004--nodo_1620354076
-nodo_1886209714[label=" ID - [ c ] - 
- Tipo: Int"]
-nodo_1620354076--nodo_1886209714
-nodo_906528714[label="Factor_Int  
- Valor: 1 
-Int"]
-nodo_1620354076--nodo_906528714
+nodo_1886055072--nodo_1889038844
+nodo_696088039[label=" Op_Binaria - [ AND ] - 
+ Tipo: Bool"]
+nodo_1886055072--nodo_696088039
+nodo_680288464[label=" Op_Unaria - [ NOT ] - 
+ Tipo: Bool"]
+nodo_696088039--nodo_680288464
+nodo_15414460[label="Factor_Bool  
+ Valor: true 
+Bool"]
+nodo_680288464--nodo_15414460
+nodo_712777876[label="Factor_Bool  
+ Valor: false 
+Bool"]
+nodo_696088039--nodo_712777876
 }

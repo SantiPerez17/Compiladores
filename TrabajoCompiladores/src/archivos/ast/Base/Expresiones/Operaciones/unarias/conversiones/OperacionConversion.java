@@ -20,9 +20,8 @@ public abstract class OperacionConversion extends OperacionUnaria {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";OperacionConversion:\n");
         return resultado.toString();
     }
 }

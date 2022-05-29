@@ -18,17 +18,14 @@ public class Input_Bool extends Expresion {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";Input_Bool:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String dest = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String temp = this.getIr_ref();
         resultado.append(dest + " = alloca i1\n");
         resultado.append(String.format("%1$s = call i1 (i8*, ...) @scanfb(i8* getelementptr inbounds ([3 x i8], [3 x i8] * @bool_read_format, i64 0, i64 0), i1* %2$s)\n", temp, dest));
-        //%dest = alloca i32
-        //%temp = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @ int_read_format, i64 0, i64 0), i32* %dest)
         return resultado.toString();
     }
 }

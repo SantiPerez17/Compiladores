@@ -17,9 +17,8 @@ public class ConstanteFloat extends Constante{
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";ConstanteFloat:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(String.format("%1$s = fadd double 0.0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();

@@ -52,7 +52,7 @@ public class Programa extends Nodo{
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";Programa: 'Prueba'\n");
         resultado.append("source_filename = \"pruebas.txt\"\n");
@@ -93,16 +93,16 @@ public class Programa extends Nodo{
         resultado.append("\n");
 
         resultado.append("define i32 @main(i32, i8**) {\n\t");
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append(this.getIr_ref()+":\n\t");
+
         for (Sentencia s: getSentencias()) {
-            resultado_programa.append(s.generarCodigo());
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
         }
 
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));
-        //resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", CodeGeneratorHelper.getNewPointer(), this.getExpresion().getIr_ref()));
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(this.getIr_ref()+":\n");
         resultado.append("\n\tret i32 0\n}\n");
-
         return resultado.toString();
     }
 

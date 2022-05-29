@@ -60,14 +60,11 @@ public class Asignacion extends Sentencia{
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";Asignacion:\n");
-
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(this.expresion.generarCodigo());
-        //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
-        //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
+        resultado.append(etiqueta);
+        resultado.append(this.expresion.generarCodigo(etiqueta));
 
         if (expresion.getTipo().equals(Tipo.Int)){
             resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
@@ -78,8 +75,8 @@ public class Asignacion extends Sentencia{
         } else {
             resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         }
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append(this.getIr_ref()+":\n");
+        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
+        resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
     }
 }

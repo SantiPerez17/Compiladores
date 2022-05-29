@@ -25,4 +25,8 @@ public class CodeGeneratorHelper {
         ret.append(String.format("etiq%s", nextID));
         return ret.toString();
     }
+
+    public static int getNextID() {
+        return nextID;
+    }
 }

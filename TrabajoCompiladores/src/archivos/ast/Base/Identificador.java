@@ -26,9 +26,8 @@ public class Identificador extends Expresion {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";Identificador:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         if (this.getTipo().equals(Tipo.Int)) {
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIr_ref(), this.getNombre()));

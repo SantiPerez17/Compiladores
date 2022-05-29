@@ -66,15 +66,12 @@ public abstract class OperacionBinaria extends Expresion {
     public abstract String get_llvm_op_code(Tipo tipo);
 
     @Override
-    public String generarCodigo(){
+    public String generarCodigo(String etiqueta){
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";OperacionBinaria:\n");
 
         this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
-        //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
 
         if(this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
@@ -94,7 +91,7 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getIzquierda().getNombre()==">=" ||
                 this.getIzquierda().getNombre()=="<" ||
                 this.getIzquierda().getNombre()=="<="){
-            resultado.append(this.getIzquierda().generarCodigo());
+            resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()));
         } else {
             if (this.getIzquierda().getTipo().equals(Tipo.Int)){
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
@@ -125,7 +122,7 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getDerecha().getNombre()==">=" ||
                 this.getDerecha().getNombre()=="<" ||
                 this.getDerecha().getNombre()=="<="){
-            resultado.append(this.getDerecha().generarCodigo());
+            resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()));
         } else {
             if (this.getDerecha().getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
@@ -154,7 +151,6 @@ public abstract class OperacionBinaria extends Expresion {
                     this.get_llvm_op_code(this.getIzquierda().getTipo()), this.getIzquierda().getIr_ref(),
                     this.getDerecha().getIr_ref()));
         }
-
 
         return resultado.toString();
     }

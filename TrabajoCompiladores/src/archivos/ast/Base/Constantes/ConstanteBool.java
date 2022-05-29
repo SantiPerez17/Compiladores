@@ -18,9 +18,8 @@ public class ConstanteBool extends Constante {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";ConstanteBool:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         if (this.getValor().equals("true")){
             resultado.append(String.format("%1$s = add i1 0, %2$s\n", this.getIr_ref(), "1"));

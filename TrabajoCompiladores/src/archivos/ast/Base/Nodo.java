@@ -47,6 +47,6 @@ public abstract class Nodo{
         this.ir_ref = ir_ref;
     }
 
-    public abstract String generarCodigo();
+    public abstract String generarCodigo(String etiqueta);
 
 }

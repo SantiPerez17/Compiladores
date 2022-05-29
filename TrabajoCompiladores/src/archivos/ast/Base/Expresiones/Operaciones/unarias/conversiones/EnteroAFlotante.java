@@ -30,11 +30,9 @@ public class EnteroAFlotante extends OperacionConversion{
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";EnteroAFlotante:\n");
-        //%vdestino = sitofp i32 %vorigen to float
-        resultado.append(this.getExpresion().generarCodigo());
+        resultado.append(this.getExpresion().generarCodigo(etiqueta));
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(String.format("%1$s = sitofp i32 %2$s to double\n", this.getIr_ref(), this.getExpresion().getIr_ref()));
         return resultado.toString();

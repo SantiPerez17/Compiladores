@@ -11,11 +11,8 @@ public class Display extends Sentencia {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";Display:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();
     }
 }

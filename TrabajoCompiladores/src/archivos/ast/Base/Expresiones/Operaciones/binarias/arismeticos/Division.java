@@ -36,7 +36,7 @@ public class Division extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "sdiv";
         } else {
-            return "fsdiv";
+            return "fdiv";
         }
     }
 

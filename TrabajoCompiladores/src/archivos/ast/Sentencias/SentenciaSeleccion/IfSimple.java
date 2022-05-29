@@ -55,27 +55,29 @@ public class IfSimple extends Sentencia {
     }
 
     @Override
-    public String generarCodigo() {
+    public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";IfSimple:\n");
-        resultado.append(this.condicion.generarCodigo());
+        StringBuilder resultado_sentencias = new StringBuilder();
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(etiqueta);
+        resultado.append(this.condicion.generarCodigo(etiqueta));
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), "%"+Sentencias.get(0).getIr_ref(), "%"+this.getIr_ref()));
-        //etiq1:
-        //  %aux5 = icmp eq i32 %aux4, 10      ;   Comparación %aux4 que tiene c y 10
-        //br i1 %aux5, label %etiq3, label %etiq4
 
-        resultado.append(Sentencias.get(0).getIr_ref()+":\n");
+        int aux = 0;
         for (Sentencia s: Sentencias){
-            resultado.append(s.generarCodigo());
-            //etiq3:
-            //  %temp141 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @gb.141 , i32 0, i32 0))		;Imprime Es 10
-            //br label %fin
+            if (aux>0){
+                this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
+            }
+            resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
+            aux+=1;
         }
-        resultado.delete(resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n"),resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n")+(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n").length());
-        resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
-        resultado.append(this.getIr_ref()+":\n");
+
+        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
+        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+        resultado.append(resultado_sentencias);
+        resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
     }
 }
