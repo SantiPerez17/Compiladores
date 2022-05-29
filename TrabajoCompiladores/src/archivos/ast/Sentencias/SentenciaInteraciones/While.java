@@ -1,5 +1,6 @@
 package archivos.ast.Sentencias.SentenciaInteraciones;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Sentencias.Sentencia;
 
@@ -58,8 +59,20 @@ public class While extends Sentencia {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";While:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        String etiquetaWhile = "%"+this.getIr_ref();
+        resultado.append(this.getIr_ref()+":\n");
+        resultado.append(this.condicion.generarCodigo());
+        this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, "%"+this.getIr_ref()));
+        resultado.append(Sentencias.get(0).getIr_ref()+":\n");
+        for (Sentencia s: Sentencias){
+            resultado.append(s.generarCodigo());
+        }
+        resultado.append(String.format("br label %1$s\n", etiquetaWhile));
+        resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();
     }
 }

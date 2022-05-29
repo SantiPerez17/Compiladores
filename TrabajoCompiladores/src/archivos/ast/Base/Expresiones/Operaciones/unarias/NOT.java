@@ -19,12 +19,12 @@ public class NOT extends OperacionUnaria{
 
     @Override
     protected String getNombreOperacion() {
-        return null;
+        return "NOT";
     }
 
     @Override
     public String get_llvm_op_code(Tipo tipo) {
-        return null;
+        return "not i1";
     }
 
 }

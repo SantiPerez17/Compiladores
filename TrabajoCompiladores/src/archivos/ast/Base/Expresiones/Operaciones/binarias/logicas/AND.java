@@ -29,11 +29,7 @@ public class AND extends OperacionBinaria {
 
     @Override
     public String get_llvm_op_code(Tipo tipo) {
-        if(tipo == Tipo.Int){
-            return "sdiv";
-        } else {
-            return "fsdiv";
-        }
+        return "and i1";
     }
 
 }

@@ -24,15 +24,15 @@ public class Menor extends OperacionBinaria {
 
     @Override
     protected String getNombreOperacion() {
-        return "/";
+        return "<";
     }
 
     @Override
     public String get_llvm_op_code(Tipo tipo) {
         if(tipo == Tipo.Int){
-            return "sdiv";
+            return "icmp slt i32";
         } else {
-            return "fsdiv";
+            return "fcmp slt double";
         }
     }
 

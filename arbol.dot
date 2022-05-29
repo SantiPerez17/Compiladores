@@ -1,14 +1,29 @@
 graph G {nodo_programa[label="Programa"]
-nodo_813239062[label="Sentencia
- - [ Display Expresion ] -"]
-nodo_programa--nodo_813239062
-nodo_1815674630[label=" Op_Binaria - [ + ] - 
+nodo_1156641835[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_programa--nodo_1156641835
+nodo_895183079[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_813239062--nodo_1815674630
-nodo_1775156878[label=" ID - [ a ] - 
+nodo_1156641835--nodo_895183079
+nodo_1172452287[label="- [ Input_Int ] - 
  Tipo: Int"]
-nodo_1815674630--nodo_1775156878
-nodo_1335105062[label=" ID - [ b ] - 
- Tipo: Int"]
-nodo_1815674630--nodo_1335105062
+nodo_1156641835--nodo_1172452287
+nodo_666536690[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_programa--nodo_666536690
+nodo_880151237[label=" ID - [ f ] - 
+ Tipo: Float"]
+nodo_666536690--nodo_880151237
+nodo_1832467683[label="- [ Input_Float ] - 
+ Tipo: Float"]
+nodo_666536690--nodo_1832467683
+nodo_597093207[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_programa--nodo_597093207
+nodo_1700537914[label=" ID - [ xd ] - 
+ Tipo: Bool"]
+nodo_597093207--nodo_1700537914
+nodo_1351091886[label="- [ Input_Bool ] - 
+ Tipo: Bool"]
+nodo_597093207--nodo_1351091886
 }

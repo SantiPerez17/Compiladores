@@ -76,24 +76,64 @@ public abstract class OperacionBinaria extends Expresion {
         //%aux = load i32, i32* @x3 ; carga el valor entero de @x3 en %aux
         //store i32 %aux, i32* @x3 ; escribe el valor entero de %aux en @x3
 
-        if (this.getIzquierda().getTipo().equals(Tipo.Int)){
-            resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
-        } else if (this.getIzquierda().getTipo().equals(Tipo.Float)){
-            resultado.append(String.format("%1$s = load double, double* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
-        } else if (this.getIzquierda().getTipo().equals(Tipo.Bool)){
-            resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+        if(this.getIzquierda().getNombre()=="Factor_Int" ||
+                this.getIzquierda().getNombre()=="Factor_Float" ||
+                this.getIzquierda().getNombre()=="Factor_Bool" ||
+                this.getIzquierda().getNombre()=="MenosUnario" ||
+                this.getIzquierda().getNombre()=="INT a FLOAT" ||
+                this.getIzquierda().getNombre()=="+" ||
+                this.getIzquierda().getNombre()=="-" ||
+                this.getIzquierda().getNombre()=="*" ||
+                this.getIzquierda().getNombre()=="/" ||
+                this.getIzquierda().getNombre()=="AND" ||
+                this.getIzquierda().getNombre()=="OR" ||
+                this.getIzquierda().getNombre()=="==" ||
+                this.getIzquierda().getNombre()=="!=" ||
+                this.getIzquierda().getNombre()==">" ||
+                this.getIzquierda().getNombre()==">=" ||
+                this.getIzquierda().getNombre()=="<" ||
+                this.getIzquierda().getNombre()=="<="){
+            resultado.append(this.getIzquierda().generarCodigo());
         } else {
-            resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            if (this.getIzquierda().getTipo().equals(Tipo.Int)){
+                resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            } else if (this.getIzquierda().getTipo().equals(Tipo.Float)){
+                resultado.append(String.format("%1$s = load double, double* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            } else if (this.getIzquierda().getTipo().equals(Tipo.Bool)){
+                resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            } else {
+                resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            }
         }
 
-        if (this.getDerecha().getTipo().equals(Tipo.Int)){
-            resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
-        } else if (this.getDerecha().getTipo().equals(Tipo.Float)){
-            resultado.append(String.format("%1$s = load double, double* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
-        } else if (this.getDerecha().getTipo().equals(Tipo.Bool)){
-            resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+        if(this.getDerecha().getNombre()=="Factor_Int" ||
+                this.getDerecha().getNombre()=="Factor_Float" ||
+                this.getDerecha().getNombre()=="Factor_Bool" ||
+                this.getDerecha().getNombre()=="MenosUnario" ||
+                this.getDerecha().getNombre()=="INT a FLOAT" ||
+                this.getDerecha().getNombre()=="+" ||
+                this.getDerecha().getNombre()=="-" ||
+                this.getDerecha().getNombre()=="*" ||
+                this.getDerecha().getNombre()=="/" ||
+                this.getDerecha().getNombre()=="AND" ||
+                this.getDerecha().getNombre()=="OR" ||
+                this.getDerecha().getNombre()=="==" ||
+                this.getDerecha().getNombre()=="!=" ||
+                this.getDerecha().getNombre()==">" ||
+                this.getDerecha().getNombre()==">=" ||
+                this.getDerecha().getNombre()=="<" ||
+                this.getDerecha().getNombre()=="<="){
+            resultado.append(this.getDerecha().generarCodigo());
         } else {
-            resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+            if (this.getDerecha().getTipo().equals(Tipo.Int)) {
+                resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+            } else if (this.getDerecha().getTipo().equals(Tipo.Float)) {
+                resultado.append(String.format("%1$s = load double, double* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+            } else if (this.getDerecha().getTipo().equals(Tipo.Bool)) {
+                resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+            } else {
+                resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
+            }
         }
 
         String tipoll;

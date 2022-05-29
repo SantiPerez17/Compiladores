@@ -1,6 +1,5 @@
 package archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones;
 
-import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Tipo;
@@ -24,10 +23,6 @@ public abstract class OperacionConversion extends OperacionUnaria {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";OperacionConversion:\n");
-        //%vdestino = sitofp i32 %vorigen to float
-
-        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(String.format("%1$s = sitofp i32 %2$s to float\n", this.getIr_ref(), this.getExpresion().getIr_ref()));
         return resultado.toString();
     }
 }

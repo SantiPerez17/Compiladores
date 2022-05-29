@@ -1,5 +1,6 @@
 package archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Tipo;
 
@@ -32,8 +33,10 @@ public class EnteroAFlotante extends OperacionConversion{
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";EnteroAFlotante:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        //%vdestino = sitofp i32 %vorigen to float
+        resultado.append(this.getExpresion().generarCodigo());
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado.append(String.format("%1$s = sitofp i32 %2$s to double\n", this.getIr_ref(), this.getExpresion().getIr_ref()));
         return resultado.toString();
     }
 }

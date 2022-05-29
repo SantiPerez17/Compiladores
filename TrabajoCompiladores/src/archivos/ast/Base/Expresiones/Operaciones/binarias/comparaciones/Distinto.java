@@ -23,15 +23,15 @@ public class Distinto extends OperacionBinaria {
 
     @Override
     protected String getNombreOperacion() {
-        return "/";
+        return "!=";
     }
 
     @Override
     public String get_llvm_op_code(Tipo tipo) {
         if(tipo == Tipo.Int){
-            return "sdiv";
+            return "icmp ne i32";
         } else {
-            return "fsdiv";
+            return "fcmp ne double";
         }
     }
 

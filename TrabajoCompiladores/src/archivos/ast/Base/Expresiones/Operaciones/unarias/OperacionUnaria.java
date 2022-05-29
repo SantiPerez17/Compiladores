@@ -54,7 +54,14 @@ public abstract class  OperacionUnaria extends Expresion{
         resultado.append(";OperacionUnaria:\n");
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+        resultado.append(this.expresion.generarCodigo());
+        if (this.expresion.getNombre() == "Factor_Int") {
+            resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+        }else if(this.expresion.getNombre() == "Factor_Float"){
+            resultado.append(String.format("%1$s = %2$s double 0.0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+        } else {
+            resultado.append(String.format("%1$s = %2$s %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+        }
         return resultado.toString();
     }
 

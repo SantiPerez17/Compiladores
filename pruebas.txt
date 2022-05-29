@@ -4,7 +4,9 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section  
-    display(a+b)
+    a:=input_int()
+    f:=input_float()
+    xd:=input_bool()
 (*if (a==b) then
     a:=0
     end

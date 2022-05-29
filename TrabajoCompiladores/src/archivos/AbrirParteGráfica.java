@@ -174,7 +174,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             JFrame frame4 = new JFrame("LLVM");
             frame4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame4.setLayout(new BorderLayout());
-            frame4.setSize( 800, 800 );
+            frame4.setSize( 900, 800 );
             frame4.setLocationRelativeTo( null );
             txp5 = new JTextPane();
             txp5.setForeground(Color.gray);

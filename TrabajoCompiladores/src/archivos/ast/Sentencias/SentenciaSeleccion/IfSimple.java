@@ -1,5 +1,6 @@
 package archivos.ast.Sentencias.SentenciaSeleccion;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Sentencias.Sentencia;
 
@@ -57,8 +58,25 @@ public class IfSimple extends Sentencia {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";IfSimple:\n");
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(this.getIr_ref()+":\n");
+        resultado.append(this.condicion.generarCodigo());
+        this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), "%"+Sentencias.get(0).getIr_ref(), "%"+this.getIr_ref()));
+        //etiq1:
+        //  %aux5 = icmp eq i32 %aux4, 10      ;   Comparación %aux4 que tiene c y 10
+        //br i1 %aux5, label %etiq3, label %etiq4
+
+        resultado.append(Sentencias.get(0).getIr_ref()+":\n");
+        for (Sentencia s: Sentencias){
+            resultado.append(s.generarCodigo());
+            //etiq3:
+            //  %temp141 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @gb.141 , i32 0, i32 0))		;Imprime Es 10
+            //br label %fin
+        }
+        resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
+        resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();
     }
 }

@@ -58,9 +58,14 @@ public class Programa extends Nodo{
         resultado.append("target datalayout = \"e-m:w-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128\"\n");
         resultado.append("target triple = \"x86_64-pc-windows-msvc19.11.0\"\n\n");
         resultado.append("declare i32 @puts(i8*)\n");
-        resultado.append("declare i32 @printf(i8*, ...)\n");
+        resultado.append("declare i32 @scanf(i8*, ...)\n");
+        resultado.append("declare double @scanfd(i8*, ...)\n");
+        resultado.append("declare i1 @scanfb(i8*, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
-        resultado.append("@.float = private constant [4 x i8] c\"%f\\0A\\00\"\n\n");
+        resultado.append("@.float = private constant [4 x i8] c\"%f\\0A\\00\"\n");
+        resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
+        resultado.append("@double_read_format = unnamed_addr constant [4 x i8] c\"%lf\\00\"\n");
+        resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%b\\00\"\n\n");
 
         StringBuilder resultado_programa = new StringBuilder();
 
