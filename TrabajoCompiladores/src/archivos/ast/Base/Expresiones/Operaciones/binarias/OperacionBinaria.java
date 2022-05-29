@@ -87,6 +87,7 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getIzquierda().getNombre()=="/" ||
                 this.getIzquierda().getNombre()=="AND" ||
                 this.getIzquierda().getNombre()=="OR" ||
+                this.getIzquierda().getNombre()=="NOT" ||
                 this.getIzquierda().getNombre()=="==" ||
                 this.getIzquierda().getNombre()=="!=" ||
                 this.getIzquierda().getNombre()==">" ||
@@ -117,6 +118,7 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getDerecha().getNombre()=="/" ||
                 this.getDerecha().getNombre()=="AND" ||
                 this.getDerecha().getNombre()=="OR" ||
+                this.getDerecha().getNombre()=="NOT" ||
                 this.getDerecha().getNombre()=="==" ||
                 this.getDerecha().getNombre()=="!=" ||
                 this.getDerecha().getNombre()==">" ||

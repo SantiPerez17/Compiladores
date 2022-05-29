@@ -78,6 +78,8 @@ public class Asignacion extends Sentencia{
         } else {
             resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         }
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();
     }
 }

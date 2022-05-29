@@ -1,29 +1,62 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1156641835[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_1156641835
-nodo_895183079[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_1156641835--nodo_895183079
-nodo_1172452287[label="- [ Input_Int ] - 
- Tipo: Int"]
-nodo_1156641835--nodo_1172452287
-nodo_666536690[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_666536690
-nodo_880151237[label=" ID - [ f ] - 
- Tipo: Float"]
-nodo_666536690--nodo_880151237
-nodo_1832467683[label="- [ Input_Float ] - 
- Tipo: Float"]
-nodo_666536690--nodo_1832467683
-nodo_597093207[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_597093207
-nodo_1700537914[label=" ID - [ xd ] - 
+nodo_1163468963[label="Sentencia
+ - [ If Simple ] -"]
+nodo_programa--nodo_1163468963
+nodo_1865948896[label=" Op_Binaria - [ == ] - 
  Tipo: Bool"]
-nodo_597093207--nodo_1700537914
-nodo_1351091886[label="- [ Input_Bool ] - 
+nodo_1163468963--nodo_1865948896
+nodo_1506064222[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_1865948896--nodo_1506064222
+nodo_2115670593[label=" ID - [ b ] - 
+ Tipo: Int"]
+nodo_1865948896--nodo_2115670593
+nodo_11634689631[label="THEN"]
+nodo_1163468963--nodo_11634689631
+nodo_321036101[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_11634689631--nodo_321036101
+nodo_2080064714[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_321036101--nodo_2080064714
+nodo_21605442[label="Factor_Int  
+ Valor: 0 
+Int"]
+nodo_321036101--nodo_21605442
+nodo_665335669[label="Sentencia
+ - [ While ] -"]
+nodo_programa--nodo_665335669
+nodo_254023212[label=" Op_Binaria - [ != ] - 
  Tipo: Bool"]
-nodo_597093207--nodo_1351091886
+nodo_665335669--nodo_254023212
+nodo_1594045449[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_254023212--nodo_1594045449
+nodo_1116096506[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_1594045449--nodo_1116096506
+nodo_904048263[label=" ID - [ b ] - 
+ Tipo: Int"]
+nodo_1594045449--nodo_904048263
+nodo_801771421[label=" ID - [ c ] - 
+ Tipo: Int"]
+nodo_254023212--nodo_801771421
+nodo_6653356691[label="DO"]
+nodo_665335669--nodo_6653356691
+nodo_1328434004[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_6653356691--nodo_1328434004
+nodo_1524143255[label=" ID - [ c ] - 
+ Tipo: Int"]
+nodo_1328434004--nodo_1524143255
+nodo_1620354076[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_1328434004--nodo_1620354076
+nodo_1886209714[label=" ID - [ c ] - 
+ Tipo: Int"]
+nodo_1620354076--nodo_1886209714
+nodo_906528714[label="Factor_Int  
+ Valor: 1 
+Int"]
+nodo_1620354076--nodo_906528714
 }

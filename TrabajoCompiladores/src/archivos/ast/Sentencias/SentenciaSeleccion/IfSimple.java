@@ -58,8 +58,6 @@ public class IfSimple extends Sentencia {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";IfSimple:\n");
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append(this.getIr_ref()+":\n");
         resultado.append(this.condicion.generarCodigo());
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -75,6 +73,7 @@ public class IfSimple extends Sentencia {
             //  %temp141 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @gb.141 , i32 0, i32 0))		;Imprime Es 10
             //br label %fin
         }
+        resultado.delete(resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n"),resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n")+(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n").length());
         resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
         resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();

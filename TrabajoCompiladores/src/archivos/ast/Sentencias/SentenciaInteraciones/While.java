@@ -57,11 +57,10 @@ public class While extends Sentencia {
 
     @Override
     public String generarCodigo() {
+        //Falta resolver lo de la etiqueta del while...
         StringBuilder resultado = new StringBuilder();
-        resultado.append(";While:\n");
+        resultado.append(";While_"+ this.getId() +":\n");
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        String etiquetaWhile = "%"+this.getIr_ref();
-        resultado.append(this.getIr_ref()+":\n");
         resultado.append(this.condicion.generarCodigo());
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();
@@ -71,7 +70,8 @@ public class While extends Sentencia {
         for (Sentencia s: Sentencias){
             resultado.append(s.generarCodigo());
         }
-        resultado.append(String.format("br label %1$s\n", etiquetaWhile));
+        resultado.delete(resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n"),resultado.indexOf(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n")+(this.Sentencias.get(Sentencias.size()-1).getIr_ref()+":\n").length());
+        resultado.append(String.format("br label %1$s\n", "etiq6"));
         resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();
     }

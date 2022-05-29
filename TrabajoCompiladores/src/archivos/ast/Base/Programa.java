@@ -2,6 +2,7 @@ package archivos.ast.Base;
 
 //import archivos.jflexyjcup.MiParser;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Sentencias.Sentencia;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class Programa extends Nodo{
         resultado.append("declare double @scanfd(i8*, ...)\n");
         resultado.append("declare i1 @scanfb(i8*, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
-        resultado.append("@.float = private constant [4 x i8] c\"%f\\0A\\00\"\n");
+        resultado.append("@.double = private constant [5 x i8] c\"%lf\\0A\\00\"\n");
         resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
         resultado.append("@double_read_format = unnamed_addr constant [4 x i8] c\"%lf\\00\"\n");
         resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%b\\00\"\n\n");
@@ -92,6 +93,8 @@ public class Programa extends Nodo{
         resultado.append("\n");
 
         resultado.append("define i32 @main(i32, i8**) {\n\t");
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado.append(this.getIr_ref()+":\n\t");
         for (Sentencia s: getSentencias()) {
             resultado_programa.append(s.generarCodigo());
         }

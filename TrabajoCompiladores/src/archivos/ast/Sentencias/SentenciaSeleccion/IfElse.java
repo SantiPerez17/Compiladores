@@ -76,8 +76,6 @@ public class IfElse extends Sentencia {
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";IfElse:\n");
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append(this.getIr_ref()+":\n");
         resultado.append(this.condicion.generarCodigo());
         this.sentencias1.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         this.sentencias2.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -94,6 +92,7 @@ public class IfElse extends Sentencia {
             //  %temp141 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @gb.141 , i32 0, i32 0))		;Imprime Es 10
             //br label %fin
         }
+        resultado.delete(resultado.indexOf(this.sentencias1.get(sentencias1.size()-1).getIr_ref()+":\n"),resultado.indexOf(this.sentencias1.get(sentencias1.size()-1).getIr_ref()+":\n")+(this.sentencias1.get(sentencias1.size()-1).getIr_ref()+":\n").length());
         resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
 
         resultado.append(sentencias2.get(0).getIr_ref()+":\n");
@@ -104,6 +103,7 @@ public class IfElse extends Sentencia {
             //br label %fin
             //fin:
         }
+        resultado.delete(resultado.indexOf(this.sentencias2.get(sentencias2.size()-1).getIr_ref()+":\n"),resultado.indexOf(this.sentencias2.get(sentencias2.size()-1).getIr_ref()+":\n")+(this.sentencias2.get(sentencias2.size()-1).getIr_ref()+":\n").length());
         resultado.append(String.format("br label %1$s\n", "%" + this.getIr_ref()));
         resultado.append(this.getIr_ref()+":\n");
         return resultado.toString();

@@ -4,16 +4,13 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section  
-    a:=input_int()
-    f:=input_float()
-    xd:=input_bool()
-(*if (a==b) then
+if (a==b) then
     a:=0
     end
 while (a+b != c) do
     c:=c+1
     end
-display("gola")
+(*display("gola")
 display(1+2)
 a:=-(145+23/(5*3))
 f:=-(145+23/(5.3*3))
@@ -71,5 +68,5 @@ display("prueba")
             b:=b+1
         end
     end
-   display("hola") *)
+   display("hola")*)
 endprogram.section
