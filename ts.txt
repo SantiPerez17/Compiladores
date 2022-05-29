@@ -12,5 +12,13 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
+              _acum1                  ID                 Int                   _                   _
+            _ID_pos1                  ID                 Int                   _                   _
+              _acum2                  ID                 Int                   _                   _
+            _ID_pos2                  ID                 Int                   _                   _
+              _acum3                  ID                 Int                   _                   _
+            _ID_pos3                  ID                 Int                   _                   _
+              _acum4                  ID                 Int                   _                   _
+            _ID_pos4                  ID                 Int                   _                   _
                str20      STRING_LITERAL          CTE_STRING                gola                   4
 
