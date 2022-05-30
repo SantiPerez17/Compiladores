@@ -13,14 +13,6 @@ declare i1 @scanfb(i8*, ...)
 @double_read_format = unnamed_addr constant [4 x i8] c"%lf\00"
 @bool_read_format = unnamed_addr constant [3 x i8] c"%b\00"
 
-@_ID_pos10 = global i32 0
-@_ID_pos11 = global i32 0
-@_ID_pos12 = global i32 0
-@_ID_pos9 = global i32 0
-@_acum10 = global i32 0
-@_acum11 = global i32 0
-@_acum12 = global i32 0
-@_acum9 = global i32 0
 @a = global i32 0
 @ahre = global i1 0
 @b = global i32 0
@@ -34,10 +26,14 @@ declare i1 @scanfb(i8*, ...)
 @xd = global i1 0
 
 define i32 @main(i32, i8**) {
-	etiq1:
-	store i32 null, i32* @a
-	br label %etiq3
-	etiq3:
+	etiq13:
+	%aux20 = add i1 0, 1
+	%aux21 = add i1 0, 0
+	%aux19 = and i1 %aux20, %aux21
+	%aux15 = add i1 0, 1
+	store i1 %aux15, i1* @xd
+	br label %etiq32
+	etiq32:
 
 	ret i32 0
 }

@@ -59,7 +59,11 @@ public abstract class  OperacionUnaria extends Expresion{
         }else if(this.expresion.getTipo().equals(Tipo.Float)){
             resultado.append(String.format("%1$s = %2$s double 0.0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
         } else {
-            resultado.append(String.format("%1$s = %2$s %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
+            if(this.expresion.generarCodigo(etiqueta).charAt(this.expresion.generarCodigo(etiqueta).length()-2) == '1'){
+                resultado.append(String.format("%1$s = add " + "i1" + " 0, 0\n", this.getIr_ref()));
+            }else{
+                resultado.append(String.format("%1$s = add " + "i1" + " 0, 1\n", this.getIr_ref()));
+            }
         }
         return resultado.toString();
     }
