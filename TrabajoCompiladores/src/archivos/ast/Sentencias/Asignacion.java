@@ -80,4 +80,12 @@ public class Asignacion extends Sentencia{
         resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
     }
+
+    public Expresion getExpresion() {
+        return this.expresion;
+    }
+
+    public Identificador getIdentificador(){
+        return this.identificador;
+    }
 }

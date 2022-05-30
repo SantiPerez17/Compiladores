@@ -4,7 +4,7 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-a:=cola(2;[1,2,3,4])
+res:=cola(a;[b])
 #b:=cola(c;[5,6,7,8])
 #display("gola")
 #b:=cola(1;[1,2,3])

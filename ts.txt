@@ -12,7 +12,10 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-              _acum1                  ID                 Int                   _                   _
-            _ID_pos1                  ID                 Int                   _                   _
-              Pivot1                  ID                 Int                   _                   _
+             _Pivot1                  ID                 Int                   _                   _
+              _Acum1                  ID                 Int                   _                   _
+             _IdPos1                  ID                 Int                   _                   _
+         strmensaje3      STRING_LITERAL          CTE_STRING La lista está vacía                  19
+         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
+         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
 
