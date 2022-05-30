@@ -64,6 +64,7 @@ public class Asignacion extends Sentencia{
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append(etiqueta);
+        resultado.append(";Asignacion\n");
         resultado.append(this.expresion.generarCodigo(etiqueta));
 
         if (expresion.getTipo().equals(Tipo.Int)){

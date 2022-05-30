@@ -4,11 +4,11 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-#a:=cola(a;[1,2,3,4])
+a:=cola(2;[1,2,3,4])
 #b:=cola(c;[5,6,7,8])
 #display("gola")
 #b:=cola(1;[1,2,3])
-xd:=not (true and false)
+#xd:=not (true and false)
 (*display("gola")
 if (a==b) then
     a:=0
