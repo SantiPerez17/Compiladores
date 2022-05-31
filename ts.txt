@@ -18,4 +18,5 @@ TABLA DE SIMBOLOS
          strmensaje3      STRING_LITERAL          CTE_STRING La lista está vacía                  19
          strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
          strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
+               str18      STRING_LITERAL          CTE_STRING                hola                   4
 

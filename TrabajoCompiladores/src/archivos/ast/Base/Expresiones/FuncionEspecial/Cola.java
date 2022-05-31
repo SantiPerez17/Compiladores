@@ -2,34 +2,42 @@ package archivos.ast.Base.Expresiones.FuncionEspecial;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 import archivos.ast.Sentencias.Asignacion;
 import archivos.ast.Sentencias.Sentencia;
-
-import java.util.ArrayList;
-import java.util.List;
+import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 
 public class Cola extends Expresion {
-    private List<Sentencia> lista_sentencias = new ArrayList<>();
+    private Asignacion asignacion;
+    private IfElse ifelse;
+    private Identificador acum;
 
-
-    public Cola(Tipo tipo, List<Sentencia> lista_sentencias) {
+    public Cola(Tipo tipo, Asignacion asignacion, IfElse ifelse, Identificador acum) {
         super(tipo);
-        this.lista_sentencias = lista_sentencias;
+        this.asignacion = asignacion;
+        this.ifelse = ifelse;
+        this.acum = acum;
     }
 
-    public Cola(List<Sentencia> lista_sentencias) {
-        this.lista_sentencias = lista_sentencias;
+    public Cola(Asignacion asignacion, IfElse ifelse, Identificador acum) {
+        this.asignacion = asignacion;
+        this.ifelse = ifelse;
+        this.acum = acum;
     }
 
-    public Cola(String nombre, List<Sentencia> lista_sentencias) {
+    public Cola(String nombre, Asignacion asignacion, IfElse ifelse, Identificador acum) {
         super(nombre);
-        this.lista_sentencias = lista_sentencias;
+        this.asignacion = asignacion;
+        this.ifelse = ifelse;
+        this.acum = acum;
     }
 
-    public Cola(String nombre, Tipo tipo, List<Sentencia> lista_sentencias) {
+    public Cola(String nombre, Tipo tipo, Asignacion asignacion, IfElse ifelse, Identificador acum) {
         super(nombre, tipo);
-        this.lista_sentencias = lista_sentencias;
+        this.asignacion = asignacion;
+        this.ifelse = ifelse;
+        this.acum = acum;
     }
 
     @Override
@@ -40,10 +48,11 @@ public class Cola extends Expresion {
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(this.ifelse.graficar("nodo_programa"));
         //resultado.append(super.graficar(idPadre));
-        for (Sentencia s:lista_sentencias){
-            resultado.append(s.graficar("nodo_programa"));
-        }
+        //for (Sentencia s:lista_sentencias){
+        //    resultado.append(s.graficar("nodo_programa"));
+        //}
         return resultado.toString();
     }
 
@@ -51,43 +60,27 @@ public class Cola extends Expresion {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(";Cola\n");
-        resultado.append(etiqueta);
 
-        //Asignacion pivot
         StringBuilder resultado_asignacion = new StringBuilder();
-        this.lista_sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
-        Asignacion asignacion = (Asignacion) this.lista_sentencias.get(0);
-        resultado_asignacion.append(";Asignacion\n");
-        asignacion.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado_asignacion.append(asignacion.getExpresion().generarCodigo(etiqueta));
-
-        if (asignacion.getExpresion().getTipo().equals(Tipo.Int)){
-            resultado_asignacion.append(String.format("store i32 %1$s, i32* @%2$s\n", asignacion.getExpresion().getIr_ref(), asignacion.getIdentificador().getNombre()));
-        } else if (asignacion.getExpresion().getTipo().equals(Tipo.Float)){
-            resultado_asignacion.append(String.format("store double %1$s, double* @%2$s\n", asignacion.getExpresion().getIr_ref(), asignacion.getIdentificador().getNombre()));
-        } else if (asignacion.getExpresion().getTipo().equals(Tipo.Bool)){
-            resultado_asignacion.append(String.format("store i1 %1$s, i1* @%2$s\n", asignacion.getExpresion().getIr_ref(), asignacion.getIdentificador().getNombre()));
-        } else {
-            resultado_asignacion.append(String.format("store i1 %1$s, i1* @%2$s\n", asignacion.getExpresion().getIr_ref(), asignacion.getIdentificador().getNombre()));
-        }
-        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
-        resultado_asignacion.append(String.format("br label %1$s\n", siguiente));
+        this.asignacion.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado_asignacion.append(this.asignacion.generarCodigo(this.asignacion.getIr_ref()+":\n"));
 
         //Primer IfElse
-        /*StringBuilder resultado_condicion_primer_ifelse = new StringBuilder();
-        this.lista_sentencias.get(1).setIr_ref(CodeGeneratorHelper.getNewTag());
-        IfElse ifelse1 = (IfElse) this.lista_sentencias.get(1);
-        ifelse1.getSentencias1().get(1).setIr_ref(CodeGeneratorHelper.getNewTag());
-        String etiquetaIfElse1Sentencias1 = "%"+ifelse1.getSentencias1().get(1).getIr_ref();
-        ifelse1.getSentencias2().get(1).setIr_ref(CodeGeneratorHelper.getNewTag());
-        String etiquetaIfElse1Sentencias2 = "%"+ifelse1.getSentencias2().get(1).getIr_ref();
-        resultado_condicion_primer_ifelse.append(ifelse1.getCondicion().generarCodigo(ifelse1.getIr_ref()+":\n"));
-        resultado_condicion_primer_ifelse.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", ifelse1.getCondicion().getIr_ref(), etiquetaIfElse1Sentencias1, etiquetaIfElse1Sentencias2));
+        StringBuilder resultado_condicion_primer_ifelse = new StringBuilder();
+        this.ifelse.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado_condicion_primer_ifelse.append(this.ifelse.getIr_ref()+":\n");
+        ifelse.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        String etiquetaIfElse1Sentencias1 = "%"+ifelse.getSentencias1().get(0).getIr_ref();
+        ifelse.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
+        String etiquetaIfElse1Sentencias2 = "%"+ifelse.getSentencias2().get(0).getIr_ref();
+        resultado_condicion_primer_ifelse.append(ifelse.getCondicion().generarCodigo(ifelse.getIr_ref()+":\n"));
+        resultado_condicion_primer_ifelse.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", ifelse.getCondicion().getIr_ref(), etiquetaIfElse1Sentencias1, etiquetaIfElse1Sentencias2));
 
         //Segundo IfElse
         StringBuilder resultado_condicion_segundo_ifelse = new StringBuilder();
-        ifelse1.setIr_ref(CodeGeneratorHelper.getNewTag());
-        IfElse ifelse2 = (IfElse) ifelse1.getSentencias1().get(0);
+        IfElse ifelse2 = (IfElse) this.ifelse.getSentencias1().get(0);
+        ifelse2.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado_condicion_segundo_ifelse.append(ifelse2.getIr_ref()+":\n");
         ifelse2.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaIfElse2Sentencias1 = "%"+ifelse2.getSentencias1().get(0).getIr_ref();
         ifelse2.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -97,8 +90,9 @@ public class Cola extends Expresion {
 
         //Tercer IfElse
         StringBuilder resultado_sentencias_tercer_ifelse = new StringBuilder();
-        ifelse2.setIr_ref(CodeGeneratorHelper.getNewTag());
         IfElse ifelse3 = (IfElse) ifelse2.getSentencias1().get(0);
+        ifelse3.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado_sentencias_tercer_ifelse.append(ifelse3.getIr_ref()+":\n");
         ifelse3.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaIfElse3Sentencias1 = "%"+ifelse3.getSentencias1().get(0).getIr_ref();
         ifelse3.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -109,8 +103,9 @@ public class Cola extends Expresion {
         //Sentencias Tercer IfElse
         int aux3 = 0;
         for(Sentencia sentencia: ifelse3.getSentencias1()){
-            ifelse3.setIr_ref(CodeGeneratorHelper.getNewTag());
             IfElse ifelse4 = (IfElse) sentencia;
+            ifelse4.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado_sentencias_tercer_ifelse.append(ifelse4.getIr_ref()+":\n");
             ifelse4.getSentencias1().get(aux3).setIr_ref(CodeGeneratorHelper.getNewTag());
             String etiquetaIfElse4Sentencias1 = "%"+ifelse4.getSentencias1().get(aux3).getIr_ref();
             ifelse4.getSentencias2().get(aux3).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -125,10 +120,8 @@ public class Cola extends Expresion {
                 resultado_sentencias_tercer_ifelse.append(s.generarCodigo(ifelse4.getSentencias1().get(aux7).getIr_ref()+":\n"));
                 aux7+=1;
             }
-
             String siguiente4 = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
             resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", siguiente4));
-
             int aux8 = 0;
             for (Sentencia s: ifelse4.getSentencias2()){
                 if (aux8>0){
@@ -137,7 +130,6 @@ public class Cola extends Expresion {
                 resultado_sentencias_tercer_ifelse.append(s.generarCodigo(ifelse4.getSentencias2().get(aux8).getIr_ref()+":\n"));
                 aux8+=1;
             }
-
             resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", siguiente4));
         }
 
@@ -173,22 +165,27 @@ public class Cola extends Expresion {
         String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
         resultado_sentencias_primer_ifelse.append(String.format("br label %1$s\n", siguiente1));
         int aux4 = 0;
-        for (Sentencia s: ifelse1.getSentencias2()){
+        for (Sentencia s: this.ifelse.getSentencias2()){
             if (aux4>0){
-                ifelse1.getSentencias2().get(aux4).setIr_ref(CodeGeneratorHelper.getNewTag());
+                this.ifelse.getSentencias2().get(aux4).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
-            resultado_sentencias_primer_ifelse.append(s.generarCodigo(ifelse1.getSentencias2().get(aux4).getIr_ref()+":\n"));
+            resultado_sentencias_primer_ifelse.append(s.generarCodigo(this.ifelse.getSentencias2().get(aux4).getIr_ref()+":\n"));
             aux4+=1;
         }
         resultado_sentencias_primer_ifelse.append(String.format("br label %1$s\n", siguiente1));
-        */
-        resultado.append(resultado_asignacion);
-        //resultado.append(resultado_condicion_primer_ifelse);
-        //resultado.append(resultado_condicion_segundo_ifelse);
-        //resultado.append(resultado_sentencias_tercer_ifelse);
-        //resultado.append(resultado_sentencias_segundo_ifelse);
-        //resultado.append(resultado_sentencias_primer_ifelse);
 
+        //Asignacion de la variable acum
+        StringBuilder resultado_asignacion_acum = new StringBuilder();
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        resultado_asignacion_acum.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIr_ref(), this.acum.getNombre()));
+
+        resultado.append(resultado_asignacion);
+        resultado.append(resultado_condicion_primer_ifelse);
+        resultado.append(resultado_condicion_segundo_ifelse);
+        resultado.append(resultado_sentencias_tercer_ifelse);
+        resultado.append(resultado_sentencias_segundo_ifelse);
+        resultado.append(resultado_sentencias_primer_ifelse);
+        resultado.append(resultado_asignacion_acum);
         return resultado.toString();
     }
 }

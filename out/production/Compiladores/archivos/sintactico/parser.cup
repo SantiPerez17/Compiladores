@@ -603,16 +603,16 @@ funcion_especial ::=
         for (Expresion e : le) {
             Integer i = le.size();
             String a = i.toString();
-            AND and_c = new AND("AND", Tipo.Bool, new Igual("Igual", Tipo.Bool, new Resta("Resta", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "LenLista"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("MenorOIgual", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "LenLista")));
-            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("Suma", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), e));
-            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("Suma", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Constante_Entera")));
-            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("Resta", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Constante_Entera")));
+            AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), e));
+            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
             List<Sentencia> sentencias1 = new ArrayList<>();
             sentencias1.add(asig1);
             sentencias1.add(asig2);
             sentencias1.add(asig3);
             /*                                   */
-            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("Suma", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Constante_Entera")));
+            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
             List<Sentencia> sentencias2 = new ArrayList<>();
             sentencias2.add(asig4);
             IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
@@ -622,28 +622,26 @@ funcion_especial ::=
         int longitud_lista = le.size();
         String long_lista = Integer.toString(longitud_lista);
         //La lista está vacía.
-        Mayor valorListaNoCero = new Mayor("longList>0", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "longLista"), new ConstanteEntera("0", Tipo.Int, "Validador0"));
+        Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
         List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
         sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
         IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
         sentTercerIf.add(tercerIf);
 
         //La lista tiene menos elementos que el indicado
-        MayorOIgual lista_menos_elementos = new MayorOIgual("long_lista>=valorPivot", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "longitud_lista"), new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+        MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
         List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
         sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
         IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
         sentSegundoIf.add(segundoIf);
 
         //El valor debe ser >=1
-        MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual("ValorPivot>=1", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "ValorAComparar"));
+        MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
         List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
         sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
 
-        sentPrimerIf.add(asig_pivot);
-        sentPrimerIf.add(primerIf);
-        RESULT=new Cola("Cola",Tipo.Int,sentPrimerIf);
+        RESULT=new Cola("Cola",Tipo.Int,asig_pivot,primerIf,acum);
     :};
 
 pivot ::=

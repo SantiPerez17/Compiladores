@@ -5,10 +5,11 @@ public class CodeGeneratorHelper {
     private static Integer autoincrementalPivot = 0;
     private static Integer autoincrementalAcum = 0;
     private static Integer autoincrementalPos = 0;
+    private static Integer autoincrementalLenLista = 0;
 
     private CodeGeneratorHelper(){}
+
     public static String getPos(){
-        //autoincrementalPivot+=1;
         return autoincrementalPos.toString();
     }
 
@@ -19,7 +20,6 @@ public class CodeGeneratorHelper {
 
 
     public static String getPivot(){
-        //autoincrementalPivot+=1;
         return autoincrementalPivot.toString();
     }
 
@@ -29,13 +29,21 @@ public class CodeGeneratorHelper {
     }
 
     public static String getAcum(){
-        //autoincrementalPivot+=1;
         return autoincrementalAcum.toString();
     }
 
     public static String getNewAcum(){
         autoincrementalAcum+=1;
         return autoincrementalAcum.toString();
+    }
+
+    public static String getLenLista(){
+        return autoincrementalLenLista.toString();
+    }
+
+    public static String getNewLenLista() {
+        autoincrementalLenLista+=1;
+        return autoincrementalLenLista.toString();
     }
 
     public static String getNewPointer(){
@@ -62,4 +70,6 @@ public class CodeGeneratorHelper {
     public static int getNextID() {
         return nextID;
     }
+
+
 }
