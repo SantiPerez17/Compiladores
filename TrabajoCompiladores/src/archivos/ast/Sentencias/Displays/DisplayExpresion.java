@@ -38,9 +38,9 @@ public class DisplayExpresion extends Display {
         resultado.append(";___DisplayExpresion___\n");
         resultado.append(this.expresion.generarCodigo(etiqueta));
         if (this.expresion.getTipo().equals(Tipo.Int)){
-            resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         } else if(this.expresion.getTipo().equals(Tipo.Float)){
-            resultado.append(String.format("%1$s = call double (i8*, ...) @scanfd(i8* getelementptr ([5 x i8], [5 x i8]* @.double, i64 0, i64 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+            resultado.append(String.format("%1$s = call double (i8*, ...) @printf(i8* getelementptr ([5 x i8], [5 x i8]* @.double, i64 0, i64 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         }
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));

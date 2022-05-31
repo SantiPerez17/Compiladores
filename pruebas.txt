@@ -4,13 +4,14 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-display("hola")
-res:=cola(a;[b,20+c])
+a:=input_int()
+display(a)
+(*res:=cola(a;[b,20+c])
 display("chau")
 b:=cola(c;[5,6,7,8])
 b:=cola(1;[1,2,3])
 xd:=not (true and false)
-(*display("gola")
+display("gola")
 if (a==b) then
     a:=0
     end

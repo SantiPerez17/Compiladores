@@ -344,7 +344,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             }
             System.out.println("Archivo objeto generado");
 
-            Process process2 = Runtime.getRuntime().exec("clang -o programa.exe programa.o");
+            Process process2 = Runtime.getRuntime().exec("clang -o programa.exe programa.o scanf.o");
             BufferedReader reader2 = new BufferedReader(new InputStreamReader(process2.getInputStream()));
             String line2;
             while ((line2 = reader2.readLine()) != null) {

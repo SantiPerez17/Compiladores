@@ -57,11 +57,12 @@ public class Programa extends Nodo{
         resultado.append(";Programa: 'Prueba'\n");
         resultado.append("source_filename = \"pruebas.txt\"\n");
         resultado.append("target datalayout = \"e-m:w-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128\"\n");
-        resultado.append("target triple = \"x86_64-pc-windows-msvc19.11.0\"\n\n");
+        resultado.append("target triple = \"x86_64-pc-windows-msvc19.29.30145\"\n\n");
         resultado.append("declare i32 @puts(i8*)\n");
-        resultado.append("declare i32 @scanf(i8*, ...)\n");
-        resultado.append("declare double @scanfd(i8*, ...)\n");
-        resultado.append("declare i1 @scanfb(i8*, ...)\n");
+        resultado.append("declare i32 @printf(i8*, ...)\n");
+        resultado.append("declare i32 @scanf(i8* %0, ...)\n");
+        resultado.append("declare double @scanfd(i8* %0, ...)\n");
+        resultado.append("declare i1 @scanfb(i8* %0, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
         resultado.append("@.double = private constant [5 x i8] c\"%lf\\0A\\00\"\n");
         resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
