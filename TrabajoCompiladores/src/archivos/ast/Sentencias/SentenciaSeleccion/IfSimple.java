@@ -59,7 +59,7 @@ public class IfSimple extends Sentencia {
         StringBuilder resultado = new StringBuilder();
         StringBuilder resultado_sentencias = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(etiqueta);
+        resultado.append("\n"+etiqueta);
         resultado.append(this.condicion.generarCodigo(etiqueta));
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();

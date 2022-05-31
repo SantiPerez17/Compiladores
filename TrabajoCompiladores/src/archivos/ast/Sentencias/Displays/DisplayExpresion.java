@@ -34,7 +34,7 @@ public class DisplayExpresion extends Display {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(etiqueta);
+        resultado.append("\n"+etiqueta);
         resultado.append(this.expresion.generarCodigo(etiqueta));
         if (this.expresion.getTipo().equals(Tipo.Int)){
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));

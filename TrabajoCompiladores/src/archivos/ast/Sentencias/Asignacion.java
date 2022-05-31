@@ -64,11 +64,9 @@ public class Asignacion extends Sentencia{
         StringBuilder resultado = new StringBuilder();
         if(expresion.getNombre() == "Cola"){
             resultado.append(this.expresion.generarCodigo(etiqueta));
-            resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
         } else {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            resultado.append(etiqueta);
-            resultado.append(";Asignacion\n");
+            resultado.append("\n"+etiqueta);
             resultado.append(this.expresion.generarCodigo(etiqueta));
 
             if (expresion.getTipo().equals(Tipo.Int)){

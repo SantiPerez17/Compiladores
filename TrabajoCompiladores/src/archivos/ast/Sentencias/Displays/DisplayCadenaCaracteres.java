@@ -33,12 +33,16 @@ public class DisplayCadenaCaracteres extends Display {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append(etiqueta);
+        resultado.append("\n"+etiqueta);
         String cadena = (String) this.CadenaCaracteres.getValor();
         int caracteres = cadena.length() + 3;
         resultado.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres + " x i8], [" + caracteres + " x i8] * @%2$s, i32 0, i32 0))\n", this.getIr_ref(), this.CadenaCaracteres.getNombre()));
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
+    }
+
+    public ConstanteString getCadenaCaracteres() {
+        return this.CadenaCaracteres;
     }
 }
