@@ -2,6 +2,7 @@ package archivos.ast.Sentencias;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 
@@ -45,10 +46,23 @@ public class Asignacion extends Sentencia{
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
         if(expresion.getNombre() == "Cola"){
+            Cola cola = (Cola) expresion;
+            for (Expresion c: cola.getColas()){
+                grafico.append(c.graficar("nodo_programa"));
+                Cola cola1 = (Cola) c;
+                //grafico.append(cola1.getAcum().graficar("nodo_programa"));
+                int aux = cont;
+                aux+=2;
+                cont++;
+                Identificador identificador2 = new Identificador("_Acum"+aux,c.getTipo());
+                Asignacion asig1 = new Asignacion("Asignacion",identificador2,cola1.getAcum());
+
+                grafico.append(asig1.graficar("nodo_programa"));
+            }
             grafico.append(expresion.graficar("nodo_programa"));
             grafico.append(super.graficar("nodo_programa"));
             grafico.append(identificador.graficar(this.getId()));
-            Identificador identificador1 = new Identificador("_acum"+cont,expresion.getTipo());
+            Identificador identificador1 = new Identificador("_Acum"+cont,expresion.getTipo());
             cont++;
             grafico.append(identificador1.graficar(this.getId()));
         } else {

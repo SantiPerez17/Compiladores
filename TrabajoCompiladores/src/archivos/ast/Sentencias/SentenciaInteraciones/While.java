@@ -75,6 +75,16 @@ public class While extends Sentencia {
             resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
             aux+=1;
         }
+        String siguiente4 = "%etiqXX";
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+        int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+        resultado_sentencias.delete(start2,end2);
+        resultado_sentencias.append(String.format("br label %1$s\n", siguiente4));
+        int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
+        int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
+        resultado_sentencias.delete(start3,end3);
+
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
         resultado.append(resultado_sentencias);

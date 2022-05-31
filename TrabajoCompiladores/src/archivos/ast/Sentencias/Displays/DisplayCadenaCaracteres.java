@@ -45,5 +45,4 @@ public class DisplayCadenaCaracteres extends Display {
 
     public ConstanteString getCadenaCaracteres() {
         return this.CadenaCaracteres;
-    }
-}
+    }}

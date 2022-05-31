@@ -78,7 +78,6 @@ public class IfSimple extends Sentencia {
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
         resultado.append(resultado_sentencias);
-        resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
     }
 }

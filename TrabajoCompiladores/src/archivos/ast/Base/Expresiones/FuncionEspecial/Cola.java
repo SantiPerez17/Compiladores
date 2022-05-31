@@ -9,34 +9,73 @@ import archivos.ast.Sentencias.Displays.DisplayCadenaCaracteres;
 import archivos.ast.Sentencias.Sentencia;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 
+import java.util.List;
+
 public class Cola extends Expresion {
+    public Asignacion getAsignacion() {
+        return asignacion;
+    }
+
+    public void setAsignacion(Asignacion asignacion) {
+        this.asignacion = asignacion;
+    }
+
+    public List<Expresion> getColas() {
+        return colas;
+    }
+
+    public void setColas(List<Expresion> colas) {
+        this.colas = colas;
+    }
+
+    public IfElse getIfelse() {
+        return ifelse;
+    }
+
+    public void setIfelse(IfElse ifelse) {
+        this.ifelse = ifelse;
+    }
+
+    public Identificador getAcum() {
+        return acum;
+    }
+
+    public void setAcum(Identificador acum) {
+        this.acum = acum;
+    }
+
     private Asignacion asignacion;
+    private List<Expresion> colas;
     private IfElse ifelse;
     private Identificador acum;
 
-    public Cola(Tipo tipo, Asignacion asignacion, IfElse ifelse, Identificador acum) {
+    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum) {
         super(tipo);
         this.asignacion = asignacion;
+        this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
     }
 
-    public Cola(Asignacion asignacion, IfElse ifelse, Identificador acum) {
+    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
         this.asignacion = asignacion;
+        this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
     }
 
-    public Cola(String nombre, Asignacion asignacion, IfElse ifelse, Identificador acum) {
+    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
         super(nombre);
         this.asignacion = asignacion;
+        this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
     }
 
-    public Cola(String nombre, Tipo tipo, Asignacion asignacion, IfElse ifelse, Identificador acum) {
+    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
         super(nombre, tipo);
         this.asignacion = asignacion;
+        this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
     }
