@@ -79,6 +79,7 @@ public class IfElse extends Sentencia {
         StringBuilder resultado_sentencias2 = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append("\n"+etiqueta);
+        resultado.append(";___IfElse___\n");
         resultado.append(this.condicion.generarCodigo(etiqueta));
         this.sentencias1.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias1 = "%"+sentencias1.get(0).getIr_ref();

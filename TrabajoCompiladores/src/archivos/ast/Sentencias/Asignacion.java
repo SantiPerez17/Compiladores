@@ -63,20 +63,21 @@ public class Asignacion extends Sentencia{
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         if(expresion.getNombre() == "Cola"){
-            resultado.append(this.expresion.generarCodigo(etiqueta));
+            resultado.append(this.expresion.generarCodigo(this.identificador.getNombre()+"-.-"+etiqueta));
         } else {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append("\n"+etiqueta);
+            resultado.append(";___Asignación___\n");
             resultado.append(this.expresion.generarCodigo(etiqueta));
 
             if (expresion.getTipo().equals(Tipo.Int)){
-                resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
+                resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             } else if (expresion.getTipo().equals(Tipo.Float)){
-                resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
+                resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             } else if (expresion.getTipo().equals(Tipo.Bool)){
-                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
+                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             } else {
-                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), identificador.getNombre()));
+                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             }
             String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
             resultado.append(String.format("br label %1$s\n", siguiente));

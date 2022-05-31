@@ -58,8 +58,11 @@ public class Cola extends Expresion {
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo(String identificador_etiqueta) {
         StringBuilder resultado = new StringBuilder();
+        int start = identificador_etiqueta.indexOf("-.-");
+        String iden = identificador_etiqueta.substring(0,start);
+        String etiqueta = identificador_etiqueta.substring(start+3);
 
         //Asignacion del pivot
         StringBuilder resultado_asignacion = new StringBuilder();
@@ -127,12 +130,12 @@ public class Cola extends Expresion {
                 aux7+=1;
             }
             if(aux == ifelse3.getSentencias1().size()-1){
-                String siguiente3 = "%etiqXX";
+                //Asignacion de la variable acum
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                int start1 = resultado_sentencias_tercer_ifelse.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
-                int end1 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start1;
-                resultado_sentencias_tercer_ifelse.delete(start1,end1);
-                resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", siguiente3));
+                resultado_sentencias_tercer_ifelse.append("\n"+this.getIr_ref()+":\n");
+                resultado_sentencias_tercer_ifelse.append(this.acum.generarCodigo(etiqueta));
+                resultado_sentencias_tercer_ifelse.append(String.format("store i32 %1$s, i32* @%2$s\n", this.acum.getIr_ref(), iden));
+                resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", "%etiqXX"));
             } else {
                 String siguiente3 = "%etiq" + (CodeGeneratorHelper.getNextID()+7);
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());

@@ -34,6 +34,7 @@ public class DisplayCadenaCaracteres extends Display {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         resultado.append("\n"+etiqueta);
+        resultado.append(";___DisplayCadenaCaracteres___\n");
         String cadena = (String) this.CadenaCaracteres.getValor();
         int caracteres = cadena.length() + 3;
         resultado.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres + " x i8], [" + caracteres + " x i8] * @%2$s, i32 0, i32 0))\n", this.getIr_ref(), this.CadenaCaracteres.getNombre()));
