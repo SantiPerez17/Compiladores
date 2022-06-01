@@ -51,19 +51,16 @@ public class Asignacion extends Sentencia{
                 grafico.append(c.graficar("nodo_programa"));
                 Cola cola1 = (Cola) c;
                 //grafico.append(cola1.getAcum().graficar("nodo_programa"));
-                int aux = cont;
-                aux+=2;
-                cont++;
-                Identificador identificador2 = new Identificador("_Acum"+aux,c.getTipo());
-                Asignacion asig1 = new Asignacion("Asignacion",identificador2,cola1.getAcum());
+                Identificador identificador2 = new Identificador(cola1.getAcum().getNombre(),cola1.getTipo());
+                Identificador identificador3 = new Identificador(cola1.getAcumAux().getNombre(),cola1.getTipo());
+                Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
 
                 grafico.append(asig1.graficar("nodo_programa"));
             }
             grafico.append(expresion.graficar("nodo_programa"));
             grafico.append(super.graficar("nodo_programa"));
             grafico.append(identificador.graficar(this.getId()));
-            Identificador identificador1 = new Identificador("_Acum"+cont,expresion.getTipo());
-            cont++;
+            Identificador identificador1 = new Identificador(cola.getAcum().getNombre(),expresion.getTipo());
             grafico.append(identificador1.graficar(this.getId()));
         } else {
             grafico.append(super.graficar(idPadre));

@@ -44,40 +44,81 @@ public class Cola extends Expresion {
         this.acum = acum;
     }
 
+    public Identificador getAcumAux() {
+        return acumAux;
+    }
+
+    public void setAcumAux(Identificador acumAux) {
+        this.acumAux = acumAux;
+    }
+
+    public List<Expresion> getExpresiones() {
+        return expresiones;
+    }
+
+    public void setExpresiones(List<Expresion> expresiones) {
+        this.expresiones = expresiones;
+    }
+
+    public Expresion getPivot() {
+        return pivot;
+    }
+
+    public void setPivot(Expresion pivot) {
+        this.pivot = pivot;
+    }
+
+    private List<Expresion> expresiones;
+    private Expresion pivot;
+
     private Asignacion asignacion;
     private List<Expresion> colas;
     private IfElse ifelse;
     private Identificador acum;
+    private Identificador acumAux;
 
-    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum) {
+
+    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(tipo);
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
+        this.acumAux = acumAux;
+        this.expresiones = expresiones;
+        this.pivot = pivot;
     }
 
-    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
+    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
+        this.acumAux = acumAux;
+        this.expresiones = expresiones;
+        this.pivot = pivot;
     }
 
-    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
+    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(nombre);
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
+        this.acumAux = acumAux;
+        this.expresiones = expresiones;
+        this.pivot = pivot;
     }
 
-    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum) {
+    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(nombre, tipo);
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
         this.acum = acum;
+        this.acumAux = acumAux;
+        this.expresiones = expresiones;
+        this.pivot = pivot;
     }
 
     @Override
@@ -247,4 +288,5 @@ public class Cola extends Expresion {
         resultado.append(resultado_sentencias_primer_ifelse);
         return resultado.toString();
     }
+
 }
