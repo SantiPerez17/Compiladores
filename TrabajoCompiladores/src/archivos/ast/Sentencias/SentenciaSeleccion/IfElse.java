@@ -35,6 +35,8 @@ public class IfElse extends Sentencia {
         this.sentencias2 = sentencias2;
     }
 
+    public IfElse(){}
+
     public IfElse(Expresion condicion, List<Sentencia> sentencias1, List<Sentencia> sentencias2) {
         this.condicion = condicion;
         this.sentencias1 = sentencias1;

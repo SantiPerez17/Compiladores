@@ -1564,6 +1564,8 @@ class CUP$MiParser$actions {
                 //RESULT = "cola( "+p+";["+le+"])"  ;
                 //hacer validaciones
                 List<Sentencia> sents = new ArrayList<>();
+                List<Sentencia> sents_cola = new ArrayList<>();
+                List<Sentencia> sents_colas = new ArrayList<>();
                 List<Sentencia> sentPrimerIf = new ArrayList<>();
                 List<Sentencia> sentSegundoIf = new ArrayList<>();
                 List<Sentencia> sentTercerIf = new ArrayList<>();
@@ -1622,7 +1624,113 @@ class CUP$MiParser$actions {
                     simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
                 }
 
-                recorrerSentencias(le, colas, sents);
+                Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
+
+                cola.colasInternas(le);
+                Collections.reverse(cola.getColas());
+                for(Expresion c: cola.getColas()){
+                    List<Sentencia> sents_col = new ArrayList<>();
+                    List<Sentencia> sentPrimerIf_col = new ArrayList<>();
+                    List<Sentencia> sentSegundoIf_col = new ArrayList<>();
+                    List<Sentencia> sentTercerIf_col = new ArrayList<>();
+                    Cola nueva = (Cola) c;
+                    for (Expresion e : nueva.getExpresiones()) {
+                        if(e.getNombre() == "Cola"){
+                            Integer i = nueva.getExpresiones().size();
+                            String a = i.toString();
+                            AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Identificador(CodeGeneratorHelper.getNewAcum(),Tipo.Int)));
+                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            List<Sentencia> sentencias1 = new ArrayList<>();
+                            sentencias1.add(asig1);
+                            sentencias1.add(asig2);
+                            sentencias1.add(asig3);
+                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            List<Sentencia> sentencias2 = new ArrayList<>();
+                            sentencias2.add(asig4);
+                            IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
+                            sents_col.add(ie);
+                        } else {
+                            Integer i = le.size();
+                            String a = i.toString();
+                            AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), e));
+                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            List<Sentencia> sentencias1 = new ArrayList<>();
+                            sentencias1.add(asig1);
+                            sentencias1.add(asig2);
+                            sentencias1.add(asig3);
+                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                            List<Sentencia> sentencias2 = new ArrayList<>();
+                            sentencias2.add(asig4);
+                            IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
+                            sents_col.add(ie);
+                        }
+                    }
+
+                    int longitud_lista = nueva.getExpresiones().size();
+                    String long_lista = Integer.toString(longitud_lista);
+                    //La lista está vacía.
+                    Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
+                    List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+                    sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
+                    IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents_col, sentencia_mensaje3);
+                    sentTercerIf_col.add(tercerIf);
+
+                    //La lista tiene menos elementos que el indicado
+                    MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+                    List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
+                    sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
+                    IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf_col, sentencia_mensaje2);
+                    sentSegundoIf_col.add(segundoIf);
+
+                    //El valor debe ser >=1
+                    MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+                    List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
+                    sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+                    IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
+                    cola.getIfelse_colas().add(primerIf);
+                }
+
+                //recorrerSentencias(le, colas, sents);
+                for (Expresion e : le) {
+                    if(e.getNombre() == "Cola"){
+                        Integer i = le.size();
+                        String a = i.toString();
+                        AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Identificador(CodeGeneratorHelper.getNewAcum(),Tipo.Int)));
+                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias1 = new ArrayList<>();
+                        sentencias1.add(asig1);
+                        sentencias1.add(asig2);
+                        sentencias1.add(asig3);
+                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias2 = new ArrayList<>();
+                        sentencias2.add(asig4);
+                        IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
+                        sents.add(ie);
+
+                    } else {
+                        Integer i = le.size();
+                        String a = i.toString();
+                        AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), e));
+                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias1 = new ArrayList<>();
+                        sentencias1.add(asig1);
+                        sentencias1.add(asig2);
+                        sentencias1.add(asig3);
+                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias2 = new ArrayList<>();
+                        sentencias2.add(asig4);
+                        IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
+                        sents.add(ie);
+                    }
+                }
 
                 int longitud_lista = le.size();
                 String long_lista = Integer.toString(longitud_lista);
@@ -1645,8 +1753,9 @@ class CUP$MiParser$actions {
                 List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
                 sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
                 IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
+                cola.setIfelse(primerIf);
 
-                RESULT=new Cola("Cola",Tipo.Int,asig_pivot,colas,primerIf,acum,acumAux,le,p);
+                RESULT=cola;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

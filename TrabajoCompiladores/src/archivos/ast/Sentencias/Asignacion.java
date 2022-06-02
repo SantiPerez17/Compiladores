@@ -54,7 +54,6 @@ public class Asignacion extends Sentencia{
                 Identificador identificador2 = new Identificador(cola1.getAcum().getNombre(),cola1.getTipo());
                 Identificador identificador3 = new Identificador(cola1.getAcumAux().getNombre(),cola1.getTipo());
                 Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
-
                 grafico.append(asig1.graficar("nodo_programa"));
             }
             grafico.append(expresion.graficar("nodo_programa"));

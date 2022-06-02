@@ -25,7 +25,7 @@ TABLA DE SIMBOLOS
               _Acum4                  ID                 Int                   _                   _
              _IdPos2                  ID                 Int                   _                   _
              _Pivot3                  ID                 Int                   _                   _
-              _Acum5                  ID                 Int                   _                   _
               _Acum6                  ID                 Int                   _                   _
+              _Acum7                  ID                 Int                   _                   _
              _IdPos3                  ID                 Int                   _                   _
 

@@ -10,7 +10,6 @@ import archivos.ast.Sentencias.Sentencia;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Cola extends Expresion {
@@ -70,17 +69,26 @@ public class Cola extends Expresion {
         this.pivot = pivot;
     }
 
+    public List<Sentencia> getIfelse_colas() {
+        return ifelse_colas;
+    }
+
+    public void setIfelse_colas(List<Sentencia> ifelse_colas) {
+        this.ifelse_colas = ifelse_colas;
+    }
+
     private List<Expresion> expresiones;
     private Expresion pivot;
 
     private Asignacion asignacion;
     private List<Expresion> colas;
     private IfElse ifelse;
+    private List<Sentencia> ifelse_colas;
     private Identificador acum;
     private Identificador acumAux;
 
 
-    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse,List<Sentencia> ifelse_colas, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(tipo);
         this.asignacion = asignacion;
         this.colas = colas;
@@ -91,36 +99,54 @@ public class Cola extends Expresion {
         this.pivot = pivot;
     }
 
-    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse,List<Sentencia> ifelse_colas, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
+        this.ifelse_colas = ifelse_colas;
         this.acum = acum;
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
     }
 
-    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse,List<Sentencia> ifelse_colas, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(nombre);
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
+        this.ifelse_colas = ifelse_colas;
         this.acum = acum;
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
     }
 
-    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse,List<Sentencia> ifelse_colas, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
         super(nombre, tipo);
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
+        this.ifelse_colas = ifelse_colas;
         this.acum = acum;
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
+    }
+
+    public void colasInternas(List<Expresion> expresiones) {
+        List<Cola> colasInternasAux = new ArrayList<>();
+        for (Expresion e : expresiones) {
+            if(e.getNombre() == "Cola") {
+                colasInternasAux.add((Cola) e);
+            }
+        }
+        if (colasInternasAux.size()>0){
+            for (Cola c: colasInternasAux){
+                this.getColas().add(c);
+                colasInternas(c.getExpresiones());
+            }
+        }
     }
 
     @Override
@@ -137,17 +163,6 @@ public class Cola extends Expresion {
         //    resultado.append(s.graficar("nodo_programa"));
         //}
         return resultado.toString();
-    }
-
-    public List<Expresion> colasInternas(List<Expresion> expresiones) {
-        List<Expresion> colasInternasAux = new ArrayList<>();
-        for (Expresion e : expresiones) {
-            if(e.getNombre() == "Cola") {
-                colasInternasAux.add(e);
-            }
-        }
-        Collections.reverse(colasInternasAux);
-        return colasInternasAux;
     }
 
     @Override
