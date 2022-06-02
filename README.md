@@ -15,3 +15,7 @@ Se estableceran una serie de reglas que serviran para saber como parsea el compi
 ## Tercera parte 🖥
 
 En la tercera parte se arma, basandose en las reglas anteriores el AST. Con los diferentes nodos que se inicializan en la gramática.
+
+## Cuarta parte 🖥
+
+En la cuarta parte se arma código IR de LLVM a partir del arbol sintactico obtenido en la tercera parte.
