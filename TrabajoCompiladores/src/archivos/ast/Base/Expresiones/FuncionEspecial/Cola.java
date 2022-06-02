@@ -9,6 +9,8 @@ import archivos.ast.Sentencias.Displays.DisplayCadenaCaracteres;
 import archivos.ast.Sentencias.Sentencia;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cola extends Expresion {
@@ -135,6 +137,17 @@ public class Cola extends Expresion {
         //    resultado.append(s.graficar("nodo_programa"));
         //}
         return resultado.toString();
+    }
+
+    public List<Expresion> colasInternas(List<Expresion> expresiones) {
+        List<Expresion> colasInternasAux = new ArrayList<>();
+        for (Expresion e : expresiones) {
+            if(e.getNombre() == "Cola") {
+                colasInternasAux.add(e);
+            }
+        }
+        Collections.reverse(colasInternasAux);
+        return colasInternasAux;
     }
 
     @Override
