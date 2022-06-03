@@ -73,7 +73,51 @@ public class Asignacion extends Sentencia{
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         if(expresion.getNombre() == "Cola"){
-            resultado.append(this.expresion.generarCodigo(this.identificador.getNombre()+"-.-"+etiqueta));
+            Cola cola = (Cola) expresion;
+            int aux = 0;
+            for (Expresion c: cola.getColas()){
+                Cola cola1 = (Cola) c;
+
+                //Asignacion del pivot de las colas internas
+                if (aux>0){
+                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+                } else {
+                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta));
+                }
+
+                //Sentencias if de las colas internas
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(c.generarCodigo(this.getIr_ref()+":\n"));
+
+                //Asignacion de la variable Acum de las colas internas
+                Identificador identificador2 = new Identificador(cola1.getAcum().getNombre(),cola1.getTipo());
+                Identificador identificador3 = new Identificador(cola1.getAcumAux().getNombre(),cola1.getTipo());
+                Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
+
+                aux+=1;
+            }
+
+            //Asignacion del pivot de las colas internas
+            if (aux>0){
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+            } else {
+                resultado.append(cola.getAsignacion().generarCodigo(etiqueta));
+            }
+
+            //Sentencias if de la cola
+            //this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(expresion.generarCodigo(this.getIr_ref()+":\n"));
+
+            //Asignacion de la variable Acum de la cola
+            Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
+            Identificador identificador3 = new Identificador(this.getIdentificador().getNombre(),cola.getTipo());
+            Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
         } else {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append("\n"+etiqueta);
