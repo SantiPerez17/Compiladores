@@ -180,6 +180,7 @@ public class Cola extends Expresion {
         StringBuilder resultado_condicion_primer_ifelse = new StringBuilder();
         this.ifelse.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_condicion_primer_ifelse.append("\n"+this.ifelse.getIr_ref()+":\n");
+        resultado_condicion_primer_ifelse.append(";___Primer IfElse___\n");
         ifelse.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaIfElse1Sentencias1 = "%"+ifelse.getSentencias1().get(0).getIr_ref();
         ifelse.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -192,6 +193,7 @@ public class Cola extends Expresion {
         IfElse ifelse2 = (IfElse) this.ifelse.getSentencias1().get(0);
         ifelse2.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_condicion_segundo_ifelse.append("\n"+etiquetaIfElse1Sentencias1.substring(1)+":\n");
+        resultado_condicion_segundo_ifelse.append(";___Segundo IfElse___\n");
         ifelse2.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaIfElse2Sentencias1 = "%"+ifelse2.getSentencias1().get(0).getIr_ref();
         ifelse2.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -204,6 +206,7 @@ public class Cola extends Expresion {
         IfElse ifelse3 = (IfElse) ifelse2.getSentencias1().get(0);
         ifelse3.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_sentencias_tercer_ifelse.append("\n"+etiquetaIfElse2Sentencias1.substring(1)+":\n");
+        resultado_sentencias_tercer_ifelse.append(";___Tercer IfElse___\n");
         ifelse3.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaIfElse3Sentencias1 = "%"+ifelse3.getSentencias1().get(0).getIr_ref();
         ifelse3.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -217,17 +220,19 @@ public class Cola extends Expresion {
             IfElse ifelse4 = (IfElse) sentencia;
             if(aux == 0){
                 resultado_sentencias_tercer_ifelse.append("\n"+etiquetaIfElse3Sentencias1.substring(1)+":\n");
+                resultado_sentencias_tercer_ifelse.append(";___Condicion___\n");
                 resultado_sentencias_tercer_ifelse.append(ifelse4.getCondicion().generarCodigo(etiquetaIfElse3Sentencias1.substring(1)+":\n"));
             } else {
                 ifelse4.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_sentencias_tercer_ifelse.append("\n"+ifelse4.getIr_ref()+":\n");
+                resultado_sentencias_tercer_ifelse.append(";___Condicion___\n");
                 resultado_sentencias_tercer_ifelse.append(ifelse4.getCondicion().generarCodigo(ifelse4.getIr_ref()+":\n"));
             }
             ifelse4.getSentencias1().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
             String etiquetaIfElse4Sentencias1 = "%"+ifelse4.getSentencias1().get(0).getIr_ref();
             ifelse4.getSentencias2().get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
             String etiquetaIfElse4Sentencias2 = "%"+ifelse4.getSentencias2().get(0).getIr_ref();
-            resultado_sentencias_tercer_ifelse.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", ifelse3.getCondicion().getIr_ref(), etiquetaIfElse4Sentencias1, etiquetaIfElse4Sentencias2));
+            resultado_sentencias_tercer_ifelse.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", ifelse4.getCondicion().getIr_ref(), etiquetaIfElse4Sentencias1, etiquetaIfElse4Sentencias2));
 
             int aux7 = 0;
             for (Sentencia s: ifelse4.getSentencias1()){
@@ -241,6 +246,7 @@ public class Cola extends Expresion {
                 //Asignacion de la variable acum
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_sentencias_tercer_ifelse.append("\n"+this.getIr_ref()+":\n");
+                resultado_sentencias_tercer_ifelse.append(";___Asignacion___\n");
                 resultado_sentencias_tercer_ifelse.append(this.acum.generarCodigo(etiqueta));
                 resultado_sentencias_tercer_ifelse.append(String.format("store i32 %1$s, i32* @%2$s\n", this.acum.getIr_ref(), iden));
                 resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", "%etiqXX"));
@@ -270,6 +276,7 @@ public class Cola extends Expresion {
         DisplayCadenaCaracteres dcc3 = (DisplayCadenaCaracteres) ifelse3.getSentencias2().get(0);
         dcc3.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_sentencias_tercer_ifelse.append("\n"+etiquetaIfElse3Sentencias2.substring(1)+":\n");
+        resultado_sentencias_tercer_ifelse.append(";___Else del tercer if___\n");
         dcc3.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String cadena3 = (String) dcc3.getCadenaCaracteres().getValor();
         int caracteres3 = cadena3.length() + 3;
@@ -282,6 +289,7 @@ public class Cola extends Expresion {
         DisplayCadenaCaracteres dcc2 = (DisplayCadenaCaracteres) ifelse2.getSentencias2().get(0);
         dcc2.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_sentencias_segundo_ifelse.append("\n"+etiquetaIfElse2Sentencias2.substring(1)+":\n");
+        resultado_sentencias_segundo_ifelse.append(";___Else del segundo if___\n");
         dcc2.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String cadena2 = (String) dcc2.getCadenaCaracteres().getValor();
         int caracteres2 = cadena2.length() + 3;
@@ -294,6 +302,7 @@ public class Cola extends Expresion {
         DisplayCadenaCaracteres dcc1 = (DisplayCadenaCaracteres) ifelse.getSentencias2().get(0);
         dcc1.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado_sentencias_primer_ifelse.append("\n"+etiquetaIfElse1Sentencias2.substring(1)+":\n");
+        resultado_sentencias_primer_ifelse.append(";___Else del primer if___\n");
         dcc1.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String cadena1 = (String) dcc1.getCadenaCaracteres().getValor();
         int caracteres1 = cadena1.length() + 3;
@@ -314,6 +323,7 @@ public class Cola extends Expresion {
         resultado.append(resultado_sentencias_tercer_ifelse);
         resultado.append(resultado_sentencias_segundo_ifelse);
         resultado.append(resultado_sentencias_primer_ifelse);
+
         return resultado.toString();
     }
 

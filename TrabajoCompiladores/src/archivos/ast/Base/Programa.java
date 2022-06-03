@@ -101,6 +101,7 @@ public class Programa extends Nodo{
         }
 
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));
+
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado.append("\n\t"+this.getIr_ref()+":\n");
         resultado.append("\tret i32 0\n}\n");
