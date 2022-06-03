@@ -1,13 +1,14 @@
 declare.section
-    float : f,b;
-    int : res,res2,a,c,d,t,aux;
+    float : f;
+    int : res,res2,a,b,c,d,t,aux;
     bool : xd, ahre,r;
 enddeclare.section
 program.section
 
-a:=0
-f:=0
-display(f<10)
+a:=2
+b:=5
+res:=cola(2;[cola(2;[3,cola(2;[a, cola(1;[b])]),5]),cola(3;[6,7,8])])
+display(res)
 
 
 #res:=cola(1;[2,cola(3;[4,5,6])])
