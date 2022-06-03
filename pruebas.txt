@@ -3,17 +3,27 @@ declare.section
     int : res,res2,a,b,c,d,t,aux;
     bool : xd, ahre,r;
 enddeclare.section
-program.section
-a:=2
-b:=-5
-c:=5
-res:=cola(a;[1,b+20,c])
-display("res:")
+program.section           
+res:=cola(1;[2,cola(3;[4,5,6])])
+#res:=cola(1;[1,2])
 display(res)
 #res:=cola(2;[a,b])
 #res:=cola(2;[a, cola(1;[b])])
 #res:=cola(2;[a, cola(1;[b, cola(1;[c])])])
 (*res:=cola(a;[b,20+c])
+if(a==0)then
+    if(b==1)then
+          if(c==2)then
+                display(a+b+c)
+          else
+                 display(a+b)
+          end
+      else
+           display(a)
+      end
+else
+       display("cero")
+end
 display("chau")
 b:=cola(c;[5,6,7,8])
 b:=cola(1;[1,2,3])

@@ -2,6 +2,7 @@ package archivos;
 
 public class CodeGeneratorHelper {
     private static int nextID = 0;
+    private static int nextTag = 0;
     private static Integer autoincrementalPivot = 0;
     private static Integer autoincrementalAcum = 0;
     private static Integer autoincrementalPos = 0;
@@ -62,13 +63,17 @@ public class CodeGeneratorHelper {
 
     public static String getNewTag(){
         StringBuilder ret = new StringBuilder();
-        nextID+=1;
-        ret.append(String.format("etiq%s", nextID));
+        nextTag+=1;
+        ret.append(String.format("etiq%s", nextTag));
         return ret.toString();
     }
 
     public static int getNextID() {
         return nextID;
+    }
+
+    public static int getNextTag() {
+        return nextTag;
     }
 
 

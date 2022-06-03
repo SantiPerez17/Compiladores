@@ -5,7 +5,6 @@ import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 import archivos.ast.Sentencias.Asignacion;
-import archivos.ast.Sentencias.Displays.DisplayCadenaCaracteres;
 import archivos.ast.Sentencias.Sentencia;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 
@@ -172,10 +171,52 @@ public class Cola extends Expresion {
         String iden = identificador_etiqueta.substring(0,start);
         String etiqueta = identificador_etiqueta.substring(start+3);
 
+        //Sentencias de las colas internas
+        int aux = 0;
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        StringBuilder resultado_sentencias_colas_internas = new StringBuilder();
+        for (Sentencia s: this.getIfelse_colas()){
+            Cola c = (Cola) getColas().get(aux);
+            //Asignacion del pivot
+            StringBuilder resultado_asignacion = new StringBuilder();
+            resultado_sentencias_colas_internas.append(c.asignacion.generarCodigo("\n"+this.getIr_ref()+":\n"));
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+
+            //Sentencias
+            resultado_sentencias_colas_internas.append(s.generarCodigo("\n"+this.getIr_ref()+":\n"));
+
+            //Asignacion de la variable acum
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado_sentencias_colas_internas.append("\n"+this.getIr_ref()+":\n");
+            resultado_sentencias_colas_internas.append(";___Asignacion_Acum___\n");
+            resultado_sentencias_colas_internas.append(c.getAcum().generarCodigo("\n"+this.getIr_ref()+":\n"));
+            resultado_sentencias_colas_internas.append(String.format("store i32 %1$s, i32* @%2$s\n", c.getAcum().getIr_ref(), iden));
+            String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+            resultado_sentencias_colas_internas.append(String.format("br label %1$s\n", siguiente));
+
+            aux+=1;
+        }
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+
         //Asignacion del pivot
         StringBuilder resultado_asignacion = new StringBuilder();
-        resultado_asignacion.append(this.asignacion.generarCodigo(etiqueta));
+        resultado_asignacion.append(this.asignacion.generarCodigo("\n"+this.getIr_ref()+":\n"));
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
 
+        //Sentencias de la cola
+        StringBuilder resultado_sentencia_cola = new StringBuilder();
+        resultado_sentencia_cola.append(this.getIfelse().generarCodigo("\n"+this.getIr_ref()+":\n"));
+
+        //Asignacion de la variable acum
+        this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        resultado_sentencia_cola.append("\n"+this.getIr_ref()+":\n");
+        resultado_sentencia_cola.append(";___Asignacion_Acum___\n");
+        resultado_sentencia_cola.append(this.getAcum().generarCodigo("\n"+this.getIr_ref()+":\n"));
+        resultado_sentencia_cola.append(String.format("store i32 %1$s, i32* @%2$s\n", this.getAcum().getIr_ref(), iden));
+        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+        resultado_sentencia_cola.append(String.format("br label %1$s\n", siguiente));
+
+        /*
         //Primer IfElse
         StringBuilder resultado_condicion_primer_ifelse = new StringBuilder();
         this.ifelse.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -251,7 +292,7 @@ public class Cola extends Expresion {
                 resultado_sentencias_tercer_ifelse.append(String.format("store i32 %1$s, i32* @%2$s\n", this.acum.getIr_ref(), iden));
                 resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", "%etiqXX"));
             } else {
-                String siguiente3 = "%etiq" + (CodeGeneratorHelper.getNextID()+7);
+                String siguiente3 = "%etiq" + (CodeGeneratorHelper.getNextTag()+7);
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 int start1 = resultado_sentencias_tercer_ifelse.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
                 int end1 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start1;
@@ -281,7 +322,7 @@ public class Cola extends Expresion {
         String cadena3 = (String) dcc3.getCadenaCaracteres().getValor();
         int caracteres3 = cadena3.length() + 3;
         resultado_sentencias_tercer_ifelse.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres3 + " x i8], [" + caracteres3 + " x i8] * @%2$s, i32 0, i32 0))\n", dcc3.getIr_ref(), dcc3.getCadenaCaracteres().getNombre()));
-        String siguiente3 = "%etiq" + (CodeGeneratorHelper.getNextID() + 5);
+        String siguiente3 = "%etiq" + (CodeGeneratorHelper.getNextTag() + 5);
         resultado_sentencias_tercer_ifelse.append(String.format("br label %1$s\n", siguiente3));
 
         //Else del segundo if
@@ -294,7 +335,7 @@ public class Cola extends Expresion {
         String cadena2 = (String) dcc2.getCadenaCaracteres().getValor();
         int caracteres2 = cadena2.length() + 3;
         resultado_sentencias_segundo_ifelse.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres2 + " x i8], [" + caracteres2 + " x i8] * @%2$s, i32 0, i32 0))\n", dcc2.getIr_ref(), dcc2.getCadenaCaracteres().getNombre()));
-        String siguiente2 = "%etiq" + (CodeGeneratorHelper.getNextID() + 3);
+        String siguiente2 = "%etiq" + (CodeGeneratorHelper.getNextTag() + 3);
         resultado_sentencias_segundo_ifelse.append(String.format("br label %1$s\n", siguiente2));
 
         //Else del primer if
@@ -307,7 +348,7 @@ public class Cola extends Expresion {
         String cadena1 = (String) dcc1.getCadenaCaracteres().getValor();
         int caracteres1 = cadena1.length() + 3;
         resultado_sentencias_primer_ifelse.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres1 + " x i8], [" + caracteres1 + " x i8] * @%2$s, i32 0, i32 0))\n", dcc1.getIr_ref(), dcc1.getCadenaCaracteres().getNombre()));
-        String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextID()+1);
+        String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextTag()+1);
         resultado_sentencias_primer_ifelse.append(String.format("br label %1$s\n", siguiente1));
 
         int start3 = resultado_sentencias_tercer_ifelse.indexOf(String.format("br label %1$s\n", "%etiqXX"));
@@ -316,13 +357,15 @@ public class Cola extends Expresion {
         int start4 = resultado_sentencias_tercer_ifelse.indexOf(String.format("br label %1$s\n", "%etiqXX"));
         int end4 = (String.format("br label %1$s\n", "%etiqXX")).length()+start4;
         resultado_sentencias_tercer_ifelse.replace(start4,end4,"br label " + siguiente1 + "\n");
-
+*/
+        resultado.append(resultado_sentencias_colas_internas);
         resultado.append(resultado_asignacion);
-        resultado.append(resultado_condicion_primer_ifelse);
-        resultado.append(resultado_condicion_segundo_ifelse);
-        resultado.append(resultado_sentencias_tercer_ifelse);
-        resultado.append(resultado_sentencias_segundo_ifelse);
-        resultado.append(resultado_sentencias_primer_ifelse);
+        resultado.append(resultado_sentencia_cola);
+        //resultado.append(resultado_condicion_primer_ifelse);
+        //resultado.append(resultado_condicion_segundo_ifelse);
+        //resultado.append(resultado_sentencias_tercer_ifelse);
+        //resultado.append(resultado_sentencias_segundo_ifelse);
+        //resultado.append(resultado_sentencias_primer_ifelse);
 
         return resultado.toString();
     }

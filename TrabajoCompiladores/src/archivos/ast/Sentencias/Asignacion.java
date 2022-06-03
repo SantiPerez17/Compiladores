@@ -87,7 +87,7 @@ public class Asignacion extends Sentencia{
             } else if (expresion.getTipo().equals(Tipo.Bool)) {
                 resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             }
-            String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
+            String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
             resultado.append(String.format("br label %1$s\n", siguiente));
         }
 

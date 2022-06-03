@@ -1634,6 +1634,40 @@ class CUP$MiParser$actions {
                     List<Sentencia> sentSegundoIf_col = new ArrayList<>();
                     List<Sentencia> sentTercerIf_col = new ArrayList<>();
                     Cola nueva = (Cola) c;
+
+                    //Generamos el Pivot
+                    Identificador pivot1 = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
+                    Asignacion asig_pivot1 = new Asignacion("Asignacion",pivot,p);
+                    if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
+                        ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                        tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
+                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
+                    }
+
+                    //Generamos el Acum
+                    Identificador acum1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                    }
+
+                    //Generamos el AcumAux
+                    Identificador acumAux1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                    }
+
+                    //Generamos el IdPos
+                    Identificador pos1 = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
+                    if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
+                        ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                        tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
+                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
+                    }
+
                     for (Expresion e : nueva.getExpresiones()) {
                         if(e.getNombre() == "Cola"){
                             Integer i = nueva.getExpresiones().size();

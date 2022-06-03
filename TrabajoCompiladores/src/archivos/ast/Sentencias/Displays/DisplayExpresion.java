@@ -44,7 +44,7 @@ public class DisplayExpresion extends Display {
         } else if(this.expresion.getTipo().equals(Tipo.Bool)) {
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i1 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         }
-        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
+        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
     }

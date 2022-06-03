@@ -98,12 +98,12 @@ public class IfElse extends Sentencia {
             aux+=1;
         }
 
-        String siguiente4 = "%etiqXX";
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
-        int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
-        resultado_sentencias1.delete(start2,end2);
-        resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+        //String siguiente4 = "%etiqXX";
+        //this.setIr_ref(CodeGeneratorHelper.getNewTag());
+        //int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+        //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+        //resultado_sentencias1.delete(start2,end2);
+        //resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
 
         int aux2 = 0;
         for (Sentencia s: sentencias2){
@@ -115,10 +115,10 @@ public class IfElse extends Sentencia {
         }
 
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias1, etiquetaSentencias2));
-        String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextID()+1);
-        int start3 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiqXX"));
-        int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
-        resultado_sentencias1.replace(start3,end3,"br label " + siguiente1 + "\n");
+        //String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextTag()+aux);
+        //int start3 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiqXX"));
+        //int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
+        //resultado_sentencias1.replace(start3,end3,"br label " + siguiente1 + "\n");
         resultado.append(resultado_sentencias1);
         resultado.append(resultado_sentencias2);
         return resultado.toString();

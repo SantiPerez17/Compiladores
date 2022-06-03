@@ -85,7 +85,7 @@ public class While extends Sentencia {
         int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
         resultado_sentencias.delete(start3,end3);
 
-        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);
+        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
         resultado.append(resultado_sentencias);
         resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
