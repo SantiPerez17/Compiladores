@@ -61,13 +61,14 @@ public class Programa extends Nodo{
         resultado.append("declare i32 @puts(i8*)\n");
         resultado.append("declare i32 @printf(i8*, ...)\n");
         resultado.append("declare i32 @scanf(i8* %0, ...)\n");
-        resultado.append("declare double @scanfd(i8* %0, ...)\n");
-        resultado.append("declare i1 @scanfb(i8* %0, ...)\n");
+        //resultado.append("declare double @scanfd(i8* %0, ...)\n");
+        //resultado.append("declare i1 @scanfb(i8* %0, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
-        resultado.append("@.double = private constant [5 x i8] c\"%lf\\0A\\00\"\n");
+        resultado.append("@.double = private constant [4 x i8] c\"%f\\0A\\00\"\n");
+        resultado.append("@.bool = private constant [4 x i8] c\"%c\\0A\\00\"\n");
         resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
         resultado.append("@double_read_format = unnamed_addr constant [4 x i8] c\"%lf\\00\"\n");
-        resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%b\\00\"\n\n");
+        //resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%c\\00\"\n\n");
 
         StringBuilder resultado_programa = new StringBuilder();
 

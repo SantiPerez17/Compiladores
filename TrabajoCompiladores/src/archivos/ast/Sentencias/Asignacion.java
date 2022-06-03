@@ -80,13 +80,11 @@ public class Asignacion extends Sentencia{
             resultado.append(";___Asignación___\n");
             resultado.append(this.expresion.generarCodigo(etiqueta));
 
-            if (expresion.getTipo().equals(Tipo.Int)){
+            if (expresion.getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
-            } else if (expresion.getTipo().equals(Tipo.Float)){
+            } else if (expresion.getTipo().equals(Tipo.Float)) {
                 resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
-            } else if (expresion.getTipo().equals(Tipo.Bool)){
-                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
-            } else {
+            } else if (expresion.getTipo().equals(Tipo.Bool)) {
                 resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             }
             String siguiente = "%etiq" + (CodeGeneratorHelper.getNextID() + 1);

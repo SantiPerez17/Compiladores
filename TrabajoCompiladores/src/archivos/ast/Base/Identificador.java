@@ -35,10 +35,7 @@ public class Identificador extends Expresion {
             resultado.append(String.format("%1$s = load double, double* @%2$s\n", this.getIr_ref(), this.getNombre()));
         } else if (this.getTipo().equals(Tipo.Bool)) {
             resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIr_ref(), this.getNombre()));
-        } else {
-            resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIr_ref(), this.getNombre()));
         }
-
         return resultado.toString();
     }
 

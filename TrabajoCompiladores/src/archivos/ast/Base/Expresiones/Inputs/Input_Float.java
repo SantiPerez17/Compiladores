@@ -20,12 +20,21 @@ public class Input_Float extends Expresion {
     @Override
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
+        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //String dest = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String destaux = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String temp = this.getIr_ref();
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        String temp_double = this.getIr_ref();
+        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //String temp_float = this.getIr_ref();
+        //resultado.append(dest + " = alloca float\n");
         resultado.append(destaux + " = alloca double\n");
-        resultado.append(String.format("%1$s = call double (i8*, ...) @scanfd(i8* getelementptr inbounds ([4 x i8], [4 x i8] * @double_read_format, i64 0, i64 0), double* %2$s)\n", temp, destaux));
+        resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8] * @double_read_format, i64 0, i64 0), double* %2$s)\n", temp, destaux));
+        resultado.append(String.format("%1$s = load double, double* %2$s\n", temp_double, destaux));
+        //resultado.append(String.format("%1$s = fptrunc double %2$s\n", temp_float, temp_double));
         return resultado.toString();
     }
 }
