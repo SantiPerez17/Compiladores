@@ -37,8 +37,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
-
 import java.util.*;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -90,196 +90,196 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\173\000\010\002\ufffe\054\010\056\007\001\002\000" +
-    "\004\056\007\001\002\000\004\002\174\001\002\000\004" +
-    "\002\uffff\001\002\000\012\020\032\021\027\026\035\053" +
+    "\000\173\000\010\002\ufffe\055\010\057\007\001\002\000" +
+    "\004\002\175\001\002\000\004\057\007\001\002\000\004" +
+    "\002\uffff\001\002\000\012\020\032\021\027\026\035\054" +
     "\037\001\002\000\010\044\016\045\013\046\011\001\002" +
     "\000\004\017\ufff5\001\002\000\004\017\021\001\002\000" +
     "\004\017\ufff6\001\002\000\012\044\ufffc\045\ufffc\046\ufffc" +
-    "\055\ufffc\001\002\000\012\044\016\045\013\046\011\055" +
-    "\017\001\002\000\004\017\ufff7\001\002\000\004\056\ufffd" +
-    "\001\002\000\012\044\ufffb\045\ufffb\046\ufffb\055\ufffb\001" +
-    "\002\000\004\053\023\001\002\000\006\015\025\016\024" +
-    "\001\002\000\006\015\ufff9\016\ufff9\001\002\000\004\053" +
-    "\026\001\002\000\012\044\ufffa\045\ufffa\046\ufffa\055\ufffa" +
+    "\056\ufffc\001\002\000\012\044\016\045\013\046\011\056" +
+    "\017\001\002\000\004\017\ufff7\001\002\000\004\057\ufffd" +
+    "\001\002\000\012\044\ufffb\045\ufffb\046\ufffb\056\ufffb\001" +
+    "\002\000\004\054\023\001\002\000\006\015\025\016\024" +
+    "\001\002\000\006\015\ufff9\016\ufff9\001\002\000\004\054" +
+    "\026\001\002\000\012\044\ufffa\045\ufffa\046\ufffa\056\ufffa" +
     "\001\002\000\006\015\ufff8\016\ufff8\001\002\000\004\011" +
     "\166\001\002\000\020\020\ufff1\021\ufff1\026\ufff1\030\ufff1" +
-    "\031\ufff1\053\ufff1\057\ufff1\001\002\000\020\020\ufff3\021" +
-    "\ufff3\026\ufff3\030\ufff3\031\ufff3\053\ufff3\057\ufff3\001\002" +
+    "\031\ufff1\054\ufff1\060\ufff1\001\002\000\020\020\ufff3\021" +
+    "\ufff3\026\ufff3\030\ufff3\031\ufff3\054\ufff3\060\ufff3\001\002" +
     "\000\004\011\161\001\002\000\020\020\uffee\021\uffee\026" +
-    "\uffee\030\uffee\031\uffee\053\uffee\057\uffee\001\002\000\020" +
-    "\020\uffef\021\uffef\026\uffef\030\uffef\031\uffef\053\uffef\057" +
+    "\uffee\030\uffee\031\uffee\054\uffee\060\uffee\001\002\000\020" +
+    "\020\uffef\021\uffef\026\uffef\030\uffef\031\uffef\054\uffef\060" +
     "\uffef\001\002\000\004\011\150\001\002\000\020\020\uffeb" +
-    "\021\uffeb\026\uffeb\030\uffeb\031\uffeb\053\uffeb\057\uffeb\001" +
+    "\021\uffeb\026\uffeb\030\uffeb\031\uffeb\054\uffeb\060\uffeb\001" +
     "\002\000\004\010\045\001\002\000\020\020\uffec\021\uffec" +
-    "\026\uffec\030\uffec\031\uffec\053\uffec\057\uffec\001\002\000" +
-    "\020\020\ufff0\021\ufff0\026\ufff0\030\ufff0\031\ufff0\053\ufff0" +
-    "\057\ufff0\001\002\000\014\020\032\021\027\026\035\053" +
-    "\037\057\043\001\002\000\004\002\ufff4\001\002\000\020" +
-    "\020\ufff2\021\ufff2\026\ufff2\030\ufff2\031\ufff2\053\ufff2\057" +
+    "\026\uffec\030\uffec\031\uffec\054\uffec\060\uffec\001\002\000" +
+    "\020\020\ufff0\021\ufff0\026\ufff0\030\ufff0\031\ufff0\054\ufff0" +
+    "\060\ufff0\001\002\000\014\020\032\021\027\026\035\054" +
+    "\037\060\043\001\002\000\004\002\ufff4\001\002\000\020" +
+    "\020\ufff2\021\ufff2\026\ufff2\030\ufff2\031\ufff2\054\ufff2\060" +
     "\ufff2\001\002\000\030\005\071\011\061\023\053\024\065" +
-    "\025\070\034\051\043\047\050\064\051\046\052\056\053" +
+    "\025\070\034\051\043\047\050\064\051\046\053\056\054" +
     "\052\001\002\000\056\004\uffd0\005\uffd0\006\uffd0\007\uffd0" +
     "\012\uffd0\014\uffd0\016\uffd0\020\uffd0\021\uffd0\026\uffd0\030" +
     "\uffd0\031\uffd0\032\uffd0\033\uffd0\035\uffd0\036\uffd0\037\uffd0" +
-    "\040\uffd0\041\uffd0\042\uffd0\053\uffd0\057\uffd0\001\002\000" +
+    "\040\uffd0\041\uffd0\042\uffd0\054\uffd0\060\uffd0\001\002\000" +
     "\004\011\134\001\002\000\046\004\116\005\114\012\uffd9" +
     "\020\uffd9\021\uffd9\026\uffd9\030\uffd9\031\uffd9\032\uffd9\033" +
     "\uffd9\035\122\036\120\037\115\040\117\041\123\042\121" +
-    "\053\uffd9\057\uffd9\001\002\000\030\005\071\011\061\023" +
+    "\054\uffd9\060\uffd9\001\002\000\030\005\071\011\061\023" +
     "\053\024\065\025\070\034\051\043\047\050\064\051\046" +
-    "\052\056\053\052\001\002\000\056\004\uffcb\005\uffcb\006" +
+    "\053\056\054\052\001\002\000\056\004\uffcb\005\uffcb\006" +
     "\uffcb\007\uffcb\012\uffcb\014\uffcb\016\uffcb\020\uffcb\021\uffcb" +
     "\026\uffcb\030\uffcb\031\uffcb\032\uffcb\033\uffcb\035\uffcb\036" +
-    "\uffcb\037\uffcb\040\uffcb\041\uffcb\042\uffcb\053\uffcb\057\uffcb" +
+    "\uffcb\037\uffcb\040\uffcb\041\uffcb\042\uffcb\054\uffcb\060\uffcb" +
     "\001\002\000\004\011\111\001\002\000\026\012\uffe4\020" +
     "\uffe4\021\uffe4\026\uffe4\030\uffe4\031\uffe4\032\077\033\uffe4" +
-    "\053\uffe4\057\uffe4\001\002\000\056\004\uffd3\005\uffd3\006" +
+    "\054\uffe4\060\uffe4\001\002\000\056\004\uffd3\005\uffd3\006" +
     "\uffd3\007\uffd3\012\uffd3\014\uffd3\016\uffd3\020\uffd3\021\uffd3" +
     "\026\uffd3\030\uffd3\031\uffd3\032\uffd3\033\uffd3\035\uffd3\036" +
-    "\uffd3\037\uffd3\040\uffd3\041\uffd3\042\uffd3\053\uffd3\057\uffd3" +
+    "\uffd3\037\uffd3\040\uffd3\041\uffd3\042\uffd3\054\uffd3\060\uffd3" +
     "\001\002\000\056\004\uffcf\005\uffcf\006\uffcf\007\uffcf\012" +
     "\uffcf\014\uffcf\016\uffcf\020\uffcf\021\uffcf\026\uffcf\030\uffcf" +
     "\031\uffcf\032\uffcf\033\uffcf\035\uffcf\036\uffcf\037\uffcf\040" +
-    "\uffcf\041\uffcf\042\uffcf\053\uffcf\057\uffcf\001\002\000\056" +
+    "\uffcf\041\uffcf\042\uffcf\054\uffcf\060\uffcf\001\002\000\056" +
     "\004\uffd1\005\uffd1\006\uffd1\007\uffd1\012\uffd1\014\uffd1\016" +
     "\uffd1\020\uffd1\021\uffd1\026\uffd1\030\uffd1\031\uffd1\032\uffd1" +
     "\033\uffd1\035\uffd1\036\uffd1\037\uffd1\040\uffd1\041\uffd1\042" +
-    "\uffd1\053\uffd1\057\uffd1\001\002\000\056\004\uffd6\005\uffd6" +
+    "\uffd1\054\uffd1\060\uffd1\001\002\000\056\004\uffd6\005\uffd6" +
     "\006\105\007\106\012\uffd6\014\uffd6\016\uffd6\020\uffd6\021" +
     "\uffd6\026\uffd6\030\uffd6\031\uffd6\032\uffd6\033\uffd6\035\uffd6" +
-    "\036\uffd6\037\uffd6\040\uffd6\041\uffd6\042\uffd6\053\uffd6\057" +
+    "\036\uffd6\037\uffd6\040\uffd6\041\uffd6\042\uffd6\054\uffd6\060" +
     "\uffd6\001\002\000\030\005\071\011\061\023\053\024\065" +
-    "\025\070\034\051\043\047\050\064\051\046\052\056\053" +
+    "\025\070\034\051\043\047\050\064\051\046\053\056\054" +
     "\052\001\002\000\026\012\uffe2\020\uffe2\021\uffe2\026\uffe2" +
-    "\030\uffe2\031\uffe2\032\uffe2\033\uffe2\053\uffe2\057\uffe2\001" +
+    "\030\uffe2\031\uffe2\032\uffe2\033\uffe2\054\uffe2\060\uffe2\001" +
     "\002\000\026\012\uffe0\020\uffe0\021\uffe0\026\uffe0\030\uffe0" +
-    "\031\uffe0\032\uffe0\033\uffe0\053\uffe0\057\uffe0\001\002\000" +
+    "\031\uffe0\032\uffe0\033\uffe0\054\uffe0\060\uffe0\001\002\000" +
     "\056\004\uffce\005\uffce\006\uffce\007\uffce\012\uffce\014\uffce" +
     "\016\uffce\020\uffce\021\uffce\026\uffce\030\uffce\031\uffce\032" +
     "\uffce\033\uffce\035\uffce\036\uffce\037\uffce\040\uffce\041\uffce" +
-    "\042\uffce\053\uffce\057\uffce\001\002\000\004\011\101\001" +
+    "\042\uffce\054\uffce\060\uffce\001\002\000\004\011\101\001" +
     "\002\000\056\004\uffcd\005\uffcd\006\uffcd\007\uffcd\012\uffcd" +
     "\014\uffcd\016\uffcd\020\uffcd\021\uffcd\026\uffcd\030\uffcd\031" +
     "\uffcd\032\uffcd\033\uffcd\035\uffcd\036\uffcd\037\uffcd\040\uffcd" +
-    "\041\uffcd\042\uffcd\053\uffcd\057\uffcd\001\002\000\022\020" +
-    "\uffe6\021\uffe6\026\uffe6\030\uffe6\031\uffe6\033\075\053\uffe6" +
-    "\057\uffe6\001\002\000\004\011\073\001\002\000\026\005" +
+    "\041\uffcd\042\uffcd\054\uffcd\060\uffcd\001\002\000\022\020" +
+    "\uffe6\021\uffe6\026\uffe6\030\uffe6\031\uffe6\033\075\054\uffe6" +
+    "\060\uffe6\001\002\000\004\011\073\001\002\000\026\005" +
     "\071\011\061\023\053\024\065\025\070\043\047\050\064" +
-    "\051\046\052\056\053\052\001\002\000\056\004\uffd2\005" +
+    "\051\046\053\056\054\052\001\002\000\056\004\uffd2\005" +
     "\uffd2\006\uffd2\007\uffd2\012\uffd2\014\uffd2\016\uffd2\020\uffd2" +
     "\021\uffd2\026\uffd2\030\uffd2\031\uffd2\032\uffd2\033\uffd2\035" +
-    "\uffd2\036\uffd2\037\uffd2\040\uffd2\041\uffd2\042\uffd2\053\uffd2" +
-    "\057\uffd2\001\002\000\004\012\074\001\002\000\056\004" +
+    "\uffd2\036\uffd2\037\uffd2\040\uffd2\041\uffd2\042\uffd2\054\uffd2" +
+    "\060\uffd2\001\002\000\004\012\074\001\002\000\056\004" +
     "\uffca\005\uffca\006\uffca\007\uffca\012\uffca\014\uffca\016\uffca" +
     "\020\uffca\021\uffca\026\uffca\030\uffca\031\uffca\032\uffca\033" +
     "\uffca\035\uffca\036\uffca\037\uffca\040\uffca\041\uffca\042\uffca" +
-    "\053\uffca\057\uffca\001\002\000\030\005\071\011\061\023" +
+    "\054\uffca\060\uffca\001\002\000\030\005\071\011\061\023" +
     "\053\024\065\025\070\034\051\043\047\050\064\051\046" +
-    "\052\056\053\052\001\002\000\026\012\uffe5\020\uffe5\021" +
-    "\uffe5\026\uffe5\030\uffe5\031\uffe5\032\077\033\uffe5\053\uffe5" +
-    "\057\uffe5\001\002\000\030\005\071\011\061\023\053\024" +
-    "\065\025\070\034\051\043\047\050\064\051\046\052\056" +
-    "\053\052\001\002\000\026\012\uffe3\020\uffe3\021\uffe3\026" +
-    "\uffe3\030\uffe3\031\uffe3\032\uffe3\033\uffe3\053\uffe3\057\uffe3" +
+    "\053\056\054\052\001\002\000\026\012\uffe5\020\uffe5\021" +
+    "\uffe5\026\uffe5\030\uffe5\031\uffe5\032\077\033\uffe5\054\uffe5" +
+    "\060\uffe5\001\002\000\030\005\071\011\061\023\053\024" +
+    "\065\025\070\034\051\043\047\050\064\051\046\053\056" +
+    "\054\052\001\002\000\026\012\uffe3\020\uffe3\021\uffe3\026" +
+    "\uffe3\030\uffe3\031\uffe3\032\uffe3\033\uffe3\054\uffe3\060\uffe3" +
     "\001\002\000\004\012\102\001\002\000\056\004\uffc8\005" +
     "\uffc8\006\uffc8\007\uffc8\012\uffc8\014\uffc8\016\uffc8\020\uffc8" +
     "\021\uffc8\026\uffc8\030\uffc8\031\uffc8\032\uffc8\033\uffc8\035" +
-    "\uffc8\036\uffc8\037\uffc8\040\uffc8\041\uffc8\042\uffc8\053\uffc8" +
-    "\057\uffc8\001\002\000\006\012\104\033\075\001\002\000" +
+    "\uffc8\036\uffc8\037\uffc8\040\uffc8\041\uffc8\042\uffc8\054\uffc8" +
+    "\060\uffc8\001\002\000\006\012\104\033\075\001\002\000" +
     "\056\004\uffcc\005\uffcc\006\uffcc\007\uffcc\012\uffcc\014\uffcc" +
     "\016\uffcc\020\uffcc\021\uffcc\026\uffcc\030\uffcc\031\uffcc\032" +
     "\uffcc\033\uffcc\035\uffcc\036\uffcc\037\uffcc\040\uffcc\041\uffcc" +
-    "\042\uffcc\053\uffcc\057\uffcc\001\002\000\026\005\071\011" +
+    "\042\uffcc\054\uffcc\060\uffcc\001\002\000\026\005\071\011" +
     "\061\023\053\024\065\025\070\043\047\050\064\051\046" +
-    "\052\056\053\052\001\002\000\026\005\071\011\061\023" +
-    "\053\024\065\025\070\043\047\050\064\051\046\052\056" +
-    "\053\052\001\002\000\056\004\uffd4\005\uffd4\006\uffd4\007" +
+    "\053\056\054\052\001\002\000\026\005\071\011\061\023" +
+    "\053\024\065\025\070\043\047\050\064\051\046\053\056" +
+    "\054\052\001\002\000\056\004\uffd4\005\uffd4\006\uffd4\007" +
     "\uffd4\012\uffd4\014\uffd4\016\uffd4\020\uffd4\021\uffd4\026\uffd4" +
     "\030\uffd4\031\uffd4\032\uffd4\033\uffd4\035\uffd4\036\uffd4\037" +
-    "\uffd4\040\uffd4\041\uffd4\042\uffd4\053\uffd4\057\uffd4\001\002" +
+    "\uffd4\040\uffd4\041\uffd4\042\uffd4\054\uffd4\060\uffd4\001\002" +
     "\000\056\004\uffd5\005\uffd5\006\uffd5\007\uffd5\012\uffd5\014" +
     "\uffd5\016\uffd5\020\uffd5\021\uffd5\026\uffd5\030\uffd5\031\uffd5" +
     "\032\uffd5\033\uffd5\035\uffd5\036\uffd5\037\uffd5\040\uffd5\041" +
-    "\uffd5\042\uffd5\053\uffd5\057\uffd5\001\002\000\004\012\112" +
+    "\uffd5\042\uffd5\054\uffd5\060\uffd5\001\002\000\004\012\112" +
     "\001\002\000\056\004\uffc9\005\uffc9\006\uffc9\007\uffc9\012" +
     "\uffc9\014\uffc9\016\uffc9\020\uffc9\021\uffc9\026\uffc9\030\uffc9" +
     "\031\uffc9\032\uffc9\033\uffc9\035\uffc9\036\uffc9\037\uffc9\040" +
-    "\uffc9\041\uffc9\042\uffc9\053\uffc9\057\uffc9\001\002\000\026" +
+    "\uffc9\041\uffc9\042\uffc9\054\uffc9\060\uffc9\001\002\000\026" +
     "\012\uffe1\020\uffe1\021\uffe1\026\uffe1\030\uffe1\031\uffe1\032" +
-    "\uffe1\033\uffe1\053\uffe1\057\uffe1\001\002\000\026\005\071" +
+    "\uffe1\033\uffe1\054\uffe1\060\uffe1\001\002\000\026\005\071" +
     "\011\061\023\053\024\065\025\070\043\047\050\064\051" +
-    "\046\052\056\053\052\001\002\000\026\005\071\011\061" +
-    "\023\053\024\065\025\070\043\047\050\064\051\046\052" +
-    "\056\053\052\001\002\000\026\005\071\011\061\023\053" +
-    "\024\065\025\070\043\047\050\064\051\046\052\056\053" +
+    "\046\053\056\054\052\001\002\000\026\005\071\011\061" +
+    "\023\053\024\065\025\070\043\047\050\064\051\046\053" +
+    "\056\054\052\001\002\000\026\005\071\011\061\023\053" +
+    "\024\065\025\070\043\047\050\064\051\046\053\056\054" +
     "\052\001\002\000\026\005\071\011\061\023\053\024\065" +
-    "\025\070\043\047\050\064\051\046\052\056\053\052\001" +
+    "\025\070\043\047\050\064\051\046\053\056\054\052\001" +
     "\002\000\026\005\071\011\061\023\053\024\065\025\070" +
-    "\043\047\050\064\051\046\052\056\053\052\001\002\000" +
+    "\043\047\050\064\051\046\053\056\054\052\001\002\000" +
     "\026\005\071\011\061\023\053\024\065\025\070\043\047" +
-    "\050\064\051\046\052\056\053\052\001\002\000\026\005" +
+    "\050\064\051\046\053\056\054\052\001\002\000\026\005" +
     "\071\011\061\023\053\024\065\025\070\043\047\050\064" +
-    "\051\046\052\056\053\052\001\002\000\026\005\071\011" +
+    "\051\046\053\056\054\052\001\002\000\026\005\071\011" +
     "\061\023\053\024\065\025\070\043\047\050\064\051\046" +
-    "\052\056\053\052\001\002\000\032\004\116\005\114\012" +
+    "\053\056\054\052\001\002\000\032\004\116\005\114\012" +
     "\uffdb\020\uffdb\021\uffdb\026\uffdb\030\uffdb\031\uffdb\032\uffdb" +
-    "\033\uffdb\053\uffdb\057\uffdb\001\002\000\032\004\116\005" +
+    "\033\uffdb\054\uffdb\060\uffdb\001\002\000\032\004\116\005" +
     "\114\012\uffdf\020\uffdf\021\uffdf\026\uffdf\030\uffdf\031\uffdf" +
-    "\032\uffdf\033\uffdf\053\uffdf\057\uffdf\001\002\000\032\004" +
+    "\032\uffdf\033\uffdf\054\uffdf\060\uffdf\001\002\000\032\004" +
     "\116\005\114\012\uffda\020\uffda\021\uffda\026\uffda\030\uffda" +
-    "\031\uffda\032\uffda\033\uffda\053\uffda\057\uffda\001\002\000" +
+    "\031\uffda\032\uffda\033\uffda\054\uffda\060\uffda\001\002\000" +
     "\032\004\116\005\114\012\uffde\020\uffde\021\uffde\026\uffde" +
-    "\030\uffde\031\uffde\032\uffde\033\uffde\053\uffde\057\uffde\001" +
+    "\030\uffde\031\uffde\032\uffde\033\uffde\054\uffde\060\uffde\001" +
     "\002\000\032\004\116\005\114\012\uffdc\020\uffdc\021\uffdc" +
-    "\026\uffdc\030\uffdc\031\uffdc\032\uffdc\033\uffdc\053\uffdc\057" +
+    "\026\uffdc\030\uffdc\031\uffdc\032\uffdc\033\uffdc\054\uffdc\060" +
     "\uffdc\001\002\000\056\004\uffd8\005\uffd8\006\105\007\106" +
     "\012\uffd8\014\uffd8\016\uffd8\020\uffd8\021\uffd8\026\uffd8\030" +
     "\uffd8\031\uffd8\032\uffd8\033\uffd8\035\uffd8\036\uffd8\037\uffd8" +
-    "\040\uffd8\041\uffd8\042\uffd8\053\uffd8\057\uffd8\001\002\000" +
+    "\040\uffd8\041\uffd8\042\uffd8\054\uffd8\060\uffd8\001\002\000" +
     "\032\004\116\005\114\012\uffdd\020\uffdd\021\uffdd\026\uffdd" +
-    "\030\uffdd\031\uffdd\032\uffdd\033\uffdd\053\uffdd\057\uffdd\001" +
+    "\030\uffdd\031\uffdd\032\uffdd\033\uffdd\054\uffdd\060\uffdd\001" +
     "\002\000\056\004\uffd7\005\uffd7\006\105\007\106\012\uffd7" +
     "\014\uffd7\016\uffd7\020\uffd7\021\uffd7\026\uffd7\030\uffd7\031" +
     "\uffd7\032\uffd7\033\uffd7\035\uffd7\036\uffd7\037\uffd7\040\uffd7" +
-    "\041\uffd7\042\uffd7\053\uffd7\057\uffd7\001\002\000\006\051" +
-    "\137\053\136\001\002\000\004\015\140\001\002\000\004" +
+    "\041\uffd7\042\uffd7\054\uffd7\060\uffd7\001\002\000\006\051" +
+    "\137\054\136\001\002\000\004\015\140\001\002\000\004" +
     "\015\uffc6\001\002\000\004\015\uffc5\001\002\000\004\013" +
     "\141\001\002\000\032\005\071\011\061\014\uffc2\016\uffc2" +
-    "\023\053\024\065\025\070\043\047\050\064\051\046\052" +
-    "\056\053\052\001\002\000\012\004\116\005\114\014\uffc4" +
+    "\023\053\024\065\025\070\043\047\050\064\051\046\053" +
+    "\056\054\052\001\002\000\012\004\116\005\114\014\uffc4" +
     "\016\uffc4\001\002\000\006\014\145\016\144\001\002\000" +
     "\026\005\071\011\061\023\053\024\065\025\070\043\047" +
-    "\050\064\051\046\052\056\053\052\001\002\000\004\012" +
+    "\050\064\051\046\053\056\054\052\001\002\000\004\012" +
     "\146\001\002\000\056\004\uffc7\005\uffc7\006\uffc7\007\uffc7" +
     "\012\uffc7\014\uffc7\016\uffc7\020\uffc7\021\uffc7\026\uffc7\030" +
     "\uffc7\031\uffc7\032\uffc7\033\uffc7\035\uffc7\036\uffc7\037\uffc7" +
-    "\040\uffc7\041\uffc7\042\uffc7\053\uffc7\057\uffc7\001\002\000" +
+    "\040\uffc7\041\uffc7\042\uffc7\054\uffc7\060\uffc7\001\002\000" +
     "\012\004\116\005\114\014\uffc3\016\uffc3\001\002\000\030" +
     "\005\071\011\061\023\053\024\065\025\070\034\051\043" +
-    "\047\050\064\051\046\052\056\053\052\001\002\000\006" +
+    "\047\050\064\051\046\053\056\054\052\001\002\000\006" +
     "\012\152\033\075\001\002\000\004\027\153\001\002\000" +
-    "\012\020\032\021\027\026\035\053\037\001\002\000\016" +
-    "\020\032\021\027\026\035\030\155\031\156\053\037\001" +
-    "\002\000\012\020\032\021\027\026\035\053\037\001\002" +
-    "\000\020\020\uffea\021\uffea\026\uffea\030\uffea\031\uffea\053" +
-    "\uffea\057\uffea\001\002\000\014\020\032\021\027\026\035" +
-    "\031\160\053\037\001\002\000\020\020\uffe9\021\uffe9\026" +
-    "\uffe9\030\uffe9\031\uffe9\053\uffe9\057\uffe9\001\002\000\032" +
+    "\012\020\032\021\027\026\035\054\037\001\002\000\016" +
+    "\020\032\021\027\026\035\030\155\031\156\054\037\001" +
+    "\002\000\012\020\032\021\027\026\035\054\037\001\002" +
+    "\000\020\020\uffea\021\uffea\026\uffea\030\uffea\031\uffea\054" +
+    "\uffea\060\uffea\001\002\000\014\020\032\021\027\026\035" +
+    "\031\160\054\037\001\002\000\020\020\uffe9\021\uffe9\026" +
+    "\uffe9\030\uffe9\031\uffe9\054\uffe9\060\uffe9\001\002\000\032" +
     "\005\071\011\061\023\053\024\065\025\070\034\051\043" +
-    "\047\047\162\050\064\051\046\052\056\053\052\001\002" +
+    "\047\047\162\050\064\051\046\053\056\054\052\001\002" +
     "\000\004\012\165\001\002\000\006\012\164\033\075\001" +
     "\002\000\020\020\uffe7\021\uffe7\026\uffe7\030\uffe7\031\uffe7" +
-    "\053\uffe7\057\uffe7\001\002\000\020\020\uffe8\021\uffe8\026" +
-    "\uffe8\030\uffe8\031\uffe8\053\uffe8\057\uffe8\001\002\000\030" +
+    "\054\uffe7\060\uffe7\001\002\000\020\020\uffe8\021\uffe8\026" +
+    "\uffe8\030\uffe8\031\uffe8\054\uffe8\060\uffe8\001\002\000\030" +
     "\005\071\011\061\023\053\024\065\025\070\034\051\043" +
-    "\047\050\064\051\046\052\056\053\052\001\002\000\006" +
+    "\047\050\064\051\046\053\056\054\052\001\002\000\006" +
     "\012\170\033\075\001\002\000\004\022\171\001\002\000" +
-    "\012\020\032\021\027\026\035\053\037\001\002\000\014" +
-    "\020\032\021\027\026\035\031\173\053\037\001\002\000" +
-    "\020\020\uffed\021\uffed\026\uffed\030\uffed\031\uffed\053\uffed" +
-    "\057\uffed\001\002\000\004\002\001\001\002\000\004\002" +
-    "\000\001\002" });
+    "\012\020\032\021\027\026\035\054\037\001\002\000\014" +
+    "\020\032\021\027\026\035\031\173\054\037\001\002\000" +
+    "\020\020\uffed\021\uffed\026\uffed\030\uffed\031\uffed\054\uffed" +
+    "\060\uffed\001\002\000\004\002\000\001\002\000\004\002" +
+    "\001\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -287,8 +287,8 @@ public class MiParser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\173\000\010\002\004\003\005\030\003\001\001\000" +
-    "\004\003\174\001\001\000\002\001\001\000\002\001\001" +
+    "\000\173\000\010\002\003\003\005\030\004\001\001\000" +
+    "\002\001\001\000\004\003\173\001\001\000\002\001\001" +
     "\000\022\005\030\006\040\007\033\010\041\011\027\012" +
     "\032\013\037\014\035\001\001\000\010\004\011\031\014" +
     "\032\013\001\001\000\002\001\001\000\002\001\001\000" +
@@ -395,7 +395,7 @@ public class MiParser extends java_cup.runtime.lr_parser {
 
 
     public void syntax_error(Symbol s) {
-                    if (s.sym==32){
+                    if (s.sym==40){
                                 concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
                                         +s.value+"' . Simbolo n° "+s.sym);
                         try {
@@ -410,7 +410,7 @@ public class MiParser extends java_cup.runtime.lr_parser {
             }
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        if (s.sym == 32){
+        if (s.sym == 40){
             throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
                     +s.value+"' . Simbolo n° "+s.sym+ "" );
         }
@@ -496,7 +496,7 @@ class CUP$MiParser$actions {
       switch (CUP$MiParser$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // $START ::= program EOF 
+          case 0: // $START ::= programa_general EOF 
             {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
@@ -510,7 +510,7 @@ class CUP$MiParser$actions {
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // program ::= sector_declaraciones programa 
+          case 1: // programa_general ::= sector_declaraciones programa_main 
             {
               Nodo RESULT =null;
 		int sdleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
@@ -519,35 +519,35 @@ class CUP$MiParser$actions {
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
-		  concat_rules("REGLA 0: program --> sector_declaraciones programa" + "\n\t --> " + sd + " " + p + " ");
+		  concat_rules("REGLA 0: programa_general --> sector_declaraciones programa_main" + "\n\t --> " + sd + " " + p + " ");
     RESULT = p;
     //RESULT= sd + p ;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa_general",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // program ::= programa 
+          case 2: // programa_general ::= programa_main 
             {
               Nodo RESULT =null;
 		int pleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()).right;
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
-    concat_rules("REGLA 0.1: program --> programa " + "\n\t --> " + p );
+    concat_rules("REGLA 0.1: programa_general --> programa_main " + "\n\t --> " + p );
     RESULT = p;
     
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa_general",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // program ::= 
+          case 3: // programa_general ::= 
             {
               Nodo RESULT =null;
 
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("program",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa_general",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -709,7 +709,7 @@ class CUP$MiParser$actions {
           return CUP$MiParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // programa ::= PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION 
+          case 13: // programa_main ::= PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION 
             {
               Programa RESULT =null;
 		int lsleft = ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).left;
@@ -722,7 +722,7 @@ class CUP$MiParser$actions {
             RESULT = new Programa("Programa", tablaSimbolos2, ls);
 
         
-              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
+              CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa_main",1, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
           return CUP$MiParser$result;
 
@@ -1118,7 +1118,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.6.1: comparacion --> expresion MAYOR expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-        RESULT = new Mayor(">",Tipo.Bool,e1,e2);
+        Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+        Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+        Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+        RESULT = new Mayor(">",Tipo.Bool,exp1,exp2);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1139,7 +1142,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 7.6.1.1: comparacion --> expresion MENOR expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-            RESULT = new Menor("<",Tipo.Bool,e1,e2);
+            Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+            Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+            RESULT = new Menor("<",Tipo.Bool,exp1,exp2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1160,7 +1166,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-            RESULT = new Igual("==",Tipo.Bool,e1,e2);
+            Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+            Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+            RESULT = new Igual("==",Tipo.Bool,exp1,exp2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1181,7 +1190,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion DISTINTO expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-            RESULT = new Distinto("!=",Tipo.Bool,e1,e2);
+            Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+            Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+            RESULT = new Distinto("!=",Tipo.Bool,exp1,exp2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1202,7 +1214,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion MAYOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-            RESULT = new MayorOIgual(">=",Tipo.Bool,e1,e2);
+            Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+            Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+            RESULT = new MayorOIgual(">=",Tipo.Bool,exp1,exp2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1223,7 +1238,10 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion MENOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
-            RESULT = new MenorOIgual("<=",Tipo.Bool,e1,e2);
+            Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
+            Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
+            RESULT = new MenorOIgual("<=",Tipo.Bool,exp1,exp2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1564,235 +1582,234 @@ class CUP$MiParser$actions {
                 //RESULT = "cola( "+p+";["+le+"])"  ;
                 //hacer validaciones
                 List<Sentencia> sents = new ArrayList<>();
-                List<Sentencia> sents_cola = new ArrayList<>();
-                List<Sentencia> sents_colas = new ArrayList<>();
-                List<Sentencia> sentPrimerIf = new ArrayList<>();
-                List<Sentencia> sentSegundoIf = new ArrayList<>();
-                List<Sentencia> sentTercerIf = new ArrayList<>();
-                List<Expresion> colas = new ArrayList<>();
+                                List<Sentencia> sents_cola = new ArrayList<>();
+                                List<Sentencia> sents_colas = new ArrayList<>();
+                                List<Sentencia> sentPrimerIf = new ArrayList<>();
+                                List<Sentencia> sentSegundoIf = new ArrayList<>();
+                                List<Sentencia> sentTercerIf = new ArrayList<>();
+                                List<Expresion> colas = new ArrayList<>();
 
-                //Generamos el Pivot
-                Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
-                Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
-                if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
-                    ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                    tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
-                }
+                                //Generamos el Pivot
+                                Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
+                                Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
+                                if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
+                                    ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                    tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
+                                }
 
-                //Generamos el Acum
-                Identificador acum = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                    ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                    tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                }
+                                //Generamos el Acum
+                                Identificador acum = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                                if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                                    ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                    tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                                }
 
-                //Generamos el AcumAux
-                Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                    ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                    tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                }
+                                //Generamos el AcumAux
+                                Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                                if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                                    ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                    tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                                }
 
-                //Generamos el IdPos
-                Identificador pos = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
-                if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
-                    ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                    tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
-                }
+                                //Generamos el IdPos
+                                Identificador pos = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
+                                if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
+                                    ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                    tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
+                                }
 
-                //Generamos los mensajes de error
-                ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
-                if(!tablaSimbolos2.containsKey("strmensaje3")){
-                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista esta vacia",String.valueOf(mensaje3.getValor().toString().length())));
-                    tablaSimbolos2.put("strmensaje3",contenido);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                }
-                ConstanteString mensaje2 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "strmensaje2");
-                if(!tablaSimbolos2.containsKey("strmensaje2")){
-                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje2.getValor().toString().length())));
-                    tablaSimbolos2.put("strmensaje2",contenido);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                }
-                ConstanteString mensaje1 = new ConstanteString("El valor debe ser >=1", Tipo.CTE_STRING, "strmensaje1");
-                if(!tablaSimbolos2.containsKey("strmensaje1")){
-                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El valor debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
-                    tablaSimbolos2.put("strmensaje1",contenido);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                }
+                                //Generamos los mensajes de error
+                                ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
+                                if(!tablaSimbolos2.containsKey("strmensaje3")){
+                                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista esta vacia",String.valueOf(mensaje3.getValor().toString().length())));
+                                    tablaSimbolos2.put("strmensaje3",contenido);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+                                }
+                                ConstanteString mensaje2 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "strmensaje2");
+                                if(!tablaSimbolos2.containsKey("strmensaje2")){
+                                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje2.getValor().toString().length())));
+                                    tablaSimbolos2.put("strmensaje2",contenido);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+                                }
+                                ConstanteString mensaje1 = new ConstanteString("El valor debe ser >=1", Tipo.CTE_STRING, "strmensaje1");
+                                if(!tablaSimbolos2.containsKey("strmensaje1")){
+                                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El valor debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
+                                    tablaSimbolos2.put("strmensaje1",contenido);
+                                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+                                }
 
-                Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
+                                Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
 
-                cola.colasInternas(le);
-                Collections.reverse(cola.getColas());
-                for(Expresion c: cola.getColas()){
-                    List<Sentencia> sents_col = new ArrayList<>();
-                    List<Sentencia> sentPrimerIf_col = new ArrayList<>();
-                    List<Sentencia> sentSegundoIf_col = new ArrayList<>();
-                    List<Sentencia> sentTercerIf_col = new ArrayList<>();
-                    Cola nueva = (Cola) c;
+                                cola.colasInternas(le);
+                                Collections.reverse(cola.getColas());
+                                for(Expresion c: cola.getColas()){
+                                    List<Sentencia> sents_col = new ArrayList<>();
+                                    List<Sentencia> sentPrimerIf_col = new ArrayList<>();
+                                    List<Sentencia> sentSegundoIf_col = new ArrayList<>();
+                                    List<Sentencia> sentTercerIf_col = new ArrayList<>();
+                                    Cola nueva = (Cola) c;
 
-                    //Generamos el Pivot
-                    Identificador pivot1 = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
-                    Asignacion asig_pivot1 = new Asignacion("Asignacion",pivot,p);
-                    if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
-                        ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                        tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
-                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
-                    }
+                                    //Generamos el Pivot
+                                    Identificador pivot1 = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
+                                    Asignacion asig_pivot1 = new Asignacion("Asignacion",pivot,p);
+                                    if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
+                                        ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                        tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
+                                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
+                                    }
 
-                    //Generamos el Acum
-                    Identificador acum1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                    }
+                                    //Generamos el Acum
+                                    Identificador acum1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                                    }
 
-                    //Generamos el AcumAux
-                    Identificador acumAux1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                    }
+                                    //Generamos el AcumAux
+                                    Identificador acumAux1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+                                    if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+                                        ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                        tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+                                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+                                    }
 
-                    //Generamos el IdPos
-                    Identificador pos1 = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
-                    if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
-                        ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                        tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
-                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
-                    }
+                                    //Generamos el IdPos
+                                    Identificador pos1 = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
+                                    if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
+                                        ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+                                        tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
+                                        simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
+                                    }
 
-                    for (Expresion e : nueva.getExpresiones()) {
-                        if(e.getNombre() == "Cola"){
-                            Integer i = nueva.getExpresiones().size();
-                            String a = i.toString();
-                            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                            //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int)));
-                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            List<Sentencia> sentencias1 = new ArrayList<>();
-                            sentencias1.add(asig1);
-                            sentencias1.add(asig2);
-                            sentencias1.add(asig3);
-                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            List<Sentencia> sentencias2 = new ArrayList<>();
-                            sentencias2.add(asig4);
-                            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                            sents_col.add(ie);
-                        } else {
-                            Integer i = le.size();
-                            String a = i.toString();
-                            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                            //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), e));
-                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            List<Sentencia> sentencias1 = new ArrayList<>();
-                            sentencias1.add(asig1);
-                            sentencias1.add(asig2);
-                            sentencias1.add(asig3);
-                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                            List<Sentencia> sentencias2 = new ArrayList<>();
-                            sentencias2.add(asig4);
-                            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                            sents_col.add(ie);
-                        }
-                    }
+                                    for (Expresion e : nueva.getExpresiones()) {
+                                        if(e.getNombre() == "Cola"){
+                                            Integer i = nueva.getExpresiones().size();
+                                            String a = i.toString();
+                                            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                                            //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int)));
+                                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            List<Sentencia> sentencias1 = new ArrayList<>();
+                                            sentencias1.add(asig1);
+                                            sentencias1.add(asig2);
+                                            sentencias1.add(asig3);
+                                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            List<Sentencia> sentencias2 = new ArrayList<>();
+                                            sentencias2.add(asig4);
+                                            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                                            sents_col.add(ie);
+                                        } else {
+                                            Integer i = le.size();
+                                            String a = i.toString();
+                                            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                                            //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
+                                            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), e));
+                                            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            List<Sentencia> sentencias1 = new ArrayList<>();
+                                            sentencias1.add(asig1);
+                                            sentencias1.add(asig2);
+                                            sentencias1.add(asig3);
+                                            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                            List<Sentencia> sentencias2 = new ArrayList<>();
+                                            sentencias2.add(asig4);
+                                            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                                            sents_col.add(ie);
+                                        }
+                                    }
 
-                    int longitud_lista = nueva.getExpresiones().size();
-                    String long_lista = Integer.toString(longitud_lista);
-                    //La lista está vacía.
-                    Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
-                    List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
-                    sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
-                    IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents_col, sentencia_mensaje3);
-                    sentTercerIf_col.add(tercerIf);
+                                    int longitud_lista = nueva.getExpresiones().size();
+                                    String long_lista = Integer.toString(longitud_lista);
+                                    //La lista está vacía.
+                                    Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
+                                    List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+                                    sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
+                                    IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents_col, sentencia_mensaje3);
+                                    sentTercerIf_col.add(tercerIf);
 
-                    //La lista tiene menos elementos que el indicado
-                    MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
-                    List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
-                    sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
-                    IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf_col, sentencia_mensaje2);
-                    sentSegundoIf_col.add(segundoIf);
+                                    //La lista tiene menos elementos que el indicado
+                                    MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+                                    List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
+                                    sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
+                                    IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf_col, sentencia_mensaje2);
+                                    sentSegundoIf_col.add(segundoIf);
 
-                    //El valor debe ser >=1
-                    MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                    List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
-                    sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
-                    IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
-                    cola.getIfelse_colas().add(primerIf);
-                }
+                                    //El valor debe ser >=1
+                                    MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+                                    List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
+                                    sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+                                    IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
+                                    cola.getIfelse_colas().add(primerIf);
+                                }
 
-                //recorrerSentencias(le, colas, sents);
-                for (Expresion e : le) {
-                    if(e.getNombre() == "Cola"){
-                        Integer i = le.size();
-                        String a = i.toString();
-                        Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                        //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), new Identificador(acumAux.getNombre(),Tipo.Int)));
-                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        List<Sentencia> sentencias1 = new ArrayList<>();
-                        sentencias1.add(asig1);
-                        sentencias1.add(asig2);
-                        sentencias1.add(asig3);
-                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        List<Sentencia> sentencias2 = new ArrayList<>();
-                        sentencias2.add(asig4);
-                        IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                        sents.add(ie);
-                    } else {
-                        Integer i = le.size();
-                        String a = i.toString();
-                        Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                        //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
-                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        List<Sentencia> sentencias1 = new ArrayList<>();
-                        sentencias1.add(asig1);
-                        sentencias1.add(asig2);
-                        sentencias1.add(asig3);
-                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                        List<Sentencia> sentencias2 = new ArrayList<>();
-                        sentencias2.add(asig4);
-                        IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                        sents.add(ie);
-                    }
-                }
+                                //recorrerSentencias(le, colas, sents);
+                                for (Expresion e : le) {
+                                    if(e.getNombre() == "Cola"){
+                                        Integer i = le.size();
+                                        String a = i.toString();
+                                        Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                                        //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+                                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), new Identificador(acumAux.getNombre(),Tipo.Int)));
+                                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        List<Sentencia> sentencias1 = new ArrayList<>();
+                                        sentencias1.add(asig1);
+                                        sentencias1.add(asig2);
+                                        sentencias1.add(asig3);
+                                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        List<Sentencia> sentencias2 = new ArrayList<>();
+                                        sentencias2.add(asig4);
+                                        IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                                        sents.add(ie);
+                                    } else {
+                                        Integer i = le.size();
+                                        String a = i.toString();
+                                        Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                                        //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+                                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
+                                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        List<Sentencia> sentencias1 = new ArrayList<>();
+                                        sentencias1.add(asig1);
+                                        sentencias1.add(asig2);
+                                        sentencias1.add(asig3);
+                                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                                        List<Sentencia> sentencias2 = new ArrayList<>();
+                                        sentencias2.add(asig4);
+                                        IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                                        sents.add(ie);
+                                    }
+                                }
 
-                int longitud_lista = le.size();
-                String long_lista = Integer.toString(longitud_lista);
-                //La lista está vacía.
-                Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
-                List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
-                sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
-                IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
-                sentTercerIf.add(tercerIf);
+                                int longitud_lista = le.size();
+                                String long_lista = Integer.toString(longitud_lista);
+                                //La lista está vacía.
+                                Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
+                                List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+                                sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
+                                IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
+                                sentTercerIf.add(tercerIf);
 
-                //La lista tiene menos elementos que el indicado
-                MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
-                List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
-                sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
-                IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
-                sentSegundoIf.add(segundoIf);
+                                //La lista tiene menos elementos que el indicado
+                                MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+                                List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
+                                sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
+                                IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
+                                sentSegundoIf.add(segundoIf);
 
-                //El valor debe ser >=1
-                MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
-                sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
-                IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
-                cola.setIfelse(primerIf);
-
-                RESULT=cola;
+                                //El valor debe ser >=1
+                                MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+                                List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
+                                sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+                                IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
+                                cola.setIfelse(primerIf);
+                                RESULT=cola;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1891,85 +1908,6 @@ class CUP$MiParser$actions {
 
         }
     } /* end of method */
-
-  public void recorrerSentencias(List<Expresion> expresiones, List<Expresion> colas, List<Sentencia> sents){
-
-      for (Expresion e : expresiones) {
-          if(e.getNombre() == "Cola"){
-              colas.add(e);
-              Cola cola = (Cola) e;
-              Integer i = expresiones.size();
-              String a = i.toString();
-
-              //Generamos el Pivot
-              Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
-              Asignacion asig_pivot = new Asignacion("Asignacion",pivot,cola.getPivot());
-              if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
-                  ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                  tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
-                  simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
-              }
-
-              //Generamos el Acum
-              Identificador acum = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-              if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                  ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                  tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                  simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-              }
-
-              //Generamos el AcumAux
-              Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-              if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                  ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                  tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                  simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-              }
-
-              //Generamos el IdPos
-              Identificador pos = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
-              if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
-                  ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                  tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
-                  simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
-              }
-
-              AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-              e.setIr_ref(CodeGeneratorHelper.getNewAcum());
-              Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), cola.getAcumAux()));
-              Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              List<Sentencia> sentencias1 = new ArrayList<>();
-              sentencias1.add(asig1);
-              sentencias1.add(asig2);
-              sentencias1.add(asig3);
-              /*                                   */
-              Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              List<Sentencia> sentencias2 = new ArrayList<>();
-              sentencias2.add(asig4);
-              IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
-              sents.add(ie);
-              recorrerSentencias(cola.getExpresiones(),colas,sents);
-          } else {
-              Integer i = expresiones.size();
-              String a = i.toString();
-              AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-              Asignacion asig1 = new Asignacion("Asignacion", new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_Acum"+CodeGeneratorHelper.getAcum(), Tipo.Int), e));
-              Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              List<Sentencia> sentencias1 = new ArrayList<>();
-              sentencias1.add(asig1);
-              sentencias1.add(asig2);
-              sentencias1.add(asig3);
-              /*                                   */
-              Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-              List<Sentencia> sentencias2 = new ArrayList<>();
-              sentencias2.add(asig4);
-              IfElse ie = new IfElse("IFELSE", and_c, sentencias1, sentencias2);
-              sents.add(ie);
-          }
-      }
-  }
 
   /** Method splitting the generated action code into several parts. */
   public final java_cup.runtime.Symbol CUP$MiParser$do_action(

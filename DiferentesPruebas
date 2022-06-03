@@ -1,0 +1,187 @@
+ASIGNACIONES
+declare.section
+int: a;
+enddeclare.section
+program.section
+a:=1
+display(a)
+endprogram.section
+            OK
+declare.section
+int: a;
+float: b;
+enddeclare.section
+program.section
+b:=1+123.4
+display(b)
+endprogram.section
+            OK
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+xd:=true
+display(xd)
+endprogram.section
+            OK
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+xd:=true and false
+display(xd)
+endprogram.section
+            NO MUESTRA NADA PERO CUANDO ES TRUE SI MUESTRA.
+            DEBE SER QUE CUANDO ES FALSE NO MUESTRA NADA, TRUE SÍ MUESTRA.
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+xd:=true and false
+display(xd)
+endprogram.section
+
+DISPLAYS
+
+CON CADENA DE CARACTERES.
+program.section
+display("HOLA A TODO EL MUNDO")
+endprogram.section
+                OK
+
+CON EXPRESIONES
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+display("HOLA A TODO EL MUNDO")
+display(a+1)
+display(b+123)
+display(xd)             #problema de arriba. no muestra nada
+endprogram.section
+
+ -------------------------------
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+display(123*3)
+display(1.23+123*2.3)
+display(true)
+endprogram.section
+                OK
+
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+display(123==123)
+display(15*3 != 23)
+display(4 < 3)
+endprogram.section
+
+                OK paara true.
+IF
+
+declare.section
+int: a;
+float: b;
+bool: xd;
+enddeclare.section
+program.section
+a:=0
+if (a<10) then
+    display(a)
+end
+a:=a+9
+if (a==9) then
+    display("hola")
+    else
+    display("chau")
+end
+endprogram.section
+                OK
+IF anidados
+a:=1
+if (a==1) then
+	display("lunes")
+	else
+		if (a==2) then
+			display ("martes")
+       			else
+				if (a==3) then
+					display("miercoles")
+					else
+						if (a==4)  then
+							display("jueves")
+							else
+								if(a==5) then
+									display("viernes")
+									else
+										if(a==6) then
+											display("sabado")
+											else
+												if(a==7) then
+													display("domingo")
+													else
+														display("valor no aceptado")
+												end
+										end
+								end
+						end
+				end
+		end
+end
+endprogram.section
+                    muestra todos los displays.
+
+WHILE
+
+a:=0
+while (a<10) do
+    display(a)
+    a:=a+1
+end
+
+                OK
+a:=0
+f:=0
+while (a<10) do
+    while (f<10) do
+       display(a)
+       display(f)
+       f:=f+1
+    end
+    a:=a+1
+end
+
+nidea
+
+f:=0
+display(f<10)
+
+error cuando genera parser
+error: expected fcmp predicate (e.g. 'oeq')
+        %aux20 = fcmp slt double %aux18, %aux22
+
+
+
+
+
+
+
+
+
+

@@ -10,7 +10,7 @@ public class MiParserSym {
   /* terminals */
   public static final int DISPLAY = 14;
   public static final int DOSPUNTOS = 13;
-  public static final int ENDDECLARE_SECTION = 43;
+  public static final int ENDDECLARE_SECTION = 44;
   public static final int DISTINTO = 30;
   public static final int STRING_LITERAL = 37;
   public static final int CORCHETEO = 9;
@@ -36,24 +36,25 @@ public class MiParserSym {
   public static final int INPUT_BOOL = 19;
   public static final int MENOR = 28;
   public static final int TIPO_INT = 34;
+  public static final int ERROR = 40;
   public static final int MAYOR = 27;
   public static final int ELSE = 22;
   public static final int WHILE = 15;
   public static final int MAYOR_IGUAL = 31;
-  public static final int FLOAT = 40;
+  public static final int FLOAT = 41;
   public static final int THEN = 21;
   public static final int TIPO_FLOAT = 35;
-  public static final int PROGRAM_SECTION = 44;
+  public static final int PROGRAM_SECTION = 45;
   public static final int TIPO_BOOL = 36;
   public static final int ASIGN = 6;
   public static final int END = 23;
   public static final int INPUT_FLOAT = 18;
   public static final int COLA = 33;
-  public static final int ENDPROGRAM_SECTION = 45;
+  public static final int ENDPROGRAM_SECTION = 46;
   public static final int MENOR_IGUAL = 32;
   public static final int DO = 16;
-  public static final int DECLARE_SECTION = 42;
-  public static final int IDENTIFIER = 41;
+  public static final int DECLARE_SECTION = 43;
+  public static final int IDENTIFIER = 42;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -95,6 +96,7 @@ public class MiParserSym {
   "STRING_LITERAL",
   "BOOL",
   "INT",
+  "ERROR",
   "FLOAT",
   "IDENTIFIER",
   "DECLARE_SECTION",

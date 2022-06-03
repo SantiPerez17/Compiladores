@@ -304,11 +304,11 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             grafico.close();
             String cmdDot = "dot -Tpng arbol.dot -o arbol.png";
             Runtime.getRuntime().exec(cmdDot);
-            Desktop.getDesktop().open(new File("arbol.png"));
+            //Desktop.getDesktop().open(new File("arbol.png"));
             PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
             writer.println("TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG"));
             writer.println(parser.simbolos.toString());
-            Desktop.getDesktop().open(new File("ts.txt"));
+            //Desktop.getDesktop().open(new File("ts.txt"));
             writer.close();
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
@@ -318,11 +318,12 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
     }
 
-    public void GenerarLLVM() throws IOException,Exception {
+    public void GenerarLLVM() throws Exception {
         MiLexico lexer = new MiLexico(new FileReader(archivo));
         MiParser parser = new MiParser(lexer);
-        final Programa programa = (Programa) parser.parse().value;
+
         try {
+            final Programa programa = (Programa) parser.parse().value;
             PrintWriter pw = new PrintWriter(new FileWriter("arbol.dot"));
             pw.println(programa.graficar());
             pw.close();
@@ -359,8 +360,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
             writer.println("TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG"));
             writer.println(parser.simbolos.toString());
-            Desktop.getDesktop().open(new File("ts.txt"));
+           // Desktop.getDesktop().open(new File("ts.txt"));
             writer.close();
+
         } catch (Exception e) {
             UIManager.put("OptionPane.background", Color.GRAY);
             UIManager.put("OptionPane.messagebackground", Color.GRAY);
