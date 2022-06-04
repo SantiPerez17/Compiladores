@@ -5,24 +5,12 @@ declare.section
 enddeclare.section
 program.section
 
-a:=2
-b:=5
-res:=cola(2;[cola(2;[3,cola(2;[a, cola(1;[b])]),5]),cola(3;[6,7,8])])
-display(res)
+#a:=2
+#b:=5
+#res:=cola(2;[cola(2;[3,cola(2;[a, cola(1;[b])]),5]),cola(3;[6,7,8])])
 
-if(a==0)then
-    if(b==1)then
-          if(c==2)then
-                display(a+b+c)
-          else
-                 display(a+b)
-          end
-      else
-           display(a)
-      end
-else
-       display("cero")
-end
+res:= cola(1;[1]) +1
+display(res)
 
 
 #res:=cola(1;[2,cola(3;[4,5,6])])
