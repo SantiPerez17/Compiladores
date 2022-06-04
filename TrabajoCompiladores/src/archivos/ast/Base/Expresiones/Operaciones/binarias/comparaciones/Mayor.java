@@ -32,7 +32,7 @@ public class Mayor extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp sgt i32";
         } else {
-            return "fcmp sgt double";
+            return "fcmp ugt double";
         }
     }
 

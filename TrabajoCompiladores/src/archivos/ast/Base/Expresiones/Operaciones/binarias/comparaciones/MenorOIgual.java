@@ -32,7 +32,7 @@ public class MenorOIgual extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp sle i32";
         } else {
-            return "fcmp sle double";
+            return "fcmp ule double";
         }
     }
 

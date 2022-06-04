@@ -31,7 +31,7 @@ public class MayorOIgual extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp sge i32";
         } else {
-            return "fcmp sge double";
+            return "fcmp uge double";
         }
     }
 

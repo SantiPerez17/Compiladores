@@ -31,7 +31,7 @@ public class Igual extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp eq i32";
         } else {
-            return "fcmp eq double";
+            return "fcmp ueq double";
         }
     }
 

@@ -31,7 +31,7 @@ public class Distinto extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp ne i32";
         } else {
-            return "fcmp ne double";
+            return "fcmp une double";
         }
     }
 

@@ -32,7 +32,7 @@ public class Menor extends OperacionBinaria {
         if(tipo == Tipo.Int){
             return "icmp slt i32";
         } else {
-            return "fcmp slt double";
+            return "fcmp ult double";
         }
     }
 
