@@ -83,7 +83,7 @@ public class Asignacion extends Sentencia{
                     this.setIr_ref(CodeGeneratorHelper.getNewTag());
                     resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
                 } else {
-                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta));
+                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola","")));
                 }
 
                 //Sentencias if de las colas internas
@@ -105,7 +105,7 @@ public class Asignacion extends Sentencia{
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
             } else {
-                resultado.append(cola.getAsignacion().generarCodigo(etiqueta));
+                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola","")));
             }
 
             //Sentencias if de la cola
@@ -120,9 +120,9 @@ public class Asignacion extends Sentencia{
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
         } else {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            resultado.append("\n"+etiqueta);
+            resultado.append("\n"+etiqueta.replaceAll("Cola",""));
             resultado.append(";___Asignación___\n");
-            resultado.append(this.expresion.generarCodigo(etiqueta));
+            resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
 
             if (expresion.getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));

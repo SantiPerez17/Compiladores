@@ -162,7 +162,7 @@ public class Cola extends Expresion {
     @Override
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(this.ifelse.generarCodigo(etiqueta));
+        resultado.append(this.ifelse.generarCodigo(etiqueta+"Cola"));
         return resultado.toString();
     }
 

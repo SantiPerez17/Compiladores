@@ -97,8 +97,23 @@ public class Programa extends Nodo{
         resultado.append("define i32 @main(i32, i8**) {\n\t");
 
         for (Sentencia s: getSentencias()) {
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
+            if(s.getNombre() == "IfElse"){
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
+                String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
+                boolean aux = true;
+                while(aux){
+                    try{
+                        int start = resultado_programa.indexOf("br label %etiqXX");
+                        resultado_programa.replace(start,start+16,"br label "+proxima_etiqueta);
+                    }catch(Exception e){
+                        aux=false;
+                    }
+                }
+            } else {
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
+            }
         }
 
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));

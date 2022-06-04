@@ -79,10 +79,11 @@ public class IfElse extends Sentencia {
         StringBuilder resultado = new StringBuilder();
         StringBuilder resultado_sentencias1 = new StringBuilder();
         StringBuilder resultado_sentencias2 = new StringBuilder();
+        String etiqueta_cola = etiqueta;
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append("\n"+etiqueta);
+        resultado.append("\n"+etiqueta_cola.replaceAll("Cola",""));
         resultado.append(";___IfElse___\n");
-        resultado.append(this.condicion.generarCodigo(etiqueta));
+        resultado.append(this.condicion.generarCodigo(etiqueta_cola.replaceAll("Cola","")));
         this.sentencias1.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias1 = "%"+sentencias1.get(0).getIr_ref();
         this.sentencias2.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -94,31 +95,36 @@ public class IfElse extends Sentencia {
             if (aux>0){
                 this.sentencias1.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
-            resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+            if(etiqueta.contains("Cola")){
+                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+"Cola:\n"));
+            } else {
+                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+            }
             aux+=1;
         }
 
-        //String siguiente4 = "%etiqXX";
-        //this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        //int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
-        //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
-        //resultado_sentencias1.delete(start2,end2);
-        //resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+        if(!etiqueta.contains("Cola")){
+            String siguiente4 = "%etiqXX";
+            int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
+            resultado_sentencias1.delete(start2,end2);
+            resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+        }
 
         int aux2 = 0;
         for (Sentencia s: sentencias2){
             if (aux2>0){
                 this.sentencias2.get(aux2).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
-            resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
+            if(etiqueta.contains("Cola")){
+                resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+"Cola:\n"));
+            } else {
+                resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
+            }
             aux2+=1;
         }
 
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias1, etiquetaSentencias2));
-        //String siguiente1 = "%etiq" + (CodeGeneratorHelper.getNextTag()+aux);
-        //int start3 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiqXX"));
-        //int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
-        //resultado_sentencias1.replace(start3,end3,"br label " + siguiente1 + "\n");
         resultado.append(resultado_sentencias1);
         resultado.append(resultado_sentencias2);
         return resultado.toString();

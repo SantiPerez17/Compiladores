@@ -33,7 +33,7 @@ public class DisplayCadenaCaracteres extends Display {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append("\n"+etiqueta);
+        resultado.append("\n"+etiqueta.replaceAll("Cola",""));
         resultado.append(";___DisplayCadenaCaracteres___\n");
         String cadena = (String) this.CadenaCaracteres.getValor();
         int caracteres = cadena.length() + 3;

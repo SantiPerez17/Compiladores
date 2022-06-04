@@ -36,4 +36,5 @@ TABLA DE SIMBOLOS
              _Acum19                  ID                 Int                   _                   _
              _Acum20                  ID                 Int                   _                   _
              IdPos10                  ID                 Int                   _                   _
+               str36      STRING_LITERAL          CTE_STRING                cero                   4
 
