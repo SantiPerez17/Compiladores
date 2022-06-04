@@ -65,7 +65,7 @@ public class Programa extends Nodo{
         //resultado.append("declare i1 @scanfb(i8* %0, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
         resultado.append("@.double = private constant [4 x i8] c\"%f\\0A\\00\"\n");
-        resultado.append("@.bool = private constant [4 x i8] c\"%c\\0A\\00\"\n");
+        resultado.append("@.bool = private constant [4 x i8] c\"%d\\0A\\00\"\n");
         resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
         resultado.append("@double_read_format = unnamed_addr constant [4 x i8] c\"%lf\\00\"\n");
         //resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%c\\00\"\n\n");

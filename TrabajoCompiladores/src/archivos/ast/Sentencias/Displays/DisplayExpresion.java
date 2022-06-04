@@ -42,7 +42,11 @@ public class DisplayExpresion extends Display {
         } else if(this.expresion.getTipo().equals(Tipo.Float)) {
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         } else if(this.expresion.getTipo().equals(Tipo.Bool)) {
-            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i1 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            String temp_int = this.getIr_ref();
+            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            resultado.append(String.format("%1$s = zext i1 %2$s to i32\n", temp_int, this.expresion.getIr_ref()));
+            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), temp_int));
         }
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
