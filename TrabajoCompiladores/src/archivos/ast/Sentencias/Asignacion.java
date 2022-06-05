@@ -3,6 +3,7 @@ package archivos.ast.Sentencias;
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
+import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 
@@ -100,7 +101,7 @@ public class Asignacion extends Sentencia{
                 aux += 1;
             }
 
-            //Asignacion del pivot de las colas internas
+            //Asignacion del pivot de la cola
             if (aux > 0) {
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
@@ -118,23 +119,53 @@ public class Asignacion extends Sentencia{
             Asignacion asig1 = new Asignacion("Asignacion", identificador3, identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
-        } else if(expresion.getEtiqueta().equals("Operacion binaria")){
-
         } else {
-            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            resultado.append("\n"+etiqueta.replaceAll("Cola",""));
-            resultado.append(";___Asignación___\n");
-            resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
-
-            if (expresion.getTipo().equals(Tipo.Int)) {
-                resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
-            } else if (expresion.getTipo().equals(Tipo.Float)) {
-                resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
-            } else if (expresion.getTipo().equals(Tipo.Bool)) {
-                resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+            try{
+                OperacionBinaria op = (OperacionBinaria) expresion;
+                if((op.getIzquierda().getNombre().equals("cola") || op.getDerecha().getNombre().equals("Cola"))){
+                    this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+                    //resultado.append("\n"+etiqueta.replaceAll("Cola",""));
+                    //resultado.append(";___Asignación___\n");
+                    resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
+                    if (expresion.getTipo().equals(Tipo.Int)) {
+                        resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    } else if (expresion.getTipo().equals(Tipo.Float)) {
+                        resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    } else if (expresion.getTipo().equals(Tipo.Bool)) {
+                        resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    }
+                    String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                    resultado.append(String.format("br label %1$s\n", siguiente));
+                } else {
+                    this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+                    resultado.append("\n"+etiqueta.replaceAll("Cola",""));
+                    resultado.append(";___Asignación___\n");
+                    resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
+                    if (expresion.getTipo().equals(Tipo.Int)) {
+                        resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    } else if (expresion.getTipo().equals(Tipo.Float)) {
+                        resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    } else if (expresion.getTipo().equals(Tipo.Bool)) {
+                        resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                    }
+                    String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                    resultado.append(String.format("br label %1$s\n", siguiente));
+                }
+            } catch (Exception e){
+                this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+                //resultado.append("\n"+etiqueta.replaceAll("Cola",""));
+                //resultado.append(";___Asignación___\n");
+                resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
+                if (expresion.getTipo().equals(Tipo.Int)) {
+                    resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                } else if (expresion.getTipo().equals(Tipo.Float)) {
+                    resultado.append(String.format("store double %1$s, double* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                } else if (expresion.getTipo().equals(Tipo.Bool)) {
+                    resultado.append(String.format("store i1 %1$s, i1* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
+                }
+                String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                resultado.append(String.format("br label %1$s\n", siguiente));
             }
-            String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
-            resultado.append(String.format("br label %1$s\n", siguiente));
         }
 
         return resultado.toString();

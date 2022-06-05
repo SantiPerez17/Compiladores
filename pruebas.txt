@@ -5,17 +5,20 @@ declare.section
 enddeclare.section
 program.section
 
+res:=cola(1;[1]) + 1
+display(res)
+
 #a:=2
 #b:=5
 #res:=cola(2;[cola(2;[3,cola(2;[a, cola(1;[b])]),5]),cola(3;[6,7,8])])
-t:=3
-res:= cola(f;[1*3,2,3,cola(3;[3*4,12*1,12*2])])
-if(100<res) then 
-display(res)
-else
-res:=100-res
-display(res)
-end
+#t:=3
+#res:= cola(f;[1*3,2,3,cola(3;[3*4,12*1,12*2])])
+#if(100<res) then 
+#display(res)
+#else
+#res:=100-res
+#display(res)
+#end
 
 
 
