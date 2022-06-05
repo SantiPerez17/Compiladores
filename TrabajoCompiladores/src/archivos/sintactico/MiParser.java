@@ -37,8 +37,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
+
 import java.util.*;
-import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -457,6 +457,11 @@ public class MiParser extends java_cup.runtime.lr_parser {
             throw new Exception("No se permiten tipos booleanos en operaciones arismeticas.");
         }
     }
+    private static void checkTipoInt(Expresion p) throws Exception {
+           if (!(p.getTipo()==Tipo.Int)){
+               throw new Exception("No se aceptan tipos "+ p.getTipo().name() + " en funcion especial Cola.");
+           }
+        }
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -1588,7 +1593,6 @@ class CUP$MiParser$actions {
                         List<Sentencia> sentSegundoIf = new ArrayList<>();
                         List<Sentencia> sentTercerIf = new ArrayList<>();
                         List<Expresion> colas = new ArrayList<>();
-
                         //Generamos el Pivot
                         Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
                         Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
@@ -1648,6 +1652,7 @@ class CUP$MiParser$actions {
                         Collections.reverse(cola.getColas());
                         List<Expresion> asd = cola.getColas();
                         for(Expresion c: cola.getColas()){
+                            checkTipoInt(c);
                             List<Sentencia> sents_col = new ArrayList<>();
                             List<Sentencia> sentPrimerIf_col = new ArrayList<>();
                             List<Sentencia> sentSegundoIf_col = new ArrayList<>();
@@ -1691,6 +1696,7 @@ class CUP$MiParser$actions {
                             }*/
 
                             for (Expresion e : nueva.getExpresiones()) {
+                                checkTipoInt(e);
                                 if(e.getNombre() == "Cola"){
                                     Integer i = nueva.getExpresiones().size();
                                     String a = i.toString();
@@ -1709,6 +1715,7 @@ class CUP$MiParser$actions {
                                     IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
                                     sents_col.add(ie);
                                 } else {
+                                    checkTipoInt(e);
                                     Integer i = le.size();
                                     String a = i.toString();
                                     Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
@@ -1754,6 +1761,7 @@ class CUP$MiParser$actions {
                         }
 
                         for (Expresion e : le) {
+                            checkTipoInt(e);
                             if(e.getNombre() == "Cola"){
                                 Integer i = le.size();
                                 String a = i.toString();
@@ -1773,6 +1781,7 @@ class CUP$MiParser$actions {
                                 IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
                                 sents.add(ie);
                             } else {
+                                checkTipoInt(e);
                                 Integer i = le.size();
                                 String a = i.toString();
                                 Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
@@ -1832,11 +1841,9 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
         //concat_rules("REGLA 10: pivot --> " + id );
         if(tablaSimbolos2.containsKey(id)){
-            RESULT = new Identificador(id,Tipo.Int);
-        }
-        else{
-            throw new Exception("Variable " + id  + " no declarada.");
-        }
+                    if (Objects.equals(tablaSimbolos2.get(id).get(1), Tipo.Int.name())){RESULT = new Identificador(id,Tipo.Int);}
+                    else {throw new Exception("Tipo " + tablaSimbolos2.get(id).get(1) + " no soportado en funcion especial Cola.");}}
+                else{throw new Exception("Variable " + id  + " no declarada.");}
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
