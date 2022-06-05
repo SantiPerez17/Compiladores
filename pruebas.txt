@@ -5,7 +5,7 @@ declare.section
 enddeclare.section
 program.section
 
-res:=cola(1;[1]) + 1
+res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
 display(res)
 
 #a:=2

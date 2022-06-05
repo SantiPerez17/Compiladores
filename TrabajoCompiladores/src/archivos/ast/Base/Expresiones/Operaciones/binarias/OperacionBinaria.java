@@ -126,6 +126,7 @@ public abstract class OperacionBinaria extends Expresion {
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()+":\n"));
+            resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
@@ -133,6 +134,9 @@ public abstract class OperacionBinaria extends Expresion {
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
+            int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
+            resultado.delete(start2,end2);
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
@@ -197,6 +201,7 @@ public abstract class OperacionBinaria extends Expresion {
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()+":\n"));
+            resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
@@ -204,6 +209,9 @@ public abstract class OperacionBinaria extends Expresion {
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
+            int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
+            resultado.delete(start2,end2);
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
