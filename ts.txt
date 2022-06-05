@@ -20,16 +20,4 @@ TABLA DE SIMBOLOS
          strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
          strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
          strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
-              Pivot2                  ID                 Int                   _                   _
-              _Acum3                  ID                 Int                   _                   _
-              _Acum4                  ID                 Int                   _                   _
-              IdPos2                  ID                 Int                   _                   _
-              Pivot3                  ID                 Int                   _                   _
-              _Acum5                  ID                 Int                   _                   _
-              _Acum6                  ID                 Int                   _                   _
-              IdPos3                  ID                 Int                   _                   _
-              Pivot4                  ID                 Int                   _                   _
-              _Acum7                  ID                 Int                   _                   _
-              _Acum8                  ID                 Int                   _                   _
-              IdPos4                  ID                 Int                   _                   _
 
