@@ -76,7 +76,27 @@ public abstract class OperacionBinaria extends Expresion {
         this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
 
-        if(this.getIzquierda().getNombre()=="Factor_Int" ||
+        if((this.getIzquierda().getNombre()=="Factor_Int" ||
+                this.getIzquierda().getNombre()=="Factor_Float" ||
+                this.getIzquierda().getNombre()=="Factor_Bool" ||
+                this.getIzquierda().getNombre()=="MenosUnario" ||
+                this.getIzquierda().getNombre()=="INT a FLOAT" ||
+                this.getIzquierda().getNombre()=="+" ||
+                this.getIzquierda().getNombre()=="-" ||
+                this.getIzquierda().getNombre()=="*" ||
+                this.getIzquierda().getNombre()=="/" ||
+                this.getIzquierda().getNombre()=="AND" ||
+                this.getIzquierda().getNombre()=="OR" ||
+                this.getIzquierda().getNombre()=="NOT" ||
+                this.getIzquierda().getNombre()=="==" ||
+                this.getIzquierda().getNombre()=="!=" ||
+                this.getIzquierda().getNombre()==">" ||
+                this.getIzquierda().getNombre()==">=" ||
+                this.getIzquierda().getNombre()=="<" ||
+                this.getIzquierda().getNombre()=="<=") && (this.getDerecha().getNombre().equals("Cola"))) {
+            resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()));
+            resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+        }else if(this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
                 this.getIzquierda().getNombre()=="Factor_Bool" ||
                 this.getIzquierda().getNombre()=="MenosUnario" ||
@@ -126,7 +146,7 @@ public abstract class OperacionBinaria extends Expresion {
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()+":\n"));
-            resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
+            //resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
@@ -134,11 +154,14 @@ public abstract class OperacionBinaria extends Expresion {
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
-            int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
-            resultado.delete(start2,end2);
-            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append("\n"+this.getIr_ref()+":\n");
+            this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), cola.getAcumAux().getNombre()));
+            //int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+            //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
+            //resultado.delete(start2,end2);
+
         } else {
             if (this.getIzquierda().getTipo().equals(Tipo.Int)){
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
@@ -201,7 +224,7 @@ public abstract class OperacionBinaria extends Expresion {
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()+":\n"));
-            resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
+            //resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
@@ -209,11 +232,13 @@ public abstract class OperacionBinaria extends Expresion {
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
-            int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
-            resultado.delete(start2,end2);
-            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append("\n"+this.getIr_ref()+":\n");
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), cola.getAcumAux().getNombre()));
+            //int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+            //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
+            //resultado.delete(start2,end2);
         } else {
             if (this.getDerecha().getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
@@ -226,6 +251,7 @@ public abstract class OperacionBinaria extends Expresion {
             }
         }
 
+        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String tipoll;
         if(this.getTipo().equals(Tipo.Int)){
             tipoll = "i32";
