@@ -16,8 +16,17 @@ program.section
 #display(res)
 #display(res2)
 #display(res3)
-a:=input_int()
-display(a)
+#a:=input_int()
+#display(a)
+
+while(a==b) do
+    display("hola")
+    c:=c+1
+    while(a==b) do
+        b:=b+5
+        a:=a+3
+    end
+end
 
 #a:=2
 #b:=5

@@ -1,17 +1,85 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1815674630[label="Sentencia - [ Asignacion ] -
- :="]
-nodo_programa--nodo_1815674630
-nodo_1777485983[label=" ID - [ a ] - 
- Tipo: Int"]
-nodo_1815674630--nodo_1777485983
-nodo_1775156878[label="- [ Input_Int ] - 
+nodo_1206660229[label="Sentencia
+ - [ While ] -"]
+nodo_programa--nodo_1206660229
+nodo_1815674630[label=" Op_Binaria - [ == ] - 
+ Tipo: Bool"]
+nodo_1206660229--nodo_1815674630
+nodo_1775156878[label=" ID - [ a ] - 
  Tipo: Int"]
 nodo_1815674630--nodo_1775156878
-nodo_813239062[label="Sentencia
- - [ Display Expresion ] -"]
-nodo_programa--nodo_813239062
-nodo_66249089[label=" ID - [ a ] - 
+nodo_1335105062[label=" ID - [ b ] - 
  Tipo: Int"]
-nodo_813239062--nodo_66249089
+nodo_1815674630--nodo_1335105062
+nodo_12066602291[label="DO"]
+nodo_1206660229--nodo_12066602291
+nodo_267896023[label="Sentencia
+ - [ Display Cad. Caracteres ] -"]
+nodo_12066602291--nodo_267896023
+nodo_1621955009[label="str15  
+ Valor: hola 
+CTE_STRING"]
+nodo_267896023--nodo_1621955009
+nodo_859768763[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_12066602291--nodo_859768763
+nodo_2012327799[label=" ID - [ c ] - 
+ Tipo: Int"]
+nodo_859768763--nodo_2012327799
+nodo_1777485983[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_859768763--nodo_1777485983
+nodo_80975355[label=" ID - [ c ] - 
+ Tipo: Int"]
+nodo_1777485983--nodo_80975355
+nodo_1081524910[label="Factor_Int  
+ Valor: 1 
+Int"]
+nodo_1777485983--nodo_1081524910
+nodo_10621368[label="Sentencia
+ - [ While ] -"]
+nodo_12066602291--nodo_10621368
+nodo_1377751868[label=" Op_Binaria - [ == ] - 
+ Tipo: Bool"]
+nodo_10621368--nodo_1377751868
+nodo_178166013[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_1377751868--nodo_178166013
+nodo_425139570[label=" ID - [ b ] - 
+ Tipo: Int"]
+nodo_1377751868--nodo_425139570
+nodo_106213681[label="DO"]
+nodo_10621368--nodo_106213681
+nodo_1153360509[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_106213681--nodo_1153360509
+nodo_848257256[label=" ID - [ b ] - 
+ Tipo: Int"]
+nodo_1153360509--nodo_848257256
+nodo_1612532337[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_1153360509--nodo_1612532337
+nodo_1059540439[label=" ID - [ b ] - 
+ Tipo: Int"]
+nodo_1612532337--nodo_1059540439
+nodo_1098933182[label="Factor_Int  
+ Valor: 5 
+Int"]
+nodo_1612532337--nodo_1098933182
+nodo_980908631[label="Sentencia - [ Asignacion ] -
+ :="]
+nodo_106213681--nodo_980908631
+nodo_1824745836[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_980908631--nodo_1824745836
+nodo_166321181[label=" Op_Binaria - [ + ] - 
+ Tipo: Int"]
+nodo_980908631--nodo_166321181
+nodo_1106396872[label=" ID - [ a ] - 
+ Tipo: Int"]
+nodo_166321181--nodo_1106396872
+nodo_61690075[label="Factor_Int  
+ Valor: 3 
+Int"]
+nodo_166321181--nodo_61690075
 }

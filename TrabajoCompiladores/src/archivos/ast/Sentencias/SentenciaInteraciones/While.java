@@ -9,6 +9,15 @@ import java.util.List;
 public class While extends Sentencia {
     private Expresion condicion;
     private List<Sentencia> Sentencias; // Lista con sentencias.
+    private String etiqueta_while_interno;
+
+    public String getEtiqueta_while_interno(){
+        return etiqueta_while_interno;
+    }
+
+    public void setEtiqueta_while_interno(String etiqueta_while_interno) {
+        this.etiqueta_while_interno = etiqueta_while_interno;
+    }
 
     public Expresion getCondicion() {
         return condicion;
@@ -72,23 +81,61 @@ public class While extends Sentencia {
             if (aux>0){
                 this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
+            try{
+                if(Sentencias.get(Sentencias.size()-1).getNombre().equals("While")){
+                    this.setEtiqueta_while_interno("%etiq"+(CodeGeneratorHelper.getNextTag()+1));
+                }
+            } catch (Exception e){
+            }
             resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
             aux+=1;
         }
-        String siguiente4 = "%etiqXX";
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
-        int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
-        resultado_sentencias.delete(start2,end2);
-        resultado_sentencias.append(String.format("br label %1$s\n", siguiente4));
-        int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
-        int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
-        resultado_sentencias.delete(start3,end3);
 
-        String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
-        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
-        resultado.append(resultado_sentencias);
-        resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
+        try{
+            if(Sentencias.get(aux-1).getNombre().equals("While")){
+                While w = (While) Sentencias.get(aux-1);
+                String etiqueta_correccion = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), this.getEtiqueta_while_interno(), "%etiq" + (CodeGeneratorHelper.getNextTag() + 1));
+                int start = resultado_sentencias.indexOf(etiqueta_correccion);
+                int end = etiqueta_correccion.length() + start;
+                String nueva_etiqueta = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), this.getEtiqueta_while_interno(), "%"+etiqueta.replace(":\n",""));
+                resultado_sentencias.replace(start,end,nueva_etiqueta);
+
+                String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+                resultado.append(resultado_sentencias);
+            } else {
+                String siguiente4 = "%etiqXX";
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+                int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+                resultado_sentencias.delete(start2,end2);
+                resultado_sentencias.append(String.format("br label %1$s\n", siguiente4));
+                int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
+                int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
+                resultado_sentencias.delete(start3,end3);
+
+                String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+                resultado.append(resultado_sentencias);
+                resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
+            }
+        } catch (Exception e){
+            String siguiente4 = "%etiqXX";
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+            resultado_sentencias.delete(start2,end2);
+            resultado_sentencias.append(String.format("br label %1$s\n", siguiente4));
+            int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
+            int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
+            resultado_sentencias.delete(start3,end3);
+
+            String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+            resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+            resultado.append(resultado_sentencias);
+            resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
+        }
+
         return resultado.toString();
     }
 }

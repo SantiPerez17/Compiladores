@@ -15,4 +15,5 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
+               str15      STRING_LITERAL          CTE_STRING                hola                   4
 
