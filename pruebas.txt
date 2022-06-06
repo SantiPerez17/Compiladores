@@ -4,9 +4,9 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-display("hola")
 display("Ingrese valor: ")
 a:=input_int()
+while (a!=0) do
     if (a==1) then
         display("lunes")
         else
@@ -36,6 +36,8 @@ a:=input_int()
                     end
             end
     end
+    a:=input_int()
+end
 
 
 
