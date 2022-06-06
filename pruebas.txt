@@ -16,7 +16,7 @@ program.section
 #display(res)
 #display(res2)
 #display(res3)
-display(cola(1;[1]))
+display(-cola(1;[1]))
 
 #a:=2
 #b:=5

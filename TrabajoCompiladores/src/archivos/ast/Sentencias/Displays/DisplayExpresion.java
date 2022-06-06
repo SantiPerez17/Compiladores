@@ -110,6 +110,20 @@ public class DisplayExpresion extends Display {
 
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
+
+        try{
+            String cadena = ":\n;___DisplayExpresion___\n\n";
+            int start = resultado.indexOf(cadena);
+            int end = start+ (cadena).length();
+            Character c = resultado.charAt(start);
+            while(!c.equals('\n')){
+                start-=1;
+                c = resultado.charAt(start);
+            }
+            resultado.delete(start+1,end);
+        }catch (Exception e){
+
+        }
         return resultado.toString();
     }
 }
