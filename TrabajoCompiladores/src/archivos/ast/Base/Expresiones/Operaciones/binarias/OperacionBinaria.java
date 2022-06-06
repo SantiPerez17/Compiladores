@@ -79,6 +79,9 @@ public abstract class OperacionBinaria extends Expresion {
         if((this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
                 this.getIzquierda().getNombre()=="Factor_Bool" ||
+                this.getIzquierda().getNombre()=="Input_Int" ||
+                this.getIzquierda().getNombre()=="Input_Float" ||
+                this.getIzquierda().getNombre()=="Input_Bool" ||
                 this.getIzquierda().getNombre()=="MenosUnario" ||
                 this.getIzquierda().getNombre()=="INT a FLOAT" ||
                 this.getIzquierda().getNombre()=="+" ||
@@ -99,6 +102,9 @@ public abstract class OperacionBinaria extends Expresion {
         }else if(this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
                 this.getIzquierda().getNombre()=="Factor_Bool" ||
+                this.getIzquierda().getNombre()=="Input_Int" ||
+                this.getIzquierda().getNombre()=="Input_Float" ||
+                this.getIzquierda().getNombre()=="Input_Bool" ||
                 this.getIzquierda().getNombre()=="MenosUnario" ||
                 this.getIzquierda().getNombre()=="INT a FLOAT" ||
                 this.getIzquierda().getNombre()=="+" ||
@@ -183,6 +189,9 @@ public abstract class OperacionBinaria extends Expresion {
         if(this.getDerecha().getNombre()=="Factor_Int" ||
                 this.getDerecha().getNombre()=="Factor_Float" ||
                 this.getDerecha().getNombre()=="Factor_Bool" ||
+                this.getDerecha().getNombre()=="Input_Int" ||
+                this.getDerecha().getNombre()=="Input_Float" ||
+                this.getDerecha().getNombre()=="Input_Bool" ||
                 this.getDerecha().getNombre()=="MenosUnario" ||
                 this.getDerecha().getNombre()=="INT a FLOAT" ||
                 this.getDerecha().getNombre()=="+" ||
