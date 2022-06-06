@@ -2,7 +2,10 @@ package archivos.ast.Sentencias.Displays;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
+import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
+import archivos.ast.Sentencias.Asignacion;
 
 public class DisplayExpresion extends Display {
 
@@ -34,20 +37,77 @@ public class DisplayExpresion extends Display {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        resultado.append("\n"+etiqueta.replaceAll("Cola",""));
-        resultado.append(";___DisplayExpresion___\n");
-        resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
-        if (this.expresion.getTipo().equals(Tipo.Int)) {
+        if(expresion.getNombre().equals("Cola")){
+            //resultado.append("\n"+etiqueta.replaceAll("Cola",""));
+            //resultado.append(";___DisplayExpresion___\n");
+            Cola cola = (Cola) expresion;
+            int aux = 0;
+            for (Expresion c : cola.getColas()) {
+                Cola cola1 = (Cola) c;
+
+                //Asignacion del pivot de las colas internas
+                if (aux > 0) {
+                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                } else {
+                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+                }
+
+                //Sentencias if de las colas internas
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(c.generarCodigo(this.getIr_ref() + ":\n"));
+
+                //Asignacion de la variable Acum de las colas internas
+                Identificador identificador2 = new Identificador(cola1.getAcum().getNombre(), cola1.getTipo());
+                Identificador identificador3 = new Identificador(cola1.getAcumAux().getNombre(), cola1.getTipo());
+                Asignacion asig1 = new Asignacion("Asignacion", identificador3, identificador2);
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
+
+                aux += 1;
+            }
+
+            //Asignacion del pivot de la cola
+            if (aux > 0) {
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+            } else {
+                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+            }
+
+            //Sentencias if de la cola
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(expresion.generarCodigo(this.getIr_ref() + ":\n"));
+
+            //Asignacion de la variable Acum de la cola
+            Identificador identificador2 = new Identificador(cola.getAcum().getNombre(), cola.getTipo());
+            Identificador identificador3 = new Identificador(cola.getAcumAux().getNombre(), cola.getTipo());
+            Asignacion asig1 = new Asignacion("Asignacion", identificador3, identificador2);
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append("\n"+this.getIr_ref()+":\n");
+            this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.expresion.getIr_ref(), cola.getAcumAux().getNombre()));
+            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
-        } else if(this.expresion.getTipo().equals(Tipo.Float)) {
-            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
-        } else if(this.expresion.getTipo().equals(Tipo.Bool)) {
-            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            String temp_int = this.getIr_ref();
-            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            resultado.append(String.format("%1$s = zext i1 %2$s to i32\n", temp_int, this.expresion.getIr_ref()));
-            resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), temp_int));
+        } else {
+            resultado.append("\n"+etiqueta.replaceAll("Cola",""));
+            resultado.append(";___DisplayExpresion___\n");
+            resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));
+            if (this.expresion.getTipo().equals(Tipo.Int)) {
+                resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+            } else if(this.expresion.getTipo().equals(Tipo.Float)) {
+                resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
+            } else if(this.expresion.getTipo().equals(Tipo.Bool)) {
+                this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+                String temp_int = this.getIr_ref();
+                this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+                resultado.append(String.format("%1$s = zext i1 %2$s to i32\n", temp_int, this.expresion.getIr_ref()));
+                resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), temp_int));
+            }
         }
+
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
         return resultado.toString();
