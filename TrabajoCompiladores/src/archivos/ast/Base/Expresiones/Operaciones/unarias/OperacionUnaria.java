@@ -86,7 +86,6 @@ public abstract class  OperacionUnaria extends Expresion{
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.expresion.generarCodigo(this.getIr_ref()+":\n"));
-            //resultado.append("\netiq"+(CodeGeneratorHelper.getNextTag()+1)+":\n");
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
@@ -100,9 +99,6 @@ public abstract class  OperacionUnaria extends Expresion{
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.expresion.getIr_ref(), cola.getAcumAux().getNombre()));
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
-            //int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-            //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
-            //resultado.delete(start2,end2);
         } else {
             this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(this.expresion.generarCodigo(this.expresion.getIr_ref()));
