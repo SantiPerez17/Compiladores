@@ -6,6 +6,7 @@ public class CodeGeneratorHelper {
     private static Integer autoincrementalPivot = 0;
     private static Integer autoincrementalAcum = 0;
     private static Integer autoincrementalPos = 0;
+    private static Integer autoincrementalID = 0;
     private static Integer autoincrementalLenLista = 0;
 
     private CodeGeneratorHelper(){}
@@ -36,6 +37,11 @@ public class CodeGeneratorHelper {
     public static String getNewAcum(){
         autoincrementalAcum+=1;
         return autoincrementalAcum.toString();
+    }
+
+    public static String getNewID(){
+        autoincrementalID+=1;
+        return autoincrementalID.toString();
     }
 
     public static String getLenLista(){

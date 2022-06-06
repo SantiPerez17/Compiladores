@@ -1,5 +1,6 @@
 package archivos.ast.Base.Expresiones.FuncionEspecial;
 
+import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
@@ -149,12 +150,14 @@ public class Cola extends Expresion {
 
     @Override
     public String getEtiqueta() {
-        return " Cola - [ " + this.getNombre() + " ] - " + "\n Tipo: "+ this.getTipo();
+        return " Cola - [ " + this.getNombre() + CodeGeneratorHelper.getNewID() + " ] - " + "\n Tipo: "+ this.getTipo();
     }
 
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
+        resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, this.getEtiqueta()));
+        resultado.append(String.format("%1$s--%2$s\n", idPadre, this.getId()+1));
         resultado.append(this.ifelse.graficar("nodo_programa"));
         return resultado.toString();
     }
