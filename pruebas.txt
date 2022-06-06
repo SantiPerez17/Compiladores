@@ -1,21 +1,21 @@
 declare.section
     float : f;
-    int : res,res2,a,b,c,d,t,aux;
+    int : res,res2,res3,res4,a,b,c,d,t,aux;
     bool : xd, ahre,r;
 enddeclare.section
 program.section
 
-#res:=-cola(1;[1])
-#res:=1 + cola(1;[1])
-#res:= cola(1;[2,cola(3;[4,5,6])])
-#res:= cola(1;[1,cola(2;[1,2])]) + 1 + cola(2;[1,2]) + cola(2;[1,2])
+res:=-cola(1;[1])
+res2:=1 + cola(1;[1])
+res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
 #res:= cola(1;[1,cola(2;[1,2])]) +  cola(2;[1,2])
 #res:= cola(2;[1,2]) - 4 
 #res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3])
 #res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
 #res:=-(145+23/(5*3))
-res:= cola(1;[1,cola(2;[1,2])]) + 1 + cola(2;[1,2,12*cola(1;[1])]) + cola(2;[1,2])
 display(res)
+display(res2)
+display(res3)
 
 #a:=2
 #b:=5

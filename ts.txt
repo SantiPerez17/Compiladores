@@ -4,6 +4,8 @@ TABLA DE SIMBOLOS
                    f                  ID               Float                   _                   _
                  res                  ID                 Int                   _                   _
                 res2                  ID                 Int                   _                   _
+                res3                  ID                 Int                   _                   _
+                res4                  ID                 Int                   _                   _
                    a                  ID                 Int                   _                   _
                    b                  ID                 Int                   _                   _
                    c                  ID                 Int                   _                   _
@@ -32,8 +34,4 @@ TABLA DE SIMBOLOS
               _Acum7                  ID                 Int                   _                   _
               _Acum8                  ID                 Int                   _                   _
               IdPos4                  ID                 Int                   _                   _
-              Pivot5                  ID                 Int                   _                   _
-              _Acum9                  ID                 Int                   _                   _
-             _Acum10                  ID                 Int                   _                   _
-              IdPos5                  ID                 Int                   _                   _
 
