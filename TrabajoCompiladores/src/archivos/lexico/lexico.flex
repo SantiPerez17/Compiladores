@@ -65,7 +65,6 @@ Mayor = \>
 Menor = \<
 Mayor_Igual = \>=
 Menor_Igual = \<=
-OpComparacion = {Igual}|{Distinto}|{Mayor}|{Menor}|{Mayor_Igual}|{Menor_Igual}
 LineTerminator = \r|\n|\r\n
 //InputCharacter = [^\r\n]
 WhiteSpace     =  \s | {LineTerminator} | [\t\f]
@@ -115,7 +114,7 @@ SimpleComment = #.*{LineTerminator}?
   "*" {return token("MULT", yytext());}
   "/" {return token("DIV", yytext());}
 
-  //{OpComparacion} {return token("OPCOMP", yytext());}
+
   {Mayor} {return token("MAYOR",yytext());}
   {Menor} {return token("MENOR",yytext());}
   {Igual} {return token("IGUAL",yytext());}
@@ -139,21 +138,18 @@ SimpleComment = #.*{LineTerminator}?
       {Bool} {return token("BOOL", yytext());}
       {Int} {
           int a = yytext().length();
-          //int a = Integer.parseInt(yytext());
-                //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                if ( a < cota_int ) {return token("INT", yytext());}
-                        else{
-                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
-                            }
-            }
+          if ( a < cota_int ) {return token("INT", yytext());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
+          }
+      }
 
       {Float} {
           int a = yytext().length();
-          //float a = Float.parseFloat(yytext()); me equivoqué pense que pedían hasta que numero flotante, y era su cant de caracteres.
-                              //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                              if ( a < cota_float) {return token("FLOAT", yytext());}
-                                      else{
-                                          return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}}
+          if ( a < cota_float) {return token("FLOAT", yytext());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}}
+
   /*- ----------------- */
       "display" {return token("DISPLAY", yytext());}
       {Input_int} {return token("INPUT_INT", yytext());}
@@ -175,13 +171,6 @@ SimpleComment = #.*{LineTerminator}?
     "\[" {return token("CORCHETEO", yytext());}
     //“]” : llavec
     "\]" {return token("CORCHETEC", yytext());}
-    // “#” : comentario; -> ESO SE MANEJA EN EL OTRO LADO.
-    //“{“ : corcheteo
-    /*"\{" {return token("LLAVEO", yytext());}
-    //“}” :corchetec
-    "\}" {return token("LLAVEC", yytext());}
-    //“\.” : punto
-    "\." {return token("PUNTO", yytext());} */
     // “\;” : puntocoma
     "\;" {return token("PUNTOCOMA", yytext());}
     // “,” : coma
@@ -193,19 +182,19 @@ SimpleComment = #.*{LineTerminator}?
   /* identifiers */
   {Identifier}                   {
           if ( yytext().length() < cota_ID) {return token("IDENTIFIER", yytext());}
-                                                else{
-                                                    return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
-          }
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}}
+
   /* whitespace */
   {WhiteSpace}                   { /* ignore */ }
 }
 
 <STRING> {
-  \"                             { yybegin(YYINITIAL);
-                                    if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
-                                        else{
-                                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
-                                        }
+  \"  { yybegin(YYINITIAL);
+          if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
+          }
       }
   [^\n\r\"\\]+                   { string.append( yytext() ); }
   \\t                            { string.append('\t'); }
@@ -217,4 +206,4 @@ SimpleComment = #.*{LineTerminator}?
 }
 <<EOF>>     {return token("EOF");}
 /* error fallback */
-[^]                              { return token("ERROR", "Illegal character <"+yytext()+">"); }
+[^]  { return token("ERROR", "Illegal character <"+yytext()+">"); }

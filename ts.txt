@@ -15,4 +15,13 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
+               str15      STRING_LITERAL          CTE_STRING     Ingrese valor:                   15
+               str16      STRING_LITERAL          CTE_STRING               lunes                   5
+               str17      STRING_LITERAL          CTE_STRING              martes                   6
+               str18      STRING_LITERAL          CTE_STRING           miercoles                   9
+               str19      STRING_LITERAL          CTE_STRING              jueves                   6
+               str20      STRING_LITERAL          CTE_STRING             viernes                   7
+               str21      STRING_LITERAL          CTE_STRING              sabado                   6
+               str22      STRING_LITERAL          CTE_STRING             domingo                   7
+               str23      STRING_LITERAL          CTE_STRING   valor no aceptado                  17
 

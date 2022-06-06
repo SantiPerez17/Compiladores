@@ -37,8 +37,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
-
 import java.util.*;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -395,29 +395,18 @@ public class MiParser extends java_cup.runtime.lr_parser {
 
 
     public void syntax_error(Symbol s) {
-                    if (s.sym==40){
-                                concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-                                        +s.value+"' . Simbolo n° "+s.sym);
-                        try {
-                            throw new Exception((String) s.value);
-                        } catch (Exception e) {
-
-                        }
-                    }
-                            else
-                            {concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-                                    +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}
-            }
+        if (s.sym==40){
+            concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym);
+            try { throw new Exception((String) s.value);}
+            catch (Exception e) {}}
+        else{
+        concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}}
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
         if (s.sym == 40){
-            throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-                    +s.value+"' . Simbolo n° "+s.sym+ "" );
-        }
-        else
-                                    {throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"
-                                            +s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }
-    }
+            throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ "" );}
+        else{
+        throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }}
 
     public String reglas;
 
@@ -426,37 +415,39 @@ public class MiParser extends java_cup.runtime.lr_parser {
     }
 
     public StringBuilder simbolos=new StringBuilder("");
+
     TreeMap<String, ArrayList<String>> tablaSimbolos2 = new TreeMap<String, ArrayList<String>>();
 
-   public Tipo tipo_en_comun(Tipo t1,Tipo t2) throws java.lang.Exception
-          {
-              if (t1 == t2){
-                  return t1;
-              }
-              if (t1==Tipo.Float && t2==Tipo.Int) {
-                  return t1;
-              }
-              if (t1==Tipo.Int && t2==Tipo.Float) {
-                  return t2;
-              }
-              throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", t1, t2 ));
-          }
-       private static Expresion convertir_a_tipo(Expresion expresion, Tipo tipo_destino) throws java.lang.Exception{
-              Tipo tipo_origen = expresion.getTipo();
-              if(tipo_origen == tipo_destino){
-                  return expresion;
-              }
-              if(tipo_origen == Tipo.Int && tipo_destino == Tipo.Float){
-                  return new EnteroAFlotante(expresion);
-              }
-              throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", tipo_origen, tipo_destino ));
-          }
+    public Tipo tipo_en_comun(Tipo t1,Tipo t2) throws java.lang.Exception
+    {
+    if (t1 == t2){
+        return t1;
+    }
+    if (t1==Tipo.Float && t2==Tipo.Int) {
+        return t1;
+    }
+    if (t1==Tipo.Int && t2==Tipo.Float) {
+        return t2;
+    }
+    throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", t1, t2 ));
+    }
+    private static Expresion convertir_a_tipo(Expresion expresion, Tipo tipo_destino) throws java.lang.Exception{
+        Tipo tipo_origen = expresion.getTipo();
+        if(tipo_origen == tipo_destino){
+            return expresion;
+        }
+        if(tipo_origen == Tipo.Int && tipo_destino == Tipo.Float){
+            return new EnteroAFlotante(expresion);
+        }
+        throw new Exception(String.format("No existe un tipo común entre %1$s y %2$s\n", tipo_origen, tipo_destino ));
+    }
 
     private static void tipo_bool(Tipo tipo) throws Exception{
         if (tipo == Tipo.Bool){
             throw new Exception("No se permiten tipos booleanos en operaciones arismeticas.");
         }
     }
+
     private static void checkTipoInt(Expresion p) throws Exception {
            if (!(p.getTipo()==Tipo.Int)){
                throw new Exception("No se aceptan tipos "+ p.getTipo().name() + " en funcion especial Cola.");
@@ -468,15 +459,6 @@ public class MiParser extends java_cup.runtime.lr_parser {
 @SuppressWarnings({"rawtypes", "unchecked", "unused"})
 class CUP$MiParser$actions {
 
-
-    //Hashtable tablaSimbolo = new Hashtable();
-    //Multimap<String, String> tablaSimbolos2 = ArrayListMultimap.create();
-    //public Multimap getTabladeSimbolos(){
-     //       return tablaSimbolos2;
-   // }
-
-
-    //public String simbolos;
 
 
   private final MiParser parser;
@@ -526,7 +508,6 @@ class CUP$MiParser$actions {
 		Programa p = (Programa)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		  concat_rules("REGLA 0: programa_general --> sector_declaraciones programa_main" + "\n\t --> " + sd + " " + p + " ");
     RESULT = p;
-    //RESULT= sd + p ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("programa_general",0, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -614,24 +595,19 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 2: declaracion --> tipo_de_dato DOSPUNTOS ids PUNTOCOMA " + "\n\t --> " + td + ": " + i + "; ");
         RESULT = td + ":" + i + ";";
         if (i.contains(",")){
-        String[] parts = i.split(",");
-        for (String s : parts){
-            if (tablaSimbolos2.containsKey(s)){
-                throw new Exception("Variable " + s + " ya declarada." );
-                }
-            else{
-                ArrayList<String> hg = new ArrayList<String>(Arrays.asList("ID",td.name(),"_","_"));
-                tablaSimbolos2.put(s,hg);
-                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", s, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}}}
+            String[] parts = i.split(",");
+            for (String s : parts){
+                if (tablaSimbolos2.containsKey(s)){
+                    throw new Exception("Variable " + s + " ya declarada." );
+                    }
+                else{
+                    ArrayList<String> hg = new ArrayList<String>(Arrays.asList("ID",td.name(),"_","_"));
+                    tablaSimbolos2.put(s,hg);
+                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", s, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}}}
         else{
             ArrayList<String> hg = new ArrayList<String>(Arrays.asList("ID",td.name(),"_","_"));
             tablaSimbolos2.put(i,hg);
-            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", i, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));
-        }
-                //para traer Tipo de la tabla de simbolos
-                        // String t = tablaSimbolos2.get(i).stream().findFirst().get();
-                //simbolos = new StringBuilder(tablaSimbolos2.toString() + "\n\n");
-                //RESULT = new DeclaracionVariable( id, td) ; PREGUNTAR ESO
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", i, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("declaracion",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -677,7 +653,6 @@ class CUP$MiParser$actions {
 		Object ti = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 2.2.1: tipo_de_dato --> TIPO_INT " + "\n\t --> " + ti);
-        //concat_rules("Regla 2.2.1: tipo_de_dato -->" + ti );
         RESULT = Tipo.Int; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -692,7 +667,6 @@ class CUP$MiParser$actions {
 		Object tf = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 2.2.2: tipo_de_dato --> TIPO_FLOAT " + "\n\t --> " + tf);
-        //concat_rules("Regla 2.2.2: tipo_de_dato -->" + tf );
         RESULT = Tipo.Float; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -707,7 +681,6 @@ class CUP$MiParser$actions {
 		Object tb = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 2.2.3: tipo_de_dato --> TIPO_BOOL " + "\n\t --> " + tb);
-        //concat_rules("Regla 2.2.3: tipo_de_dato --> "+ tb);
         RESULT = Tipo.Bool;
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("tipo_de_dato",2, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -722,8 +695,6 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 3: programa --> PROGRAM_SECTION lista_sentencias ENDPROGRAM_SECTION " + "\n\t --> " + "program.section " + ls  + " endprogram.section");
-            //concat_rules("Regla 3: programa --> program.section " + ls  + " endprogram.section");
-            //RESULT = "PROGRAM_SECTION" + ls + "ENDPROGRAM_SECTION";
             RESULT = new Programa("Programa", tablaSimbolos2, ls);
 
         
@@ -740,7 +711,6 @@ class CUP$MiParser$actions {
 		Sentencia s = (Sentencia)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.1: lista_sentencias --> sentencia " + "\n\t --> " + s + " ");
-            //concat_rules("Regla 3.1: lista_sentencias --> "  + s);
             List<Sentencia> lista_sentencias = new ArrayList<>();
             lista_sentencias.add(s);
             RESULT = lista_sentencias; 
@@ -760,7 +730,6 @@ class CUP$MiParser$actions {
 		Sentencia s = (Sentencia)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.2: lista_sentencias --> lista_sentencias sentencia " + "\n\t --> " + ls + " " + s + " ");
-            //concat_rules("Regla 3.2: lista_sentencias --> " + ls + s);
             ls.add(s);
             RESULT = ls; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("lista_sentencias",6, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -776,7 +745,6 @@ class CUP$MiParser$actions {
 		While sw = (While)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.1.1: sentencia --> sentencia_while " + "\n\t --> " + sw + " ");
-            //concat_rules("Regla 3.1.1: sentencia --> " + sw);
             RESULT = sw; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",3, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -791,7 +759,6 @@ class CUP$MiParser$actions {
 		Sentencia si = (Sentencia)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.1.2: sentencia --> sentencia_if " + "\n\t --> " + si + " ");
-            //concat_rules("Regla 3.1.2: sentencia --> " + si);
             RESULT = si; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",3, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -806,7 +773,6 @@ class CUP$MiParser$actions {
 		Sentencia sd = (Sentencia)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.1.3: sentencia --> sentencia_display " + "\n\t --> " + sd + " ");
-            //concat_rules("Regla 3.1.3: sentencia --> " + sd);
             RESULT = sd; 
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",3, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -821,7 +787,6 @@ class CUP$MiParser$actions {
 		Asignacion sa = (Asignacion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 3.1.5: sentencia --> sentencia_asignacion " + "\n\t --> " + sa + " ");
-            //concat_rules("Regla 3.1.5: sentencia --> " + sa);
             RESULT = sa;
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia",3, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -840,8 +805,6 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
-            //concat_rules("Regla 4: sentencia_while --> while (" + c + ") do" + ls + "end" );
-            //RESULT = "while" + "(" + c + ")" + "do" + ls + "end";
             RESULT = new While("While",c,ls);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_while",7, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -857,7 +820,6 @@ class CUP$MiParser$actions {
 		IfSimple ifs = (IfSimple)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 5: sentencia_if --> if_simple " + "\n\t --> " + ifs + " ");
-            //concat_rules("Regla 5: sentencia_if --> " + ifs );
             RESULT = ifs;
          
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_if",4, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -873,7 +835,6 @@ class CUP$MiParser$actions {
 		IfElse ie = (IfElse)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
             concat_rules("REGLA 5: sentencia_if --> if_else " + "\n\t --> " + ie + " ");
-            //concat_rules("Regla 5: sentencia_if --> " + ie );
             RESULT = ie;
          
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_if",4, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -892,8 +853,6 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
-            //concat_rules("Regla 5.1: if_simple --> if (" + cond + ") then " + ls + " end"  );
-            //RESULT = "if " + " ( " + cond + " ) " +  " then " + ls + " end";
             RESULT = new IfSimple("IfSimple", cond, ls);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("if_simple",9, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -915,8 +874,6 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls2 = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
-            //concat_rules("Regla 5.2: if_else --> if (" + cond + ") then" + ls + "else" + ls2 + "end"  );
-            //RESULT = "if" + "(" + cond + ")" +  "then" + ls + "else" + ls2 + "end";
             RESULT = new IfElse("IfElse", cond, ls, ls2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("if_else",10, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-8)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -932,9 +889,7 @@ class CUP$MiParser$actions {
 		String sl = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( STRING_LITERAL ) " + "\n\t --> " + " display( " +sl+ " ) ");
-            //concat_rules("Regla 6: sentencia_display --> "+ "display( " +sl+ " )");
             //RESULT = "display(" + sl + ")";
-            //tablaSimbolos2.put(sl,Tipo.CTE_STRING.name());
             ArrayList<String> hg = new ArrayList<String>(
                 Arrays.asList("STRING_LITERAL",Tipo.CTE_STRING.name(),sl,String.valueOf(sl.length())));
             int id_str = tablaSimbolos2.size() +1;
@@ -956,8 +911,6 @@ class CUP$MiParser$actions {
 		Expresion c = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 6: sentencia_display --> DISPLAY ( exp_or ) " + "\n\t --> " + " display( " + c + " ) ");
-            //concat_rules("Regla 6: sentencia_display --> "+ "display( " + c + " )");
-            //RESULT = "display(" + c + ")";
             RESULT = new DisplayExpresion("DisplayExpresion",c);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_display",5, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -976,16 +929,13 @@ class CUP$MiParser$actions {
 		Expresion eo = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7: sentencia_asignacion --> IDENTIFIER ASIGN exp_or " + "\n\t --> " + id + " := " + eo);
-        //concat_rules("REGLA 7: sentencia_asignacion --> "+ id + " := " + eo);
         if (!tablaSimbolos2.containsKey(id)){
-            throw new Exception("Variable " + id + " no declarada.");
-        }
+            throw new Exception("Variable " + id + " no declarada.");}
         else {
             ArrayList<String> a = tablaSimbolos2.get(id);
             if (Objects.equals(a.get(1), "Int")){
                 if (eo.getTipo() == Tipo.Float){
-                    throw new Exception("No se admiten Asignaciones con un Identificador Tipo INT y una Expresion Tipo FLOAT");
-                }
+                    throw new Exception("No se admiten Asignaciones con un Identificador Tipo INT y una Expresion Tipo FLOAT");}
             else{
                 Expresion exp = convertir_a_tipo(eo, Tipo.Int);
                 RESULT = new Asignacion(new Identificador(id, Tipo.Int),exp);}}
@@ -996,7 +946,6 @@ class CUP$MiParser$actions {
                 Tipo tipo_comun = tipo_en_comun(Tipo.Bool,eo.getTipo());
                 Expresion exp = convertir_a_tipo(eo, tipo_comun);
                 RESULT = new Asignacion(new Identificador(id, Tipo.Bool),exp);}
-            //RESULT=id + " := " + eo;
         }
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_asignacion",8, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1015,9 +964,7 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.1: exp_or --> exp_or OR exp_and " + "\n\t --> " + e1 + " OR "+ e2);
-        //concat_rules("REGLA 7.1: exp_or --> "+e1+ " OR "+ e2 );
         RESULT = new OR("OR",Tipo.Bool,e1,e2);
-        //RESULT = e1+" OR "+e2 ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1032,7 +979,6 @@ class CUP$MiParser$actions {
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.2: exp_or --> exp_and " + "\n\t --> " + e);
-        //concat_rules("REGLA 7.2: exp_or --> "+e );
         RESULT = e ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_or",16, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1051,8 +997,6 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.3: exp_and --> exp_and AND exp_not " + "\n\t --> " + e1+ " AND "+ e2);
-        //concat_rules("REGLA 7.3: exp_and --> "+e1+ " AND "+ e2 );
-        //RESULT = e1+" AND "+e2 ;
         RESULT = new AND("AND",Tipo.Bool,e1,e2);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1068,7 +1012,6 @@ class CUP$MiParser$actions {
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.4: exp_and --> exp_not " + "\n\t --> " +e);
-        //concat_rules("REGLA 7.4: exp_or --> "+e );
         RESULT = e ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_and",17, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1084,8 +1027,6 @@ class CUP$MiParser$actions {
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.5: exp_not --> NOT exp_not " + "\n\t --> " + e1);
-        //concat_rules("REGLA 7.5: exp_not --> "+e1 );
-        //RESULT = e1 ;
         RESULT = new NOT("NOT",e1,Tipo.Bool);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1101,7 +1042,6 @@ class CUP$MiParser$actions {
 		Expresion c = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.6: exp_not --> comparacion " + "\n\t --> " + c);
-        //concat_rules("REGLA 7.6: exp_not --> "+c );
         RESULT = c ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("exp_not",18, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1261,7 +1201,6 @@ class CUP$MiParser$actions {
 		Expresion e1 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.6.2: comparacion --> expresion " + "\n\t --> " + e1);
-        //concat_rules("REGLA 7.6.2: comparacion --> "+e1);
         RESULT = e1 ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("comparacion",15, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1280,8 +1219,6 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.7: expresion --> expresion SUMA termino " + "\n\t --> " + e1 +" + "+ e2);
-        //concat_rules("REGLA 7.7: expresion --> "+e1+" + "+e2);
-        //RESULT = new Suma(e1,e2);
         Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
         tipo_bool(tipo_comun);
         RESULT = new Suma("+",tipo_comun,convertir_a_tipo(e1,tipo_comun),convertir_a_tipo(e2,tipo_comun));
@@ -1302,7 +1239,6 @@ class CUP$MiParser$actions {
 		Expresion e2 = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.8: expresion --> expresion RESTA termino " + "\n\t --> " + e1 + " - " + e2);
-        //concat_rules("REGLA 7.8: expresion --> "+e1+" - "+e2);
         Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
         tipo_bool(tipo_comun);
         RESULT = new Resta("-",tipo_comun,convertir_a_tipo(e1,tipo_comun),convertir_a_tipo(e2,tipo_comun));
@@ -1320,7 +1256,6 @@ class CUP$MiParser$actions {
 		Expresion t = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.9: expresion --> termino " + "\n\t --> " + t);
-        //concat_rules("REGLA 7.9: expresion --> "+ t );
         RESULT = t ;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("expresion",11, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1339,7 +1274,6 @@ class CUP$MiParser$actions {
 		Expresion mu = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.9.1: termino --> termino MULT menor_unario " + "\n\t --> " + t + " * " + mu);
-        //concat_rules("REGLA 7.9.1: termino --> " + t + " * " + mu );
         Tipo tipo_comun = tipo_en_comun(t.getTipo(),mu.getTipo());
         tipo_bool(tipo_comun);
         RESULT = new Multiplicacion("*",tipo_comun,convertir_a_tipo(t,tipo_comun),convertir_a_tipo(mu,tipo_comun));
@@ -1360,7 +1294,6 @@ class CUP$MiParser$actions {
 		Expresion mu = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.9.2: termino --> termino DIV menor_unario " + "\n\t --> " + t + " / " + mu);
-        //concat_rules("REGLA 7.9.2: termino --> " + t + " / " + mu );
         Tipo tipo_comun = tipo_en_comun(t.getTipo(),mu.getTipo());
         tipo_bool(tipo_comun);
         RESULT = new Division("/",tipo_comun,convertir_a_tipo(t,tipo_comun),convertir_a_tipo(mu,tipo_comun));
@@ -1378,7 +1311,6 @@ class CUP$MiParser$actions {
 		Expresion mu = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 7.9.3: termino --> menor_unario " + "\n\t --> " + mu);
-        //concat_rules("REGLA 7.9.3: termino --> " + mu );
         RESULT = mu;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("termino",14, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1394,7 +1326,6 @@ class CUP$MiParser$actions {
 		Expresion mu = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.1: menos_unario --> - menor_unario " + "\n\t --> " + "- " +mu);
-        //concat_rules("REGLA 8.1: menos_unario --> -" + mu );
         RESULT = new MenosUnario("MenosUnario", mu,mu.getTipo());
 
     
@@ -1411,7 +1342,6 @@ class CUP$MiParser$actions {
 		Expresion f = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		 //superFenelchat
         concat_rules("REGLA 8.2: menos_unario --> factor " + "\n\t --> " + f);
-        //concat_rules("REGLA 8.2: menos_unario --> " + f );
         RESULT = f;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("menos_unario",13, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1427,7 +1357,6 @@ class CUP$MiParser$actions {
 		String i = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.1: factor --> INT " + "\n\t --> " + i);
-        //concat_rules("REGLA 8.1: factor --> " + i );
         RESULT = new ConstanteEntera(i, Tipo.Int, "Factor_Int");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1443,7 +1372,6 @@ class CUP$MiParser$actions {
 		String f = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.2: factor --> FLOAT " + "\n\t --> " + f);
-        //concat_rules("REGLA 8.2: factor --> " + f );
         RESULT = new ConstanteFloat(f, Tipo.Float, "Factor_Float");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1459,7 +1387,6 @@ class CUP$MiParser$actions {
 		String b = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.3: factor --> BOOL " + "\n\t --> " + b);
-        //concat_rules("REGLA 8.3: factor --> " + b );
         RESULT = new ConstanteBool(b, Tipo.Bool, "Factor_Bool");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1475,7 +1402,6 @@ class CUP$MiParser$actions {
 		Expresion fe = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.4: factor --> funcion_especial " + "\n\t --> " + fe);
-        //concat_rules("REGLA 8.4: factor --> " + fe );
         RESULT = fe;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1491,7 +1417,6 @@ class CUP$MiParser$actions {
 		Expresion eo = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
         concat_rules("REGLA 8.5: factor --> PARENTESISO exp_or PARENTESISC " + "\n\t --> " + " ( " + eo + " ) ");
-        //concat_rules("REGLA 8.5: factor --> " + "(" + eo + ")" );
         RESULT = eo;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1507,11 +1432,8 @@ class CUP$MiParser$actions {
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 8.6: factor --> IDENTIFIER " + "\n\t --> " + id + " ");
-        //concat_rules("REGLA 8.6: factor --> " + id );
-        //RESULT = id;
         if (!tablaSimbolos2.containsKey(id)){
-            throw new Exception("Variable " + id + " no declarada.");
-            }
+            throw new Exception("Variable " + id + " no declarada.");}
         else {
             ArrayList<String> e = tablaSimbolos2.get(id);
             if (e.get(1)=="Int"){RESULT = new Identificador(id,Tipo.Int);}
@@ -1532,7 +1454,6 @@ class CUP$MiParser$actions {
 		Object ib = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
-        //concat_rules("REGLA 8.7: factor --> " + ib + "()" );
         RESULT = new Input_Bool(Tipo.Bool,"INPUT_BOOL");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1548,7 +1469,6 @@ class CUP$MiParser$actions {
 		Object ii = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 8.8: factor --> INPUT_INT() " + "\n\t --> " + ii + "()");
-        //concat_rules("REGLA 8.8: factor --> " + ii + "()" );
         RESULT = new Input_Int("INPUT_INT", Tipo.Int);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1564,7 +1484,6 @@ class CUP$MiParser$actions {
 		Object ifl = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 8.9: factor --> INPUT_FLOAT() " + "\n\t --> " + ifl + "()");
-        //concat_rules("REGLA 8.9: factor --> " + ifl + "()" );
         RESULT = new Input_Float(Tipo.Float, "INPUT_FLOAT");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1583,248 +1502,203 @@ class CUP$MiParser$actions {
 		List<Expresion> le = (List<Expresion>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
-                        //concat_rules("REGLA 9: factor --> " + "cola( " + p + " ;[ " + le + "])"   );
-                        //RESULT = "cola( "+p+";["+le+"])"  ;
-                        //hacer validaciones
-                        List<Sentencia> sents = new ArrayList<>();
-                        List<Sentencia> sents_cola = new ArrayList<>();
-                        List<Sentencia> sents_colas = new ArrayList<>();
-                        List<Sentencia> sentPrimerIf = new ArrayList<>();
-                        List<Sentencia> sentSegundoIf = new ArrayList<>();
-                        List<Sentencia> sentTercerIf = new ArrayList<>();
-                        List<Expresion> colas = new ArrayList<>();
-                        //Generamos el Pivot
-                        Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
-                        Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
-                        if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
-                            ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                            tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
-                        }
+        //Listas
+        List<Sentencia> sents = new ArrayList<>();
+        List<Sentencia> sents_cola = new ArrayList<>();
+        List<Sentencia> sents_colas = new ArrayList<>();
+        List<Sentencia> sentPrimerIf = new ArrayList<>();
+        List<Sentencia> sentSegundoIf = new ArrayList<>();
+        List<Sentencia> sentTercerIf = new ArrayList<>();
+        List<Expresion> colas = new ArrayList<>();
 
-                        //Generamos el Acum
-                        Identificador acum = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                        if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                            ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                            tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                        }
+        //Generamos el Pivot
+        Identificador pivot = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
+        Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
+        if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
+            ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+            tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
+            }
 
-                        //Generamos el AcumAux
-                        Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                        if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                            ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                            tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                        }
+        //Generamos el Acum
+        Identificador acum = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+        if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+            ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+            tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+            }
 
-                        //Generamos el IdPos
-                        Identificador pos = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
-                        if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
-                            ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                            tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
-                        }
+        //Generamos el AcumAux
+        Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+        if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
+            ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+            tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
+            }
 
-                        //Generamos los mensajes de error
-                        ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
-                        if(!tablaSimbolos2.containsKey("strmensaje3")){
-                            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista esta vacia",String.valueOf(mensaje3.getValor().toString().length())));
-                            tablaSimbolos2.put("strmensaje3",contenido);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                        }
-                        ConstanteString mensaje2 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "strmensaje2");
-                        if(!tablaSimbolos2.containsKey("strmensaje2")){
-                            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje2.getValor().toString().length())));
-                            tablaSimbolos2.put("strmensaje2",contenido);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                        }
-                        ConstanteString mensaje1 = new ConstanteString("El valor debe ser >=1", Tipo.CTE_STRING, "strmensaje1");
-                        if(!tablaSimbolos2.containsKey("strmensaje1")){
-                            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El valor debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
-                            tablaSimbolos2.put("strmensaje1",contenido);
-                            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                        }
+        //Generamos el IdPos
+        Identificador pos = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
+        if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
+            ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
+            tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
+            }
 
-                        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
+        //Generamos los mensajes de error
+        ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
+        if(!tablaSimbolos2.containsKey("strmensaje3")){
+            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista esta vacia",String.valueOf(mensaje3.getValor().toString().length())));
+            tablaSimbolos2.put("strmensaje3",contenido);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+            }
+            ConstanteString mensaje2 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "strmensaje2");
+            if(!tablaSimbolos2.containsKey("strmensaje2")){
+                ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje2.getValor().toString().length())));
+                tablaSimbolos2.put("strmensaje2",contenido);
+                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+                }
+                ConstanteString mensaje1 = new ConstanteString("El valor debe ser >=1", Tipo.CTE_STRING, "strmensaje1");
+                if(!tablaSimbolos2.containsKey("strmensaje1")){
+                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El valor debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
+                    tablaSimbolos2.put("strmensaje1",contenido);
+                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+                    }
+        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
+        cola.colasInternas(le);
+        Collections.reverse(cola.getColas());
+        List<Expresion> asd = cola.getColas();
+        for(Expresion c: cola.getColas()){
+            checkTipoInt(c);
+            List<Sentencia> sents_col = new ArrayList<>();
+            List<Sentencia> sentPrimerIf_col = new ArrayList<>();
+            List<Sentencia> sentSegundoIf_col = new ArrayList<>();
+            List<Sentencia> sentTercerIf_col = new ArrayList<>();
+            Cola nueva = (Cola) c;
+            for (Expresion e : nueva.getExpresiones()) {
+                checkTipoInt(e);
+                if(e.getNombre() == "Cola"){
+                    Integer i = nueva.getExpresiones().size();
+                    String a = i.toString();
+                    Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                    Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Identificador("asd",Tipo.Int)));
+                    Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                    Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                    List<Sentencia> sentencias1 = new ArrayList<>();
+                    sentencias1.add(asig1);
+                    sentencias1.add(asig2);
+                    sentencias1.add(asig3);
+                    Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                    List<Sentencia> sentencias2 = new ArrayList<>();
+                    sentencias2.add(asig4);
+                    IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                    sents_col.add(ie);
+                    }
+                    else{
+                        checkTipoInt(e);
+                        Integer i = le.size();
+                        String a = i.toString();
+                        Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                        Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), e));
+                        Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias1 = new ArrayList<>();
+                        sentencias1.add(asig1);
+                        sentencias1.add(asig2);
+                        sentencias1.add(asig3);
+                        Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                        List<Sentencia> sentencias2 = new ArrayList<>();
+                        sentencias2.add(asig4);
+                        IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                        sents_col.add(ie);
+                    }
+            }
+            int longitud_lista = nueva.getExpresiones().size();
+            String long_lista = Integer.toString(longitud_lista);
 
-                        cola.colasInternas(le);
-                        Collections.reverse(cola.getColas());
-                        List<Expresion> asd = cola.getColas();
-                        for(Expresion c: cola.getColas()){
-                            checkTipoInt(c);
-                            List<Sentencia> sents_col = new ArrayList<>();
-                            List<Sentencia> sentPrimerIf_col = new ArrayList<>();
-                            List<Sentencia> sentSegundoIf_col = new ArrayList<>();
-                            List<Sentencia> sentTercerIf_col = new ArrayList<>();
-                            Cola nueva = (Cola) c;
-                            /*
-                            //Generamos el Pivot
-                            Identificador pivot1 = new Identificador("Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
-                            Asignacion asig_pivot1 = new Asignacion("Asignacion",pivot1,nueva.getPivot());
-                            if(!tablaSimbolos2.containsKey("Pivot"+CodeGeneratorHelper.getPivot())){
-                                ArrayList<String> contenidoPivot = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                                tablaSimbolos2.put("Pivot"+CodeGeneratorHelper.getPivot(),contenidoPivot);
-                                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "Pivot"+ CodeGeneratorHelper.getPivot(), contenidoPivot.get(0), contenidoPivot.get(1), contenidoPivot.get(2), contenidoPivot.get(3)));
-                            }
-                            ((Cola) c).setAsignacion(asig_pivot1);
+            //La lista está vacía.
+            Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
+            List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+            sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
+            IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents_col, sentencia_mensaje3);
+            sentTercerIf_col.add(tercerIf);
 
-                            //Generamos el Acum
-                            Identificador acum1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                            if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                                ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                                tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                            }
-                            ((Cola) c).setAcum(acum1);
+            //La lista tiene menos elementos que el indicado
+            MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+            List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
+            sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
+            IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf_col, sentencia_mensaje2);
+            sentSegundoIf_col.add(segundoIf);
 
-                            //Generamos el AcumAux
-                            Identificador acumAux1 = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
-                            if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
-                                ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                                tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
-                                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Acum"+ CodeGeneratorHelper.getAcum(), contenidoAcum.get(0), contenidoAcum.get(1), contenidoAcum.get(2), contenidoAcum.get(3)));
-                            }
-                            ((Cola) c).setAcumAux(acumAux1);
+            //El valor debe ser >=1
+            MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+            List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
+            sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+            IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
+            cola.getIfelse_colas().add(primerIf);
+        }
+        for (Expresion e : le) {
+            checkTipoInt(e);
+            if(e.getNombre() == "Cola"){
+                Integer i = le.size();
+                String a = i.toString();
+                Cola nueva = (Cola) e;
+                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int)));
+                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias1 = new ArrayList<>();
+                sentencias1.add(asig1);
+                sentencias1.add(asig2);
+                sentencias1.add(asig3);
+                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias2 = new ArrayList<>();
+                sentencias2.add(asig4);
+                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                sents.add(ie);
+            }
+            else {
+                checkTipoInt(e);
+                Integer i = le.size();
+                String a = i.toString();
+                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
+                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias1 = new ArrayList<>();
+                sentencias1.add(asig1);
+                sentencias1.add(asig2);
+                sentencias1.add(asig3);
+                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias2 = new ArrayList<>();
+                sentencias2.add(asig4);
+                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                sents.add(ie);
+            }
+        }
+        int longitud_lista = le.size();
+        String long_lista = Integer.toString(longitud_lista);
 
-                            //Generamos el IdPos
-                            Identificador pos1 = new Identificador("IdPos"+CodeGeneratorHelper.getNewPos(), Tipo.Int);
-                            if(!tablaSimbolos2.containsKey("IdPos"+CodeGeneratorHelper.getPos())){
-                                ArrayList<String> contenidoPos = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
-                                tablaSimbolos2.put("IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
-                                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
-                            }*/
+        //La lista está vacía.
+        Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
+        List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+        sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
+        IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
+        sentTercerIf.add(tercerIf);
 
-                            for (Expresion e : nueva.getExpresiones()) {
-                                checkTipoInt(e);
-                                if(e.getNombre() == "Cola"){
-                                    Integer i = nueva.getExpresiones().size();
-                                    String a = i.toString();
-                                    Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                                    //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-                                    Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Identificador("asd",Tipo.Int)));
-                                    Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    List<Sentencia> sentencias1 = new ArrayList<>();
-                                    sentencias1.add(asig1);
-                                    sentencias1.add(asig2);
-                                    sentencias1.add(asig3);
-                                    Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    List<Sentencia> sentencias2 = new ArrayList<>();
-                                    sentencias2.add(asig4);
-                                    IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                                    sents_col.add(ie);
-                                } else {
-                                    checkTipoInt(e);
-                                    Integer i = le.size();
-                                    String a = i.toString();
-                                    Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                                    //AND and_c = new AND("AND", Tipo.Bool, new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int)), new MenorOIgual("<=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera(a, Tipo.Int, "Factor_Int")));
-                                    Asignacion asig1 = new Asignacion("Asignacion", new Identificador(nueva.getAcum().getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(nueva.getAcum().getNombre(), Tipo.Int), e));
-                                    Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    List<Sentencia> sentencias1 = new ArrayList<>();
-                                    sentencias1.add(asig1);
-                                    sentencias1.add(asig2);
-                                    sentencias1.add(asig3);
-                                    Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                    List<Sentencia> sentencias2 = new ArrayList<>();
-                                    sentencias2.add(asig4);
-                                    IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                                    sents_col.add(ie);
-                                }
-                            }
+        //La lista tiene menos elementos que el indicado
+        MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+        List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
+        sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
+        IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
+        sentSegundoIf.add(segundoIf);
 
-                            int longitud_lista = nueva.getExpresiones().size();
-                            String long_lista = Integer.toString(longitud_lista);
-                            //La lista está vacía.
-                            Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
-                            List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
-                            sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
-                            IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents_col, sentencia_mensaje3);
-                            sentTercerIf_col.add(tercerIf);
-
-                            //La lista tiene menos elementos que el indicado
-                            MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
-                            List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
-                            sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
-                            IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf_col, sentencia_mensaje2);
-                            sentSegundoIf_col.add(segundoIf);
-
-                            //El valor debe ser >=1
-                            MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                            List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
-                            sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
-                            IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
-                            cola.getIfelse_colas().add(primerIf);
-
-                        }
-
-                        for (Expresion e : le) {
-                            checkTipoInt(e);
-                            if(e.getNombre() == "Cola"){
-                                Integer i = le.size();
-                                String a = i.toString();
-                                Cola nueva = (Cola) e;
-                                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                                //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int)));
-                                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                List<Sentencia> sentencias1 = new ArrayList<>();
-                                sentencias1.add(asig1);
-                                sentencias1.add(asig2);
-                                sentencias1.add(asig3);
-                                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                List<Sentencia> sentencias2 = new ArrayList<>();
-                                sentencias2.add(asig4);
-                                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                                sents.add(ie);
-                            } else {
-                                checkTipoInt(e);
-                                Integer i = le.size();
-                                String a = i.toString();
-                                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                                //Igual ig = new Igual("==", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int),new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
-                                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                List<Sentencia> sentencias1 = new ArrayList<>();
-                                sentencias1.add(asig1);
-                                sentencias1.add(asig2);
-                                sentencias1.add(asig3);
-                                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                                List<Sentencia> sentencias2 = new ArrayList<>();
-                                sentencias2.add(asig4);
-                                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                                sents.add(ie);
-                            }
-                        }
-
-                        int longitud_lista = le.size();
-                        String long_lista = Integer.toString(longitud_lista);
-                        //La lista está vacía.
-                        Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
-                        List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
-                        sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
-                        IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
-                        sentTercerIf.add(tercerIf);
-
-                        //La lista tiene menos elementos que el indicado
-                        MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
-                        List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
-                        sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
-                        IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
-                        sentSegundoIf.add(segundoIf);
-
-                        //El valor debe ser >=1
-                        MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
-                        List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
-                        sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
-                        IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
-                        cola.setIfelse(primerIf);
-
-                        RESULT=cola;
+        //El valor debe ser >=1
+        MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
+        List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
+        sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+        IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
+        cola.setIfelse(primerIf);
+        RESULT=cola;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1839,7 +1713,6 @@ class CUP$MiParser$actions {
 		String id = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
-        //concat_rules("REGLA 10: pivot --> " + id );
         if(tablaSimbolos2.containsKey(id)){
                     if (Objects.equals(tablaSimbolos2.get(id).get(1), Tipo.Int.name())){RESULT = new Identificador(id,Tipo.Int);}
                     else {throw new Exception("Tipo " + tablaSimbolos2.get(id).get(1) + " no soportado en funcion especial Cola.");}}
@@ -1858,7 +1731,6 @@ class CUP$MiParser$actions {
 		String i = (String)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.1: pivot --> INT " + "\n\t --> " + i);
-        //concat_rules("REGLA 10.1: pivot --> " + i );
         RESULT = new ConstanteEntera(i,Tipo.Int,"Pivot");
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("pivot",20, ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1874,8 +1746,6 @@ class CUP$MiParser$actions {
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.2: lista_expresiones --> expresion " + "\n\t --> " + e);
-        //concat_rules("REGLA 10.1: lista_expresiones --> " + e );
-        //RESULT = e;
         List<Expresion> lista_expresiones = new ArrayList<>();
         lista_expresiones.add(e);
         RESULT = lista_expresiones;
@@ -1896,8 +1766,6 @@ class CUP$MiParser$actions {
 		Expresion e = (Expresion)((java_cup.runtime.Symbol) CUP$MiParser$stack.peek()).value;
 		
         concat_rules("REGLA 10.3: lista_expresiones --> lista_expresiones COMA expresion " + "\n\t --> " + le + ", " + e);
-        //concat_rules("REGLA 10.3: lista_expresiones --> " +le+ ", " + e );
-        //RESULT = le+", " + e;
         le.add(e);
         RESULT = le;
     

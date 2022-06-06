@@ -1128,12 +1128,10 @@ public class MiLexico implements java_cup.runtime.Scanner {
           case 71: break;
           case 12:
             { int a = yytext().length();
-          //int a = Integer.parseInt(yytext());
-                //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                if ( a < cota_int ) {return token("INT", yytext());}
-                        else{
-                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
-                            }
+          if ( a < cota_int ) {return token("INT", yytext());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
+          }
             }
             // fall through
           case 72: break;
@@ -1159,8 +1157,8 @@ public class MiLexico implements java_cup.runtime.Scanner {
           case 76: break;
           case 17:
             { if ( yytext().length() < cota_ID) {return token("IDENTIFIER", yytext());}
-                                                else{
-                                                    return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
             }
             // fall through
           case 77: break;
@@ -1186,10 +1184,10 @@ public class MiLexico implements java_cup.runtime.Scanner {
           case 81: break;
           case 22:
             { yybegin(YYINITIAL);
-                                    if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
-                                        else{
-                                            return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
-                                        }
+          if (string.length() < cantMax_string) {return token("STRING_LITERAL", string_yyline, string_yycolumn, string.toString());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");
+          }
             }
             // fall through
           case 82: break;
@@ -1221,11 +1219,9 @@ public class MiLexico implements java_cup.runtime.Scanner {
           case 87: break;
           case 28:
             { int a = yytext().length();
-          //float a = Float.parseFloat(yytext()); me equivoqué pense que pedían hasta que numero flotante, y era su cant de caracteres.
-                              //System.out.println(a + "es de tipo" + ((Object)a).getClass().getSimpleName()); para saber si castea bien
-                              if ( a < cota_float) {return token("FLOAT", yytext());}
-                                      else{
-                                          return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
+          if ( a < cota_float) {return token("FLOAT", yytext());}
+          else{
+              return token("ERROR", "Error supera cantidad maxima de caracteres permitidos");}
             }
             // fall through
           case 88: break;

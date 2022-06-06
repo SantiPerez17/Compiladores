@@ -6,7 +6,6 @@
 package archivos.lexico;
 
 import java.util.Arrays;
-
 import archivos.sintactico.MiParserSym;
 import java_cup.runtime.Symbol;
 
