@@ -158,6 +158,9 @@ public abstract class OperacionBinaria extends Expresion {
             resultado.append("\n"+this.getIr_ref()+":\n");
             this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), cola.getAcumAux().getNombre()));
+            if(this.getDerecha().getNombre().equals("Cola")){
+                resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+            }
             //int start2 = resultado.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
             //int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
             //resultado.delete(start2,end2);
