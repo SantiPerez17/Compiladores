@@ -122,8 +122,12 @@ public abstract class OperacionBinaria extends Expresion {
                 Cola cola1 = (Cola) c;
 
                 //Asignacion del pivot de las colas internas
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+                if (aux > 0) {
+                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                } else {
+                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+                }
 
                 //Sentencias if de las colas internas
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -140,8 +144,12 @@ public abstract class OperacionBinaria extends Expresion {
             }
 
             //Asignacion del pivot de la cola
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+            if (aux > 0) {
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+            } else {
+                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+            }
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -198,8 +206,12 @@ public abstract class OperacionBinaria extends Expresion {
                 Cola cola1 = (Cola) c;
 
                 //Asignacion del pivot de las colas internas
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+                if (aux > 0) {
+                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                } else {
+                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+                }
 
                 //Sentencias if de las colas internas
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -216,8 +228,12 @@ public abstract class OperacionBinaria extends Expresion {
             }
 
             //Asignacion del pivot de la cola
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref()+":\n"));
+            if (aux > 0) {
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+            } else {
+                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+            }
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
