@@ -30,17 +30,16 @@ define i32 @main(i32, i8**) {
 	
 	etiq1:
 	;___Asignación___
-	%aux5 = alloca i32
-	%aux6 = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8] * @int_read_format, i64 0, i64 0), i32* %aux5)
-	%aux7 = add i32 0, 5
-	%aux8 = add i32 %aux6, %aux7
-	store i32 %aux8, i32* @a
+	%aux2 = alloca i32
+	%aux3 = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8] * @int_read_format, i64 0, i64 0), i32* %aux2)
+	%aux4 = load i32, i32* %aux3
+	store i32 %aux4, i32* @a
 	br label %etiq2
 	
 	etiq2:
 	;___DisplayExpresion___
-	%aux10 = load i32, i32* @a
-	%aux9 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux10)
+	%aux6 = load i32, i32* @a
+	%aux5 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux6)
 	br label %etiq3
 	
 	etiq3:

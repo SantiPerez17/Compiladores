@@ -1,24 +1,17 @@
 graph G {nodo_programa[label="Programa"]
-nodo_2089422796[label="Sentencia - [ Asignacion ] -
+nodo_1815674630[label="Sentencia - [ Asignacion ] -
  :="]
-nodo_programa--nodo_2089422796
-nodo_1098933182[label=" ID - [ a ] - 
+nodo_programa--nodo_1815674630
+nodo_1777485983[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_2089422796--nodo_1098933182
-nodo_813239062[label=" Op_Binaria - [ + ] - 
+nodo_1815674630--nodo_1777485983
+nodo_1775156878[label="- [ Input_Int ] - 
  Tipo: Int"]
-nodo_2089422796--nodo_813239062
-nodo_1657753726[label="- [ Input_Int ] - 
- Tipo: Int"]
-nodo_813239062--nodo_1657753726
-nodo_66249089[label="Factor_Int  
- Valor: 5 
-Int"]
-nodo_813239062--nodo_66249089
-nodo_1160433154[label="Sentencia
+nodo_1815674630--nodo_1775156878
+nodo_813239062[label="Sentencia
  - [ Display Expresion ] -"]
-nodo_programa--nodo_1160433154
-nodo_1081524910[label=" ID - [ a ] - 
+nodo_programa--nodo_813239062
+nodo_66249089[label=" ID - [ a ] - 
  Tipo: Int"]
-nodo_1160433154--nodo_1081524910
+nodo_813239062--nodo_66249089
 }

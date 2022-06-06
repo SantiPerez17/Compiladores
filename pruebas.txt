@@ -16,7 +16,7 @@ program.section
 #display(res)
 #display(res2)
 #display(res3)
-a:=input_int()+5
+a:=input_int()
 display(a)
 
 #a:=2
