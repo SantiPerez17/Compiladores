@@ -127,6 +127,20 @@ public class IfElse extends Sentencia {
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias1, etiquetaSentencias2));
         resultado.append(resultado_sentencias1);
         resultado.append(resultado_sentencias2);
+
+        try{
+            String cadena = ":\n;___IfElse___\n\n";
+            int start = resultado.indexOf(cadena);
+            int end = start+ (cadena).length();
+            Character c = resultado.charAt(start);
+            while(!c.equals('\n')){
+                start-=1;
+                c = resultado.charAt(start);
+            }
+            resultado.delete(start+1,end);
+        }catch (Exception e){
+
+        }
         return resultado.toString();
     }
 

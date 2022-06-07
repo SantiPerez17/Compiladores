@@ -150,6 +150,19 @@ public class While extends Sentencia {
             resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
         }
 
+        try{
+            String cadena = ":\n;___While___\n\n";
+            int start = resultado.indexOf(cadena);
+            int end = start+ (cadena).length();
+            Character c = resultado.charAt(start);
+            while(!c.equals('\n')){
+                start-=1;
+                c = resultado.charAt(start);
+            }
+            resultado.delete(start+1,end);
+        }catch (Exception e){
+
+        }
         return resultado.toString();
     }
 }

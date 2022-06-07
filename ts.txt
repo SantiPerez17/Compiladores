@@ -15,13 +15,11 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-               str15      STRING_LITERAL          CTE_STRING     Ingrese valor:                   15
-               str16      STRING_LITERAL          CTE_STRING               lunes                   5
-               str17      STRING_LITERAL          CTE_STRING              martes                   6
-               str18      STRING_LITERAL          CTE_STRING           miercoles                   9
-               str19      STRING_LITERAL          CTE_STRING              jueves                   6
-               str20      STRING_LITERAL          CTE_STRING             viernes                   7
-               str21      STRING_LITERAL          CTE_STRING              sabado                   6
-               str22      STRING_LITERAL          CTE_STRING             domingo                   7
-               str23      STRING_LITERAL          CTE_STRING   valor no aceptado                  17
+              Pivot1                  ID                 Int                   _                   _
+              _Acum1                  ID                 Int                   _                   _
+              _Acum2                  ID                 Int                   _                   _
+              IdPos1                  ID                 Int                   _                   _
+         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
+         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
+         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
 

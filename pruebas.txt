@@ -4,42 +4,12 @@ declare.section
     bool : xd, ahre,r;
 enddeclare.section
 program.section
-display("Ingrese valor: ")
-a:=input_int()
-while (a!=0) do
-    if (a==1) then
-        display("lunes")
-        else
-            if (a==2) then
-                display ("martes")
-                    else
-                    if (a==3) then
-                        display("miercoles")
-                        else
-                            if (a==4)  then
-                                display("jueves")
-                                else
-                                    if(a==5) then
-                                        display("viernes")
-                                        else
-                                            if(a==6) then
-                                                display("sabado")
-                                                else
-                                                    if(a==7) then
-                                                        display("domingo")
-                                                        else
-                                                            display("valor no aceptado")
-                                                    end
-                                            end
-                                    end
-                            end
-                    end
-            end
-    end
-    a:=input_int()
+
+a:=0
+while (cola(1;[2]) != a) do
+    display(a)
+    a:=a+1
 end
-
-
 
 #res:=-cola(1;[1])
 #res2:=1 + cola(2;[1,2])

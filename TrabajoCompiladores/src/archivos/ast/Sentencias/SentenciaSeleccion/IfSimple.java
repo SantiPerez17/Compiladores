@@ -92,6 +92,20 @@ public class IfSimple extends Sentencia {
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
         resultado.append(resultado_sentencias);
+
+        try{
+            String cadena = ":\n;___IfSimple___\n\n";
+            int start = resultado.indexOf(cadena);
+            int end = start+ (cadena).length();
+            Character c = resultado.charAt(start);
+            while(!c.equals('\n')){
+                start-=1;
+                c = resultado.charAt(start);
+            }
+            resultado.delete(start+1,end);
+        }catch (Exception e){
+
+        }
         return resultado.toString();
     }
 }
