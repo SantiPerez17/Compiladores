@@ -97,6 +97,11 @@ public class IfElse extends Sentencia {
             }
             if(etiqueta.contains("Cola")){
                 resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+"Cola:\n"));
+                if(aux == 2){
+                    int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+                    int end2 = String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)).length()+start2;
+                    resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiqZZ"));
+                }
             } else {
                 resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
             }
@@ -118,6 +123,11 @@ public class IfElse extends Sentencia {
             }
             if(etiqueta.contains("Cola")){
                 resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+"Cola:\n"));
+                try{
+                    int start = resultado_sentencias1.indexOf("br label %etiqZZ");
+                    resultado_sentencias1.replace(start,start+16,"br label %etiq"+(CodeGeneratorHelper.getNextTag()+1));
+                }catch (Exception e){
+                }
             } else {
                 resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
             }

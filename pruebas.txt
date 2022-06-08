@@ -5,21 +5,16 @@ declare.section
 enddeclare.section
 program.section
 
-a:=0
-while (cola(1;[2]) != a) do
-    display(a)
-    a:=a+1
-end
-
 #res:=-cola(1;[1])
 #res2:=1 + cola(2;[1,2])
 #res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
-#res:= cola(1;[1,cola(2;[1,2])]) +  cola(2;[1,2])
-#res:= cola(2;[1,2]) - 4 
-#res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3])
+res:= cola(1;[1,cola(2;[1,2])+5]) +  cola(2;[1,2])
 #res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
+#res:= 3 - 4 + 3 * 5
+#res2:= cola(2;[1,2]) - 4 + cola(1;[1,2,3])
+#res3:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
 #res:=-(145+23/(5*3))
-#display(res)
+display(res)
 #display(res2)
 #display(res3)
 

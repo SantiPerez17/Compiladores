@@ -72,34 +72,7 @@ public abstract class OperacionBinaria extends Expresion {
     public String generarCodigo(String etiqueta){
         StringBuilder resultado = new StringBuilder();
 
-        this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
-        this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
-        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-
-        if((this.getIzquierda().getNombre()=="Factor_Int" ||
-                this.getIzquierda().getNombre()=="Factor_Float" ||
-                this.getIzquierda().getNombre()=="Factor_Bool" ||
-                this.getIzquierda().getNombre()=="Input_Int" ||
-                this.getIzquierda().getNombre()=="Input_Float" ||
-                this.getIzquierda().getNombre()=="Input_Bool" ||
-                this.getIzquierda().getNombre()=="MenosUnario" ||
-                this.getIzquierda().getNombre()=="INT a FLOAT" ||
-                this.getIzquierda().getNombre()=="+" ||
-                this.getIzquierda().getNombre()=="-" ||
-                this.getIzquierda().getNombre()=="*" ||
-                this.getIzquierda().getNombre()=="/" ||
-                this.getIzquierda().getNombre()=="AND" ||
-                this.getIzquierda().getNombre()=="OR" ||
-                this.getIzquierda().getNombre()=="NOT" ||
-                this.getIzquierda().getNombre()=="==" ||
-                this.getIzquierda().getNombre()=="!=" ||
-                this.getIzquierda().getNombre()==">" ||
-                this.getIzquierda().getNombre()==">=" ||
-                this.getIzquierda().getNombre()=="<" ||
-                this.getIzquierda().getNombre()=="<=") && (this.getDerecha().getNombre().equals("Cola"))) {
-            resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()));
-            resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-        }else if(this.getIzquierda().getNombre()=="Factor_Int" ||
+        if(this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
                 this.getIzquierda().getNombre()=="Factor_Bool" ||
                 this.getIzquierda().getNombre()=="Input_Int" ||
@@ -120,7 +93,8 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getIzquierda().getNombre()==">=" ||
                 this.getIzquierda().getNombre()=="<" ||
                 this.getIzquierda().getNombre()=="<="){
-            resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()));
+            this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(this.getIzquierda().generarCodigo(this.getIr_ref()+":\n"));
         }else if(this.getIzquierda().getNombre()=="Cola"){
             Cola cola = (Cola) this.getIzquierda();
             int aux = 0;
@@ -128,12 +102,8 @@ public abstract class OperacionBinaria extends Expresion {
                 Cola cola1 = (Cola) c;
 
                 //Asignacion del pivot de las colas internas
-                if (aux > 0) {
-                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
-                } else {
-                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
-                }
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
                 //Sentencias if de las colas internas
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -150,12 +120,8 @@ public abstract class OperacionBinaria extends Expresion {
             }
 
             //Asignacion del pivot de la cola
-            if (aux > 0) {
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
-            } else {
-                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
-            }
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -171,10 +137,8 @@ public abstract class OperacionBinaria extends Expresion {
             resultado.append("\n"+this.getIr_ref()+":\n");
             this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), cola.getAcumAux().getNombre()));
-            if(this.getDerecha().getNombre().equals("Cola")){
-                resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-            }
         } else {
+            this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.getIzquierda().getTipo().equals(Tipo.Int)){
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
             } else if (this.getIzquierda().getTipo().equals(Tipo.Float)){
@@ -183,6 +147,18 @@ public abstract class OperacionBinaria extends Expresion {
                 resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
             } else {
                 resultado.append(String.format("%1$s = load i1, i1* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
+            }
+        }
+
+        if(this.getDerecha().getNombre().equals("Cola")){
+            resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+        } else {
+            try{
+                OperacionBinaria ob = (OperacionBinaria) this.getDerecha();
+                if (ob.getIzquierda().getNombre().equals("Cola")){
+                    resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 2) + "\n");
+                }
+            } catch (Exception e1){
             }
         }
 
@@ -207,7 +183,8 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getDerecha().getNombre()==">=" ||
                 this.getDerecha().getNombre()=="<" ||
                 this.getDerecha().getNombre()=="<=") {
-            resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()));
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()+":\n"));
         }else if(this.getDerecha().getNombre()=="Cola"){
             Cola cola = (Cola) this.getDerecha();
             int aux = 0;
@@ -215,12 +192,8 @@ public abstract class OperacionBinaria extends Expresion {
                 Cola cola1 = (Cola) c;
 
                 //Asignacion del pivot de las colas internas
-                if (aux > 0) {
-                    this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
-                } else {
-                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
-                }
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
                 //Sentencias if de las colas internas
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -237,12 +210,8 @@ public abstract class OperacionBinaria extends Expresion {
             }
 
             //Asignacion del pivot de la cola
-            if (aux > 0) {
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
-            } else {
-                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
-            }
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -259,6 +228,7 @@ public abstract class OperacionBinaria extends Expresion {
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.getDerecha().getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
             } else if (this.getDerecha().getTipo().equals(Tipo.Float)) {

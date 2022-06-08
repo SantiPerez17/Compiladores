@@ -2,6 +2,8 @@ package archivos.ast.Base.Expresiones.FuncionEspecial;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 import archivos.ast.Sentencias.Asignacion;
@@ -138,6 +140,24 @@ public class Cola extends Expresion {
         for (Expresion e : expresiones) {
             if(e.getNombre() == "Cola") {
                 colasInternasAux.add((Cola) e);
+            } else {
+                try{
+                    OperacionBinaria ob = (OperacionBinaria) e;
+                    if(ob.getIzquierda().getNombre().equals("Cola")){
+                        colasInternasAux.add((Cola) ob.getIzquierda());
+                    }
+                    if(ob.getDerecha().getNombre().equals("Cola")){
+                        colasInternasAux.add((Cola) ob.getDerecha());
+                    }
+                }catch (Exception e1){
+                    try{
+                        OperacionUnaria ou = (OperacionUnaria) e;
+                        if(ou.getExpresion().getNombre().equals("Cola")){
+                            colasInternasAux.add((Cola) ou.getExpresion());
+                        }
+                    }catch (Exception e2){
+                    }
+                }
             }
         }
         if (colasInternasAux.size()>0){
