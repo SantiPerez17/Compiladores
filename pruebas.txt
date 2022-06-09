@@ -1,10 +1,70 @@
 declare.section
-    float : f;
-    int : res,res2,res3,res4,a,b,c,d,t,aux;
+    float : f,fi;
+    int : res,res2,res3,res4,a,b,c,d,t,aux,pivot;
     bool : xd, ahre,r;
 enddeclare.section
 program.section
 
+(*display("Ingrese valores:")
+display("valor a:")
+a:=input_int()
+display("valor b:")
+b:=input_int()
+display("valor c:")
+c:=input_int()
+display("suma de los 3 valores")
+display(a+b+c)
+display("promedio")
+display((a+b+c)/3)
+
+display("ingrese valor de pivot")
+pivot:=input_int()
+res:=50 + cola(pivot;[a,b,c]) + 2*cola(pivot;[a+1,b+1,c+1])
+display(res)
+res2:=cola(pivot;[a,b,c])
+while (res2 < 10) do
+    display("no supera los 10 puntos, vuelva a agregar valores a la cola y pivot")
+    display("valor a:")
+    a:=input_int()
+    display("valor b:")
+    b:=input_int()
+    display("valor c:")
+    c:=input_int()
+    display("suma de los 3 valores")
+    display(a+b+c)
+    display("promedio")
+    display((a+b+c)/3)
+    display("ingrese valor de pivot")
+    pivot:=input_int()
+    res:=50 + cola(pivot;[a,b,c]) + 2*cola(pivot;[a+1,b+1,c+1])
+    res2:=cola(pivot;[a,b,c])
+end
+if(cola(pivot;[a,b,c]) +1 == res2 * 2) then
+    display("ta potente")
+    else
+        display("no ta potente")
+        display(cola(pivot;[a*3,b*3,c*3]))
+end*)
+(* asjdjaskdlasjdas
+(*jelowwwww*)
+chau *)
+display("ingrese valor de f")
+f:=0
+f:=input_float()
+fi:=f*300
+if(fi<-cola(2;[5,5])) then
+    display("pasa")
+    else
+        display("no pasa")
+        display(fi+f)
+end
+(*
+if(cola(1;[1]) < f) then
+    display("que pasa aca")
+    else
+        display("no pasa nada")
+end
+*)
 #res:=-cola(1;[1])
 #res2:=1 + cola(2;[1,2])
 #res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
@@ -18,12 +78,12 @@ program.section
 #display(res2)
 #display(res3)
 
-a:=30
-b:=50
-res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
+(*a:=2
+b:=2
+res := cola(b+1;[10*cola(a;[1,2]) + 5, 10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
 res2 := 2*(-cola(2;[1,1+2])) + cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5])
 display(res)
-display(res2)
+display(res2)*)
 
 (*while(a==b) do
     display("hola")

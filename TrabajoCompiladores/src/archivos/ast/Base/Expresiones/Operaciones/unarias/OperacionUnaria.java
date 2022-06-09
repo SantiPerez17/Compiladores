@@ -110,7 +110,7 @@ public abstract class  OperacionUnaria extends Expresion{
         } else {
             resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola", "")));
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            //this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.expresion.getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
             }else if(this.expresion.getTipo().equals(Tipo.Float)){
