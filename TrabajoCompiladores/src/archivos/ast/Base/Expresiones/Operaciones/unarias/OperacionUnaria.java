@@ -54,7 +54,7 @@ public abstract class  OperacionUnaria extends Expresion{
     @Override
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+
         if(expresion.getNombre().equals("Cola")){
             Cola cola = (Cola) this.expresion;
             int aux = 0;
@@ -108,8 +108,9 @@ public abstract class  OperacionUnaria extends Expresion{
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
         } else {
+            resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola", "")));
+            this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
-            resultado.append(this.expresion.generarCodigo(this.expresion.getIr_ref()));
             if (this.expresion.getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
             }else if(this.expresion.getTipo().equals(Tipo.Float)){

@@ -18,11 +18,12 @@ program.section
 #display(res2)
 #display(res3)
 
-a:=1
-b:=2
+a:=30
+b:=50
 res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
-#res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) +  2*cola(2;[1,1+2])
+res2 := 2*(-cola(2;[1,1+2])) + cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5])
 display(res)
+display(res2)
 
 (*while(a==b) do
     display("hola")

@@ -15,17 +15,13 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-              Pivot4                  ID                 Int                   _                   _
-              _Acum7                  ID                 Int                   _                   _
-              _Acum8                  ID                 Int                   _                   _
-              IdPos4                  ID                 Int                   _                   _
-         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
-         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
-         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
               Pivot5                  ID                 Int                   _                   _
               _Acum9                  ID                 Int                   _                   _
              _Acum10                  ID                 Int                   _                   _
               IdPos5                  ID                 Int                   _                   _
+         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
+         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
+         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
               Pivot6                  ID                 Int                   _                   _
              _Acum11                  ID                 Int                   _                   _
              _Acum12                  ID                 Int                   _                   _
@@ -34,4 +30,24 @@ TABLA DE SIMBOLOS
              _Acum13                  ID                 Int                   _                   _
              _Acum14                  ID                 Int                   _                   _
               IdPos7                  ID                 Int                   _                   _
+              Pivot8                  ID                 Int                   _                   _
+             _Acum15                  ID                 Int                   _                   _
+             _Acum16                  ID                 Int                   _                   _
+              IdPos8                  ID                 Int                   _                   _
+              Pivot9                  ID                 Int                   _                   _
+             _Acum17                  ID                 Int                   _                   _
+             _Acum18                  ID                 Int                   _                   _
+              IdPos9                  ID                 Int                   _                   _
+             Pivot10                  ID                 Int                   _                   _
+             _Acum19                  ID                 Int                   _                   _
+             _Acum20                  ID                 Int                   _                   _
+             IdPos10                  ID                 Int                   _                   _
+             Pivot11                  ID                 Int                   _                   _
+             _Acum21                  ID                 Int                   _                   _
+             _Acum22                  ID                 Int                   _                   _
+             IdPos11                  ID                 Int                   _                   _
+             Pivot12                  ID                 Int                   _                   _
+             _Acum23                  ID                 Int                   _                   _
+             _Acum24                  ID                 Int                   _                   _
+             IdPos12                  ID                 Int                   _                   _
 

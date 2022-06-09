@@ -3,6 +3,7 @@ package archivos.ast.Base.Expresiones.Operaciones.binarias;
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
 import archivos.ast.Sentencias.Asignacion;
@@ -166,6 +167,13 @@ public abstract class OperacionBinaria extends Expresion {
                     resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 2) + "\n");
                 }
             } catch (Exception e1){
+                try{
+                    OperacionUnaria ou = (OperacionUnaria) this.getDerecha();
+                    if(ou.getExpresion().getNombre().equals("Cola")){
+                        resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+                    }
+                } catch (Exception e2){
+                }
             }
         }
 
@@ -191,7 +199,7 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getDerecha().getNombre()=="<" ||
                 this.getDerecha().getNombre()=="<=") {
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()+":\n"));
+            resultado.append(this.getDerecha().generarCodigo(this.getDerecha().getIr_ref()+":\n"));
         }else if(this.getDerecha().getNombre()=="Cola"){
             Cola cola = (Cola) this.getDerecha();
             int aux = 0;
@@ -199,39 +207,39 @@ public abstract class OperacionBinaria extends Expresion {
                 Cola cola1 = (Cola) c;
 
                 //Asignacion del pivot de las colas internas
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola1.getAsignacion().generarCodigo(this.getDerecha().getIr_ref() + ":\n"));
 
                 //Sentencias if de las colas internas
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(c.generarCodigo(this.getIr_ref()+":\n"));
+                this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(c.generarCodigo(this.getDerecha().getIr_ref()+":\n"));
 
                 //Asignacion de la variable Acum de las colas internas
                 Identificador identificador2 = new Identificador(cola1.getAcum().getNombre(),cola1.getTipo());
                 Identificador identificador3 = new Identificador(cola1.getAcumAux().getNombre(),cola1.getTipo());
                 Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
+                this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig1.generarCodigo(this.getDerecha().getIr_ref()+":\n"));
 
                 aux+=1;
             }
 
             //Asignacion del pivot de la cola
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(cola.getAsignacion().generarCodigo(this.getDerecha().getIr_ref() + ":\n"));
 
             //Sentencias if de la cola
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(this.getDerecha().generarCodigo(this.getIr_ref()+":\n"));
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(this.getDerecha().generarCodigo(this.getDerecha().getIr_ref()+":\n"));
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(),cola.getTipo());
             Identificador identificador3 = new Identificador(cola.getAcumAux().getNombre(),cola.getTipo());
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
-            this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append("\n"+this.getIr_ref()+":\n");
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig1.generarCodigo(this.getDerecha().getIr_ref()+":\n"));
+            this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append("\n"+this.getDerecha().getIr_ref()+":\n");
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
