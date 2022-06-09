@@ -1,5 +1,5 @@
 declare.section
-    float : f;
+    float : f,fi;
     int : res,res2,res3,res4,a,b,c,d,t,aux;
     bool : xd, ahre,r;
 enddeclare.section
@@ -18,12 +18,33 @@ program.section
 #display(res2)
 #display(res3)
 
-a:=30
-b:=50
-res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
-res2 := 2*(-cola(2;[1,1+2])) + cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5])
-display(res)
-display(res2)
+#a:=30
+#b:=50
+#res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
+#res2 := 2*(-cola(2;[1,1+2])) + cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5])
+#display(res)
+#display(res2)
+
+if( not ( 5.5 < - ( - cola(3;[1,7,2]) * (7.6 - ( - cola(2;[5,5]) ) ) ) ) ) then
+         display("pasa")
+    else
+        display("no pasa")
+end
+
+a:=1
+if(a==-1)then
+    if(b==-(1*5))then
+          if(c==-2)then
+                display(a+b+c)
+          else
+                 display(a+b)
+          end
+      else
+           display(a)
+      end
+else
+       display("cero")
+end
 
 (*while(a==b) do
     display("hola")

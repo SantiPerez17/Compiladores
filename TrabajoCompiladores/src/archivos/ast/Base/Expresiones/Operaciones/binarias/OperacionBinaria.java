@@ -3,6 +3,7 @@ package archivos.ast.Base.Expresiones.Operaciones.binarias;
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
@@ -11,6 +12,7 @@ import archivos.ast.Sentencias.Asignacion;
 public abstract class OperacionBinaria extends Expresion {
     private Expresion izquierda;
     private Expresion derecha;
+    private String br_auxiliar;
 
     public OperacionBinaria(Tipo tipo, Expresion izquierda, Expresion derecha) {
         super(tipo);
@@ -158,24 +160,10 @@ public abstract class OperacionBinaria extends Expresion {
             }
         }
 
-        if(this.getDerecha().getNombre().equals("Cola")){
-            resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-        } else {
-            try{
-                OperacionBinaria ob = (OperacionBinaria) this.getDerecha();
-                if (ob.getIzquierda().getNombre().equals("Cola")){
-                    resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 2) + "\n");
-                }
-            } catch (Exception e1){
-                try{
-                    OperacionUnaria ou = (OperacionUnaria) this.getDerecha();
-                    if(ou.getExpresion().getNombre().equals("Cola")){
-                        resultado.append("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-                    }
-                } catch (Exception e2){
-                }
-            }
-        }
+        //Funcion que agrega un br en caso de ser necesario
+        br_auxiliar = "";
+        recursiva(this.getDerecha());
+        resultado.append(br_auxiliar);
 
         if(this.getDerecha().getNombre()=="Factor_Int" ||
                 this.getDerecha().getNombre()=="Factor_Float" ||
@@ -274,5 +262,45 @@ public abstract class OperacionBinaria extends Expresion {
         }
 
         return resultado.toString();
+    }
+
+    public void recursiva(Expresion expresion){
+        if(expresion.getNombre().equals("Cola")){
+            br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+        } else {
+            try{
+                OperacionUnaria ou = (OperacionUnaria) expresion;
+                if(ou.getExpresion().getNombre().equals("Cola")){
+                    br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+                } else {
+                    try{
+                        MenosUnario mu = (MenosUnario) ou.getExpresion();
+                        if(mu.getExpresion().getNombre().equals("Cola")){
+                            br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+                        } else {
+                            try{
+                                OperacionBinaria ob = (OperacionBinaria) mu.getExpresion();
+                                recursiva(ob.getIzquierda());
+                            }catch (Exception e6){
+                                recursiva(ou.getExpresion());
+                            }
+                        }
+                    }catch (Exception e3){
+                        try{
+                            OperacionBinaria ob = (OperacionBinaria) ou.getExpresion();
+                            recursiva(ob.getIzquierda());
+                        }catch (Exception e4){
+                            recursiva(ou.getExpresion());
+                        }
+                    }
+                }
+            } catch (Exception e2){
+                try{
+                    OperacionBinaria ob = (OperacionBinaria) expresion;
+                    recursiva(ob.getIzquierda());
+                }catch (Exception e5){
+                }
+            }
+        }
     }
 }
