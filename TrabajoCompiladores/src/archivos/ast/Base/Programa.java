@@ -53,6 +53,8 @@ public class Programa extends Nodo{
 
     @Override
     public String generarCodigo(String etiqueta) {
+
+        //Declaracion del target y de las funciones y variables auxiliares para la utilizacion de los displays y los inputs
         StringBuilder resultado = new StringBuilder();
         resultado.append(";Programa: 'Prueba'\n");
         resultado.append("source_filename = \"pruebas.txt\"\n");
@@ -61,17 +63,13 @@ public class Programa extends Nodo{
         resultado.append("declare i32 @puts(i8*)\n");
         resultado.append("declare i32 @printf(i8*, ...)\n");
         resultado.append("declare i32 @scanf(i8* %0, ...)\n");
-        //resultado.append("declare double @scanfd(i8* %0, ...)\n");
-        //resultado.append("declare i1 @scanfb(i8* %0, ...)\n");
         resultado.append("@.integer = private constant [4 x i8] c\"%d\\0A\\00\"\n");
         resultado.append("@.double = private constant [4 x i8] c\"%f\\0A\\00\"\n");
         resultado.append("@.bool = private constant [4 x i8] c\"%d\\0A\\00\"\n");
         resultado.append("@int_read_format = unnamed_addr constant [3 x i8] c\"%d\\00\"\n");
         resultado.append("@double_read_format = unnamed_addr constant [4 x i8] c\"%lf\\00\"\n");
-        //resultado.append("@bool_read_format = unnamed_addr constant [3 x i8] c\"%c\\00\"\n\n");
 
-        StringBuilder resultado_programa = new StringBuilder();
-
+        //Se recorre la tabla de simbolos y se declaran todas las variables encontradas, incluyendo las cadenas de caracteres
         for (String s : tablaSimbolos2.keySet()){
             String nombre = s;
             String tipo = tablaSimbolos2.get(s).get(1);
@@ -92,10 +90,11 @@ public class Programa extends Nodo{
                 resultado.append("@" + nombre + " = " + tipoll + " c\"\\0A" + cadena + "\\0A\\00\"\n");
             }
         }
-        resultado.append("\n");
 
-        resultado.append("define i32 @main(i32, i8**) {\n\t");
-
+        //Se define el main del programa y se recorre el listado de sentencias, llamando de cada una su funcion generarCodigo(String etiqueta)
+        //generarCodigo(String etiqueta) es un metodo abstracto de la clase Nodo que nos permite generar el codigo de bajo nivel de cada una de las sentencias con su respectiva etiqueta
+        resultado.append("\ndefine i32 @main(i32, i8**) {\n\t");
+        StringBuilder resultado_programa = new StringBuilder();
         for (Sentencia s: getSentencias()) {
             if(s.getNombre() == "IfElse"){
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -117,7 +116,6 @@ public class Programa extends Nodo{
         }
 
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));
-
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado.append("\n\t"+this.getIr_ref()+":\n");
         resultado.append("\tret i32 0\n}\n");
