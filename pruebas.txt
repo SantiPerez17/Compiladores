@@ -5,6 +5,36 @@ declare.section
 enddeclare.section
 program.section
 
+display("ingrese valor a")
+a:=input_int()
+display("ingrese valor b")
+b:=input_int()
+display("ingrese valor c")
+c:=input_int()
+display("suma: ")
+display(a+b+c)
+display("resta: ")
+display(a-b-c)
+display("multiplicacion: ")
+display(a*b*c)
+display("division: ")
+display(a/b/c)
+
+
+
+
+(*f:=0
+display("ingrese valor f")
+f:=input_float()
+fi:=f*300
+if(-cola(2;[5,5])*fi<=-cola(2;[5,5])*50) then
+    display("pasa")
+    else
+        display("no pasa")
+        display(fi+f)
+end*)
+
+
 #res:=-cola(1;[1])
 #res2:=1 + cola(2;[1,2])
 #res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
@@ -25,7 +55,7 @@ program.section
 #display(res)
 #display(res2)
 
-if( not ( 5.5 < - ( - cola(3;[1,7,2]) * (7.6 - ( - cola(2;[5,5]) ) ) ) ) ) then
+(*if( not ( 5.5 < - ( - cola(3;[1,7,2]) * (7.6 - ( - cola(2;[5,5]) ) ) ) ) ) then
          display("pasa")
     else
         display("no pasa")
@@ -44,7 +74,7 @@ if(a==-1)then
       end
 else
        display("cero")
-end
+end*)
 
 (*while(a==b) do
     display("hola")

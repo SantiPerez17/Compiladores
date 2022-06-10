@@ -12,12 +12,11 @@ import java.nio.charset.StandardCharsets;
 public class GenerarLLyOyEXE {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File archivo = new File("pruebas.txt");
-        File llvm = new File("programa.ll");
-        MiLexico lexer = new MiLexico(new FileReader(archivo));
-        MiParser parser = new MiParser(lexer);
-
         try {
+            File archivo = new File("pruebas.txt");
+            File llvm = new File("programa.ll");
+            MiLexico lexer = new MiLexico(new FileReader(archivo));
+            MiParser parser = new MiParser(lexer);
             final Programa programa = (Programa) parser.parse().value;
             PrintWriter pw = new PrintWriter(new FileWriter("arbol.dot"));
             pw.println(programa.graficar());

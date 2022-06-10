@@ -268,14 +268,14 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     }
 
     public void Parsing(String contenido) throws IOException,Exception {
-        MiLexico lexer = new MiLexico(new FileReader(archivo));
-        MiParser parser = new MiParser(lexer);
-        parser.reglas = "";
-        parser.simbolos = new StringBuilder("");
-
-        StringBuilder Reglas = new StringBuilder();
-        StringBuilder Simbolos = new StringBuilder();
         try{
+            MiLexico lexer = new MiLexico(new FileReader(archivo));
+            MiParser parser = new MiParser(lexer);
+            parser.reglas = "";
+            parser.simbolos = new StringBuilder("");
+
+            StringBuilder Reglas = new StringBuilder();
+            StringBuilder Simbolos = new StringBuilder();
             Symbol p = parser.parse();
             Reglas.append(parser.reglas);
             Simbolos.append(parser.simbolos);
@@ -295,9 +295,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     }
 
     public void Graficar(String contenido) throws IOException,Exception {
-        MiLexico lexer = new MiLexico(new FileReader(archivo));
-        MiParser parser = new MiParser(lexer);
         try {
+            MiLexico lexer = new MiLexico(new FileReader(archivo));
+            MiParser parser = new MiParser(lexer);
             final Programa programa = (Programa) parser.parse().value;
             PrintWriter grafico = new PrintWriter(new FileWriter("arbol.dot"));
             grafico.println(programa.graficar());
@@ -319,10 +319,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
     }
 
     public void GenerarLLVM() throws Exception {
-        MiLexico lexer = new MiLexico(new FileReader(archivo));
-        MiParser parser = new MiParser(lexer);
-
         try {
+            MiLexico lexer = new MiLexico(new FileReader(archivo));
+            MiParser parser = new MiParser(lexer);
             final Programa programa = (Programa) parser.parse().value;
             PrintWriter pw = new PrintWriter(new FileWriter("arbol.dot"));
             pw.println(programa.graficar());

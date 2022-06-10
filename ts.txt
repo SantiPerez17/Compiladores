@@ -16,18 +16,11 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-              Pivot6                  ID                 Int                   _                   _
-             _Acum11                  ID                 Int                   _                   _
-             _Acum12                  ID                 Int                   _                   _
-              IdPos6                  ID                 Int                   _                   _
-         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
-         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
-         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
-              Pivot7                  ID                 Int                   _                   _
-             _Acum13                  ID                 Int                   _                   _
-             _Acum14                  ID                 Int                   _                   _
-              IdPos7                  ID                 Int                   _                   _
-               str27      STRING_LITERAL          CTE_STRING                pasa                   4
-               str28      STRING_LITERAL          CTE_STRING             no pasa                   7
-               str29      STRING_LITERAL          CTE_STRING                cero                   4
+               str16      STRING_LITERAL          CTE_STRING     ingrese valor a                  15
+               str17      STRING_LITERAL          CTE_STRING     ingrese valor b                  15
+               str18      STRING_LITERAL          CTE_STRING     ingrese valor c                  15
+               str19      STRING_LITERAL          CTE_STRING              suma:                    6
+               str20      STRING_LITERAL          CTE_STRING             resta:                    7
+               str21      STRING_LITERAL          CTE_STRING    multiplicacion:                   16
+               str22      STRING_LITERAL          CTE_STRING          division:                   10
 
