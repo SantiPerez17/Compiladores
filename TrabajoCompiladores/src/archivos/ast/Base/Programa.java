@@ -103,8 +103,8 @@ public class Programa extends Nodo{
                 boolean aux = true;
                 while(aux){
                     try{
-                        int start = resultado_programa.indexOf("br label %etiqXX");
-                        resultado_programa.replace(start,start+16,"br label "+proxima_etiqueta);
+                        int start = resultado_programa.indexOf(" label %etiqXX");
+                        resultado_programa.replace(start,start+14," label "+proxima_etiqueta);
                     }catch(Exception e){
                         aux=false;
                     }

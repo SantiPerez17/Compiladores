@@ -5,7 +5,7 @@ declare.section
 enddeclare.section
 program.section
 
-display("ingrese valor a")
+(*display("ingrese valor a")
 a:=input_int()
 display("ingrese valor b")
 b:=input_int()
@@ -18,10 +18,34 @@ display(a-b-c)
 display("multiplicacion: ")
 display(a*b*c)
 display("division: ")
-display(a/b/c)
+display(a/b/c)*)
 
 
-
+if (a==0) then
+     while (a==1) do
+           if (a==0) then
+     while (a==1) do
+           display(a)
+     end
+else
+     while (b==0) do
+           display(b)
+     end
+end
+     end
+else
+     while (b==0) do
+           if (a==0) then
+     while (a==1) do
+           display(a)
+     end
+else
+     while (b==0) do
+           display(b)
+     end
+end
+     end
+end
 
 (*f:=0
 display("ingrese valor f")

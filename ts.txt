@@ -16,11 +16,4 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-               str16      STRING_LITERAL          CTE_STRING     ingrese valor a                  15
-               str17      STRING_LITERAL          CTE_STRING     ingrese valor b                  15
-               str18      STRING_LITERAL          CTE_STRING     ingrese valor c                  15
-               str19      STRING_LITERAL          CTE_STRING              suma:                    6
-               str20      STRING_LITERAL          CTE_STRING             resta:                    7
-               str21      STRING_LITERAL          CTE_STRING    multiplicacion:                   16
-               str22      STRING_LITERAL          CTE_STRING          division:                   10
 

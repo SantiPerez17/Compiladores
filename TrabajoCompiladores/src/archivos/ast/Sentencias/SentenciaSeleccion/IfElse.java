@@ -98,9 +98,12 @@ public class IfElse extends Sentencia {
             if(etiqueta.contains("Cola")){
                 resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+"Cola:\n"));
                 if(aux == 2){
-                    int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-                    int end2 = String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)).length()+start2;
-                    resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiqZZ"));
+                    try{
+                        int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+                        int end2 = String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)).length()+start2;
+                        resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiqZZ"));
+                    } catch (Exception e){
+                    }
                 }
             } else {
                 resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
@@ -109,11 +112,21 @@ public class IfElse extends Sentencia {
         }
 
         if(!etiqueta.contains("Cola")){
-            String siguiente4 = "%etiqXX";
-            int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2+1;
-            resultado_sentencias1.delete(start2,end2);
-            resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+            try{
+                String siguiente4 = "%etiqXX";
+                int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+                int end2 = (String.format("br label %1$s\n", ("%etiq"+(CodeGeneratorHelper.getNextTag()+1)))).length()+start2;
+                resultado_sentencias1.delete(start2,end2);
+                resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+            } catch (Exception e){
+                try{
+                    String siguiente4 = "%etiqXX";
+                    int start2 = resultado_sentencias1.indexOf(String.format(", label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
+                    int end2 = (String.format(", label %1$s\n", ("%etiq"+(CodeGeneratorHelper.getNextTag()+1)))).length()+start2;
+                    resultado_sentencias1.replace(start2,end2,String.format(", label %1$s\n", siguiente4));
+                } catch (Exception e1){
+                }
+            }
         }
 
         int aux2 = 0;
