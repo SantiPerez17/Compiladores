@@ -116,8 +116,8 @@ public class IfElse extends Sentencia {
                 String siguiente4 = "%etiqXX";
                 int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
                 int end2 = (String.format("br label %1$s\n", ("%etiq"+(CodeGeneratorHelper.getNextTag()+1)))).length()+start2;
-                resultado_sentencias1.delete(start2,end2);
-                resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
+                resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", siguiente4));
+                //resultado_sentencias1.append(String.format("br label %1$s\n", siguiente4));
             } catch (Exception e){
                 try{
                     String siguiente4 = "%etiqXX";

@@ -69,6 +69,7 @@ public class While extends Sentencia {
         StringBuilder resultado = new StringBuilder();
         StringBuilder resultado_sentencias = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        this.setEtiqueta_while_interno(etiqueta.replace(":\n",""));
         resultado.append("\n"+etiqueta);
         resultado.append(";___While___\n");
         resultado.append(this.condicion.generarCodigo(etiqueta));
@@ -106,13 +107,24 @@ public class While extends Sentencia {
         }
 
         try{
-            if(Sentencias.get(aux-1).getNombre().equals("While")){
-                While w = (While) Sentencias.get(aux-1);
+            if(Sentencias.get(aux-1).getNombre().equals("While")) {
+                While w = (While) Sentencias.get(aux - 1);
                 String etiqueta_correccion = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), this.getEtiqueta_while_interno(), "%etiq" + (CodeGeneratorHelper.getNextTag() + 1));
                 int start = resultado_sentencias.indexOf(etiqueta_correccion);
                 int end = etiqueta_correccion.length() + start;
-                String nueva_etiqueta = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), this.getEtiqueta_while_interno(), "%"+etiqueta.replace(":\n",""));
-                resultado_sentencias.replace(start,end,nueva_etiqueta);
+                String nueva_etiqueta = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), this.getEtiqueta_while_interno(), "%" + etiqueta.replace(":\n", ""));
+                resultado_sentencias.replace(start, end, nueva_etiqueta);
+
+                String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+                resultado.append(resultado_sentencias);
+            } else if (Sentencias.get(aux-1).getNombre().equals("IfElse")){
+                //Completar con lo que deberia hacer cuando tengo un ifelse anidado dentro de un while (Tomar las ultimas dos etiquetas del then y del else y cambiarlas por la del while)
+                String siguiente4 = "%etiqWW";
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+                int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+                resultado_sentencias.replace(start2,end2,String.format("br label %1$s\n", "%"+etiqueta_while_interno));
 
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));

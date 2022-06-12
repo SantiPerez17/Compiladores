@@ -23,27 +23,19 @@ display(a/b/c)*)
 
 if (a==0) then
      while (a==1) do
-           if (a==0) then
-     while (a==1) do
-           display(a)
+           if (a == 2) then
+                  display(a)
+           else
+                  display(b)
+           end
      end
 else
-     while (b==0) do
-           display(b)
-     end
-end
-     end
-else
-     while (b==0) do
-           if (a==0) then
-     while (a==1) do
-           display(a)
-     end
-else
-     while (b==0) do
-           display(b)
-     end
-end
+     while (c==1) do
+            if (c == 2) then
+                  display(c)
+           else
+                  display(d)
+           end
      end
 end
 
