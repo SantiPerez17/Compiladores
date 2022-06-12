@@ -1,26 +1,24 @@
+package archivos;
 
-        package archivos;
+import archivos.ast.Base.Programa;
+import archivos.lexico.MiLexico;
+import archivos.lexico.MiToken;
+import archivos.sintactico.MiParser;
+import java_cup.runtime.Symbol;
 
-
-        import archivos.ast.Base.Programa;
-        import archivos.lexico.MiLexico;
-        import archivos.lexico.MiToken;
-        import archivos.sintactico.MiParser;
-        import java_cup.runtime.Symbol;
-
-        import javax.swing.*;
-        import java.awt.*;
-        import java.awt.event.ActionEvent;
-        import java.awt.event.ActionListener;
-        import java.io.*;
-        import java.nio.charset.StandardCharsets;
-        import java.util.Objects;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class AbrirParteGráfica extends JFrame implements ActionListener {
 
     public AbrirParteGráfica() {
-        JFrame frame = new JFrame("Compilador");
+
+        JFrame frame = new JFrame("Compilador - UNNOBA 2022");
         JPanel panel1 = new JPanel();
         JPanel panel2 = new JPanel();
 
@@ -33,40 +31,59 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         frame.add(panel1, BorderLayout.NORTH);
         frame.add(panel2, BorderLayout.CENTER);
 
-        //Se crea un boton para abrir el archivo
+        // Se crea un botón para abrir un archivo de texto.
         JButton btn = new JButton("Abrir");
+        btn.setBackground(new java.awt.Color(17, 31, 133));
+        btn.setForeground(Color.WHITE);
         btn.addActionListener(this);
         panel1.add( btn );
 
-        //Se crea un boton para guardar el archivo
+        // Se crea un botón para guardar los cambios realizados al archivo de texto.
         JButton btn2 = new JButton("Guardar");
+        btn2.setBackground(new java.awt.Color(31, 82, 7));
+        btn2.setForeground(Color.WHITE);
         btn2.addActionListener(this);
         panel1.add( btn2 );
 
-        //Se crea un boton para generar tokens del archivo
+        // Se crea un botón para generar y mostrar los tokens del código ingresado.
         JButton btn3 = new JButton("Generar Tokens");
+        btn3.setBackground(Color.BLACK);
+        btn3.setForeground(Color.WHITE);
         btn3.addActionListener(this);
         panel1.add( btn3 );
 
-        //Se crea boton para generar parser del archivo
+        // Se crea un botón para generar y mostrar el parser del código ingresado.
         JButton btn4 = new JButton("Generar Parser");
+        btn4.setBackground(Color.BLACK);
+        btn4.setForeground(Color.WHITE);
         btn4.addActionListener(this);
         panel1.add( btn4 );
-        //Se crea boton para generar parser del archivo
+
+        // Se crea un botón para generar y mostrar el árbol AST del código ingresado.
         JButton btn5 = new JButton("Generar AST");
+        btn5.setBackground(Color.BLACK);
+        btn5.setForeground(Color.WHITE);
         btn5.addActionListener(this);
         panel1.add( btn5 );
 
+        // Se crea un botón para generar y mostrar el código IR/LLVM.
         JButton btn6 = new JButton("Generar LLVM");
+        btn6.setBackground(Color.BLACK);
+        btn6.setForeground(Color.WHITE);
+        //btn6.setBorderPainted(false);
+        //btn6.setFocusPainted(false);
+        //btn6.setContentAreaFilled(false);
         btn6.addActionListener(this);
         panel1.add( btn6 );
 
-        //Se crea el editor de texto y se agrega a un scroll
+        // Se crea el editor de texto y se agrega a un scroll.
         txp = new JTextPane();
         txp.setBackground(Color.BLACK);
-        txp.setForeground(Color.GRAY);
+        txp.setForeground(Color.BLACK);
         JScrollPane jsp = new JScrollPane();
-        jsp.setBackground(Color.orange);
+        //jsp.getViewport().setBackground(Color.BLACK);
+        //jsp.setBackground(Color.BLUE);
+        //jsp.setForeground(Color.BLUE);
         jsp.setViewportView(txp);
         panel2.add(jsp, BorderLayout.CENTER);
         String path = archivo.getAbsolutePath();
@@ -74,20 +91,18 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         txp.setText(contenido);
 
         frame.setVisible( true );
+
     }
 
     //------------------------------Action Performed-------------------------------//
     public void actionPerformed( ActionEvent e ){
 
         JButton btn = (JButton)e.getSource();
-        if( btn.getText().equals( "Abrir" ) )
-        {
+        if( btn.getText().equals( "Abrir" ) ) {
             if( abrirArchivo == null ) abrirArchivo = new JFileChooser();
-            //Con esto solamente podamos abrir archivos
+            // Con esto solamente podemos abrir archivos.
             abrirArchivo.setFileSelectionMode( JFileChooser.FILES_ONLY );
-
             int seleccion = abrirArchivo.showOpenDialog( this );
-
             if( seleccion == JFileChooser.APPROVE_OPTION ) {
                 File f = abrirArchivo.getSelectedFile();
                 archivo = f;
@@ -95,32 +110,30 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
                     String nombre = f.getName();
                     String path = f.getAbsolutePath();
                     String contenido = getArchivo(path);
-                    //Colocamos en el título de la aplicación el
-                    //nombre del archivo
+                    // Colocamos en el título de la aplicación el nombre del archivo.
                     this.setTitle(nombre);
-
-                    //En el editor de texto colocamos su contenido
-
+                    // En el editor de texto colocamos su contenido.
                     txp.setBackground(Color.orange);
                     txp.setBackground(Color.BLACK);
                     txp.setText(contenido);
-
                 } catch (Exception exp) {
                 }
             }
-        } else if( btn.getText().equals( "Guardar" ) ){
+        } else if( btn.getText().equals( "Guardar" ) ) {
+            // Se guardan los cambios realizados en el archivo.
             try {
                 setArchivo(archivo, txp.getText());
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,ex.getMessage());
             }
-        } else if( btn.getText().equals( "Generar Tokens" ) ){
+        } else if ( btn.getText().equals( "Generar Tokens" ) ) {
             JFrame frame2 = new JFrame("Tokens");
             frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
             frame2.setSize( 400, 600 );
             frame2.setLocationRelativeTo( null );
             txp2 = new JTextPane();
+            txp2.setForeground(Color.BLACK);
             JScrollPane jsp2 = new JScrollPane();
             jsp2.setViewportView(txp2);
             frame2.add(jsp2, BorderLayout.CENTER);
@@ -130,11 +143,10 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
             }
-
         }
-        else if (btn.getText().equals("Generar Parser")){
+        else if (btn.getText().equals("Generar Parser")) {
             JFrame frame2 = new JFrame("Parser");
-            JFrame frame3 = new JFrame("Tabla de Simbolos");
+            JFrame frame3 = new JFrame("Tabla de Símbolos");
             frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame3.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame2.setLayout(new BorderLayout());
@@ -144,7 +156,9 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             frame2.setLocationRelativeTo( null );
             frame3.setLocationRelativeTo( null );
             txp3 = new JTextPane();
+            txp3.setForeground(Color.BLACK);
             txp4 = new JTextPane();
+            txp4.setForeground(Color.BLACK);
             JScrollPane jsp2 = new JScrollPane();
             JScrollPane jsp3 = new JScrollPane();
             jsp2.setViewportView(txp3);
@@ -160,8 +174,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
-        else if (btn.getText().equals("Generar AST")){
+        } else if (btn.getText().equals("Generar AST")) {
             try {
                 Graficar(txp.getText());
             } catch (IOException ex) {
@@ -169,15 +182,14 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
-        else if (btn.getText().equals("Generar LLVM")){
+        } else if (btn.getText().equals("Generar LLVM")) {
             JFrame frame4 = new JFrame("LLVM");
             frame4.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             frame4.setLayout(new BorderLayout());
             frame4.setSize( 900, 800 );
             frame4.setLocationRelativeTo( null );
             txp5 = new JTextPane();
-            txp5.setForeground(Color.gray);
+            txp5.setForeground(Color.BLACK);
             JScrollPane jsp4 = new JScrollPane();
             jsp4.setViewportView(txp5);
             frame4.add(jsp4, BorderLayout.CENTER);
@@ -189,55 +201,49 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
         }
     }
-    //-----------------------------------------------------------------------------//
 
-    //-------------------------Se obtiene el contenido del Archivo----------------//
+    //-------------------------Se obtiene el contenido del archivo----------------//
     public String getArchivo( String ruta ){
         FileReader fr = null;
         BufferedReader br = null;
-        //Cadena de texto donde se guardara el contenido del archivo
+        // Cadena de texto donde se guardara el contenido del archivo.
         String contenido = "";
-        try
-        {
-            //ruta puede ser de tipo String o tipo File
+        try {
+            // La ruta puede ser de tipo String o tipo File.
             fr = new FileReader( ruta );
             br = new BufferedReader( fr );
-
             String linea;
-            //Obtenemos el contenido del archivo línea por línea
+            // Obtenemos el contenido del archivo línea por línea.
             while( ( linea = br.readLine() ) != null ){
                 contenido += linea + "\n";
             }
-
-        }catch( Exception e ){  }
-        //finally se utiliza para que si todo ocurre correctamente o si ocurre
-        //algún error se cierre el archivo que anteriormente abrimos
-        finally
-        {
-            try{
+        } catch( Exception e ) {  }
+        // Finally se utiliza para que si todo ocurre correctamente o si ocurre algún error se cierre el archivo que anteriormente abrimos.
+        finally {
+            try {
                 br.close();
-            }catch( Exception ex ){}
+            } catch( Exception ex ) {
+            }
         }
         return contenido;
     }
-    //-----------------------------------------------------------------------------//
 
-    //-------------------------Se guarda el contenido en el Archivo----------------//
+    //------------------------- Se guarda el contenido en el Archivo ----------------//
     public void setArchivo(File archivo, String contenido) throws IOException {
+
         FileWriter fw = new FileWriter(archivo.getAbsolutePath());
         String texto = contenido;
         PrintWriter imprime = new PrintWriter(fw);
         imprime.print(texto);
         fw.close();
         JOptionPane.showMessageDialog(rootPane,"Archivo guardado");
+
     }
-    //-----------------------------------------------------------------------------//
 
     public void Compilar(String contenido) throws IOException {
-        try{
+        try {
             FileReader entrada = new FileReader(archivo);
             MiLexico lexico = new MiLexico(entrada);
             StringBuilder tokens = new StringBuilder();
@@ -247,28 +253,29 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
                 if (token.value == null) {
                     break;
                 }
-                if (Objects.equals(((MiToken) token).nombre, "ERROR")){
+                if (Objects.equals(((MiToken) token).nombre, "ERROR")) {
                     errores.append("\n").append(((MiToken) token).valor).append(" - Linea: ").append(((MiToken) token).linea + 1);
                 }
                 else {
                     tokens.append("Token: ").append(token).append("\n\n");
                 }
             }
-            if (errores.toString().equals("Errores: ")){
+            if (errores.toString().equals("Errores: ")) {
                 tokens.append("\nAnálisis léxico terminado.");
-                txp2.setForeground(Color.gray);
+                txp2.setForeground(Color.BLACK);
                 txp2.setText(tokens.toString());
             } else {
                 errores.append("\n\nEl análisis léxico se ejecuto con errores.");
                 JOptionPane.showMessageDialog(rootPane, errores.toString());
             }
-        } catch(Exception ex){
+        } catch(Exception ex) {
             JOptionPane.showMessageDialog(rootPane,"Error" + ex.getMessage());
         }
     }
 
-    public void Parsing(String contenido) throws IOException,Exception {
-        try{
+    public void Parsing(String contenido) throws IOException, Exception {
+
+        try {
             MiLexico lexer = new MiLexico(new FileReader(archivo));
             MiParser parser = new MiParser(lexer);
             parser.reglas = "";
@@ -280,8 +287,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             Reglas.append(parser.reglas);
             Simbolos.append(parser.simbolos);
             txp3.setText(parser.reglas);
-            txp3.setForeground(Color.gray);
-            txp4.setForeground(Color.gray);
+            txp3.setForeground(Color.BLACK);
             txp4.setText("                          TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG")+parser.simbolos.toString());
             PrintWriter writer = new PrintWriter("ts.txt", StandardCharsets.UTF_8);
             writer.println("TABLA DE SIMBOLOS \n" + String.format("%20s%20s%20s%20s%20s%n", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONG"));
@@ -291,10 +297,12 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         }
         catch (Exception e){
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
-        };
+        }
+
     }
 
-    public void Graficar(String contenido) throws IOException,Exception {
+    public void Graficar(String contenido) throws IOException, Exception {
+
         try {
             MiLexico lexer = new MiLexico(new FileReader(archivo));
             MiParser parser = new MiParser(lexer);
@@ -316,9 +324,11 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             UIManager.put("Panel.background", Color.GRAY);
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         }
+
     }
 
     public void GenerarLLVM() throws Exception {
+
         try {
             MiLexico lexer = new MiLexico(new FileReader(archivo));
             MiParser parser = new MiParser(lexer);
@@ -330,7 +340,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             Runtime.getRuntime().exec(cmdDot);
             System.out.println("Gráfico AST generado");
 
-            //generar codigo IR para el LLVM
+            // Generar codigo IR para el LLVM.
             pw = new PrintWriter(new FileWriter("programa.ll"));
             pw.println(programa.generarCodigo("etiq0:"));
             pw.close();
@@ -368,9 +378,11 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             UIManager.put("Panel.background", Color.GRAY);
             JOptionPane.showMessageDialog(rootPane,"Error : " + e.getMessage());
         }
+
     }
 
-    public static void main( String[] arg ){
+    public static void main( String[] arg ) {
+
         try {
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -382,6 +394,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             e.printStackTrace();
         }
         new AbrirParteGráfica();
+
     }
 
     JTextPane txp;
