@@ -32,7 +32,11 @@ while(a>0) do
             xd:=true
       end    
       if (a==5) then
-            display("a vale 5")
+            f:=5.0
+            while (f<6.0) do
+                   display(f)
+                   f:=f+0.1
+            end
       end
 end
 

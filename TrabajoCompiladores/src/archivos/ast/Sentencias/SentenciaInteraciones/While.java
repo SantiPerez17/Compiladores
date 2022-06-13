@@ -73,22 +73,28 @@ public class While extends Sentencia {
         this.setEtiqueta_while_interno(etiqueta.replace(":\n",""));
         resultado.append("\n"+etiqueta);
         resultado.append(";___While___\n");
+
+        //Genero el codigo para la condicion
         resultado.append(this.condicion.generarCodigo(etiqueta));
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
 
+        //Recorro las sentencias y genero codigo para cada una de ellas
         int aux = 0;
         for (Sentencia s: Sentencias){
             if (aux>0){
                 this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
             try{
+                //Si la ultima sentencia es un while, guardo la etiqueta para poder usarla
                 if(Sentencias.get(Sentencias.size()-1).getNombre().equals("While")){
                     this.setEtiqueta_while_interno("%etiq"+(CodeGeneratorHelper.getNextTag()+1));
                 }
             } catch (Exception e){
             }
+
+            //Si es un IfElse, genero el codigo y reemplazo las etiquetas XX por la etiqueta correspondiente
             if(s.getNombre() == "IfElse"){
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
                 String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
@@ -102,12 +108,16 @@ public class While extends Sentencia {
                     }
                 }
             } else {
+                //Sino, simplemente genero el codigo para la sentencia
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
             }
             aux+=1;
         }
 
+        //Aqui hacemos algunos cambios de etiquetas
         try{
+
+            //Si la ultima sentencia es un While, debo cambiar la etiqueta de la ultima sentencia para que vuelva al while original
             if(Sentencias.get(aux-1).getNombre().equals("While")) {
                 While w = (While) Sentencias.get(aux - 1);
                 String etiqueta_correccion = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), "%"+w.Sentencias.get(0).getEtiquetaLLVM(), "%etiq" + (CodeGeneratorHelper.getNextTag() + 1));
@@ -115,10 +125,11 @@ public class While extends Sentencia {
                 int end = etiqueta_correccion.length() + start;
                 String nueva_etiqueta = String.format("br i1 %1$s, label %2$s, label %3$s", w.condicion.getIr_ref(), "%"+w.Sentencias.get(0).getEtiquetaLLVM(), "%" + etiqueta.replace(":\n", ""));
                 resultado_sentencias.replace(start, end, nueva_etiqueta);
-
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
                 resultado.append(resultado_sentencias);
+
+                //Si la ultima sentencia es un ifelse, tambien debo cambiar las ultimas etiquetas de sus sentencias para que vuelvan al while original.
             } else if (Sentencias.get(aux-1).getNombre().equals("IfElse")) {
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 boolean aux2 = true;
@@ -131,10 +142,11 @@ public class While extends Sentencia {
                         aux2 = false;
                     }
                 }
-
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
                 resultado.append(resultado_sentencias);
+
+                //Si la ultima sentencia es un if simple, tambien debo cambiar la ultima etiqueta de su ultima sentencia por la del while.
             } else if (Sentencias.get(aux-1).getNombre().equals("IfSimple")){
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 boolean aux2 = true;
@@ -147,11 +159,12 @@ public class While extends Sentencia {
                         aux2 = false;
                     }
                 }
-
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
                 resultado.append(resultado_sentencias);
             } else {
+
+                //Si no es ni un while ni un ifelse ni un ifsimple, deberia llegar aqui y hacer el cambio de etiquetas correspondiente para que apunten al while
                 String siguiente4 = "%etiqXX";
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
@@ -161,13 +174,14 @@ public class While extends Sentencia {
                 int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
                 int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
                 resultado_sentencias.delete(start3,end3);
-
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
                 resultado.append(resultado_sentencias);
                 resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
             }
         } catch (Exception e){
+
+            //Si la sentencia no llega a tener nombre, deberia llegar aqui y hacer igualmente el cambio de etiquetas correspondiente
             String siguiente4 = "%etiqXX";
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
@@ -177,13 +191,13 @@ public class While extends Sentencia {
             int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
             int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
             resultado_sentencias.delete(start3,end3);
-
             String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
             resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
             resultado.append(resultado_sentencias);
             resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
         }
 
+        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
         try{
             String cadena = ":\n;___While___\n\n";
             int start = resultado.indexOf(cadena);

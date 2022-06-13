@@ -17,5 +17,4 @@ TABLA DE SIMBOLOS
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
                str16      STRING_LITERAL          CTE_STRING                 ...                   3
-               str17      STRING_LITERAL          CTE_STRING            a vale 5                   8
 

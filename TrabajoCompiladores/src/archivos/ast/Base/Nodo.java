@@ -47,6 +47,7 @@ public abstract class Nodo{
         this.ir_ref = ir_ref;
     }
 
+    //generarCodigo(String etiqueta) es un metodo abstracto de la clase Nodo que nos permite generar el codigo de bajo nivel de cada una de las sentencias con su respectiva etiqueta
     public abstract String generarCodigo(String etiqueta);
 
 }

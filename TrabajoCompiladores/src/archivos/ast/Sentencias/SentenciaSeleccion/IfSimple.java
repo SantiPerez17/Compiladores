@@ -62,18 +62,22 @@ public class IfSimple extends Sentencia {
         this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
         resultado.append("\n"+etiqueta);
         resultado.append(";___IfSimple___\n");
+
+        //Generamos el codigo para la condicion
         resultado.append(this.condicion.generarCodigo(etiqueta));
         this.Sentencias.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
         String etiquetaSentencias = "%"+Sentencias.get(0).getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
 
+        //Recorremos las sentencias y generamos el codigo para cada una de ellas.
         int aux = 0;
         for (Sentencia s: Sentencias){
             if (aux>0){
                 this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
+
+            //Si es un ifElse, genero el codigo normal y hago el reemplazo de las etiquetas XX por las que corresponden.
             if(s.getNombre() == "IfElse"){
-                //this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
                 String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
                 boolean aux2 = true;
@@ -86,16 +90,19 @@ public class IfSimple extends Sentencia {
                     }
                 }
             } else {
-                //this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
+
+                //Sino, simplemente genero el codigo para la sentencia
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
             }
             aux+=1;
         }
 
+        //Agregamos la condicion, y luego las sentencias del then.
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
         resultado.append(resultado_sentencias);
 
+        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
         try{
             String cadena = ":\n;___IfSimple___\n\n";
             int start = resultado.indexOf(cadena);

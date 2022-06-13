@@ -25,7 +25,6 @@ declare i32 @scanf(i8* %0, ...)
 @res3 = global i32 0
 @res4 = global i32 0
 @str16 = private constant [6 x i8] c"\0A...\0A\00"
-@str17 = private constant [11 x i8] c"\0Aa vale 5\0A\00"
 @t = global i32 0
 @xd = global i1 0
 
@@ -48,7 +47,7 @@ define i32 @main(i32, i8**) {
 	%aux6 = load i32, i32* @a
 	%aux7 = add i32 0, 0
 	%aux8 = icmp sgt i32 %aux6, %aux7
-	br i1 %aux8, label %etiq5, label %etiq19
+	br i1 %aux8, label %etiq5, label %etiq26
 	
 	etiq5:
 	;___Asignación___
@@ -94,11 +93,33 @@ define i32 @main(i32, i8**) {
 	br i1 %aux25, label %etiq16, label %etiq3
 	
 	etiq16:
-	;___DisplayCadenaCaracteres___
-	%aux26 = call i32 @puts(i8* getelementptr ([11 x i8], [11 x i8] * @str17, i32 0, i32 0))
-	br label %etiq3
+	;___Asignación___
+	%aux27 = fadd double 0.0, 5.0
+	store double %aux27, double* @f
+	br label %etiq18
 	
-	etiq19:
+	etiq18:
+	;___While___
+	%aux29 = load double, double* @f
+	%aux30 = fadd double 0.0, 6.0
+	%aux31 = fcmp ult double %aux29, %aux30
+	br i1 %aux31, label %etiq20, label %etiq3
+	
+	etiq20:
+	;___DisplayExpresion___
+	%aux33 = load double, double* @f
+	%aux32 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %aux33)
+	br label %etiq22
+	
+	etiq22:
+	;___Asignación___
+	%aux35 = load double, double* @f
+	%aux36 = fadd double 0.0, 0.1
+	%aux37 = fadd double %aux35, %aux36
+	store double %aux37, double* @f
+	br label %etiq18
+	
+	etiq26:
 	ret i32 0
 }
 

@@ -75,6 +75,7 @@ public abstract class OperacionBinaria extends Expresion {
     public String generarCodigo(String etiqueta){
         StringBuilder resultado = new StringBuilder();
 
+        //Si tengo una expresion, debo generar el codigo para dicha expresion
         if(this.getIzquierda().getNombre()=="Factor_Int" ||
                 this.getIzquierda().getNombre()=="Factor_Float" ||
                 this.getIzquierda().getNombre()=="Factor_Bool" ||
@@ -98,6 +99,8 @@ public abstract class OperacionBinaria extends Expresion {
                 this.getIzquierda().getNombre()=="<="){
             resultado.append(this.getIzquierda().generarCodigo(etiqueta.replaceAll("Cola", "")));
         }else if(this.getIzquierda().getNombre()=="Cola"){
+
+            //Si es una cola, primero recorro las colas internas y genero su pivot auxiliar, la secuencia de ifelse, y la asignacion de la variable acum. Luego hago lo mismo con la cola.
             Cola cola = (Cola) this.getIzquierda();
             int aux = 0;
             for (Expresion c: cola.getColas()){
@@ -148,6 +151,8 @@ public abstract class OperacionBinaria extends Expresion {
             this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
+
+            //Si es una constante final, la cargo y asigno a una variable auxiliar
             this.getIzquierda().setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.getIzquierda().getTipo().equals(Tipo.Int)){
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getIzquierda().getIr_ref(), this.getIzquierda().getNombre()));
@@ -165,6 +170,7 @@ public abstract class OperacionBinaria extends Expresion {
         recursiva(this.getDerecha());
         resultado.append(br_auxiliar);
 
+        //Si tengo una expresion, debo generar el codigo para dicha expresion
         if(this.getDerecha().getNombre()=="Factor_Int" ||
                 this.getDerecha().getNombre()=="Factor_Float" ||
                 this.getDerecha().getNombre()=="Factor_Bool" ||
@@ -189,6 +195,8 @@ public abstract class OperacionBinaria extends Expresion {
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(this.getDerecha().generarCodigo(this.getDerecha().getIr_ref()+":\n"));
         }else if(this.getDerecha().getNombre()=="Cola"){
+
+            //Si es una cola, primero recorro las colas internas y genero su pivot auxiliar, la secuencia de ifelse, y la asignacion de la variable acum. Luego hago lo mismo con la cola.
             Cola cola = (Cola) this.getDerecha();
             int aux = 0;
             for (Expresion c: cola.getColas()){
@@ -231,6 +239,8 @@ public abstract class OperacionBinaria extends Expresion {
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), cola.getAcumAux().getNombre()));
         } else {
+
+            //Si es una constante final, la cargo y asigno a una variable auxiliar
             this.getDerecha().setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.getDerecha().getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("%1$s = load i32, i32* @%2$s\n", this.getDerecha().getIr_ref(), this.getDerecha().getNombre()));
@@ -243,6 +253,7 @@ public abstract class OperacionBinaria extends Expresion {
             }
         }
 
+        //Finalmente asigno a una variable auxiliar el resultado de aplicar la operacion binaria entre las dos expresiones
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String tipoll;
         if(this.getTipo().equals(Tipo.Int)){
@@ -264,6 +275,7 @@ public abstract class OperacionBinaria extends Expresion {
         return resultado.toString();
     }
 
+    //Funcion recursiva que evalua una expresion y me agrega un br en caso de ser necesario
     public void recursiva(Expresion expresion){
         if(expresion.getNombre().equals("Cola")){
             br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");

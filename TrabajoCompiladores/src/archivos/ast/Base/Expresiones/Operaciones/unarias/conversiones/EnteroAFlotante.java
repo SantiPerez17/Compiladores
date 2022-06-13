@@ -34,6 +34,8 @@ public class EnteroAFlotante extends OperacionConversion{
         StringBuilder resultado = new StringBuilder();
         resultado.append(this.getExpresion().generarCodigo(etiqueta));
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+
+        //Asignamos a una variable auxiliar el resultado de convertir la expresion entera a flotante
         resultado.append(String.format("%1$s = sitofp i32 %2$s to double\n", this.getIr_ref(), this.getExpresion().getIr_ref()));
         return resultado.toString();
     }

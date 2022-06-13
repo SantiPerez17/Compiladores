@@ -1563,10 +1563,15 @@ class CUP$MiParser$actions {
                     tablaSimbolos2.put("strmensaje1",contenido);
                     simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
                     }
+
+        //Creamos la cola con lo que necesitamos para obtener su valor
+        //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
         Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),sents_colas,acum,acumAux,le,p);
         cola.colasInternas(le);
         Collections.reverse(cola.getColas());
         List<Expresion> asd = cola.getColas();
+
+        //Recorremos el listado de colas internas
         for(Expresion c: cola.getColas()){
             checkTipoInt(c);
             List<Sentencia> sents_col = new ArrayList<>();
@@ -1574,6 +1579,8 @@ class CUP$MiParser$actions {
             List<Sentencia> sentSegundoIf_col = new ArrayList<>();
             List<Sentencia> sentTercerIf_col = new ArrayList<>();
             Cola nueva = (Cola) c;
+
+            //Y por cada cola interna evaluamos sus expresiones e instanciamos las clases necesarias para luego graficar y generar codigo intermedio
             for (Expresion e : nueva.getExpresiones()) {
                 checkTipoInt(e);
                 if(e.getNombre() == "Cola"){
@@ -1636,6 +1643,8 @@ class CUP$MiParser$actions {
             IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf_col, sentencia_mensaje1);
             cola.getIfelse_colas().add(primerIf);
         }
+
+        //Finalmente recorremos las expresiones de la cola original e instanciamos las clases necesarias para luego graficar y generar el codigo intermedio
         for (Expresion e : le) {
             checkTipoInt(e);
             if(e.getNombre() == "Cola"){
@@ -1698,6 +1707,7 @@ class CUP$MiParser$actions {
         sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
         cola.setIfelse(primerIf);
+
         RESULT=cola;
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("funcion_especial",19, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-7)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);

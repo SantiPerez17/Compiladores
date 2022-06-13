@@ -119,11 +119,15 @@ public class Asignacion extends Sentencia{
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
         } else {
+
+            //Si la sentencia no es una cola, genero el codigo para la expresion a la derecha
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
             resultado.append("\n" + etiqueta.replaceAll("Cola", ""));
             resultado.append(";___Asignación___\n");
             resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola", "")));
+
+            //Luego almaceno la variable auxiliar a la cual fue asignado el valor de la expresion, en el identificador
             if (expresion.getTipo().equals(Tipo.Int)) {
                 resultado.append(String.format("store i32 %1$s, i32* @%2$s\n", expresion.getIr_ref(), this.identificador.getNombre()));
             } else if (expresion.getTipo().equals(Tipo.Float)) {
@@ -135,6 +139,7 @@ public class Asignacion extends Sentencia{
             resultado.append(String.format("br label %1$s\n", siguiente));
         }
 
+        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
         try{
             String cadena = ":\n;___Asignación___\n\n";
             int start = resultado.indexOf(cadena);

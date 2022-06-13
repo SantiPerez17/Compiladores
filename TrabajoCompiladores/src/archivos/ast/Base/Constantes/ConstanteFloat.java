@@ -20,6 +20,7 @@ public class ConstanteFloat extends Constante{
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //Simplemente agregamos el valor de la Constante flotante
         resultado.append(String.format("%1$s = fadd double 0.0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();
     }

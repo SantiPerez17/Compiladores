@@ -25,7 +25,6 @@ public class DisplayCadenaCaracteres extends Display {
         StringBuilder grafico = new StringBuilder();
         grafico.append(super.graficar(idPadre));
         grafico.append(CadenaCaracteres.graficar(this.getId()));
-        //grafico.append(idPadre+"--"+getId()+ "\n" );
         return grafico.toString();
     }
 
@@ -36,13 +35,15 @@ public class DisplayCadenaCaracteres extends Display {
         this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
         resultado.append("\n"+etiqueta.replaceAll("Cola",""));
         resultado.append(";___DisplayCadenaCaracteres___\n");
+
+        //Se llama a la funcion @puts para imprimir por consola el valor de la cadena de caracteres.
         String cadena = (String) this.CadenaCaracteres.getValor();
         int caracteres = cadena.length() + 3;
         resultado.append(String.format("%1$s = call i32 @puts(i8* getelementptr ([" + caracteres + " x i8], [" + caracteres + " x i8] * @%2$s, i32 0, i32 0))\n", this.getIr_ref(), this.CadenaCaracteres.getNombre()));
-
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
 
+        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
         try{
             String cadena1 = ":\n;___DisplayCadenaCaracteres___\n\n";
             int start = resultado.indexOf(cadena1);

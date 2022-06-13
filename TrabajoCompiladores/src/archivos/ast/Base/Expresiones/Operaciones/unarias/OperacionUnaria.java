@@ -101,6 +101,8 @@ public abstract class  OperacionUnaria extends Expresion{
             Asignacion asig1 = new Asignacion("Asignacion",identificador3,identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref()+":\n"));
+
+            //Se carga el valor de la cola y se asigna a una variable auxiliar
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append("\n"+this.getIr_ref()+":\n");
             this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
@@ -108,6 +110,8 @@ public abstract class  OperacionUnaria extends Expresion{
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = %2$s i32 0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
         } else {
+
+            //Si la expresion no es una cola, asignamos a ua variable auxiliar el valor de la expresion.
             resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola", "")));
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             if (this.expresion.getTipo().equals(Tipo.Int)) {
@@ -115,6 +119,8 @@ public abstract class  OperacionUnaria extends Expresion{
             }else if(this.expresion.getTipo().equals(Tipo.Float)){
                 resultado.append(String.format("%1$s = %2$s double 0.0, %3$s\n", this.getIr_ref(), this.get_llvm_op_code(this.getTipo()), this.expresion.getIr_ref()));
             } else {
+
+                //En caso de ser un booleano, se invierte el 1 por 0 y el 0 por 1.
                 if(this.expresion.generarCodigo(etiqueta).charAt(this.expresion.generarCodigo(etiqueta).length()-2) == '1'){
                     resultado.append(String.format("%1$s = add " + "i1" + " 0, 0\n", this.getIr_ref()));
                 }else{

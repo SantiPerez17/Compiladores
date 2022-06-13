@@ -38,8 +38,6 @@ public class DisplayExpresion extends Display {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         if(expresion.getNombre().equals("Cola")){
-            //resultado.append("\n"+etiqueta.replaceAll("Cola",""));
-            //resultado.append(";___DisplayExpresion___\n");
             Cola cola = (Cola) expresion;
             int aux = 0;
             for (Expresion c : cola.getColas()) {
@@ -85,6 +83,8 @@ public class DisplayExpresion extends Display {
             Asignacion asig1 = new Asignacion("Asignacion", identificador3, identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
+
+            //Se carga el valor de la cola en una variable auxiliar, y se llama a la funcion @printf para imprimir por consola el valor de la cola.
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append("\n"+this.getIr_ref()+":\n");
             this.expresion.setIr_ref(CodeGeneratorHelper.getNewPointer());
@@ -92,6 +92,8 @@ public class DisplayExpresion extends Display {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         } else {
+
+            //Si la expresion no es una cola, se llama a la funcion @printf para imprimir por consola el valor de la expresion.
             this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
             resultado.append("\n"+etiqueta.replaceAll("Cola",""));
             resultado.append(";___DisplayExpresion___\n");
@@ -101,6 +103,8 @@ public class DisplayExpresion extends Display {
             } else if(this.expresion.getTipo().equals(Tipo.Float)) {
                 resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
             } else if(this.expresion.getTipo().equals(Tipo.Bool)) {
+
+                //En caso de ser un booleano, primero se trunca a entero, y luego se llama a la funcion @printf
                 this.setIr_ref(CodeGeneratorHelper.getNewPointer());
                 String temp_int = this.getIr_ref();
                 this.setIr_ref(CodeGeneratorHelper.getNewPointer());
@@ -108,10 +112,10 @@ public class DisplayExpresion extends Display {
                 resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), temp_int));
             }
         }
-
         String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
         resultado.append(String.format("br label %1$s\n", siguiente));
 
+        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
         try{
             String cadena = ":\n;___DisplayExpresion___\n\n";
             int start = resultado.indexOf(cadena);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cola extends Expresion {
+
     public Asignacion getAsignacion() {
         return asignacion;
     }
@@ -135,6 +136,7 @@ public class Cola extends Expresion {
         this.pivot = pivot;
     }
 
+    //Este metodo recursivo se encarga de apilar las colas internas. Contempla si la cola esta dentro de una expresion binaria o unaria. Se llama desde el parser, y las guarda en la lista de colas
     public void colasInternas(List<Expresion> expresiones) {
         List<Cola> colasInternasAux = new ArrayList<>();
         for (Expresion e : expresiones) {
@@ -160,6 +162,7 @@ public class Cola extends Expresion {
                 }
             }
         }
+        //Aqui se hace la recursion, enviando por parametro las expresiones de las colas encontradas.
         if (colasInternasAux.size()>0){
             for (Cola c: colasInternasAux){
                 this.getColas().add(c);
@@ -185,6 +188,8 @@ public class Cola extends Expresion {
     @Override
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
+        //Aqui simplemente llamamos al metodo generarCodigo(String etiqueta) del IfElse, para que genere el codigo de los ifelse anidados generados previamente en el parser.
+        //Especificamos en la etiqueta que viene de una cola porque tiene un comportamiento diferente al de un IfElse ordinario.
         resultado.append(this.ifelse.generarCodigo(etiqueta+"Cola"));
         return resultado.toString();
     }

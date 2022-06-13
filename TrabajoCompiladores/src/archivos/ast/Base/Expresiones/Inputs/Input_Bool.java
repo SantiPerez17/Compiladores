@@ -20,8 +20,6 @@ public class Input_Bool extends Expresion {
     @Override
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
-        //this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //String dest = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String destaux = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
@@ -30,13 +28,12 @@ public class Input_Bool extends Expresion {
         String temp_int = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String temp_bool = this.getIr_ref();
-        //resultado.append(dest + " = alloca i1\n");
+
+        //Se genera una variable auxiliar para almacenar el resultado, luego se llama a la funcion @scanf, se almacena su resultado en la variable auxiliar, y finalmente se trunca al tipo bool
         resultado.append(destaux + " = alloca i32\n");
         resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8] * @int_read_format, i64 0, i64 0), i32* %2$s)\n", temp, destaux));
         resultado.append(String.format("%1$s = load i32, i32* %2$s\n", temp_int, destaux));
         resultado.append(String.format("%1$s = trunc i32 %2$s to i1\n", temp_bool, temp_int));
-        //resultado.append(dest + (String.format(" = store i1 %1$s, i1* %2$s\n", temp_bool, dest)));
-        //this.setIr_ref(dest);
         return resultado.toString();
     }
 }

@@ -92,10 +92,11 @@ public class Programa extends Nodo{
         }
 
         //Se define el main del programa y se recorre el listado de sentencias, llamando de cada una su funcion generarCodigo(String etiqueta)
-        //generarCodigo(String etiqueta) es un metodo abstracto de la clase Nodo que nos permite generar el codigo de bajo nivel de cada una de las sentencias con su respectiva etiqueta
         resultado.append("\ndefine i32 @main(i32, i8**) {\n\t");
         StringBuilder resultado_programa = new StringBuilder();
         for (Sentencia s: getSentencias()) {
+
+            //Si es un IfElse, llamo al generarCodigo() del IfElse, y luego reemplazo las etiquetas XX con la etiqueta que corresponde a la siguiente sentencia a la cual deben ir.
             if(s.getNombre() == "IfElse"){
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
@@ -110,6 +111,8 @@ public class Programa extends Nodo{
                     }
                 }
             } else {
+
+                //Sino, simplemente llamo al generarCodigo() de la sentencia.
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
             }

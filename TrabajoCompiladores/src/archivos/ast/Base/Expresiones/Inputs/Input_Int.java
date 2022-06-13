@@ -29,6 +29,8 @@ public class Input_Int extends Expresion {
         String temp = this.getIr_ref();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
         String temp_int = this.getIr_ref();
+
+        //Se genera una variable auxiliar para almacenar el resultado, luego se llama a la funcion @scanf, y finalmente se almacena su resultado en la variable auxiliar
         resultado.append(destaux + " = alloca i32\n");
         resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8] * @int_read_format, i64 0, i64 0), i32* %2$s)\n", temp, destaux));
         resultado.append(String.format("%1$s = load i32, i32* %2$s\n", temp_int, destaux));

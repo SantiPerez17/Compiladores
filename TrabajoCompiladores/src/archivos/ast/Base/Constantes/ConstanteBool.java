@@ -21,6 +21,7 @@ public class ConstanteBool extends Constante {
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //Si el valor de la constante es true, se asigna un 1, sino un 0
         if (this.getValor().equals("true")){
             resultado.append(String.format("%1$s = add i1 0, %2$s\n", this.getIr_ref(), "1"));
         } else {

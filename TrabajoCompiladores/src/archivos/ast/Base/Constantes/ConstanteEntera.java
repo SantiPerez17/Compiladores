@@ -21,6 +21,7 @@ public class ConstanteEntera extends Constante{
     public String generarCodigo(String etiqueta) {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        //Simplemente agregamos el valor de la Constante entera
         resultado.append(String.format("%1$s = add i32 0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();
     }
