@@ -16,5 +16,4 @@ TABLA DE SIMBOLOS
                   xd                  ID                Bool                   _                   _
                 ahre                  ID                Bool                   _                   _
                    r                  ID                Bool                   _                   _
-               str16      STRING_LITERAL          CTE_STRING                 ...                   3
 

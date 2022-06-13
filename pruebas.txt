@@ -20,25 +20,8 @@ display(a*b*c)
 display("division: ")
 display(a/b/c)*)
 
-a:=10
-xd:=true
-while(a>0) do
-      a:=a-1
-      if (xd) then
-            display(a)
-            xd:=false
-      else
-            display("...")
-            xd:=true
-      end    
-      if (a==5) then
-            f:=5.0
-            while (f<6.0) do
-                   display(f)
-                   f:=f+0.1
-            end
-      end
-end
+#display( not ( -cola(2;[1,2]) == -3) )
+display(not(4==3))
 
 
 (*f:=0

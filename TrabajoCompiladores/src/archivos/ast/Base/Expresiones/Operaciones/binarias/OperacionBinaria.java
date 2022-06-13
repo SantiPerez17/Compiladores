@@ -277,42 +277,45 @@ public abstract class OperacionBinaria extends Expresion {
 
     //Funcion recursiva que evalua una expresion y me agrega un br en caso de ser necesario
     public void recursiva(Expresion expresion){
-        if(expresion.getNombre().equals("Cola")){
-            br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-        } else {
-            try{
-                OperacionUnaria ou = (OperacionUnaria) expresion;
-                if(ou.getExpresion().getNombre().equals("Cola")){
-                    br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-                } else {
-                    try{
-                        MenosUnario mu = (MenosUnario) ou.getExpresion();
-                        if(mu.getExpresion().getNombre().equals("Cola")){
-                            br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
-                        } else {
+        try{
+            if(expresion.getNombre().equals("Cola")){
+                br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+            } else {
+                try{
+                    OperacionUnaria ou = (OperacionUnaria) expresion;
+                    if(ou.getExpresion().getNombre().equals("Cola")){
+                        br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+                    } else {
+                        try{
+                            MenosUnario mu = (MenosUnario) ou.getExpresion();
+                            if(mu.getExpresion().getNombre().equals("Cola")){
+                                br_auxiliar=("br label %etiq" + (CodeGeneratorHelper.getNextTag() + 1) + "\n");
+                            } else {
+                                try{
+                                    OperacionBinaria ob = (OperacionBinaria) mu.getExpresion();
+                                    recursiva(ob.getIzquierda());
+                                }catch (Exception e6){
+                                    recursiva(ou.getExpresion());
+                                }
+                            }
+                        }catch (Exception e3){
                             try{
-                                OperacionBinaria ob = (OperacionBinaria) mu.getExpresion();
+                                OperacionBinaria ob = (OperacionBinaria) ou.getExpresion();
                                 recursiva(ob.getIzquierda());
-                            }catch (Exception e6){
+                            }catch (Exception e4){
                                 recursiva(ou.getExpresion());
                             }
                         }
-                    }catch (Exception e3){
-                        try{
-                            OperacionBinaria ob = (OperacionBinaria) ou.getExpresion();
-                            recursiva(ob.getIzquierda());
-                        }catch (Exception e4){
-                            recursiva(ou.getExpresion());
-                        }
+                    }
+                } catch (Exception e2){
+                    try{
+                        OperacionBinaria ob = (OperacionBinaria) expresion;
+                        recursiva(ob.getIzquierda());
+                    }catch (Exception e5){
                     }
                 }
-            } catch (Exception e2){
-                try{
-                    OperacionBinaria ob = (OperacionBinaria) expresion;
-                    recursiva(ob.getIzquierda());
-                }catch (Exception e5){
-                }
             }
+        }catch (Exception e7){
         }
     }
 }

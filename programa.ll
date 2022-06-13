@@ -24,102 +24,22 @@ declare i32 @scanf(i8* %0, ...)
 @res2 = global i32 0
 @res3 = global i32 0
 @res4 = global i32 0
-@str16 = private constant [6 x i8] c"\0A...\0A\00"
 @t = global i32 0
 @xd = global i1 0
 
 define i32 @main(i32, i8**) {
 	
-	etiq1:
-	;___Asignación___
-	%aux2 = add i32 0, 10
-	store i32 %aux2, i32* @a
-	br label %etiq2
-	
-	etiq2:
-	;___Asignación___
-	%aux4 = add i1 0, 1
-	store i1 %aux4, i1* @xd
-	br label %etiq3
-	
-	etiq3:
-	;___While___
-	%aux6 = load i32, i32* @a
-	%aux7 = add i32 0, 0
-	%aux8 = icmp sgt i32 %aux6, %aux7
-	br i1 %aux8, label %etiq5, label %etiq26
-	
-	etiq5:
-	;___Asignación___
-	%aux10 = load i32, i32* @a
-	%aux11 = add i32 0, 1
-	%aux12 = sub i32 %aux10, %aux11
-	store i32 %aux12, i32* @a
-	br label %etiq8
-	
-	etiq8:
-	;___IfElse___
-	%aux14 = load i1, i1* @xd
-	br i1 %aux14, label %etiq9, label %etiq10
-	
-	etiq9:
+	etiq316:
 	;___DisplayExpresion___
-	%aux16 = load i32, i32* @a
-	%aux15 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux16)
-	br label %etiq12
+	%aux637 = add i32 0, 4
+	%aux638 = add i32 0, 3
+	%aux639 = icmp eq i32 %aux637, %aux638
+	%aux640 = add i1 0, 1
+	%aux647 = zext i1 %aux640 to i32
+	%aux648 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %aux647)
+	br label %etiq320
 	
-	etiq12:
-	;___Asignación___
-	%aux18 = add i1 0, 0
-	store i1 %aux18, i1* @xd
-	br label %etiq14
-	
-	etiq10:
-	;___DisplayCadenaCaracteres___
-	%aux19 = call i32 @puts(i8* getelementptr ([6 x i8], [6 x i8] * @str16, i32 0, i32 0))
-	br label %etiq13
-	
-	etiq13:
-	;___Asignación___
-	%aux21 = add i1 0, 1
-	store i1 %aux21, i1* @xd
-	br label %etiq14
-	
-	etiq14:
-	;___IfSimple___
-	%aux23 = load i32, i32* @a
-	%aux24 = add i32 0, 5
-	%aux25 = icmp eq i32 %aux23, %aux24
-	br i1 %aux25, label %etiq16, label %etiq3
-	
-	etiq16:
-	;___Asignación___
-	%aux27 = fadd double 0.0, 5.0
-	store double %aux27, double* @f
-	br label %etiq18
-	
-	etiq18:
-	;___While___
-	%aux29 = load double, double* @f
-	%aux30 = fadd double 0.0, 6.0
-	%aux31 = fcmp ult double %aux29, %aux30
-	br i1 %aux31, label %etiq20, label %etiq3
-	
-	etiq20:
-	;___DisplayExpresion___
-	%aux33 = load double, double* @f
-	%aux32 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.double, i32 0, i32 0), double %aux33)
-	br label %etiq22
-	
-	etiq22:
-	;___Asignación___
-	%aux35 = load double, double* @f
-	%aux36 = fadd double 0.0, 0.1
-	%aux37 = fadd double %aux35, %aux36
-	store double %aux37, double* @f
-	br label %etiq18
-	
-	etiq26:
+	etiq320:
 	ret i32 0
 }
 
