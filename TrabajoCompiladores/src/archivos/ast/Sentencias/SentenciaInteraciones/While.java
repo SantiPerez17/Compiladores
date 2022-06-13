@@ -53,11 +53,16 @@ public class While extends Sentencia {
 
     @Override
     public String graficar(String idPadre) {
+        //Se crea un StringBuilder
         StringBuilder resultado = new StringBuilder();
+        //Se agrega en el StringBuilder el String del metodo graficar con el id del padre
         resultado.append(super.graficar(idPadre));
+        //se grafica la condicion
         resultado.append(this.condicion.graficar(this.getId()));
+        //se crea un nodo llamado DO y se conecta con el nodo de esta clase.
         resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, "DO"));
         resultado.append(String.format("%1$s--%2$s\n", this.getId(), this.getId()+1));
+        //se grafican las sentencias las cuales estan conectadas al nodo DO.
         for (Sentencia s:Sentencias){
             resultado.append(s.graficar(this.getId()+1));
         }

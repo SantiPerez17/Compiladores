@@ -43,12 +43,17 @@ public class IfSimple extends Sentencia {
 
     @Override
     public String graficar(String idPadre) {
+        //Se crea un StringBuilder
         StringBuilder resultado = new StringBuilder();
+        //Se agrega en el StringBuilder el String del metodo graficar con el id del padre
         resultado.append(super.graficar(idPadre));
+        //se grafica la condicion
         resultado.append(this.condicion.graficar(this.getId()));
+        //se crea un nodo llamado THEN y se conecta con el nodo de esta clase.
         resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, "THEN"));
         resultado.append(String.format("%1$s--%2$s\n", this.getId(), this.getId()+1));
         for (Sentencia s:Sentencias){
+            //se grafican las sentencias las cuales estan conectadas al nodo THEN.
             resultado.append(s.graficar(this.getId()+1));
         }
         return resultado.toString();

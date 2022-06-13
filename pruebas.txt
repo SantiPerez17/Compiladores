@@ -21,6 +21,7 @@ display("division: ")
 display(a/b/c)*)
 
 #display( not ( -cola(2;[1,2]) == -3) )
+display(cola(2;[1,2]))
 display( not ( 4 == 4) )
 
 

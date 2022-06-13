@@ -23,8 +23,11 @@ public class DisplayCadenaCaracteres extends Display {
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
+        //Se crea un stringbuilder
         grafico.append(super.graficar(idPadre));
+        //se llama al metodo graficar mandandole el id del padre para poder conectar
         grafico.append(CadenaCaracteres.graficar(this.getId()));
+        //se agrega ademas tambien el graficar de la CC con el ID de esta clase.
         return grafico.toString();
     }
 

@@ -60,7 +60,10 @@ public abstract class OperacionBinaria extends Expresion {
 
     @Override
     public String graficar(String idPadre) {
+        //Se crea un Stringbuilder
         StringBuilder grafico = new StringBuilder();
+        //Se llaman a las funciones que tienen graficar, en la clase Nodo tiene graficar que conecta dos nodos
+        //El nodo padre y el nombre de esta clase, a su vez tambien grafica sus dos expresiones.
         grafico.append(super.graficar(idPadre));
         grafico.append(izquierda.graficar(this.getId()));
         grafico.append(derecha.graficar(this.getId()));

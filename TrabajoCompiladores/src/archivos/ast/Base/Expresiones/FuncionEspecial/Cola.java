@@ -179,6 +179,7 @@ public class Cola extends Expresion {
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
+        //Se genera un nuevo nodo que muestre la etiqueta de Cola, y lo une con el nodo del idPadre
         resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, this.getEtiqueta()));
         resultado.append(String.format("%1$s--%2$s\n", idPadre, this.getId()+1));
         resultado.append(this.ifelse.graficar("nodo_programa"));

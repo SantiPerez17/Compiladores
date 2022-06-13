@@ -46,6 +46,8 @@ public abstract class  OperacionUnaria extends Expresion{
     @Override
     public String graficar(String idPadre) {
         StringBuilder grafico = new StringBuilder();
+        //Se llaman a las funciones que tienen graficar, en la clase Nodo tiene graficar que conecta dos nodos
+        //El nodo padre y el nombre de esta clase, a su vez tambien grafica su expresion mandando el ID.
         grafico.append(super.graficar(idPadre));
         grafico.append(expresion.graficar(this.getId()));
         return grafico.toString();

@@ -28,8 +28,11 @@ public class DisplayExpresion extends Display {
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
+        //Se crea un stringbuilder
         resultado.append(super.graficar(idPadre));
+        //se llama al metodo graficar mandandole el id del padre para poder conectar
         resultado.append(this.expresion.graficar(this.getId()));
+        //se agrega ademas tambien el graficar de la expresion con el ID de esta clase.
         return resultado.toString();
     }
 
