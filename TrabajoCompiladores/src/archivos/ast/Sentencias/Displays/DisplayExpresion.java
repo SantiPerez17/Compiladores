@@ -92,6 +92,7 @@ public class DisplayExpresion extends Display {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
             resultado.append(String.format("%1$s = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %2$s)\n", this.getIr_ref(), this.expresion.getIr_ref()));
         } else {
+            this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
             resultado.append("\n"+etiqueta.replaceAll("Cola",""));
             resultado.append(";___DisplayExpresion___\n");
             resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola","")));

@@ -59,6 +59,7 @@ public class IfSimple extends Sentencia {
         StringBuilder resultado = new StringBuilder();
         StringBuilder resultado_sentencias = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
         resultado.append("\n"+etiqueta);
         resultado.append(";___IfSimple___\n");
         resultado.append(this.condicion.generarCodigo(etiqueta));
@@ -72,18 +73,20 @@ public class IfSimple extends Sentencia {
                 this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
             if(s.getNombre() == "IfElse"){
+                //this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
                 String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
                 boolean aux2 = true;
                 while(aux2){
                     try{
-                        int start = resultado_sentencias.indexOf("br label %etiqXX");
-                        resultado_sentencias.replace(start,start+16,"br label "+proxima_etiqueta);
+                        int start = resultado_sentencias.indexOf(" label %etiqXX");
+                        resultado_sentencias.replace(start,start+14," label "+proxima_etiqueta);
                     }catch(Exception e){
                         aux2=false;
                     }
                 }
             } else {
+                //this.Sentencias.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado_sentencias.append(s.generarCodigo(this.Sentencias.get(aux).getIr_ref()+":\n"));
             }
             aux+=1;

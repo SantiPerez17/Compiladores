@@ -120,6 +120,7 @@ public class Asignacion extends Sentencia{
             resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
         } else {
             this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+            this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
             resultado.append("\n" + etiqueta.replaceAll("Cola", ""));
             resultado.append(";___Asignación___\n");
             resultado.append(this.expresion.generarCodigo(etiqueta.replaceAll("Cola", "")));

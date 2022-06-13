@@ -81,6 +81,7 @@ public class IfElse extends Sentencia {
         StringBuilder resultado_sentencias2 = new StringBuilder();
         String etiqueta_cola = etiqueta;
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
+        this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
         resultado.append("\n"+etiqueta_cola.replaceAll("Cola",""));
         resultado.append(";___IfElse___\n");
         resultado.append(this.condicion.generarCodigo(etiqueta_cola.replaceAll("Cola","")));
@@ -106,7 +107,21 @@ public class IfElse extends Sentencia {
                     }
                 }
             } else {
-                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+                if(s.getNombre() == "IfElse"){
+                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+                    String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
+                    boolean aux2 = true;
+                    while(aux2){
+                        try{
+                            int start = resultado_sentencias1.indexOf(" label %etiqXX");
+                            resultado_sentencias1.replace(start,start+14," label "+proxima_etiqueta);
+                        }catch(Exception e){
+                            aux2=false;
+                        }
+                    }
+                } else {
+                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+                }
             }
             aux+=1;
         }
@@ -142,7 +157,21 @@ public class IfElse extends Sentencia {
                 }catch (Exception e){
                 }
             } else {
-                resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
+                if(s.getNombre() == "IfElse"){
+                    resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
+                    String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
+                    boolean aux3 = true;
+                    while(aux3){
+                        try{
+                            int start = resultado_sentencias2.indexOf(" label %etiqXX");
+                            resultado_sentencias2.replace(start,start+14," label "+proxima_etiqueta);
+                        }catch(Exception e){
+                            aux3=false;
+                        }
+                    }
+                } else {
+                    resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
+                }
             }
             aux2+=1;
         }
