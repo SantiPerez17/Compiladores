@@ -448,6 +448,12 @@ public class MiParser extends java_cup.runtime.lr_parser {
         }
     }
 
+    private static void tipo_bool_comp(Tipo tipo) throws Exception{
+            if (tipo == Tipo.Bool){
+                throw new Exception("No se permiten tipos booleanos en operaciones de comparación.");
+            }
+        }
+
     private static void checkTipoInt(Expresion p) throws Exception {
            if (!(p.getTipo()==Tipo.Int)){
                throw new Exception("No se aceptan tipos "+ p.getTipo().name() + " en funcion especial Cola.");
@@ -1088,6 +1094,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 7.6.1.1: comparacion --> expresion MENOR expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
             Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            tipo_bool_comp(tipo_comun);
             Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
             Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
             RESULT = new Menor("<",Tipo.Bool,exp1,exp2);
@@ -1112,6 +1119,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
             Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            tipo_bool_comp(tipo_comun);
             Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
             Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
             RESULT = new Igual("==",Tipo.Bool,exp1,exp2);
@@ -1136,6 +1144,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion DISTINTO expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
             Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            tipo_bool_comp(tipo_comun);
             Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
             Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
             RESULT = new Distinto("!=",Tipo.Bool,exp1,exp2);
@@ -1160,6 +1169,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion MAYOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
             Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            tipo_bool_comp(tipo_comun);
             Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
             Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
             RESULT = new MayorOIgual(">=",Tipo.Bool,exp1,exp2);
@@ -1184,6 +1194,7 @@ class CUP$MiParser$actions {
 		
             concat_rules("REGLA 7.6.1: comparacion --> expresion MENOR_IGUAL expresion " + "\n\t --> " + e1 + " " + m + " " + e2);
             Tipo tipo_comun = tipo_en_comun(e1.getTipo(),e2.getTipo());
+            tipo_bool_comp(tipo_comun);
             Expresion exp1 = convertir_a_tipo(e1, tipo_comun);
             Expresion exp2 = convertir_a_tipo(e2, tipo_comun);
             RESULT = new MenorOIgual("<=",Tipo.Bool,exp1,exp2);
