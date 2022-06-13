@@ -24,144 +24,81 @@ declare i32 @scanf(i8* %0, ...)
 @res2 = global i32 0
 @res3 = global i32 0
 @res4 = global i32 0
+@str16 = private constant [6 x i8] c"\0A...\0A\00"
+@str17 = private constant [11 x i8] c"\0Aa vale 5\0A\00"
 @t = global i32 0
 @xd = global i1 0
 
 define i32 @main(i32, i8**) {
 	
-	etiq77:
-	;___While___
-	%aux118 = load i32, i32* @a
-	%aux119 = add i32 0, 0
-	%aux120 = icmp eq i32 %aux118, %aux119
-	br i1 %aux120, label %etiq79, label %etiq115
-	
-	etiq79:
+	etiq1:
 	;___Asignación___
-	%aux122 = load i32, i32* @a
-	%aux123 = add i32 0, 1
-	%aux124 = add i32 %aux122, %aux123
-	store i32 %aux124, i32* @a
-	br label %etiq82
+	%aux2 = add i32 0, 10
+	store i32 %aux2, i32* @a
+	br label %etiq2
 	
-	etiq82:
-	;___While___
-	%aux126 = load i32, i32* @c
-	%aux127 = add i32 0, 1
-	%aux128 = icmp eq i32 %aux126, %aux127
-	br i1 %aux128, label %etiq84, label %etiq77
-	
-	etiq84:
+	etiq2:
 	;___Asignación___
-	%aux130 = load i32, i32* @c
-	%aux131 = add i32 0, 1
-	%aux132 = add i32 %aux130, %aux131
-	store i32 %aux132, i32* @c
-	br label %etiq87
+	%aux4 = add i1 0, 1
+	store i1 %aux4, i1* @xd
+	br label %etiq3
 	
-	etiq87:
-	;___IfElse___
-	%aux134 = load i32, i32* @c
-	%aux135 = add i32 0, 2
-	%aux136 = icmp eq i32 %aux134, %aux135
-	br i1 %aux136, label %etiq89, label %etiq90
-	
-	etiq89:
-	;___DisplayExpresion___
-	%aux138 = load i32, i32* @c
-	%aux137 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux138)
-	br label %etiq92
-	
-	etiq92:
-	;___IfElse___
-	%aux140 = load i32, i32* @d
-	%aux141 = add i32 0, 3
-	%aux142 = icmp eq i32 %aux140, %aux141
-	br i1 %aux142, label %etiq94, label %etiq95
-	
-	etiq94:
-	;___DisplayExpresion___
-	%aux144 = load i32, i32* @d
-	%aux143 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux144)
-	br label %etiq82
-	
-	etiq95:
-	;___DisplayExpresion___
-	%aux146 = load i32, i32* @d
-	%aux145 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux146)
-	br label %etiq97
-	
-	etiq97:
+	etiq3:
 	;___While___
-	%aux148 = load i32, i32* @a
-	%aux149 = load i32, i32* @d
-	%aux150 = icmp ne i32 %aux148, %aux149
-	br i1 %aux150, label %etiq98, label %etiq101
+	%aux6 = load i32, i32* @a
+	%aux7 = add i32 0, 0
+	%aux8 = icmp sgt i32 %aux6, %aux7
+	br i1 %aux8, label %etiq5, label %etiq19
 	
-	etiq98:
-	;___DisplayExpresion___
-	%aux152 = load i32, i32* @a
-	%aux153 = load i32, i32* @d
-	%aux154 = add i32 %aux152, %aux153
-	%aux151 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux154)
-	br label %etiq97
+	etiq5:
+	;___Asignación___
+	%aux10 = load i32, i32* @a
+	%aux11 = add i32 0, 1
+	%aux12 = sub i32 %aux10, %aux11
+	store i32 %aux12, i32* @a
+	br label %etiq8
 	
-	etiq90:
-	;___DisplayExpresion___
-	%aux156 = load i32, i32* @d
-	%aux155 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux156)
-	br label %etiq101
-	
-	etiq101:
-	;___While___
-	%aux158 = load i32, i32* @a
-	%aux159 = load i32, i32* @d
-	%aux160 = icmp ne i32 %aux158, %aux159
-	br i1 %aux160, label %etiq102, label %etiq105
-	
-	etiq102:
-	;___DisplayExpresion___
-	%aux162 = load i32, i32* @a
-	%aux163 = load i32, i32* @d
-	%aux164 = add i32 %aux162, %aux163
-	%aux161 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux164)
-	br label %etiq101
-	
-	etiq105:
+	etiq8:
 	;___IfElse___
-	%aux166 = load i32, i32* @d
-	%aux167 = add i32 0, 3
-	%aux168 = icmp eq i32 %aux166, %aux167
-	br i1 %aux168, label %etiq107, label %etiq108
+	%aux14 = load i1, i1* @xd
+	br i1 %aux14, label %etiq9, label %etiq10
 	
-	etiq107:
+	etiq9:
 	;___DisplayExpresion___
-	%aux170 = load i32, i32* @d
-	%aux169 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux170)
-	br label %etiq82
+	%aux16 = load i32, i32* @a
+	%aux15 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux16)
+	br label %etiq12
 	
-	etiq108:
-	;___DisplayExpresion___
-	%aux172 = load i32, i32* @d
-	%aux171 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux172)
-	br label %etiq110
+	etiq12:
+	;___Asignación___
+	%aux18 = add i1 0, 0
+	store i1 %aux18, i1* @xd
+	br label %etiq14
 	
-	etiq110:
-	;___While___
-	%aux174 = load i32, i32* @a
-	%aux175 = load i32, i32* @d
-	%aux176 = icmp ne i32 %aux174, %aux175
-	br i1 %aux176, label %etiq111, label %etiq82
+	etiq10:
+	;___DisplayCadenaCaracteres___
+	%aux19 = call i32 @puts(i8* getelementptr ([6 x i8], [6 x i8] * @str16, i32 0, i32 0))
+	br label %etiq13
 	
-	etiq111:
-	;___DisplayExpresion___
-	%aux178 = load i32, i32* @a
-	%aux179 = load i32, i32* @d
-	%aux180 = add i32 %aux178, %aux179
-	%aux177 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux180)
-	br label %etiq110
+	etiq13:
+	;___Asignación___
+	%aux21 = add i1 0, 1
+	store i1 %aux21, i1* @xd
+	br label %etiq14
 	
-	etiq115:
+	etiq14:
+	;___IfSimple___
+	%aux23 = load i32, i32* @a
+	%aux24 = add i32 0, 5
+	%aux25 = icmp eq i32 %aux23, %aux24
+	br i1 %aux25, label %etiq16, label %etiq3
+	
+	etiq16:
+	;___DisplayCadenaCaracteres___
+	%aux26 = call i32 @puts(i8* getelementptr ([11 x i8], [11 x i8] * @str17, i32 0, i32 0))
+	br label %etiq3
+	
+	etiq19:
 	ret i32 0
 }
 

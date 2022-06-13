@@ -119,15 +119,31 @@ public class While extends Sentencia {
                 String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
                 resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
                 resultado.append(resultado_sentencias);
-            } else if (Sentencias.get(aux-1).getNombre().equals("IfElse")){
+            } else if (Sentencias.get(aux-1).getNombre().equals("IfElse")) {
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 boolean aux2 = true;
                 while (aux2) {
-                    try{
-                        int start2 = resultado_sentencias.indexOf(String.format(" label %1$s\n", "%"+this.getIr_ref()));
-                        int end2 = (String.format(" label %1$s\n", "%"+this.getIr_ref())).length()+start2;
-                        resultado_sentencias.replace(start2,end2,String.format(" label %1$s\n", "%"+etiqueta_while_interno));
-                    }catch (Exception e){
+                    try {
+                        int start2 = resultado_sentencias.indexOf(String.format(" label %1$s\n", "%" + this.getIr_ref()));
+                        int end2 = (String.format(" label %1$s\n", "%" + this.getIr_ref())).length() + start2;
+                        resultado_sentencias.replace(start2, end2, String.format(" label %1$s\n", "%" + etiqueta_while_interno));
+                    } catch (Exception e) {
+                        aux2 = false;
+                    }
+                }
+
+                String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
+                resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
+                resultado.append(resultado_sentencias);
+            } else if (Sentencias.get(aux-1).getNombre().equals("IfSimple")){
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                boolean aux2 = true;
+                while (aux2) {
+                    try {
+                        int start2 = resultado_sentencias.indexOf(String.format(" label %1$s\n", "%" + this.getIr_ref()));
+                        int end2 = (String.format(" label %1$s\n", "%" + this.getIr_ref())).length() + start2;
+                        resultado_sentencias.replace(start2, end2, String.format(" label %1$s\n", "%" + etiqueta_while_interno));
+                    } catch (Exception e) {
                         aux2 = false;
                     }
                 }
@@ -152,6 +168,16 @@ public class While extends Sentencia {
                 resultado.append(String.format("br label %1$s\n", "%"+etiqueta.replace(":\n","")));
             }
         } catch (Exception e){
+            String siguiente4 = "%etiqXX";
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            int start2 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%"+this.getIr_ref()));
+            int end2 = (String.format("br label %1$s\n", "%"+this.getIr_ref())).length()+start2;
+            resultado_sentencias.delete(start2,end2);
+            resultado_sentencias.append(String.format("br label %1$s\n", siguiente4));
+            int start3 = resultado_sentencias.indexOf(String.format("br label %1$s\n", "%etiqXX"));
+            int end3 = (String.format("br label %1$s\n", "%etiqXX")).length()+start3;
+            resultado_sentencias.delete(start3,end3);
+
             String siguiente = "%etiq" + (CodeGeneratorHelper.getNextTag() + 1);
             resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias, siguiente));
             resultado.append(resultado_sentencias);

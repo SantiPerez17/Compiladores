@@ -20,36 +20,22 @@ display(a*b*c)
 display("division: ")
 display(a/b/c)*)
 
-while (a==0) do
-     a:=a+1
-     while (c==1) do
-            c:=c+1
-            if (c == 2) then
-                  display(c)
-                  if (d==3) then
-                        display(d)
-                  else
-                        display(d)
-                        while(a!=d) do
-                              display(a+d)
-                        end
-                  end
-           else
-                  display(d)
-                  while(a!=d) do
-                         display(a+d)
-                  end
-                  if (d==3) then
-                        display(d)
-                  else
-                        display(d)
-                        while(a!=d) do
-                              display(a+d)
-                        end
-                  end
-           end
-     end
+a:=10
+xd:=true
+while(a>0) do
+      a:=a-1
+      if (xd) then
+            display(a)
+            xd:=false
+      else
+            display("...")
+            xd:=true
+      end    
+      if (a==5) then
+            display("a vale 5")
+      end
 end
+
 
 (*f:=0
 display("ingrese valor f")
