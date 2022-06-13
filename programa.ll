@@ -29,17 +29,17 @@ declare i32 @scanf(i8* %0, ...)
 
 define i32 @main(i32, i8**) {
 	
-	etiq316:
+	etiq3:
 	;___DisplayExpresion___
-	%aux637 = add i32 0, 4
-	%aux638 = add i32 0, 3
-	%aux639 = icmp eq i32 %aux637, %aux638
-	%aux640 = add i1 0, 1
-	%aux647 = zext i1 %aux640 to i32
-	%aux648 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %aux647)
-	br label %etiq320
+	%aux7 = add i32 0, 4
+	%aux8 = add i32 0, 4
+	%aux9 = icmp eq i32 %aux7, %aux8
+	%aux10 = xor i1 %aux9, 1
+	%aux11 = zext i1 %aux10 to i32
+	%aux12 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %aux11)
+	br label %etiq5
 	
-	etiq320:
+	etiq5:
 	ret i32 0
 }
 

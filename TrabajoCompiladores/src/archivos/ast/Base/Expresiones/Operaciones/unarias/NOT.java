@@ -25,7 +25,7 @@ public class NOT extends OperacionUnaria{
     @Override
     public String get_llvm_op_code(Tipo tipo) {
         //Esta no se utiliza, se resuelve en la clase OperacionUnaria
-        return "not i1";
+        return "xor i1";
     }
 
 }

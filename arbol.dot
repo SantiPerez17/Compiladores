@@ -1,19 +1,19 @@
 graph G {nodo_programa[label="Programa"]
-nodo_1171811070[label="Sentencia
+nodo_2018405636[label="Sentencia
  - [ Display Expresion ] -"]
-nodo_programa--nodo_1171811070
-nodo_1863356636[label=" Op_Unaria - [ NOT ] - 
+nodo_programa--nodo_2018405636
+nodo_1152349377[label=" Op_Unaria - [ NOT ] - 
  Tipo: Bool"]
-nodo_1171811070--nodo_1863356636
-nodo_131652093[label=" Op_Binaria - [ == ] - 
+nodo_2018405636--nodo_1152349377
+nodo_1612516583[label=" Op_Binaria - [ == ] - 
  Tipo: Bool"]
-nodo_1863356636--nodo_131652093
-nodo_1267477957[label="Factor_Int  
+nodo_1152349377--nodo_1612516583
+nodo_1566736442[label="Factor_Int  
  Valor: 4 
 Int"]
-nodo_131652093--nodo_1267477957
-nodo_1114179148[label="Factor_Int  
- Valor: 3 
+nodo_1612516583--nodo_1566736442
+nodo_574675655[label="Factor_Int  
+ Valor: 4 
 Int"]
-nodo_131652093--nodo_1114179148
+nodo_1612516583--nodo_574675655
 }
