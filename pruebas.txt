@@ -1,195 +1,94 @@
 declare.section
-    float : f,fi;
-    int : res,res2,res3,res4,a,b,c,d,t,aux;
-    bool : xd, ahre,r;
+    float : peso, altura, resultado;
+    int : edad, edad1, pivot, res;
+    bool :aux, aux2;
 enddeclare.section
+
 program.section
 
-(*display("ingrese valor a")
-a:=input_int()
-display("ingrese valor b")
-b:=input_int()
-display("ingrese valor c")
-c:=input_int()
-display("suma: ")
-display(a+b+c)
-display("resta: ")
-display(a-b-c)
-display("multiplicacion: ")
-display(a*b*c)
-display("division: ")
-display(a/b/c)*)
+    #Primero le preguntaremos su edad
+    aux := true
+    while ( aux ) do
+        display( "Ingrese su edad: " )
+        edad := input_int()
 
-#display( not ( -cola(2;[1,2]) == -3) )
-display(cola(2;[1,2]))
-display( not ( 4 == 4) )
-
-
-(*f:=0
-display("ingrese valor f")
-f:=input_float()
-fi:=f*300
-if(-cola(2;[5,5])*fi<=-cola(2;[5,5])*50) then
-    display("pasa")
-    else
-        display("no pasa")
-        display(fi+f)
-end*)
-
-
-#res:=-cola(1;[1])
-#res2:=1 + cola(2;[1,2])
-#res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
-#res:= cola(1;[1,cola(2;[1,2])+5]) +  cola(2;[1,2])
-#res:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
-#res:= 3 - 4 + 3 * 5
-#res2:= cola(2;[1,2]) - 4 + cola(1;[1,2,3])
-#res3:= cola(2;[1,2]) - 4 + cola(1;[1,2,3]) * 5
-#res:=-(145+23/(5*3))
-#display(res)
-#display(res2)
-#display(res3)
-
-#a:=30
-#b:=50
-#res := cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5]) + 2*cola(2;[1,1+2])
-#res2 := 2*(-cola(2;[1,1+2])) + cola(b;[10*cola(a;[1,2])+5,10*cola(2;[1,2])+5])
-#display(res)
-#display(res2)
-
-(*if( not ( 5.5 < - ( - cola(3;[1,7,2]) * (7.6 - ( - cola(2;[5,5]) ) ) ) ) ) then
-         display("pasa")
-    else
-        display("no pasa")
-end
-
-a:=1
-if(a==-1)then
-    if(b==-(1*5))then
-          if(c==-2)then
-                display(a+b+c)
-          else
-                 display(a+b)
-          end
-      else
-           display(a)
-      end
-else
-       display("cero")
-end*)
-
-(*while(a==b) do
-    display("hola")
-    c:=c+1
-    while(a==b) do
-        b:=b+5
-        a:=a+3
-        display(b)
-        display(a+1)
-    end
-end*)
-
-#a:=2
-#b:=5
-#res:=cola(2;[cola(2;[3,cola(2;[a, cola(1;[b])]),5]),cola(3;[6,7,8])])
-#t:=3
-#res:= cola(f;[1*3,2,3,cola(3;[3*4,12*1,12*2])])
-#if(100<res) then 
-#display(res)
-#else
-#res:=100-res
-#display(res)
-#end
-
-
-
-#res:=cola(1;[2,cola(3;[4,5,6])])
-#res:=cola(1;[1,2])
-#display(res)
-#res:=cola(2;[a,b])
-#res:=cola(2;[a, cola(1;[b])])
-#res:=cola(2;[a, cola(1;[b, cola(1;[c])])])
-(*res:=cola(a;[b,20+c])
-if(a==0)then
-    if(b==1)then
-          if(c==2)then
-                display(a+b+c)
-          else
-                 display(a+b)
-          end
-      else
-           display(a)
-      end
-else
-       display("cero")
-end
-display("chau")
-b:=cola(c;[5,6,7,8])
-b:=cola(1;[1,2,3])
-xd:=not (true and false)
-display("gola")
-if (a==b) then
-    a:=0
-    end
-while (a+b != c) do
-    c:=c+1
-    end
-display(1+2)
-    a:=-(145+23/(5*3))
-    f:=-(145+23/(5.3*3))
-   a:=3+4+32+2+3+2/(2312*3)
-   f:=1.4+2/123.4+(3*4+2/3)
-    f:=-2
-    res:=cola(2;[a,20+b,1+c*3,2+5/2])
-    res2:=cola(a;[a,20+b,c+1])
-    xd:=not true and false
-    f:=(1+23.3-33)+5/(3.3*43)
-    display(a+33)
-    display("hola esto es una pruebaasdwwww")
-    #res:= 1.24+123.23+1
-    xd:=false and false
-    xd:= 1>2
-    ahre:=not (true and xd) or xd
-    #res:=1.4+4
-#display("hola")
-    res:=cola(2;[a,20+b,c])
-    display("Testeo de TS")
-display("chau")
-display("prueba")
-    display(1+2)
-    res:=cola(2;[a,20+b,1+c*3,2+5/2])
-    xd:=a or not b
-    display(1+3.3)
-   xd:=-true
-   b:=50 + 24
-    if(a==b) then
-        display("hola")
-        a:=3
-       else
-       display("chau")
-       a:=6
-       end
-    while(a==b) do
-            display("hola")
-            a:=3
-           end
-    a:=b+3
-    b:=-(a)
-    display("s")
-    display("asd")
-    r:=not(true)
-    c:=3
-    c:=-45
-    ahre:= c>=4
-    display(a+b)
-    display("aewr") (* donde “ewr�? debe ser una cte literal string *)
-    display(5.5723877 + a)
-    display( 7 <= b )
-    while ( a > 1 ) do
-        display("hola")
-        if (b==c) then
-            b:=b+1
+        #Ahora le diremos segun su edad si es un joven un adolecente un adulto o un adulto mayor
+        if ( edad <= 12 ) then
+            display( "Usted es un joven" )
+        else
+            if ( edad <= 25 ) then
+                display( "Usted es un adolecente" )
+            else
+                if ( edad <= 65 ) then
+                    display( "Usted es un adulto" )
+                else
+                    display( "Usted es un adulto mayor" )
+                end
+            end
         end
+
+        #Luego le diremos si su edad es par o impar
+        edad1 := edad
+        aux2 := true
+        while ( edad1 != 0 ) do
+            edad1 := edad1 - 1
+            aux2 := not aux2
+        end
+        if ( aux2 ) then
+            display( "Su edad es par" )
+        else
+            display( "Su edad es impar" )
+        end
+
+        #Despues le diremos a traves de una cola cuantos anios le faltan para cumplir 100
+        if ( not ( edad >= 100 ) ) then
+            pivot := 100 - edad
+            res := cola( pivot; [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, cola(3;[cola(2;[cola(1;[1]),cola(2;[1,2])]),cola(3;[1,2,3]),cola(4;[1,2,3,4])])-15, 1-2+3-1, -1+cola(2;[edad*0,2]), (1-2*(2/1)+4)*1, (10+10*10-10)/100, -cola(2;[5,-1,2])*(-1), (1+2+3+4)/10, 50/50, 50000-49999, 2-1, 1*1, 1+0, cola(1;[2,1]) ] )
+            display( "Le faltan" )
+            display( res )
+            display( "anios para cumplir los 100" )
+        end
+        
+        #Ahora le preguntaremos sobre su peso aproximado y la altura
+       display( "Ingrese su peso aproximado:" )
+       peso := input_float()
+       display( "Ingrese su altura aproximada:" )
+       altura := input_float()
+       
+       #Ahora haremos algunas operaciones con dichos valores y devolveremos los resultados
+       aux2 := true
+       while ( aux2 ) do
+           display( "Elija una de las siguientes opciones:     Producto=1    Cociente=2    Suma=3    Resta=4" )
+           res := input_int()
+            if ( res == 1 ) then
+               display( "Peso * Altura * Edad:" )
+               display( peso * altura * edad )
+               aux2 := not aux2
+           else
+                if ( res == 2 ) then
+                    display( "Peso / Altura / Edad:" )
+                    display( peso / altura / edad )
+                    aux2 := not aux2
+                else
+                     if ( res == 3 ) then
+                         display( "Peso + Altura + Edad:" )
+                         display( peso + altura + edad )
+                         aux2 := not aux2
+                    else
+                          if ( res == 4 ) then
+                               display( "Peso - Altura - Edad:" )
+                               display( peso - altura - edad )
+                               aux2 := not aux2
+                          else
+                               display( "La opcion elegida no es aceptada, intentelo nuevamente..." )
+                          end
+                    end
+              end
+         end
+      end
+
+        #Finalmente le preguntamos si desea ejecutar nuevamente el programa
+        display( "Desea comenzar de nuevo?      1=Si     0=No" )
+        aux := input_bool()
     end
-   display("hola")*)
 endprogram.section
