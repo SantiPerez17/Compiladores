@@ -10,13 +10,14 @@ TABLA DE SIMBOLOS
                  res                  ID                 Int                   _                   _
                  aux                  ID                Bool                   _                   _
                 aux2                  ID                Bool                   _                   _
-               str10      STRING_LITERAL          CTE_STRING   Ingrese su edad:                   17
-               str11      STRING_LITERAL          CTE_STRING   Usted es un joven                  17
-               str12      STRING_LITERAL          CTE_STRINGUsted es un adolecente                  22
-               str13      STRING_LITERAL          CTE_STRING  Usted es un adulto                  18
-               str14      STRING_LITERAL          CTE_STRINGUsted es un adulto mayor                  24
-               str15      STRING_LITERAL          CTE_STRING      Su edad es par                  14
-               str16      STRING_LITERAL          CTE_STRING    Su edad es impar                  16
+                  ña                  ID                Bool                   _                   _
+               str11      STRING_LITERAL          CTE_STRING   Ingrese su edad:                   17
+               str12      STRING_LITERAL          CTE_STRING    Usted es un niño                  16
+               str13      STRING_LITERAL          CTE_STRINGUsted es un adolecente                  22
+               str14      STRING_LITERAL          CTE_STRING  Usted es un adulto                  18
+               str15      STRING_LITERAL          CTE_STRINGUsted es un señor mayor                  23
+               str16      STRING_LITERAL          CTE_STRING      Su edad es par                  14
+               str17      STRING_LITERAL          CTE_STRING    Su edad es impar                  16
               Pivot1                  ID                 Int                   _                   _
               _Acum1                  ID                 Int                   _                   _
               _Acum2                  ID                 Int                   _                   _
@@ -60,15 +61,15 @@ TABLA DE SIMBOLOS
              _Acum19                  ID                 Int                   _                   _
              _Acum20                  ID                 Int                   _                   _
              IdPos10                  ID                 Int                   _                   _
-               str60      STRING_LITERAL          CTE_STRING           Le faltan                   9
-               str61      STRING_LITERAL          CTE_STRINGanios para cumplir los 100                  26
-               str62      STRING_LITERAL          CTE_STRINGIngrese su peso aproximado:                  27
-               str63      STRING_LITERAL          CTE_STRINGIngrese su altura aproximada:                  29
-               str64      STRING_LITERAL          CTE_STRINGElija una de las siguientes opciones:     Producto=1    Cociente=2    Suma=3    Resta=4                  87
-               str65      STRING_LITERAL          CTE_STRINGPeso * Altura * Edad:                  21
-               str66      STRING_LITERAL          CTE_STRINGPeso / Altura / Edad:                  21
-               str67      STRING_LITERAL          CTE_STRINGPeso + Altura + Edad:                  21
-               str68      STRING_LITERAL          CTE_STRINGPeso - Altura - Edad:                  21
-               str69      STRING_LITERAL          CTE_STRINGLa opcion elegida no es aceptada, intentelo nuevamente...                  57
-               str70      STRING_LITERAL          CTE_STRINGDesea comenzar de nuevo?      1=Si     0=No                  43
+               str61      STRING_LITERAL          CTE_STRING           Le faltan                   9
+               str62      STRING_LITERAL          CTE_STRINGaños para cumplir los 100                  25
+               str63      STRING_LITERAL          CTE_STRINGIngrese su peso aproximado:                  27
+               str64      STRING_LITERAL          CTE_STRINGIngrese su altura aproximada:                  29
+               str65      STRING_LITERAL          CTE_STRINGElija una de las siguientes opciones:     Producto=1    Cociente=2    Suma=3    Resta=4                  87
+               str66      STRING_LITERAL          CTE_STRINGPeso * Altura * Edad:                  21
+               str67      STRING_LITERAL          CTE_STRINGPeso / Altura / Edad:                  21
+               str68      STRING_LITERAL          CTE_STRINGPeso + Altura + Edad:                  21
+               str69      STRING_LITERAL          CTE_STRINGPeso - Altura - Edad:                  21
+               str70      STRING_LITERAL          CTE_STRINGLa opción elegida no es aceptada, intentelo nuevamente...                  57
+               str71      STRING_LITERAL          CTE_STRINGDesea comenzar de nuevo?      1=Si     0=No                  43
 

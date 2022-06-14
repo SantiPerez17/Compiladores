@@ -5,6 +5,7 @@ package archivos.ast.Base;
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Sentencias.Sentencia;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -71,7 +72,7 @@ public class Programa extends Nodo{
 
         //Se recorre la tabla de simbolos y se declaran todas las variables encontradas, incluyendo las cadenas de caracteres
         for (String s : tablaSimbolos2.keySet()){
-            String nombre = s;
+            String nombre = Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
             String tipo = tablaSimbolos2.get(s).get(1);
             String tipoll;
             if (tipo == "Int"){
@@ -84,7 +85,7 @@ public class Programa extends Nodo{
                 tipoll = "i1";
                 resultado.append("@" + nombre + " = global " + tipoll + " 0\n");
             } else {
-                String cadena = tablaSimbolos2.get(s).get(2);
+                String cadena = Normalizer.normalize(tablaSimbolos2.get(s).get(2), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
                 int caracteres = cadena.length() + 3;
                 tipoll = "private constant [" + caracteres + " x i8]";
                 resultado.append("@" + nombre + " = " + tipoll + " c\"\\0A" + cadena + "\\0A\\00\"\n");
@@ -122,6 +123,9 @@ public class Programa extends Nodo{
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
         resultado.append("\n\t"+this.getIr_ref()+":\n");
         resultado.append("\tret i32 0\n}\n");
+
+        //Aqui quitamos todos los caracteres NO ASCII del codigo generado
+        resultado = new StringBuilder(Normalizer.normalize(resultado.toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", ""));
         return resultado.toString();
     }
 

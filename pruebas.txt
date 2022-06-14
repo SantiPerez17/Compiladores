@@ -1,12 +1,13 @@
 declare.section
     float : peso, altura, resultado;
     int : edad, edad1, pivot, res;
-    bool :aux, aux2;
+    bool :aux, aux2, ña;
 enddeclare.section
 
 program.section
 
     #Primero le preguntaremos su edad
+    ña := true
     aux := true
     while ( aux ) do
         display( "Ingrese su edad: " )
@@ -14,7 +15,7 @@ program.section
 
         #Ahora le diremos segun su edad si es un joven un adolecente un adulto o un adulto mayor
         if ( edad <= 12 ) then
-            display( "Usted es un joven" )
+            display( "Usted es un niño" )
         else
             if ( edad <= 25 ) then
                 display( "Usted es un adolecente" )
@@ -22,7 +23,7 @@ program.section
                 if ( edad <= 65 ) then
                     display( "Usted es un adulto" )
                 else
-                    display( "Usted es un adulto mayor" )
+                    display( "Usted es un señor mayor" )
                 end
             end
         end
@@ -46,7 +47,7 @@ program.section
             res := cola( pivot; [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, cola(3;[cola(2;[cola(1;[1]),cola(2;[1,2])]),cola(3;[1,2,3]),cola(4;[1,2,3,4])])-15, 1-2+3-1, -1+cola(2;[edad*0,2]), (1-2*(2/1)+4)*1, (10+10*10-10)/100, -cola(2;[5,-1,2])*(-1), (1+2+3+4)/10, 50/50, 50000-49999, 2-1, 1*1, 1+0, cola(1;[2,1]) ] )
             display( "Le faltan" )
             display( res )
-            display( "anios para cumplir los 100" )
+            display( "años para cumplir los 100" )
         end
         
         #Ahora le preguntaremos sobre su peso aproximado y la altura
@@ -80,7 +81,7 @@ program.section
                                display( peso - altura - edad )
                                aux2 := not aux2
                           else
-                               display( "La opcion elegida no es aceptada, intentelo nuevamente..." )
+                               display( "La opción elegida no es aceptada, intentelo nuevamente..." )
                           end
                     end
               end
