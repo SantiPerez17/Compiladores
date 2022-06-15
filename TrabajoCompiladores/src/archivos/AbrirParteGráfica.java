@@ -70,7 +70,6 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
         JButton btn6 = new JButton("Generar LLVM");
         btn6.setBackground(Color.BLACK);
         btn6.setForeground(Color.WHITE);
-
         btn6.addActionListener(this);
         panel1.add( btn6 );
 
