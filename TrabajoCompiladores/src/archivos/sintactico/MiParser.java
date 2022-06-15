@@ -37,8 +37,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
-
 import java.util.*;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1576,7 +1576,7 @@ class CUP$MiParser$actions {
 
         //Creamos la cola con lo que necesitamos para obtener su valor
         //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
-        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),acum,acumAux,le,p);
+        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),acum,acumAux,le,p,pivot,pos);
         cola.colasInternas(le);
         Collections.reverse(cola.getColas());
 

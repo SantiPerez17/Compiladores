@@ -562,7 +562,7 @@ funcion_especial ::=
 
         //Creamos la cola con lo que necesitamos para obtener su valor
         //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
-        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),acum,acumAux,le,p);
+        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),acum,acumAux,le,p,pivot,pos);
         cola.colasInternas(le);
         Collections.reverse(cola.getColas());
 

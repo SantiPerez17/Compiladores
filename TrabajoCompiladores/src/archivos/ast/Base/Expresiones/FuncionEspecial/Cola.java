@@ -22,6 +22,8 @@ public class Cola extends Expresion {
     private IfElse ifelse;
     private Identificador acum;
     private Identificador acumAux;
+    private Identificador PivotAux;
+    private Identificador IdPos;
 
     public Asignacion getAsignacion() {
         return asignacion;
@@ -79,7 +81,23 @@ public class Cola extends Expresion {
         this.pivot = pivot;
     }
 
-    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Identificador getPivotAux() {
+        return PivotAux;
+    }
+
+    public void setPivot(Identificador pivot_aux) {
+        this.PivotAux = pivot_aux;
+    }
+
+    public Identificador getIdPos() {
+        return IdPos;
+    }
+
+    public void setIdPos(Identificador idPos) {
+        this.IdPos = idPos;
+    }
+
+    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
         super(tipo);
         this.asignacion = asignacion;
         this.colas = colas;
@@ -88,9 +106,11 @@ public class Cola extends Expresion {
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
+        this.PivotAux = PivotAux;
+        this.IdPos = IdPos;
     }
 
-    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
         this.asignacion = asignacion;
         this.colas = colas;
         this.ifelse = ifelse;
@@ -98,9 +118,11 @@ public class Cola extends Expresion {
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
+        this.PivotAux = PivotAux;
+        this.IdPos = IdPos;
     }
 
-    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
         super(nombre);
         this.asignacion = asignacion;
         this.colas = colas;
@@ -109,9 +131,11 @@ public class Cola extends Expresion {
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
+        this.PivotAux = PivotAux;
+        this.IdPos = IdPos;
     }
 
-    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot) {
+    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
         super(nombre, tipo);
         this.asignacion = asignacion;
         this.colas = colas;
@@ -120,6 +144,8 @@ public class Cola extends Expresion {
         this.acumAux = acumAux;
         this.expresiones = expresiones;
         this.pivot = pivot;
+        this.PivotAux = PivotAux;
+        this.IdPos = IdPos;
     }
 
     //Este metodo recursivo se encarga de apilar las colas internas. Contempla si la cola esta dentro de una expresion binaria o unaria. Se llama desde el parser, y las guarda en la lista de colas
