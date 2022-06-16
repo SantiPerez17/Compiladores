@@ -1,0 +1,95 @@
+declare.section
+    float : peso, altura, resultado;
+    int : edad, edad1, pivot, res;
+    bool :aux, aux2, ña;
+enddeclare.section
+
+program.section
+
+    #Primero le preguntaremos su edad
+    ña := true
+    aux := true
+    while ( aux ) do
+        display( "Ingrese su edad: " )
+        edad := input_int()
+
+        #Ahora le diremos segun su edad si es un joven un adolecente un adulto o un adulto mayor
+        if ( edad <= 12 ) then
+            display( "Usted es un niño" )
+        else
+            if ( edad <= 25 ) then
+                display( "Usted es un adolecente" )
+            else
+                if ( edad <= 65 ) then
+                    display( "Usted es un adulto" )
+                else
+                    display( "Usted es un señor mayor" )
+                end
+            end
+        end
+
+        #Luego le diremos si su edad es par o impar
+        edad1 := edad
+        aux2 := true
+        while ( edad1 != 0 ) do
+            edad1 := edad1 - 1
+            aux2 := not aux2
+        end
+        if ( aux2 ) then
+            display( "Su edad es par" )
+        else
+            display( "Su edad es impar" )
+        end
+
+        #Despues le diremos a traves de una cola cuantos anios le faltan para cumplir 100
+        if ( not ( edad >= 100 ) ) then
+            pivot := 100 - edad
+            res := cola( pivot; [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, cola(3;[cola(2;[cola(1;[1]),cola(2;[1,2])]),cola(3;[1,2,3]),cola(4;[1,2,3,4])])-15, 1-2+3-1, -1+cola(2;[edad*0,2]), (1-2*(2/1)+4)*1, (10+10*10-10)/100, -cola(2;[5,-1,2])*(-1), (1+2+3+4)/10, 50/50, 50000-49999, 2-1, 1*1, 1+0, cola(1;[2,1]) ] )
+            display( "Le faltan" )
+            display( res )
+            display( "años para cumplir los 100" )
+        end
+        
+        #Ahora le preguntaremos sobre su peso aproximado y la altura
+       display( "Ingrese su peso aproximado:" )
+       peso := input_float()
+       display( "Ingrese su altura aproximada:" )
+       altura := input_float()
+       
+       #Ahora haremos algunas operaciones con dichos valores y devolveremos los resultados
+       aux2 := true
+       while ( aux2 ) do
+           display( "Elija una de las siguientes opciones:     Producto=1    Cociente=2    Suma=3    Resta=4" )
+           res := input_int()
+            if ( res == 1 ) then
+               display( "Peso * Altura * Edad:" )
+               display( peso * altura * edad )
+               aux2 := not aux2
+           else
+                if ( res == 2 ) then
+                    display( "Peso / Altura / Edad:" )
+                    display( peso / altura / edad )
+                    aux2 := not aux2
+                else
+                     if ( res == 3 ) then
+                         display( "Peso + Altura + Edad:" )
+                         display( peso + altura + edad )
+                         aux2 := not aux2
+                    else
+                          if ( res == 4 ) then
+                               display( "Peso - Altura - Edad:" )
+                               display( peso - altura - edad )
+                               aux2 := not aux2
+                          else
+                               display( "La opción elegida no es aceptada, intentelo nuevamente..." )
+                          end
+                    end
+              end
+         end
+      end
+
+        #Finalmente le preguntamos si desea ejecutar nuevamente el programa
+        display( "Desea comenzar de nuevo?      1=Si     0=No" )
+        aux := input_bool()
+    end
+endprogram.section

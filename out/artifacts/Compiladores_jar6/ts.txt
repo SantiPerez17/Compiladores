@@ -1,0 +1,75 @@
+TABLA DE SIMBOLOS 
+              NOMBRE               TOKEN                TIPO               VALOR                LONG
+
+                peso                  ID               Float                   _                   _
+              altura                  ID               Float                   _                   _
+           resultado                  ID               Float                   _                   _
+                edad                  ID                 Int                   _                   _
+               edad1                  ID                 Int                   _                   _
+               pivot                  ID                 Int                   _                   _
+                 res                  ID                 Int                   _                   _
+                 aux                  ID                Bool                   _                   _
+                aux2                  ID                Bool                   _                   _
+                  ña                  ID                Bool                   _                   _
+               str11      STRING_LITERAL          CTE_STRING   Ingrese su edad:                   17
+               str12      STRING_LITERAL          CTE_STRING    Usted es un niño                  16
+               str13      STRING_LITERAL          CTE_STRINGUsted es un adolecente                  22
+               str14      STRING_LITERAL          CTE_STRING  Usted es un adulto                  18
+               str15      STRING_LITERAL          CTE_STRINGUsted es un señor mayor                  23
+               str16      STRING_LITERAL          CTE_STRING      Su edad es par                  14
+               str17      STRING_LITERAL          CTE_STRING    Su edad es impar                  16
+             Pivot41                  ID                 Int                   _                   _
+             _Acum81                  ID                 Int                   _                   _
+             _Acum82                  ID                 Int                   _                   _
+             IdPos41                  ID                 Int                   _                   _
+         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
+         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
+         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
+             Pivot42                  ID                 Int                   _                   _
+             _Acum83                  ID                 Int                   _                   _
+             _Acum84                  ID                 Int                   _                   _
+             IdPos42                  ID                 Int                   _                   _
+             Pivot43                  ID                 Int                   _                   _
+             _Acum85                  ID                 Int                   _                   _
+             _Acum86                  ID                 Int                   _                   _
+             IdPos43                  ID                 Int                   _                   _
+             Pivot44                  ID                 Int                   _                   _
+             _Acum87                  ID                 Int                   _                   _
+             _Acum88                  ID                 Int                   _                   _
+             IdPos44                  ID                 Int                   _                   _
+             Pivot45                  ID                 Int                   _                   _
+             _Acum89                  ID                 Int                   _                   _
+             _Acum90                  ID                 Int                   _                   _
+             IdPos45                  ID                 Int                   _                   _
+             Pivot46                  ID                 Int                   _                   _
+             _Acum91                  ID                 Int                   _                   _
+             _Acum92                  ID                 Int                   _                   _
+             IdPos46                  ID                 Int                   _                   _
+             Pivot47                  ID                 Int                   _                   _
+             _Acum93                  ID                 Int                   _                   _
+             _Acum94                  ID                 Int                   _                   _
+             IdPos47                  ID                 Int                   _                   _
+             Pivot48                  ID                 Int                   _                   _
+             _Acum95                  ID                 Int                   _                   _
+             _Acum96                  ID                 Int                   _                   _
+             IdPos48                  ID                 Int                   _                   _
+             Pivot49                  ID                 Int                   _                   _
+             _Acum97                  ID                 Int                   _                   _
+             _Acum98                  ID                 Int                   _                   _
+             IdPos49                  ID                 Int                   _                   _
+             Pivot50                  ID                 Int                   _                   _
+             _Acum99                  ID                 Int                   _                   _
+            _Acum100                  ID                 Int                   _                   _
+             IdPos50                  ID                 Int                   _                   _
+               str61      STRING_LITERAL          CTE_STRING           Le faltan                   9
+               str62      STRING_LITERAL          CTE_STRINGaños para cumplir los 100                  25
+               str63      STRING_LITERAL          CTE_STRINGIngrese su peso aproximado:                  27
+               str64      STRING_LITERAL          CTE_STRINGIngrese su altura aproximada:                  29
+               str65      STRING_LITERAL          CTE_STRINGElija una de las siguientes opciones:     Producto=1    Cociente=2    Suma=3    Resta=4                  87
+               str66      STRING_LITERAL          CTE_STRINGPeso * Altura * Edad:                  21
+               str67      STRING_LITERAL          CTE_STRINGPeso / Altura / Edad:                  21
+               str68      STRING_LITERAL          CTE_STRINGPeso + Altura + Edad:                  21
+               str69      STRING_LITERAL          CTE_STRINGPeso - Altura - Edad:                  21
+               str70      STRING_LITERAL          CTE_STRINGLa opción elegida no es aceptada, intentelo nuevamente...                  57
+               str71      STRING_LITERAL          CTE_STRINGDesea comenzar de nuevo?      1=Si     0=No                  43
+
