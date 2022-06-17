@@ -611,9 +611,13 @@ class CUP$MiParser$actions {
                     tablaSimbolos2.put(s,hg);
                     simbolos.append(String.format("%20s%20s%20s%20s%20s%n", s, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}}}
         else{
-            ArrayList<String> hg = new ArrayList<String>(Arrays.asList("ID",td.name(),"_","_"));
-            tablaSimbolos2.put(i,hg);
-            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", i, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}
+            if (tablaSimbolos2.containsKey(i)){
+                throw new Exception("Variable " + i + " ya declarada." );
+            }
+            else{
+                ArrayList<String> hg = new ArrayList<String>(Arrays.asList("ID",td.name(),"_","_"));
+                tablaSimbolos2.put(i,hg);
+                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", i, hg.get(0), hg.get(1), hg.get(2), hg.get(3)));}}
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("declaracion",24, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
