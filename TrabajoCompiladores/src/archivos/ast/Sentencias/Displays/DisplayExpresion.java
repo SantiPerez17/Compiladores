@@ -1,6 +1,7 @@
 package archivos.ast.Sentencias.Displays;
 
 import archivos.CodeGeneratorHelper;
+import archivos.ast.Base.Constantes.ConstanteEntera;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
 import archivos.ast.Base.Identificador;
@@ -46,13 +47,21 @@ public class DisplayExpresion extends Display {
             for (Expresion c : cola.getColas()) {
                 Cola cola1 = (Cola) c;
 
-                //Asignacion del pivot de las colas internas
+                //Ponemos en 0 los acum
+                Asignacion asig0 = new Asignacion("Asignacion", cola1.getAcum(), new ConstanteEntera("0",Tipo.Int));
                 if (aux > 0) {
                     this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                    resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                    resultado.append(asig0.generarCodigo(this.getIr_ref() + ":\n"));
                 } else {
-                    resultado.append(cola1.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+                    resultado.append(asig0.generarCodigo(etiqueta.replaceAll("Cola", "")));
                 }
+                Asignacion asig00 = new Asignacion("Asignacion", cola1.getAcumAux(), new ConstanteEntera("0",Tipo.Int));
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig00.generarCodigo(this.getIr_ref() + ":\n"));
+
+                //Asignacion del pivot
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(cola1.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
                 //Sentencias if de las colas internas
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -65,16 +74,34 @@ public class DisplayExpresion extends Display {
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
                 resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
 
+                //Reseteamos la variable PivotAux de las colas internas
+                Asignacion asig2 = new Asignacion("Asignacion", cola1.getPivotAux(), cola1.getPivot());
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig2.generarCodigo(this.getIr_ref() + ":\n"));
+
+                //Reseteamos la variable IdPos de las colas internas
+                Asignacion asig3 = new Asignacion("Asignacion", cola1.getIdPos(), new ConstanteEntera("0",Tipo.Int));
+                this.setIr_ref(CodeGeneratorHelper.getNewTag());
+                resultado.append(asig3.generarCodigo(this.getIr_ref() + ":\n"));
+
                 aux += 1;
             }
 
-            //Asignacion del pivot de la cola
+            //Ponemos en 0 los acum
+            Asignacion asig0 = new Asignacion("Asignacion", cola.getAcum(), new ConstanteEntera("0",Tipo.Int));
             if (aux > 0) {
                 this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
+                resultado.append(asig0.generarCodigo(this.getIr_ref() + ":\n"));
             } else {
-                resultado.append(cola.getAsignacion().generarCodigo(etiqueta.replaceAll("Cola", "")));
+                resultado.append(asig0.generarCodigo(etiqueta.replaceAll("Cola", "")));
             }
+            Asignacion asig00 = new Asignacion("Asignacion", cola.getAcumAux(), new ConstanteEntera("0",Tipo.Int));
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig00.generarCodigo(this.getIr_ref() + ":\n"));
+
+            //Asignacion del pivot
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(cola.getAsignacion().generarCodigo(this.getIr_ref() + ":\n"));
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
@@ -86,6 +113,16 @@ public class DisplayExpresion extends Display {
             Asignacion asig1 = new Asignacion("Asignacion", identificador3, identificador2);
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
             resultado.append(asig1.generarCodigo(this.getIr_ref() + ":\n"));
+
+            //Reseteamos la variable PivotAux de la cola
+            Asignacion asig2 = new Asignacion("Asignacion", cola.getPivotAux(), cola.getPivot());
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig2.generarCodigo(this.getIr_ref() + ":\n"));
+
+            //Reseteamos la variable IdPos de la cola
+            Asignacion asig3 = new Asignacion("Asignacion", cola.getIdPos(), new ConstanteEntera("0",Tipo.Int));
+            this.setIr_ref(CodeGeneratorHelper.getNewTag());
+            resultado.append(asig3.generarCodigo(this.getIr_ref() + ":\n"));
 
             //Se carga el valor de la cola en una variable auxiliar, y se llama a la funcion @printf para imprimir por consola el valor de la cola.
             this.setIr_ref(CodeGeneratorHelper.getNewTag());

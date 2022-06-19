@@ -92,4 +92,5 @@ program.section
         display( "Desea comenzar de nuevo?      1=Si     0=No" )
         aux := input_bool()
     end
+
 endprogram.section
