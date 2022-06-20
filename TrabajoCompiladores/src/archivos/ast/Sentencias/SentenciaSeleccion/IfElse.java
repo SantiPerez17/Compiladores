@@ -101,20 +101,20 @@ public class IfElse extends Sentencia {
         this.setIr_ref(CodeGeneratorHelper.getNewTag());
 
         //Recorro las sentencias del then y genero el codigo para cada una de ellas.
-        int aux = 0;
+        int aux1 = 0;
         for (Sentencia s: sentencias1){
-            if (aux>0){
-                this.sentencias1.get(aux).setIr_ref(CodeGeneratorHelper.getNewTag());
+            if (aux1>0){
+                this.sentencias1.get(aux1).setIr_ref(CodeGeneratorHelper.getNewTag());
             }
 
             //Si es una cola y estamos en la ultima sentencia de la misma, debo hacer un reemplazo de etiquetas
             if(etiqueta.contains("Cola")){
-                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+"Cola:\n"));
-                if(aux == 2){
+                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+"Cola:\n"));
+                if(aux1 == 2 && this.sentencias1.get(aux1).getNombre().equals("Asignacion")){
                     try{
                         int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
                         int end2 = String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)).length()+start2;
-                        resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiqZZ"));
+                        resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+2)));
                     } catch (Exception e){
                     }
                 }
@@ -122,7 +122,7 @@ public class IfElse extends Sentencia {
 
                 //Si es un ifElse, genero el codigo normal y hago el reemplazo de las etiquetas XX por las que corresponden.
                 if(s.getNombre() == "IfElse"){
-                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+":\n"));
                     String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
                     boolean aux2 = true;
                     while(aux2){
@@ -136,10 +136,10 @@ public class IfElse extends Sentencia {
                 } else {
 
                     //Sino, simplemente genero el codigo para la sentencia
-                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux).getIr_ref()+":\n"));
+                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+":\n"));
                 }
             }
-            aux+=1;
+            aux1+=1;
         }
 
         //Aqui hago el reemplazo de las etiquetas que deben ser cambiadas, les pongo %etiqXX
@@ -163,11 +163,6 @@ public class IfElse extends Sentencia {
             //Si es una cola y estamos en la ultima sentencia de la misma, debo hacer un reemplazo de etiquetas
             if(etiqueta.contains("Cola")){
                 resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+"Cola:\n"));
-                try{
-                    int start = resultado_sentencias1.indexOf("br label %etiqZZ");
-                    resultado_sentencias1.replace(start,start+16,"br label %etiq"+(CodeGeneratorHelper.getNextTag()+1));
-                }catch (Exception e){
-                }
             } else {
 
                 //Si es un ifElse, genero el codigo normal y hago el reemplazo de las etiquetas XX por las que corresponden.

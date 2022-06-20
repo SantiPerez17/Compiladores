@@ -5,7 +5,9 @@ declare.section
 enddeclare.section
 
 program.section
-
+    res:= cola(2;[1,2,3,4,5])
+    display(res)
+(*
     #Primero le preguntaremos su edad
     ña := true
     aux := true
@@ -43,8 +45,8 @@ program.section
 
         #Despues le diremos a traves de una cola cuantos anios le faltan para cumplir 100
         if ( not ( edad >= 100 ) ) then
-            pivot := 100 - edad
-            res := cola( pivot; [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, cola(3;[cola(2;[cola(1;[1]),cola(2;[1,2])]),cola(3;[1,2,3]),cola(4;[1,2,3,4])])-15, 1-2+3-1, -1+cola(2;[edad*0,2]), (1-2*(2/1)+4)*1, (10+10*10-10)/100, -cola(2;[5,-1,2])*(-1), (1+2+3+4)/10, 50/50, 50000-49999, 2-1, 1*1, 1+0, cola(1;[2,1]) ] )
+            pivot := 100 - edad        
+            res := cola( pivot; [ 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 ] )
             display( "Le faltan" )
             display( res )
             display( "años para cumplir los 100" )
@@ -92,5 +94,5 @@ program.section
         display( "Desea comenzar de nuevo?      1=Si     0=No" )
         aux := input_bool()
     end
-
+*)
 endprogram.section

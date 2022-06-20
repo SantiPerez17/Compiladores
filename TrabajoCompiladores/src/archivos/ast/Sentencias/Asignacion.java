@@ -137,7 +137,7 @@ public class Asignacion extends Sentencia{
 
             //Sentencias if de la cola
             this.setIr_ref(CodeGeneratorHelper.getNewTag());
-            resultado.append(expresion.generarCodigo(this.getIr_ref() + ":\n"));
+            resultado.append(cola.generarCodigo(this.getIr_ref() + ":\n"));
 
             //Asignacion de la variable Acum de la cola
             Identificador identificador2 = new Identificador(cola.getAcum().getNombre(), cola.getTipo());
