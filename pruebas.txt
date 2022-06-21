@@ -1,12 +1,27 @@
 declare.section
     float : peso, altura, resultado;
-    int : edad, edad1, pivot, res;
+    int : edad, edad1,pivot, res,res2,res3,res4;
     bool :aux, aux2, ña;
 enddeclare.section
 
 program.section
-    res:= cola(2;[1,2,3,4,5])
-    display(res)
+pivot:=1
+res:=-cola(pivot;[1])
+res2:=1 + cola(2;[1,2])
+res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
+res4:= cola(1;[1,cola(2;[1,2])+5]) +  cola(2;[1,2])
+display(res + res2 + res3 + res4)
+display(res)
+display(res2)
+display(res3)
+display(res4)
+    (*resultado := 3
+    pivot :=5
+    while (resultado > 0) do
+        IdPos1:=100
+        display(input_float() + cola(pivot;[1,2,3,4,5])*100)
+        resultado := resultado - 1
+    end*)
 (*
     #Primero le preguntaremos su edad
     ña := true

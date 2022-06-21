@@ -8,14 +8,41 @@ TABLA DE SIMBOLOS
                edad1                  ID                 Int                   _                   _
                pivot                  ID                 Int                   _                   _
                  res                  ID                 Int                   _                   _
+                res2                  ID                 Int                   _                   _
+                res3                  ID                 Int                   _                   _
+                res4                  ID                 Int                   _                   _
                  aux                  ID                Bool                   _                   _
                 aux2                  ID                Bool                   _                   _
                   ña                  ID                Bool                   _                   _
-              Pivot1                  ID                 Int                   _                   _
+             _Pivot1                  ID                 Int                   _                   _
               _Acum1                  ID                 Int                   _                   _
               _Acum2                  ID                 Int                   _                   _
-              IdPos1                  ID                 Int                   _                   _
+             _IdPos1                  ID                 Int                   _                   _
          strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
          strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
          strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
+             _Pivot2                  ID                 Int                   _                   _
+              _Acum3                  ID                 Int                   _                   _
+              _Acum4                  ID                 Int                   _                   _
+             _IdPos2                  ID                 Int                   _                   _
+             _Pivot3                  ID                 Int                   _                   _
+              _Acum5                  ID                 Int                   _                   _
+              _Acum6                  ID                 Int                   _                   _
+             _IdPos3                  ID                 Int                   _                   _
+             _Pivot4                  ID                 Int                   _                   _
+              _Acum7                  ID                 Int                   _                   _
+              _Acum8                  ID                 Int                   _                   _
+             _IdPos4                  ID                 Int                   _                   _
+             _Pivot5                  ID                 Int                   _                   _
+              _Acum9                  ID                 Int                   _                   _
+             _Acum10                  ID                 Int                   _                   _
+             _IdPos5                  ID                 Int                   _                   _
+             _Pivot6                  ID                 Int                   _                   _
+             _Acum11                  ID                 Int                   _                   _
+             _Acum12                  ID                 Int                   _                   _
+             _IdPos6                  ID                 Int                   _                   _
+             _Pivot7                  ID                 Int                   _                   _
+             _Acum13                  ID                 Int                   _                   _
+             _Acum14                  ID                 Int                   _                   _
+             _IdPos7                  ID                 Int                   _                   _
 
