@@ -5,7 +5,7 @@ declare.section
 enddeclare.section
 
 program.section
-pivot:=1
+(*pivot:=1
 res:=-cola(pivot;[1])
 res2:=1 + cola(2;[1,2])
 res3:= cola(1;[2,cola(3;[4,5,6])]) + 1
@@ -15,14 +15,14 @@ display(res)
 display(res2)
 display(res3)
 display(res4)
-    (*resultado := 3
+    resultado := 3
     pivot :=5
     while (resultado > 0) do
         IdPos1:=100
         display(input_float() + cola(pivot;[1,2,3,4,5])*100)
         resultado := resultado - 1
     end*)
-(*
+
     #Primero le preguntaremos su edad
     ña := true
     aux := true
@@ -109,5 +109,5 @@ display(res4)
         display( "Desea comenzar de nuevo?      1=Si     0=No" )
         aux := input_bool()
     end
-*)
+
 endprogram.section
