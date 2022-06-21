@@ -11,12 +11,14 @@ import archivos.ast.Base.Expresiones.Inputs.Input_Bool;
 import archivos.ast.Base.Expresiones.Inputs.Input_Float;
 import archivos.ast.Base.Expresiones.Inputs.Input_Int;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Division;
+import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Multiplicacion;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Resta;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Suma;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.comparaciones.*;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
@@ -107,6 +109,12 @@ parser code
                throw new Exception("No se aceptan tipos "+ p.getTipo().name() + " en funcion especial Cola.");
            }
         }
+
+    private static void checkTipoOpBinaria(Expresion cond) throws Exception {
+                if (!( (cond instanceof OperacionBinaria || cond instanceof OperacionUnaria) && cond.getTipo() == Tipo.Bool || cond instanceof ConstanteBool)){
+                    throw new Exception("Solamente se aceptan expresiones booleanas para condiciones en estructuras de control o iteración.");
+                }
+            }
 :};
 
 terminal SUMA, RESTA, MULT, DIV, ASIGN, PARENTESISO, PARENTESISC, CORCHETEO, CORCHETEC, PUNTOCOMA,
@@ -236,6 +244,7 @@ sentencia ::=
 sentencia_while ::=
         WHILE PARENTESISO exp_or:c PARENTESISC DO lista_sentencias:ls END {:
             concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
+            checkTipoOpBinaria(c);
             RESULT = new While("While",c,ls);
         :};
 
@@ -253,11 +262,13 @@ sentencia_if ::=
 if_simple ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls END {:
             concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
+            checkTipoOpBinaria(cond);
             RESULT = new IfSimple("IfSimple", cond, ls);
         :};
 if_else ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
             concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
+            checkTipoOpBinaria(cond);
             RESULT = new IfElse("IfElse", cond, ls, ls2);
         :};
 

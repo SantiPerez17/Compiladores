@@ -1,10 +1,17 @@
 declare.section
     float : peso, altura, resultado;
-    int : edad, edad1,pivot, res,res2,res3,res4;
+    int : edad, edad1,pivot, res,res2,res3,res4,a;
     bool :aux, aux2, ña;
 enddeclare.section
 
 program.section
+
+a:=0
+while (1+23*3) do
+    display(a)
+    a:=a+1
+end
+
 (*pivot:=1
 res:=-cola(pivot;[1])
 res2:=1 + cola(2;[1,2])
@@ -21,7 +28,7 @@ display(res4)
         IdPos1:=100
         display(input_float() + cola(pivot;[1,2,3,4,5])*100)
         resultado := resultado - 1
-    end*)
+    end
 
     #Primero le preguntaremos su edad
     ña := true
@@ -108,6 +115,6 @@ display(res4)
         #Finalmente le preguntamos si desea ejecutar nuevamente el programa
         display( "Desea comenzar de nuevo?      1=Si     0=No" )
         aux := input_bool()
-    end
+    end*)
 
 endprogram.section
