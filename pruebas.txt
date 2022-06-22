@@ -6,8 +6,8 @@ enddeclare.section
 
 program.section
 
-while(a) do
-        display("Hola mundo")
+while(a<1) do
+        res:=-cola(pivot;[1])
 end
 
 (*pivot:=1
