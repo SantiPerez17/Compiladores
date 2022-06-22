@@ -110,9 +110,9 @@ parser code
            }
         }
 
-    private static void checkTipoOpBinaria(Expresion cond) throws Exception {
-                if (!( (cond instanceof OperacionBinaria || cond instanceof OperacionUnaria) && cond.getTipo() == Tipo.Bool || cond instanceof ConstanteBool)){
-                    throw new Exception("Solamente se aceptan expresiones booleanas para condiciones en estructuras de control o iteración.");
+    private static void checkTipoCond(Expresion cond) throws Exception {
+                if (!(cond.getTipo() == Tipo.Bool)){
+                    throw new Exception("No se aceptan tipos " + cond.getTipo().name()  + " en condiciones de estructuras de control o iteración.");
                 }
             }
 :};
@@ -244,7 +244,7 @@ sentencia ::=
 sentencia_while ::=
         WHILE PARENTESISO exp_or:c PARENTESISC DO lista_sentencias:ls END {:
             concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
-            checkTipoOpBinaria(c);
+            checkTipoCond(c);
             RESULT = new While("While",c,ls);
         :};
 
@@ -262,13 +262,13 @@ sentencia_if ::=
 if_simple ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls END {:
             concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
-            checkTipoOpBinaria(cond);
+            checkTipoCond(cond);
             RESULT = new IfSimple("IfSimple", cond, ls);
         :};
 if_else ::=
         IF PARENTESISO exp_or:cond PARENTESISC THEN lista_sentencias:ls ELSE lista_sentencias:ls2 END {:
             concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
-            checkTipoOpBinaria(cond);
+            checkTipoCond(cond);
             RESULT = new IfElse("IfElse", cond, ls, ls2);
         :};
 

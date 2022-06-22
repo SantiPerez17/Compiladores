@@ -6,10 +6,8 @@ enddeclare.section
 
 program.section
 
-a:=0
-while (1+23*3) do
-    display(a)
-    a:=a+1
+while(a) do
+        display("Hola mundo")
 end
 
 (*pivot:=1

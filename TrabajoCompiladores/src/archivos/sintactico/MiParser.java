@@ -462,9 +462,9 @@ public class MiParser extends java_cup.runtime.lr_parser {
            }
         }
 
-    private static void checkTipoOpBinaria(Expresion cond) throws Exception {
-                if (!( (cond instanceof OperacionBinaria || cond instanceof OperacionUnaria) && cond.getTipo() == Tipo.Bool || cond instanceof ConstanteBool)){
-                    throw new Exception("Solamente se aceptan expresiones booleanas para condiciones en estructuras de control o iteración.");
+    private static void checkTipoCond(Expresion cond) throws Exception {
+                if (!(cond.getTipo() == Tipo.Bool)){
+                    throw new Exception("No se aceptan tipos " + cond.getTipo().name()  + " en condiciones de estructuras de control o iteración.");
                 }
             }
 
@@ -823,7 +823,7 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 4: sentencia_while --> WHILE PARENTESISO exp_or PARENTESISC DO lista_sentencias END " + "\n\t --> " + "while ( " + c + " ) do" + ls + "end" + " " );
-            checkTipoOpBinaria(c);
+            checkTipoCond(c);
             RESULT = new While("While",c,ls);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_while",7, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -872,7 +872,7 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 5.1: if_simple --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias END " + "\n\t --> " + " if ( " + cond + " ) then " + ls + " end ");
-            checkTipoOpBinaria(cond);
+            checkTipoCond(cond);
             RESULT = new IfSimple("IfSimple", cond, ls);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("if_simple",9, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-6)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -894,7 +894,7 @@ class CUP$MiParser$actions {
 		List<Sentencia> ls2 = (List<Sentencia>)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-1)).value;
 		
             concat_rules("REGLA 5.2: if_else --> IF PARENTESISO exp_or PARENTESISC THEN lista_sentencias ELSE lista_sentencias END " + "\n\t --> " + "if ( " + cond + " ) then " + ls + " else " + ls2 + "end ");
-            checkTipoOpBinaria(cond);
+            checkTipoCond(cond);
             RESULT = new IfElse("IfElse", cond, ls, ls2);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("if_else",10, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-8)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
