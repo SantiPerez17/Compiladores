@@ -5,6 +5,7 @@ import archivos.ast.Base.Constantes.ConstanteEntera;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
 import archivos.ast.Base.Identificador;
+import archivos.ast.Base.Programa;
 import archivos.ast.Base.Tipo;
 
 public class Asignacion extends Sentencia{
@@ -49,6 +50,10 @@ public class Asignacion extends Sentencia{
         grafico.append(super.graficar(idPadre));
         grafico.append(identificador.graficar(this.getId()));
         grafico.append(expresion.graficar(this.getId()));
+
+        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
+
         return grafico.toString();
     }
 

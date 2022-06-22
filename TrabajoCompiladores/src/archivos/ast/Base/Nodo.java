@@ -2,6 +2,7 @@ package archivos.ast.Base;
 
 public abstract class Nodo{
     private String nombre;
+    private String etiquetaLLVM = ""; //va a tener la forma etiq + un numero (que se saca del code helper)
 
     public Nodo() {}
 
@@ -15,6 +16,14 @@ public abstract class Nodo{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getEtiquetaLLVM() {
+        return etiquetaLLVM;
+    }
+
+    public void setEtiquetaLLVM(String etiquetaLLVM) {
+        this.etiquetaLLVM = etiquetaLLVM;
     }
 
     public String getEtiqueta() {
@@ -31,6 +40,8 @@ public abstract class Nodo{
 
     public String graficar(String idPadre){
         StringBuilder grafico = new StringBuilder();
+        //this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        //Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
         grafico.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId(), this.getEtiqueta()));
         if(idPadre != null)
             grafico.append(String.format("%1$s--%2$s\n", idPadre, this.getId()));

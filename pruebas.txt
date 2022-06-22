@@ -6,9 +6,15 @@ enddeclare.section
 
 program.section
 
+a:=-1
 while(a<1) do
-        res:=-cola(pivot;[1])
+        if (a<1) then
+              a:=0
+        else
+               a:=1
+        end
 end
+display(a)
 
 (*pivot:=1
 res:=-cola(pivot;[1])

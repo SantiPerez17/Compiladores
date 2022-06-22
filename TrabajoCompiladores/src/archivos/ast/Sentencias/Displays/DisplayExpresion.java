@@ -5,6 +5,7 @@ import archivos.ast.Base.Constantes.ConstanteEntera;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
 import archivos.ast.Base.Identificador;
+import archivos.ast.Base.Programa;
 import archivos.ast.Base.Tipo;
 import archivos.ast.Sentencias.Asignacion;
 
@@ -34,6 +35,10 @@ public class DisplayExpresion extends Display {
         //se llama al metodo graficar mandandole el id del padre para poder conectar
         resultado.append(this.expresion.graficar(this.getId()));
         //se agrega ademas tambien el graficar de la expresion con el ID de esta clase.
+
+        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
+
         return resultado.toString();
     }
 

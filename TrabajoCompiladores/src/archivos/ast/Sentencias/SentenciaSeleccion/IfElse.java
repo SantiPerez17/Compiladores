@@ -2,6 +2,7 @@ package archivos.ast.Sentencias.SentenciaSeleccion;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Programa;
 import archivos.ast.Sentencias.Sentencia;
 
 import java.util.List;
@@ -77,6 +78,10 @@ public class IfElse extends Sentencia {
             //se grafican las sentencias las cuales estan conectadas al nodo ELSE.
             resultado.append(s.graficar(this.getId()+2));
         }
+
+        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
+
         //Se retorna como tipo String
         return resultado.toString();
     }

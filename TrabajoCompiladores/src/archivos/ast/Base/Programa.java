@@ -14,6 +14,7 @@ public class Programa extends Nodo{
 
     public TreeMap<String, ArrayList<String>> tablaSimbolos2;
     private final List<Sentencia> sentencias;
+    public static String etiquetasGeneradas;
 
     public String getId() {
         return "nodo_programa";
@@ -49,6 +50,7 @@ public class Programa extends Nodo{
             resultado.append(s.graficar(this.getId()));
         }
         resultado.append("}");
+        String etiquetasG = etiquetasGeneradas;
         return resultado.toString();
     }
 

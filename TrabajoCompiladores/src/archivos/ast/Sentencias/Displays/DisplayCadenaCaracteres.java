@@ -2,6 +2,7 @@ package archivos.ast.Sentencias.Displays;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Constantes.ConstanteString;
+import archivos.ast.Base.Programa;
 
 public class DisplayCadenaCaracteres extends Display {
     private final ConstanteString CadenaCaracteres;
@@ -28,6 +29,10 @@ public class DisplayCadenaCaracteres extends Display {
         //se llama al metodo graficar mandandole el id del padre para poder conectar
         grafico.append(CadenaCaracteres.graficar(this.getId()));
         //se agrega ademas tambien el graficar de la CC con el ID de esta clase.
+
+        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
+
         return grafico.toString();
     }
 

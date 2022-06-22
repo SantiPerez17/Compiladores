@@ -2,6 +2,7 @@ package archivos.ast.Sentencias.SentenciaInteraciones;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
+import archivos.ast.Base.Programa;
 import archivos.ast.Sentencias.Sentencia;
 
 import java.util.List;
@@ -66,6 +67,10 @@ public class While extends Sentencia {
         for (Sentencia s:Sentencias){
             resultado.append(s.graficar(this.getId()+1));
         }
+
+        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
+        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
+
         return resultado.toString();
     }
 
