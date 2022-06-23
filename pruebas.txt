@@ -6,16 +6,17 @@ enddeclare.section
 
 program.section
 
-a:=-1
-while(a<1) do
-        if (a<1) then
-              display("C")
-              a:=0
-        else
-               a:=1
-        end
+while(a!=1) do
+     a:=1
 end
-display(a)
+a:=1
+aux:=true
+display(aux)
+if (a == 1) then
+     display("Hola")    
+else
+     display(a)
+end
 
 (*pivot:=1
 res:=-cola(pivot;[1])

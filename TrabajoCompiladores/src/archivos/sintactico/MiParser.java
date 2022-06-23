@@ -6,24 +6,22 @@
 package archivos.sintactico;
 
 import archivos.CodeGeneratorHelper;
-import archivos.ast.Base.Constantes.ConstanteBool;
-import archivos.ast.Base.Constantes.ConstanteEntera;
-import archivos.ast.Base.Constantes.ConstanteFloat;
-import archivos.ast.Base.Constantes.ConstanteString;
+import archivos.ast.Base.Expresiones.Constantes.ConstanteBool;
+import archivos.ast.Base.Expresiones.Constantes.ConstanteEntera;
+import archivos.ast.Base.Expresiones.Constantes.ConstanteFloat;
+import archivos.ast.Base.Expresiones.Constantes.ConstanteString;
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Expresiones.FuncionEspecial.Cola;
 import archivos.ast.Base.Expresiones.Inputs.Input_Bool;
 import archivos.ast.Base.Expresiones.Inputs.Input_Float;
 import archivos.ast.Base.Expresiones.Inputs.Input_Int;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Division;
-import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Multiplicacion;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Resta;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Suma;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.comparaciones.*;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
-import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
@@ -40,7 +38,6 @@ import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
 import java.util.*;
-import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */

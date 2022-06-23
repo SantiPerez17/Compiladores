@@ -1,4 +1,4 @@
-package archivos.ast.Base.Constantes;
+package archivos.ast.Base.Expresiones.Constantes;
 
 import archivos.ast.Base.Tipo;
 import archivos.CodeGeneratorHelper;
@@ -17,10 +17,9 @@ public class ConstanteFloat extends Constante{
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //Simplemente agregamos el valor de la Constante flotante
         resultado.append(String.format("%1$s = fadd double 0.0, %2$s\n", this.getIr_ref(), this.getValor()));
         return resultado.toString();
     }

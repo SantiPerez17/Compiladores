@@ -20,7 +20,7 @@ public abstract class OperacionConversion extends OperacionUnaria {
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         //Esta no se utiliza, se realiza la conversion en la clase EnteroAFlotante
         return resultado.toString();

@@ -1,4 +1,4 @@
-package archivos.ast.Base.Constantes;
+package archivos.ast.Base.Expresiones.Constantes;
 
 import archivos.ast.Base.Tipo;
 
@@ -16,7 +16,7 @@ public class ConstanteString extends  Constante{
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         //Esta funcion nunca se usa ya que las constantes string no se pueden usar en asignaciones ni comparaciones, solo en los displays, y se resuelve directamente en el display
         return resultado.toString();

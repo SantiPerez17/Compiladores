@@ -24,56 +24,51 @@ declare i32 @scanf(i8* %0, ...)
 @res3 = global i32 0
 @res4 = global i32 0
 @resultado = global double 0.0
-@str15 = private constant [4 x i8] c"\0AC\0A\00"
+@str15 = private constant [7 x i8] c"\0AHola\0A\00"
 @na = global i1 0
 
 define i32 @main(i32, i8**) {
-	
-	etiq8:
-	;___Asignacion___
-	%aux2 = add i32 0, 1
-	%aux3 = sub i32 0, %aux2
-	store i32 %aux3, i32* @a
-	br label %etiq9
-	
-	etiq9:
+
+	etiq1:
 	;___While___
-	%aux5 = load i32, i32* @a
-	%aux6 = add i32 0, 1
-	%aux7 = icmp slt i32 %aux5, %aux6
-	br i1 %aux7, label %etiq11, label %etiq19
-	
-	etiq11:
-	;___IfElse___
-	%aux9 = load i32, i32* @a
-	%aux10 = add i32 0, 1
-	%aux11 = icmp slt i32 %aux9, %aux10
-	br i1 %aux11, label %etiq14, label %etiq15
-	
-	etiq14:
-	;___DisplayCadenaCaracteres___
-	%aux12 = call i32 @puts(i8* getelementptr ([4 x i8], [4 x i8] * @str15, i32 0, i32 0))
-	br label %etiq17
-	
-	etiq17:
+	br label %etiq2
+	etiq2:
+	%aux1 = load i32, i32* @a
+	%aux2 = add i32 0, 1
+	%aux3 = icmp ne i32 %aux1, %aux2
+	br i1 %aux3, label %etiq3, label %etiq4
+	etiq3:
 	;___Asignacion___
-	%aux14 = add i32 0, 0
-	store i32 %aux14, i32* @a
-	br label %etiq9
-	
-	etiq15:
+	%aux4 = add i32 0, 1
+	store i32 %aux4, i32* @a
+	br label %etiq2
+	etiq4:
 	;___Asignacion___
-	%aux16 = add i32 0, 1
-	store i32 %aux16, i32* @a
-	br label %etiq9
-	
-	etiq19:
+	%aux5 = add i32 0, 1
+	store i32 %aux5, i32* @a
+	;___Asignacion___
+	%aux6 = add i1 0, 1
+	store i1 %aux6, i1* @aux
 	;___DisplayExpresion___
-	%aux18 = load i32, i32* @a
-	%aux17 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux18)
-	br label %etiq20
+	%aux7 = load i1, i1* @aux
+	%aux9 = zext i1 %aux7 to i32
+	%aux8 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.bool, i32 0, i32 0), i32 %aux9)
+	;___IfElse___
+	%aux10 = load i32, i32* @a
+	%aux11 = add i32 0, 1
+	%aux12 = icmp eq i32 %aux10, %aux11
+	br i1 %aux12, label %etiq5, label %etiq6
+	etiq5:
+	;___DisplayCadenaCaracteres___
+	%aux13 = call i32 @puts(i8* getelementptr ([7 x i8], [7 x i8] * @str15, i32 0, i32 0))
+	br label %etiq7
+	etiq6:
+	;___DisplayExpresion___
+	%aux14 = load i32, i32* @a
+	%aux15 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux14)
+	br label %etiq7
+	etiq7:
 	
-	etiq20:
 	ret i32 0
 }
 

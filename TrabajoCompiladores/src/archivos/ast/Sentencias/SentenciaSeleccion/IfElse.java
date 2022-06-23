@@ -2,7 +2,6 @@ package archivos.ast.Sentencias.SentenciaSeleccion;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Expresiones.Expresion;
-import archivos.ast.Base.Programa;
 import archivos.ast.Sentencias.Sentencia;
 
 import java.util.List;
@@ -78,139 +77,34 @@ public class IfElse extends Sentencia {
             //se grafican las sentencias las cuales estan conectadas al nodo ELSE.
             resultado.append(s.graficar(this.getId()+2));
         }
-
-        this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
-        Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
-
         //Se retorna como tipo String
         return resultado.toString();
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         StringBuilder resultado_sentencias1 = new StringBuilder();
         StringBuilder resultado_sentencias2 = new StringBuilder();
-        String etiqueta_cola = etiqueta;
-        this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        this.setEtiquetaLLVM(etiqueta.replaceAll("Cola","").replaceAll(":\n",""));
-        resultado.append("\n"+etiqueta_cola.replaceAll("Cola",""));
         resultado.append(";___IfElse___\n");
-
-        //Genero el codigo para la condicion
-        resultado.append(this.condicion.generarCodigo(etiqueta_cola.replaceAll("Cola","")));
-        this.sentencias1.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
-        String etiquetaSentencias1 = "%"+sentencias1.get(0).getIr_ref();
-        this.sentencias2.get(0).setIr_ref(CodeGeneratorHelper.getNewTag());
-        String etiquetaSentencias2 = "%"+sentencias2.get(0).getIr_ref();
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-
-        //Recorro las sentencias del then y genero el codigo para cada una de ellas.
-        int aux1 = 0;
-        for (Sentencia s: sentencias1){
-            if (aux1>0){
-                this.sentencias1.get(aux1).setIr_ref(CodeGeneratorHelper.getNewTag());
-            }
-
-            //Si es una cola y estamos en la ultima sentencia de la misma, debo hacer un reemplazo de etiquetas
-            if(etiqueta.contains("Cola")){
-                resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+"Cola:\n"));
-                if(aux1 == 2 && this.sentencias1.get(aux1).getNombre().equals("Asignacion")){
-                    try{
-                        int start2 = resultado_sentencias1.indexOf(String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-                        int end2 = String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)).length()+start2;
-                        resultado_sentencias1.replace(start2,end2,String.format("br label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+2)));
-                    } catch (Exception e){
-                    }
-                }
-            } else {
-
-                //Si es un ifElse, genero el codigo normal y hago el reemplazo de las etiquetas XX por las que corresponden.
-                if(s.getNombre() == "IfElse"){
-                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+":\n"));
-                    String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
-                    boolean aux2 = true;
-                    while(aux2){
-                        try{
-                            int start = resultado_sentencias1.indexOf(" label %etiqXX");
-                            resultado_sentencias1.replace(start,start+14," label "+proxima_etiqueta);
-                        }catch(Exception e){
-                            aux2=false;
-                        }
-                    }
-                } else {
-
-                    //Sino, simplemente genero el codigo para la sentencia
-                    resultado_sentencias1.append(s.generarCodigo(this.sentencias1.get(aux1).getIr_ref()+":\n"));
-                }
-            }
-            aux1+=1;
+        resultado.append(this.getCondicion().generarCodigo());
+        for (Sentencia sentencia: this.getSentencias1()){
+            resultado_sentencias1.append(sentencia.generarCodigo());
         }
-
-        //Aqui hago el reemplazo de las etiquetas que deben ser cambiadas, les pongo %etiqXX
-        if(!etiqueta.contains("Cola")){
-            try{
-                String siguiente4 = "%etiqXX";
-                int start2 = resultado_sentencias1.indexOf(String.format(" label %1$s\n", "%etiq"+(CodeGeneratorHelper.getNextTag()+1)));
-                int end2 = (String.format(" label %1$s\n", ("%etiq"+(CodeGeneratorHelper.getNextTag()+1)))).length()+start2;
-                resultado_sentencias1.replace(start2,end2,String.format(" label %1$s\n", siguiente4));
-            } catch (Exception e){
-            }
+        for (Sentencia sentencia: this.getSentencias2()){
+            resultado_sentencias2.append(sentencia.generarCodigo());
         }
-
-        //Recorremos las sentencias del else y generamos el codigo para cada una de ellas
-        int aux2 = 0;
-        for (Sentencia s: sentencias2){
-            if (aux2>0){
-                this.sentencias2.get(aux2).setIr_ref(CodeGeneratorHelper.getNewTag());
-            }
-
-            //Si es una cola y estamos en la ultima sentencia de la misma, debo hacer un reemplazo de etiquetas
-            if(etiqueta.contains("Cola")){
-                resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+"Cola:\n"));
-            } else {
-
-                //Si es un ifElse, genero el codigo normal y hago el reemplazo de las etiquetas XX por las que corresponden.
-                if(s.getNombre() == "IfElse"){
-                    resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
-                    String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
-                    boolean aux3 = true;
-                    while(aux3){
-                        try{
-                            int start = resultado_sentencias2.indexOf(" label %etiqXX");
-                            resultado_sentencias2.replace(start,start+14," label "+proxima_etiqueta);
-                        }catch(Exception e){
-                            aux3=false;
-                        }
-                    }
-                } else {
-
-                    //Sino, simplemente genero el codigo para la sentencia
-                    resultado_sentencias2.append(s.generarCodigo(this.sentencias2.get(aux2).getIr_ref()+":\n"));
-                }
-            }
-            aux2+=1;
-        }
-
-        //Agregamos la condicion, luego las sentencias del then, y finalmente las sentencias del else.
-        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.condicion.getIr_ref(), etiquetaSentencias1, etiquetaSentencias2));
+        String etiquetaThen = CodeGeneratorHelper.getNewTag();
+        String etiquetaElse = CodeGeneratorHelper.getNewTag();
+        String etiquetaSiguiente = CodeGeneratorHelper.getNewTag();
+        resultado.append(String.format("br i1 %1$s, label %2$s, label %3$s\n", this.getCondicion().getIr_ref(), "%" + etiquetaThen, "%" + etiquetaElse));
+        resultado.append(etiquetaThen+":\n");
         resultado.append(resultado_sentencias1);
+        resultado.append("br label %" + etiquetaSiguiente + "\n");
+        resultado.append(etiquetaElse+":\n");
         resultado.append(resultado_sentencias2);
-
-        //Este tramo de codigo simplemente hace una limpieza de etiquetas basuras ocacionadas por la cola.
-        try{
-            String cadena = ":\n;___IfElse___\n\n";
-            int start = resultado.indexOf(cadena);
-            int end = start+ (cadena).length();
-            Character c = resultado.charAt(start);
-            while(!c.equals('\n')){
-                start-=1;
-                c = resultado.charAt(start);
-            }
-            resultado.delete(start+1,end);
-        }catch (Exception e){
-
-        }
+        resultado.append("br label %" + etiquetaSiguiente + "\n");
+        resultado.append(etiquetaSiguiente+":\n");
         return resultado.toString();
     }
 

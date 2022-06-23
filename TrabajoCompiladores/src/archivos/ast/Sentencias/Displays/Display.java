@@ -11,7 +11,7 @@ public class Display extends Sentencia {
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         //Esta no se utiliza, se genera el codigo en los display cadena caracteres y en el display expresion
         return resultado.toString();

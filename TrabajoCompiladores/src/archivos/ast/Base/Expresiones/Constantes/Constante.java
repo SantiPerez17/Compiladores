@@ -1,4 +1,4 @@
-package archivos.ast.Base.Constantes;
+package archivos.ast.Base.Expresiones.Constantes;
 
 import archivos.ast.Base.Expresiones.Expresion;
 import archivos.ast.Base.Tipo;
@@ -31,7 +31,7 @@ public class Constante extends Expresion {
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         return resultado.toString();
     }

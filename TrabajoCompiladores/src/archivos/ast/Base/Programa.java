@@ -14,7 +14,6 @@ public class Programa extends Nodo{
 
     public TreeMap<String, ArrayList<String>> tablaSimbolos2;
     private final List<Sentencia> sentencias;
-    public static String etiquetasGeneradas;
 
     public String getId() {
         return "nodo_programa";
@@ -50,12 +49,11 @@ public class Programa extends Nodo{
             resultado.append(s.graficar(this.getId()));
         }
         resultado.append("}");
-        String etiquetasG = etiquetasGeneradas;
         return resultado.toString();
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
 
         //Declaracion del target y de las funciones y variables auxiliares para la utilizacion de los displays y los inputs
         StringBuilder resultado = new StringBuilder();
@@ -95,36 +93,14 @@ public class Programa extends Nodo{
         }
 
         //Se define el main del programa y se recorre el listado de sentencias, llamando de cada una su funcion generarCodigo(String etiqueta)
-        resultado.append("\ndefine i32 @main(i32, i8**) {\n\t");
+        resultado.append("\ndefine i32 @main(i32, i8**) {\n\n\t");
+        resultado.append(CodeGeneratorHelper.getNewTag() + ":\n\t");
         StringBuilder resultado_programa = new StringBuilder();
-        for (Sentencia s: getSentencias()) {
-
-            //Si es un IfElse, llamo al generarCodigo() del IfElse, y luego reemplazo las etiquetas XX con la etiqueta que corresponde a la siguiente sentencia a la cual deben ir.
-            if(s.getNombre() == "IfElse"){
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
-                String proxima_etiqueta = "%etiq"+(CodeGeneratorHelper.getNextTag()+1);
-                boolean aux = true;
-                while(aux){
-                    try{
-                        int start = resultado_programa.indexOf(" label %etiqXX");
-                        resultado_programa.replace(start,start+14," label "+proxima_etiqueta);
-                    }catch(Exception e){
-                        aux=false;
-                    }
-                }
-            } else {
-
-                //Sino, simplemente llamo al generarCodigo() de la sentencia.
-                this.setIr_ref(CodeGeneratorHelper.getNewTag());
-                resultado_programa.append(s.generarCodigo(this.getIr_ref()+":\n"));
-            }
+        for (Sentencia sentencia: getSentencias()) {
+            resultado_programa.append(sentencia.generarCodigo());
         }
-
         resultado.append(resultado_programa.toString().replaceAll("\n", "\n\t"));
-        this.setIr_ref(CodeGeneratorHelper.getNewTag());
-        resultado.append("\n\t"+this.getIr_ref()+":\n");
-        resultado.append("\tret i32 0\n}\n");
+        resultado.append("\n\tret i32 0\n}\n");
 
         //Aqui quitamos todos los caracteres NO ASCII del codigo generado
         resultado = new StringBuilder(Normalizer.normalize(resultado.toString(), Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", ""));

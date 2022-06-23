@@ -97,44 +97,6 @@ public class Cola extends Expresion {
         this.IdPos = idPos;
     }
 
-    public Cola(Tipo tipo, Asignacion asignacion, List<Expresion> colas,IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
-        super(tipo);
-        this.asignacion = asignacion;
-        this.colas = colas;
-        this.ifelse = ifelse;
-        this.acum = acum;
-        this.acumAux = acumAux;
-        this.expresiones = expresiones;
-        this.pivot = pivot;
-        this.PivotAux = PivotAux;
-        this.IdPos = IdPos;
-    }
-
-    public Cola(Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
-        this.asignacion = asignacion;
-        this.colas = colas;
-        this.ifelse = ifelse;
-        this.acum = acum;
-        this.acumAux = acumAux;
-        this.expresiones = expresiones;
-        this.pivot = pivot;
-        this.PivotAux = PivotAux;
-        this.IdPos = IdPos;
-    }
-
-    public Cola(String nombre, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
-        super(nombre);
-        this.asignacion = asignacion;
-        this.colas = colas;
-        this.ifelse = ifelse;
-        this.acum = acum;
-        this.acumAux = acumAux;
-        this.expresiones = expresiones;
-        this.pivot = pivot;
-        this.PivotAux = PivotAux;
-        this.IdPos = IdPos;
-    }
-
     public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
         super(nombre, tipo);
         this.asignacion = asignacion;
@@ -194,16 +156,14 @@ public class Cola extends Expresion {
         //Se genera un nuevo nodo que muestre la etiqueta de Cola, y lo une con el nodo del idPadre
         resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, this.getEtiqueta()));
         resultado.append(String.format("%1$s--%2$s\n", idPadre, this.getId()+1));
-        resultado.append(this.ifelse.graficar("nodo_programa"));
+        resultado.append(this.getIfelse().graficar("nodo_programa"));
         return resultado.toString();
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        //Aqui simplemente llamamos al metodo generarCodigo(String etiqueta) del IfElse, para que genere el codigo de los ifelse anidados generados previamente en el parser.
-        //Especificamos en la etiqueta que viene de una cola porque tiene un comportamiento diferente al de un IfElse ordinario.
-        resultado.append(this.ifelse.generarCodigo(etiqueta+"Cola"));
+        resultado.append(this.getIfelse().generarCodigo());
         return resultado.toString();
     }
 

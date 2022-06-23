@@ -27,7 +27,7 @@ public class GenerarLLyOyEXE {
 
             //generar codigo IR para el LLVM
             pw = new PrintWriter(new FileWriter("programa.ll"));
-            pw.println(programa.generarCodigo("etiq0:"));
+            pw.println(programa.generarCodigo());
             pw.close();
             System.out.println("Código generado");
 

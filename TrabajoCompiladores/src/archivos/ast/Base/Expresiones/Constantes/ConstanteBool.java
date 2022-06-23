@@ -1,4 +1,4 @@
-package archivos.ast.Base.Constantes;
+package archivos.ast.Base.Expresiones.Constantes;
 
 import archivos.CodeGeneratorHelper;
 import archivos.ast.Base.Tipo;
@@ -18,17 +18,14 @@ public class ConstanteBool extends Constante {
     }
 
     @Override
-    public String generarCodigo(String etiqueta) {
+    public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
         this.setIr_ref(CodeGeneratorHelper.getNewPointer());
-        //Si el valor de la constante es true, se asigna un 1, sino un 0
         if (this.getValor().equals("true")){
             resultado.append(String.format("%1$s = add i1 0, %2$s\n", this.getIr_ref(), "1"));
         } else {
             resultado.append(String.format("%1$s = add i1 0, %2$s\n", this.getIr_ref(), "0"));
         }
-
-
         return resultado.toString();
     }
 }
