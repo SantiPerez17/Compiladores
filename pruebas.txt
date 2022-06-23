@@ -6,16 +6,36 @@ enddeclare.section
 
 program.section
 
-while(a!=1) do
-     a:=1
-end
-a:=1
-aux:=true
-display(aux)
-if (a == 1) then
-     display("Hola")    
-else
-     display(a)
+display("ingrese valor")
+a:=input_int()
+if (a==1) then
+  display("lunes")
+  else
+    if (a==2) then
+      display ("martes")
+             else
+        if (a==3) then
+          display("miercoles")
+          else
+            if (a==4)  then
+              display("jueves")
+              else
+                if(a==5) then
+                  display("viernes")
+                  else
+                    if(a==6) then
+                      display("sabado")
+                      else
+                        if(a==7) then
+                          display("domingo")
+                          else
+                            display("valor no aceptado")
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
 (*pivot:=1

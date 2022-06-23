@@ -26,6 +26,7 @@ public class Input_Float extends Expresion {
         resultado.append(destaux + " = alloca double\n");
         resultado.append(String.format("%1$s = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([4 x i8], [4 x i8] * @double_read_format, i64 0, i64 0), double* %2$s)\n", temp, destaux));
         resultado.append(String.format("%1$s = load double, double* %2$s\n", temp_double, destaux));
+        this.setIr_ref(temp_double);
         return resultado.toString();
     }
 }

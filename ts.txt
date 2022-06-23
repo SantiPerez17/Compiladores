@@ -15,5 +15,13 @@ TABLA DE SIMBOLOS
                  aux                  ID                Bool                   _                   _
                 aux2                  ID                Bool                   _                   _
                   ña                  ID                Bool                   _                   _
-               str15      STRING_LITERAL          CTE_STRING                Hola                   4
+               str15      STRING_LITERAL          CTE_STRING       ingrese valor                  13
+               str16      STRING_LITERAL          CTE_STRING               lunes                   5
+               str17      STRING_LITERAL          CTE_STRING              martes                   6
+               str18      STRING_LITERAL          CTE_STRING           miercoles                   9
+               str19      STRING_LITERAL          CTE_STRING              jueves                   6
+               str20      STRING_LITERAL          CTE_STRING             viernes                   7
+               str21      STRING_LITERAL          CTE_STRING              sabado                   6
+               str22      STRING_LITERAL          CTE_STRING             domingo                   7
+               str23      STRING_LITERAL          CTE_STRING   valor no aceptado                  17
 
