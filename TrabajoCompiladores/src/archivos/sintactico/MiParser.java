@@ -16,12 +16,14 @@ import archivos.ast.Base.Expresiones.Inputs.Input_Bool;
 import archivos.ast.Base.Expresiones.Inputs.Input_Float;
 import archivos.ast.Base.Expresiones.Inputs.Input_Int;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Division;
+import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Multiplicacion;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Resta;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Suma;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.comparaciones.*;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
@@ -38,6 +40,7 @@ import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
 import java.util.*;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -407,13 +410,13 @@ public class MiParser extends java_cup.runtime.lr_parser {
         else{
         throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }}
 
-    public String reglas;
+    public String reglas = "";
 
     public void concat_rules(String regla){
         reglas += regla + "\n\n";
     }
 
-    public StringBuilder simbolos=new StringBuilder("");
+    public StringBuilder simbolos=new StringBuilder();
 
     TreeMap<String, ArrayList<String>> tablaSimbolos2 = new TreeMap<String, ArrayList<String>>();
 

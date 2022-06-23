@@ -5,7 +5,9 @@ declare.section
 enddeclare.section
 
 program.section
-
+display("hola")
+#display( cola(2; [ 3, cola( 1; [ 4] ) ]) )
+(*
 display("ingrese valor")
 a:=input_int()
 if (a==1) then
@@ -38,7 +40,7 @@ if (a==1) then
     end
 end
 
-(*pivot:=1
+pivot:=1
 res:=-cola(pivot;[1])
 res2:=1 + cola(2;[1,2])
 res3:= cola(1;[2,cola(3;[4,5,6])]) + 1

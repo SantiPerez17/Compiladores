@@ -24,8 +24,11 @@ public class EjemploJavaCup {
         Symbol p = parser.parse();
         StringWriter Reglas = new StringWriter();
         Reglas.append(parser.reglas);
-        try{Object a = parser.parse().toString();System.out.println(Reglas+"Análisis sintáctico finalizado.");}
-        catch (Exception e){System.out.println(e.getMessage());};
+        try{
+            Object a = parser.parse().toString();
+            System.out.println(Reglas+"Análisis sintáctico finalizado.");}
+        catch (Exception e){
+            System.out.println(e.getMessage());};
 
     }
 }

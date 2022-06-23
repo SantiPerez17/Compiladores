@@ -58,13 +58,13 @@ parser code
         else{
         throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }}
 
-    public String reglas;
+    public String reglas = "";
 
     public void concat_rules(String regla){
         reglas += regla + "\n\n";
     }
 
-    public StringBuilder simbolos=new StringBuilder("");
+    public StringBuilder simbolos=new StringBuilder();
 
     TreeMap<String, ArrayList<String>> tablaSimbolos2 = new TreeMap<String, ArrayList<String>>();
 
