@@ -50,7 +50,6 @@ public class Asignacion extends Sentencia{
         grafico.append(super.graficar(idPadre));
         grafico.append(identificador.graficar(this.getId()));
         grafico.append(expresion.graficar(this.getId()));
-
         this.setEtiquetaLLVM("etiq"+ CodeGeneratorHelper.getNewTag());
         Programa.etiquetasGeneradas += "Etiqueta: " + this.getEtiquetaLLVM() + " - Nombre: " + this.getNombre() + " - HashId: " + this.getId() + "\n";
 

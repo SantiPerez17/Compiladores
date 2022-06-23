@@ -17,7 +17,7 @@ public class Input_Int extends Expresion {
     }
 
     public Input_Int(String nombre, Tipo tipo) {
-        super("Input_Int", tipo);
+        super(nombre, tipo);
     }
 
     @Override

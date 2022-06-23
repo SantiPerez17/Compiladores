@@ -9,6 +9,7 @@ program.section
 a:=-1
 while(a<1) do
         if (a<1) then
+              display("C")
               a:=0
         else
                a:=1

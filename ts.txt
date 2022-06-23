@@ -15,4 +15,5 @@ TABLA DE SIMBOLOS
                  aux                  ID                Bool                   _                   _
                 aux2                  ID                Bool                   _                   _
                   ña                  ID                Bool                   _                   _
+               str15      STRING_LITERAL          CTE_STRING                   C                   1
 

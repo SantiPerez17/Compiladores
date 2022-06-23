@@ -917,7 +917,7 @@ class CUP$MiParser$actions {
             tablaSimbolos2.put("str" + id_str,hg);
             simbolos.append(String.format("%20s%20s%20s%20s%20s%n","str" + tablaSimbolos2.size(), hg.get(0), hg.get(1), hg.get(2), hg.get(3)));
             ConstanteString CC = new ConstanteString(sl, Tipo.CTE_STRING, "str" + tablaSimbolos2.size());
-            RESULT = new DisplayCadenaCaracteres(CC);
+            RESULT = new DisplayCadenaCaracteres("DisplayCadCaracteres",CC);
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_display",5, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-3)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -959,14 +959,14 @@ class CUP$MiParser$actions {
                     throw new Exception("No se admiten Asignaciones con un Identificador Tipo INT y una Expresion Tipo FLOAT");}
             else{
                 Expresion exp = convertir_a_tipo(eo, Tipo.Int);
-                RESULT = new Asignacion(new Identificador(id, Tipo.Int),exp);}}
+                RESULT = new Asignacion("Asignacion",new Identificador(id, Tipo.Int),exp);}}
             if (Objects.equals(a.get(1), "Float")){
                 Expresion exp = convertir_a_tipo(eo, Tipo.Float);
-                RESULT = new Asignacion(new Identificador(id, Tipo.Float),exp);}
+                RESULT = new Asignacion("Asignacion",new Identificador(id, Tipo.Float),exp);}
             if (Objects.equals(a.get(1), "Bool")){
                 Tipo tipo_comun = tipo_en_comun(Tipo.Bool,eo.getTipo());
                 Expresion exp = convertir_a_tipo(eo, tipo_comun);
-                RESULT = new Asignacion(new Identificador(id, Tipo.Bool),exp);}
+                RESULT = new Asignacion("Asignacion",new Identificador(id, Tipo.Bool),exp);}
         }
         
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("sentencia_asignacion",8, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
@@ -1481,7 +1481,7 @@ class CUP$MiParser$actions {
 		Object ib = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 8.7: factor --> INPUT_BOOL() " + "\n\t --> " + ib + "()");
-        RESULT = new Input_Bool(Tipo.Bool,"INPUT_BOOL");
+        RESULT = new Input_Bool("INPUT_BOOL", Tipo.Bool);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }
@@ -1511,7 +1511,7 @@ class CUP$MiParser$actions {
 		Object ifl = (Object)((java_cup.runtime.Symbol) CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)).value;
 		
         concat_rules("REGLA 8.9: factor --> INPUT_FLOAT() " + "\n\t --> " + ifl + "()");
-        RESULT = new Input_Float(Tipo.Float, "INPUT_FLOAT");
+        RESULT = new Input_Float("INPUT_FLOAT", Tipo.Float);
     
               CUP$MiParser$result = parser.getSymbolFactory().newSymbol("factor",12, ((java_cup.runtime.Symbol)CUP$MiParser$stack.elementAt(CUP$MiParser$top-2)), ((java_cup.runtime.Symbol)CUP$MiParser$stack.peek()), RESULT);
             }

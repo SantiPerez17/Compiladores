@@ -13,8 +13,8 @@ public class Input_Float extends Expresion {
         super("Input_Float");
     }
 
-    public Input_Float(Tipo tipo, String nombre) {
-        super("Input_Float", Tipo.Float);
+    public Input_Float( String nombre, Tipo tipo) {
+        super(nombre, Tipo.Float);
     }
 
     @Override
