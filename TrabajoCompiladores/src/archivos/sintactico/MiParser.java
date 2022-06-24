@@ -1531,6 +1531,7 @@ class CUP$MiParser$actions {
         concat_rules("REGLA 9: funcion_especial --> COLA PARENTESISO pivot PUNTOCOMA CORCHETEO lista_expresiones CORCHETEC PARENTESISC " + "\n\t --> " + "cola ( " + p + " ;[ " + le + "])");
         //Listas
         List<Sentencia> sents = new ArrayList<>();
+        List<Sentencia> sentencias = new ArrayList<>();
         List<Sentencia> sents_cola = new ArrayList<>();
         List<Sentencia> sentPrimerIf = new ArrayList<>();
         List<Sentencia> sentSegundoIf = new ArrayList<>();
@@ -1592,9 +1593,9 @@ class CUP$MiParser$actions {
 
         //Creamos la cola con lo que necesitamos para obtener su valor
         //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
-        Cola cola = new Cola("Cola",Tipo.Int,asig_pivot,colas,new IfElse(),acum,acumAux,le,p,pivot,pos);
+        Cola cola = new Cola("Cola",Tipo.Int,le,p,colas,sentencias,acum,acumAux);
         cola.colasInternas(le);
-        Collections.reverse(cola.getColas());
+        Collections.reverse(cola.getColasInternas());
 
         //Finalmente recorremos las expresiones de la cola original e instanciamos las clases necesarias para luego graficar y generar el codigo intermedio
         for (Expresion e : le) {
@@ -1658,7 +1659,8 @@ class CUP$MiParser$actions {
         List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
         sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
-        cola.setIfelse(primerIf);
+        sents_cola.add(primerIf);
+        cola.setSentencias(sents_cola);
 
         RESULT=cola;
     

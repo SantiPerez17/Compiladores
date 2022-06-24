@@ -6,8 +6,7 @@ import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Identificador;
 import archivos.ast.Base.Tipo;
-import archivos.ast.Sentencias.Asignacion;
-import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
+import archivos.ast.Sentencias.Sentencia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,37 +15,41 @@ public class Cola extends Expresion {
 
     private List<Expresion> expresiones;
     private Expresion pivot;
-
-    private Asignacion asignacion;
-    private List<Expresion> colas;
-    private IfElse ifelse;
+    private List<Expresion> colas_internas;
+    private List<Sentencia> sentencias;
     private Identificador acum;
     private Identificador acumAux;
-    private Identificador PivotAux;
-    private Identificador IdPos;
 
-    public Asignacion getAsignacion() {
-        return asignacion;
+    public List<Expresion> getExpresiones() {
+        return expresiones;
     }
 
-    public void setAsignacion(Asignacion asignacion) {
-        this.asignacion = asignacion;
+    public void setExpresiones(List<Expresion> expresiones) {
+        this.expresiones = expresiones;
     }
 
-    public List<Expresion> getColas() {
-        return colas;
+    public Expresion getPivot() {
+        return pivot;
     }
 
-    public void setColas(List<Expresion> colas) {
-        this.colas = colas;
+    public void setPivot(Expresion pivot) {
+        this.pivot = pivot;
     }
 
-    public IfElse getIfelse() {
-        return ifelse;
+    public List<Expresion> getColasInternas() {
+        return colas_internas;
     }
 
-    public void setIfelse(IfElse ifelse) {
-        this.ifelse = ifelse;
+    public void setColasInternas(List<Expresion> colas_internas) {
+        this.colas_internas = colas_internas;
+    }
+
+    public List<Sentencia> getSentencias() {
+        return sentencias;
+    }
+
+    public void setSentencias(List<Sentencia> sentencias) {
+        this.sentencias = sentencias;
     }
 
     public Identificador getAcum() {
@@ -65,49 +68,14 @@ public class Cola extends Expresion {
         this.acumAux = acumAux;
     }
 
-    public List<Expresion> getExpresiones() {
-        return expresiones;
-    }
-
-    public void setExpresiones(List<Expresion> expresiones) {
-        this.expresiones = expresiones;
-    }
-
-    public Expresion getPivot() {
-        return pivot;
-    }
-
-    public void setPivot(Expresion pivot) {
-        this.pivot = pivot;
-    }
-
-    public Identificador getPivotAux() {
-        return PivotAux;
-    }
-
-    public void setPivot(Identificador pivot_aux) {
-        this.PivotAux = pivot_aux;
-    }
-
-    public Identificador getIdPos() {
-        return IdPos;
-    }
-
-    public void setIdPos(Identificador idPos) {
-        this.IdPos = idPos;
-    }
-
-    public Cola(String nombre, Tipo tipo, Asignacion asignacion, List<Expresion> colas, IfElse ifelse, Identificador acum, Identificador acumAux, List<Expresion> expresiones, Expresion pivot, Identificador PivotAux, Identificador IdPos) {
+    public Cola(String nombre, Tipo tipo, List<Expresion> expresiones, Expresion pivot, List<Expresion> colas_internas, List<Sentencia> sentencias, Identificador acum, Identificador acumAux) {
         super(nombre, tipo);
-        this.asignacion = asignacion;
-        this.colas = colas;
-        this.ifelse = ifelse;
+        this.expresiones = expresiones;
+        this.pivot = pivot;
+        this.colas_internas = colas_internas;
+        this.sentencias = sentencias;
         this.acum = acum;
         this.acumAux = acumAux;
-        this.expresiones = expresiones;
-        this.pivot = pivot;
-        this.PivotAux = PivotAux;
-        this.IdPos = IdPos;
     }
 
     //Este metodo recursivo se encarga de apilar las colas internas. Contempla si la cola esta dentro de una expresion binaria o unaria. Se llama desde el parser, y las guarda en la lista de colas
@@ -139,7 +107,7 @@ public class Cola extends Expresion {
         //Aqui se hace la recursion, enviando por parametro las expresiones de las colas encontradas.
         if (colasInternasAux.size()>0){
             for (Cola c: colasInternasAux){
-                this.getColas().add(c);
+                this.getColasInternas().add(c);
                 colasInternas(c.getExpresiones());
             }
         }
@@ -153,17 +121,18 @@ public class Cola extends Expresion {
     @Override
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
-        //Se genera un nuevo nodo que muestre la etiqueta de Cola, y lo une con el nodo del idPadre
-        resultado.append(String.format("%1$s[label=\"%2$s\"]\n", this.getId()+1, this.getEtiqueta()));
-        resultado.append(String.format("%1$s--%2$s\n", idPadre, this.getId()+1));
-        resultado.append(this.getIfelse().graficar("nodo_programa"));
+        for (Sentencia sentencia:this.getSentencias()){
+            resultado.append(sentencia.graficar(this.getId()));
+        }
         return resultado.toString();
     }
 
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        resultado.append(this.getIfelse().generarCodigo());
+        for (Sentencia sentencia:this.getSentencias()){
+            resultado.append(sentencia.generarCodigo());
+        }
         return resultado.toString();
     }
 
