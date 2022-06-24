@@ -1570,12 +1570,10 @@ class CUP$MiParser$actions {
             simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
             }
 
-        //Ponemos en 0 los acum
+        //Ponemos en 0 el acum
         Asignacion asig_acum_0 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
-        Asignacion asig_acum_aux_0 = new Asignacion("Asignacion", new Identificador(acumAux.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
 
-        //Reseteamos la variable PivotAux e IdPos de la cola
-        //Asignacion asig_pivot_aux = new Asignacion("Asignacion", new Identificador(pivot.getNombre(), Tipo.Int), p);
+        //Reseteamos la variable IdPos de la cola
         Asignacion asig_pos_0 = new Asignacion("Asignacion", new Identificador(pos.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
 
         //Generamos los mensajes de error
@@ -1606,17 +1604,10 @@ class CUP$MiParser$actions {
         if(le != null){
             for (Expresion e : le) {
                 checkTipoInt(e);
-                Expresion aux;
-                if (e.getNombre() == "Cola") {
-                    Cola nueva = (Cola) e;
-                    aux = new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int);
-                } else {
-                    aux = e;
-                }
                 Integer i = le.size();
                 String a = i.toString();
                 Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), aux));
+                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
                 Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
                 Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
                 List<Sentencia> sentencias1 = new ArrayList<>();
@@ -1656,10 +1647,8 @@ class CUP$MiParser$actions {
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
 
         sents_cola.add(asig_acum_0);
-        sents_cola.add(asig_acum_aux_0);
         sents_cola.add(asig_pivot);
         sents_cola.add(primerIf);
-        //sents_cola.add(asig_pivot_aux);
         sents_cola.add(asig_pos_0);
         sents_cola.add(asig_acum);
 

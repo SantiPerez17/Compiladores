@@ -6,7 +6,13 @@ enddeclare.section
 
 program.section
 
-a := cola(1;[2])
+edad:=10
+while(edad>0) do
+    a := cola(1; [ cola(1; [a+1]) ] )
+    display(a)
+    edad:=edad-1
+end
+
 
 (*pivot:=1
 res:=-cola(pivot;[1])
