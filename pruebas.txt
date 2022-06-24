@@ -1,46 +1,19 @@
 declare.section
     float : peso, altura, resultado;
-    int : edad, edad1,pivot, res,res2,res3,res4,a;
+    int : edad, edad1,pivot, res,res2,res3,res4,a,b;
     bool :aux, aux2, ña;
 enddeclare.section
 
 program.section
-display("hola")
-#display( cola(2; [ 3, cola( 1; [ 4] ) ]) )
-(*
-display("ingrese valor")
-a:=input_int()
-if (a==1) then
-  display("lunes")
-  else
-    if (a==2) then
-      display ("martes")
-             else
-        if (a==3) then
-          display("miercoles")
-          else
-            if (a==4)  then
-              display("jueves")
-              else
-                if(a==5) then
-                  display("viernes")
-                  else
-                    if(a==6) then
-                      display("sabado")
-                      else
-                        if(a==7) then
-                          display("domingo")
-                          else
-                            display("valor no aceptado")
-                        end
-                    end
-                end
-            end
-        end
-    end
+
+a:=10
+
+while (a >0) do
+    display(cola(1;[a]))
+    a := a - 1
 end
 
-pivot:=1
+(*pivot:=1
 res:=-cola(pivot;[1])
 res2:=1 + cola(2;[1,2])
 res3:= cola(1;[2,cola(3;[4,5,6])]) + 1

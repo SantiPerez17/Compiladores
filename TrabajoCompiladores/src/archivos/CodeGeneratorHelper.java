@@ -61,5 +61,7 @@ public class CodeGeneratorHelper {
         return nextTag;
     }
 
+    public static int getNextPointer() { return nextID; }
+
 
 }

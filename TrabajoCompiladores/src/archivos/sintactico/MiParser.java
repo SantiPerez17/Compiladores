@@ -16,14 +16,12 @@ import archivos.ast.Base.Expresiones.Inputs.Input_Bool;
 import archivos.ast.Base.Expresiones.Inputs.Input_Float;
 import archivos.ast.Base.Expresiones.Inputs.Input_Int;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Division;
-import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Multiplicacion;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Resta;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Suma;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.comparaciones.*;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
-import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
@@ -39,8 +37,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
+
 import java.util.*;
-import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1557,6 +1555,7 @@ class CUP$MiParser$actions {
 
         //Generamos el AcumAux
         Identificador acumAux = new Identificador("_Acum"+CodeGeneratorHelper.getNewAcum(), Tipo.Int);
+        Asignacion asig_acum = new Asignacion("Asignacion",acumAux,acum);
         if(!tablaSimbolos2.containsKey("_Acum"+ CodeGeneratorHelper.getAcum())){
             ArrayList<String> contenidoAcum = new ArrayList<>(Arrays.asList("ID","Int","_","_"));
             tablaSimbolos2.put("_Acum"+ CodeGeneratorHelper.getAcum(),contenidoAcum);
@@ -1570,6 +1569,14 @@ class CUP$MiParser$actions {
             tablaSimbolos2.put("_IdPos"+CodeGeneratorHelper.getPos(),contenidoPos);
             simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_IdPos"+ CodeGeneratorHelper.getPos(), contenidoPos.get(0), contenidoPos.get(1), contenidoPos.get(2), contenidoPos.get(3)));
             }
+
+        //Ponemos en 0 los acum
+        Asignacion asig_acum_0 = new Asignacion("Asignacion", acum, new ConstanteEntera("0",Tipo.Int));
+        Asignacion asig_acum_aux_0 = new Asignacion("Asignacion", acumAux, new ConstanteEntera("0",Tipo.Int));
+
+        //Reseteamos la variable PivotAux e IdPos de la cola
+        Asignacion asig_pivot_aux = new Asignacion("Asignacion", pivot, p);
+        Asignacion asig_pos_0 = new Asignacion("Asignacion", pos, new ConstanteEntera("0",Tipo.Int));
 
         //Generamos los mensajes de error
         ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
@@ -1593,49 +1600,33 @@ class CUP$MiParser$actions {
 
         //Creamos la cola con lo que necesitamos para obtener su valor
         //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
-        Cola cola = new Cola("Cola",Tipo.Int,le,p,colas,sentencias,acum,acumAux);
-        cola.colasInternas(le);
-        Collections.reverse(cola.getColasInternas());
+        Cola cola = new Cola("Cola",Tipo.Int,le,p,sentencias,acum,acumAux);
 
         //Finalmente recorremos las expresiones de la cola original e instanciamos las clases necesarias para luego graficar y generar el codigo intermedio
         for (Expresion e : le) {
             checkTipoInt(e);
-            if(e.getNombre() == "Cola"){
-                Integer i = le.size();
-                String a = i.toString();
+            Expresion aux;
+            if (e.getNombre() == "Cola") {
                 Cola nueva = (Cola) e;
-                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int)));
-                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                List<Sentencia> sentencias1 = new ArrayList<>();
-                sentencias1.add(asig1);
-                sentencias1.add(asig2);
-                sentencias1.add(asig3);
-                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                List<Sentencia> sentencias2 = new ArrayList<>();
-                sentencias2.add(asig4);
-                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                sents.add(ie);
+                aux = new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int);
+            } else {
+                aux = e;
             }
-            else {
-                checkTipoInt(e);
-                Integer i = le.size();
-                String a = i.toString();
-                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), e));
-                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                List<Sentencia> sentencias1 = new ArrayList<>();
-                sentencias1.add(asig1);
-                sentencias1.add(asig2);
-                sentencias1.add(asig3);
-                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-                List<Sentencia> sentencias2 = new ArrayList<>();
-                sentencias2.add(asig4);
-                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-                sents.add(ie);
-            }
+            Integer i = le.size();
+            String a = i.toString();
+            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), aux));
+            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+            List<Sentencia> sentencias1 = new ArrayList<>();
+            sentencias1.add(asig1);
+            sentencias1.add(asig2);
+            sentencias1.add(asig3);
+            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+            List<Sentencia> sentencias2 = new ArrayList<>();
+            sentencias2.add(asig4);
+            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+            sents.add(ie);
         }
         int longitud_lista = le.size();
         String long_lista = Integer.toString(longitud_lista);
@@ -1659,7 +1650,15 @@ class CUP$MiParser$actions {
         List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
         sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
+
+        sents_cola.add(asig_acum_0);
+        sents_cola.add(asig_acum_aux_0);
+        sents_cola.add(asig_pivot);
         sents_cola.add(primerIf);
+        sents_cola.add(asig_pivot_aux);
+        sents_cola.add(asig_pos_0);
+        sents_cola.add(asig_acum);
+
         cola.setSentencias(sents_cola);
 
         RESULT=cola;
