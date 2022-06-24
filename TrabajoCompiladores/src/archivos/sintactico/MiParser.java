@@ -16,12 +16,14 @@ import archivos.ast.Base.Expresiones.Inputs.Input_Bool;
 import archivos.ast.Base.Expresiones.Inputs.Input_Float;
 import archivos.ast.Base.Expresiones.Inputs.Input_Int;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Division;
+import archivos.ast.Base.Expresiones.Operaciones.binarias.OperacionBinaria;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Multiplicacion;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Resta;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.arismeticos.Suma;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.comparaciones.*;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.AND;
 import archivos.ast.Base.Expresiones.Operaciones.binarias.logicas.OR;
+import archivos.ast.Base.Expresiones.Operaciones.unarias.OperacionUnaria;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.MenosUnario;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.NOT;
 import archivos.ast.Base.Expresiones.Operaciones.unarias.conversiones.EnteroAFlotante;
@@ -37,8 +39,8 @@ import archivos.ast.Sentencias.SentenciaInteraciones.While;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfElse;
 import archivos.ast.Sentencias.SentenciaSeleccion.IfSimple;
 import java_cup.runtime.Symbol;
-
 import java.util.*;
+import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
   */
@@ -1647,9 +1649,9 @@ class CUP$MiParser$actions {
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
 
         sents_cola.add(asig_acum_0);
+        sents_cola.add(asig_pos_0);
         sents_cola.add(asig_pivot);
         sents_cola.add(primerIf);
-        sents_cola.add(asig_pos_0);
         sents_cola.add(asig_acum);
 
         cola.setSentencias(sents_cola);

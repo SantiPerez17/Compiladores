@@ -636,9 +636,9 @@ funcion_especial ::=
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
 
         sents_cola.add(asig_acum_0);
+        sents_cola.add(asig_pos_0);
         sents_cola.add(asig_pivot);
         sents_cola.add(primerIf);
-        sents_cola.add(asig_pos_0);
         sents_cola.add(asig_acum);
 
         cola.setSentencias(sents_cola);

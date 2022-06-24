@@ -6,11 +6,11 @@ enddeclare.section
 
 program.section
 
-edad:=10
-while(edad>0) do
-    a := cola(1; [ cola(1; [a+1]) ] )
-    display(a)
-    edad:=edad-1
+b:=10
+while( b > 0 ) do
+    a := cola(1; [ b, cola(1; [a+1]) ] )
+    display( a )
+    b :=b - 1
 end
 
 

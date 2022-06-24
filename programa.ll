@@ -43,188 +43,220 @@ define i32 @main(i32, i8**) {
 	etiq1:
 	;___Asignacion___
 	%aux1 = add i32 0, 10
-	store i32 %aux1, i32* @edad
+	store i32 %aux1, i32* @b
 	;___While___
 	br label %etiq2
 	etiq2:
-	%aux2 = load i32, i32* @edad
+	%aux2 = load i32, i32* @b
 	%aux3 = add i32 0, 0
 	%aux4 = icmp sgt i32 %aux2, %aux3
-	br i1 %aux4, label %etiq27, label %etiq28
-	etiq27:
+	br i1 %aux4, label %etiq30, label %etiq31
+	etiq30:
 	;___Asignacion___
 	;___Asignacion___
 	%aux5 = add i32 0, 0
 	store i32 %aux5, i32* @_Acum3
 	;___Asignacion___
-	%aux6 = add i32 0, 1
-	store i32 %aux6, i32* @_Pivot2
+	%aux6 = add i32 0, 0
+	store i32 %aux6, i32* @_IdPos2
+	;___Asignacion___
+	%aux7 = add i32 0, 1
+	store i32 %aux7, i32* @_Pivot2
 	;___IfElse___
-	%aux7 = load i32, i32* @_Pivot2
-	%aux8 = add i32 0, 1
-	%aux9 = icmp sge i32 %aux7, %aux8
-	br i1 %aux9, label %etiq24, label %etiq25
+	%aux8 = load i32, i32* @_Pivot2
+	%aux9 = add i32 0, 1
+	%aux10 = icmp sge i32 %aux8, %aux9
+	br i1 %aux10, label %etiq27, label %etiq28
+	etiq27:
+	;___IfElse___
+	%aux11 = add i32 0, 2
+	%aux12 = add i32 0, 0
+	%aux13 = icmp sgt i32 %aux11, %aux12
+	br i1 %aux13, label %etiq24, label %etiq25
 	etiq24:
 	;___IfElse___
-	%aux10 = add i32 0, 1
-	%aux11 = add i32 0, 0
-	%aux12 = icmp sgt i32 %aux10, %aux11
-	br i1 %aux12, label %etiq21, label %etiq22
+	%aux14 = add i32 0, 2
+	%aux15 = load i32, i32* @_Pivot2
+	%aux16 = icmp sge i32 %aux14, %aux15
+	br i1 %aux16, label %etiq21, label %etiq22
 	etiq21:
 	;___IfElse___
-	%aux13 = add i32 0, 1
-	%aux14 = load i32, i32* @_Pivot2
-	%aux15 = icmp sge i32 %aux13, %aux14
-	br i1 %aux15, label %etiq18, label %etiq19
-	etiq18:
-	;___IfElse___
-	%aux16 = add i32 0, 1
-	%aux17 = load i32, i32* @_Pivot2
-	%aux18 = sub i32 %aux16, %aux17
-	%aux19 = load i32, i32* @_IdPos2
-	%aux20 = icmp eq i32 %aux18, %aux19
-	br i1 %aux20, label %etiq15, label %etiq16
-	etiq15:
-	;___Asignacion___
-	%aux21 = load i32, i32* @_Acum3
-	;___Asignacion___
-	%aux22 = add i32 0, 0
-	store i32 %aux22, i32* @_Acum1
-	;___Asignacion___
-	%aux23 = add i32 0, 1
-	store i32 %aux23, i32* @_Pivot1
-	;___IfElse___
-	%aux24 = load i32, i32* @_Pivot1
-	%aux25 = add i32 0, 1
-	%aux26 = icmp sge i32 %aux24, %aux25
-	br i1 %aux26, label %etiq12, label %etiq13
-	etiq12:
-	;___IfElse___
-	%aux27 = add i32 0, 1
-	%aux28 = add i32 0, 0
-	%aux29 = icmp sgt i32 %aux27, %aux28
-	br i1 %aux29, label %etiq9, label %etiq10
-	etiq9:
-	;___IfElse___
-	%aux30 = add i32 0, 1
-	%aux31 = load i32, i32* @_Pivot1
-	%aux32 = icmp sge i32 %aux30, %aux31
-	br i1 %aux32, label %etiq6, label %etiq7
-	etiq6:
-	;___IfElse___
-	%aux33 = add i32 0, 1
-	%aux34 = load i32, i32* @_Pivot1
-	%aux35 = sub i32 %aux33, %aux34
-	%aux36 = load i32, i32* @_IdPos1
-	%aux37 = icmp eq i32 %aux35, %aux36
-	br i1 %aux37, label %etiq3, label %etiq4
+	%aux17 = add i32 0, 2
+	%aux18 = load i32, i32* @_Pivot2
+	%aux19 = sub i32 %aux17, %aux18
+	%aux20 = load i32, i32* @_IdPos2
+	%aux21 = icmp eq i32 %aux19, %aux20
+	br i1 %aux21, label %etiq3, label %etiq4
 	etiq3:
 	;___Asignacion___
-	%aux38 = load i32, i32* @_Acum1
-	%aux39 = load i32, i32* @a
-	%aux40 = add i32 0, 1
-	%aux41 = add i32 %aux39, %aux40
-	%aux42 = add i32 %aux38, %aux41
-	store i32 %aux42, i32* @_Acum1
+	%aux22 = load i32, i32* @_Acum3
+	%aux23 = load i32, i32* @b
+	%aux24 = add i32 %aux22, %aux23
+	store i32 %aux24, i32* @_Acum3
 	;___Asignacion___
-	%aux43 = load i32, i32* @_IdPos1
-	%aux44 = add i32 0, 1
-	%aux45 = add i32 %aux43, %aux44
-	store i32 %aux45, i32* @_IdPos1
+	%aux25 = load i32, i32* @_IdPos2
+	%aux26 = add i32 0, 1
+	%aux27 = add i32 %aux25, %aux26
+	store i32 %aux27, i32* @_IdPos2
 	;___Asignacion___
-	%aux46 = load i32, i32* @_Pivot1
-	%aux47 = add i32 0, 1
-	%aux48 = sub i32 %aux46, %aux47
-	store i32 %aux48, i32* @_Pivot1
+	%aux28 = load i32, i32* @_Pivot2
+	%aux29 = add i32 0, 1
+	%aux30 = sub i32 %aux28, %aux29
+	store i32 %aux30, i32* @_Pivot2
 	br label %etiq5
 	etiq4:
 	;___Asignacion___
-	%aux49 = load i32, i32* @_IdPos1
-	%aux50 = add i32 0, 1
-	%aux51 = add i32 %aux49, %aux50
-	store i32 %aux51, i32* @_IdPos1
+	%aux31 = load i32, i32* @_IdPos2
+	%aux32 = add i32 0, 1
+	%aux33 = add i32 %aux31, %aux32
+	store i32 %aux33, i32* @_IdPos2
 	br label %etiq5
 	etiq5:
+	;___IfElse___
+	%aux34 = add i32 0, 2
+	%aux35 = load i32, i32* @_Pivot2
+	%aux36 = sub i32 %aux34, %aux35
+	%aux37 = load i32, i32* @_IdPos2
+	%aux38 = icmp eq i32 %aux36, %aux37
+	br i1 %aux38, label %etiq18, label %etiq19
+	etiq18:
+	;___Asignacion___
+	%aux39 = load i32, i32* @_Acum3
+	;___Asignacion___
+	%aux40 = add i32 0, 0
+	store i32 %aux40, i32* @_Acum1
+	;___Asignacion___
+	%aux41 = add i32 0, 0
+	store i32 %aux41, i32* @_IdPos1
+	;___Asignacion___
+	%aux42 = add i32 0, 1
+	store i32 %aux42, i32* @_Pivot1
+	;___IfElse___
+	%aux43 = load i32, i32* @_Pivot1
+	%aux44 = add i32 0, 1
+	%aux45 = icmp sge i32 %aux43, %aux44
+	br i1 %aux45, label %etiq15, label %etiq16
+	etiq15:
+	;___IfElse___
+	%aux46 = add i32 0, 1
+	%aux47 = add i32 0, 0
+	%aux48 = icmp sgt i32 %aux46, %aux47
+	br i1 %aux48, label %etiq12, label %etiq13
+	etiq12:
+	;___IfElse___
+	%aux49 = add i32 0, 1
+	%aux50 = load i32, i32* @_Pivot1
+	%aux51 = icmp sge i32 %aux49, %aux50
+	br i1 %aux51, label %etiq9, label %etiq10
+	etiq9:
+	;___IfElse___
+	%aux52 = add i32 0, 1
+	%aux53 = load i32, i32* @_Pivot1
+	%aux54 = sub i32 %aux52, %aux53
+	%aux55 = load i32, i32* @_IdPos1
+	%aux56 = icmp eq i32 %aux54, %aux55
+	br i1 %aux56, label %etiq6, label %etiq7
+	etiq6:
+	;___Asignacion___
+	%aux57 = load i32, i32* @_Acum1
+	%aux58 = load i32, i32* @a
+	%aux59 = add i32 0, 1
+	%aux60 = add i32 %aux58, %aux59
+	%aux61 = add i32 %aux57, %aux60
+	store i32 %aux61, i32* @_Acum1
+	;___Asignacion___
+	%aux62 = load i32, i32* @_IdPos1
+	%aux63 = add i32 0, 1
+	%aux64 = add i32 %aux62, %aux63
+	store i32 %aux64, i32* @_IdPos1
+	;___Asignacion___
+	%aux65 = load i32, i32* @_Pivot1
+	%aux66 = add i32 0, 1
+	%aux67 = sub i32 %aux65, %aux66
+	store i32 %aux67, i32* @_Pivot1
 	br label %etiq8
 	etiq7:
-	;___DisplayCadenaCaracteres___
-	%aux52 = call i32 @puts(i8* getelementptr ([49 x i8], [49 x i8] * @_Strmensaje3, i32 0, i32 0))
+	;___Asignacion___
+	%aux68 = load i32, i32* @_IdPos1
+	%aux69 = add i32 0, 1
+	%aux70 = add i32 %aux68, %aux69
+	store i32 %aux70, i32* @_IdPos1
 	br label %etiq8
 	etiq8:
 	br label %etiq11
 	etiq10:
 	;___DisplayCadenaCaracteres___
-	%aux53 = call i32 @puts(i8* getelementptr ([37 x i8], [37 x i8] * @_Strmensaje2, i32 0, i32 0))
+	%aux71 = call i32 @puts(i8* getelementptr ([49 x i8], [49 x i8] * @_Strmensaje3, i32 0, i32 0))
 	br label %etiq11
 	etiq11:
 	br label %etiq14
 	etiq13:
 	;___DisplayCadenaCaracteres___
-	%aux54 = call i32 @puts(i8* getelementptr ([24 x i8], [24 x i8] * @_Strmensaje1, i32 0, i32 0))
+	%aux72 = call i32 @puts(i8* getelementptr ([37 x i8], [37 x i8] * @_Strmensaje2, i32 0, i32 0))
 	br label %etiq14
 	etiq14:
-	;___Asignacion___
-	%aux55 = add i32 0, 0
-	store i32 %aux55, i32* @_IdPos1
-	;___Asignacion___
-	%aux56 = load i32, i32* @_Acum1
-	store i32 %aux56, i32* @_Acum2
-	%aux57 = add i32 %aux21, %aux56
-	store i32 %aux57, i32* @_Acum3
-	;___Asignacion___
-	%aux58 = load i32, i32* @_IdPos2
-	%aux59 = add i32 0, 1
-	%aux60 = add i32 %aux58, %aux59
-	store i32 %aux60, i32* @_IdPos2
-	;___Asignacion___
-	%aux61 = load i32, i32* @_Pivot2
-	%aux62 = add i32 0, 1
-	%aux63 = sub i32 %aux61, %aux62
-	store i32 %aux63, i32* @_Pivot2
 	br label %etiq17
 	etiq16:
-	;___Asignacion___
-	%aux64 = load i32, i32* @_IdPos2
-	%aux65 = add i32 0, 1
-	%aux66 = add i32 %aux64, %aux65
-	store i32 %aux66, i32* @_IdPos2
+	;___DisplayCadenaCaracteres___
+	%aux73 = call i32 @puts(i8* getelementptr ([24 x i8], [24 x i8] * @_Strmensaje1, i32 0, i32 0))
 	br label %etiq17
 	etiq17:
+	;___Asignacion___
+	%aux74 = load i32, i32* @_Acum1
+	store i32 %aux74, i32* @_Acum2
+	%aux75 = add i32 %aux39, %aux74
+	store i32 %aux75, i32* @_Acum3
+	;___Asignacion___
+	%aux76 = load i32, i32* @_IdPos2
+	%aux77 = add i32 0, 1
+	%aux78 = add i32 %aux76, %aux77
+	store i32 %aux78, i32* @_IdPos2
+	;___Asignacion___
+	%aux79 = load i32, i32* @_Pivot2
+	%aux80 = add i32 0, 1
+	%aux81 = sub i32 %aux79, %aux80
+	store i32 %aux81, i32* @_Pivot2
 	br label %etiq20
 	etiq19:
-	;___DisplayCadenaCaracteres___
-	%aux67 = call i32 @puts(i8* getelementptr ([49 x i8], [49 x i8] * @_Strmensaje3, i32 0, i32 0))
+	;___Asignacion___
+	%aux82 = load i32, i32* @_IdPos2
+	%aux83 = add i32 0, 1
+	%aux84 = add i32 %aux82, %aux83
+	store i32 %aux84, i32* @_IdPos2
 	br label %etiq20
 	etiq20:
 	br label %etiq23
 	etiq22:
 	;___DisplayCadenaCaracteres___
-	%aux68 = call i32 @puts(i8* getelementptr ([37 x i8], [37 x i8] * @_Strmensaje2, i32 0, i32 0))
+	%aux85 = call i32 @puts(i8* getelementptr ([49 x i8], [49 x i8] * @_Strmensaje3, i32 0, i32 0))
 	br label %etiq23
 	etiq23:
 	br label %etiq26
 	etiq25:
 	;___DisplayCadenaCaracteres___
-	%aux69 = call i32 @puts(i8* getelementptr ([24 x i8], [24 x i8] * @_Strmensaje1, i32 0, i32 0))
+	%aux86 = call i32 @puts(i8* getelementptr ([37 x i8], [37 x i8] * @_Strmensaje2, i32 0, i32 0))
 	br label %etiq26
 	etiq26:
-	;___Asignacion___
-	%aux70 = add i32 0, 0
-	store i32 %aux70, i32* @_IdPos2
-	;___Asignacion___
-	%aux71 = load i32, i32* @_Acum3
-	store i32 %aux71, i32* @_Acum4
-	store i32 %aux71, i32* @a
-	;___DisplayExpresion___
-	%aux72 = load i32, i32* @a
-	%aux73 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux72)
-	;___Asignacion___
-	%aux74 = load i32, i32* @edad
-	%aux75 = add i32 0, 1
-	%aux76 = sub i32 %aux74, %aux75
-	store i32 %aux76, i32* @edad
-	br label %etiq2
+	br label %etiq29
 	etiq28:
+	;___DisplayCadenaCaracteres___
+	%aux87 = call i32 @puts(i8* getelementptr ([24 x i8], [24 x i8] * @_Strmensaje1, i32 0, i32 0))
+	br label %etiq29
+	etiq29:
+	;___Asignacion___
+	%aux88 = load i32, i32* @_Acum3
+	store i32 %aux88, i32* @_Acum4
+	store i32 %aux88, i32* @a
+	;___DisplayExpresion___
+	%aux89 = load i32, i32* @a
+	%aux90 = call i32 (i8*, ...) @printf(i8* getelementptr ([4 x i8], [4 x i8]* @.integer, i32 0, i32 0), i32 %aux89)
+	;___Asignacion___
+	%aux91 = load i32, i32* @b
+	%aux92 = add i32 0, 1
+	%aux93 = sub i32 %aux91, %aux92
+	store i32 %aux93, i32* @b
+	br label %etiq2
+	etiq31:
 	
 	ret i32 0
 }
