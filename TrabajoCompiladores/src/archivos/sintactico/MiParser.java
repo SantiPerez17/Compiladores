@@ -1571,91 +1571,95 @@ class CUP$MiParser$actions {
             }
 
         //Ponemos en 0 los acum
-        Asignacion asig_acum_0 = new Asignacion("Asignacion", acum, new ConstanteEntera("0",Tipo.Int));
-        Asignacion asig_acum_aux_0 = new Asignacion("Asignacion", acumAux, new ConstanteEntera("0",Tipo.Int));
+        Asignacion asig_acum_0 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
+        Asignacion asig_acum_aux_0 = new Asignacion("Asignacion", new Identificador(acumAux.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
 
         //Reseteamos la variable PivotAux e IdPos de la cola
-        Asignacion asig_pivot_aux = new Asignacion("Asignacion", pivot, p);
-        Asignacion asig_pos_0 = new Asignacion("Asignacion", pos, new ConstanteEntera("0",Tipo.Int));
+        //Asignacion asig_pivot_aux = new Asignacion("Asignacion", new Identificador(pivot.getNombre(), Tipo.Int), p);
+        Asignacion asig_pos_0 = new Asignacion("Asignacion", new Identificador(pos.getNombre(), Tipo.Int), new ConstanteEntera("0",Tipo.Int,"ConstanteEntera"));
 
         //Generamos los mensajes de error
-        ConstanteString mensaje3 = new ConstanteString("La lista esta vacia", Tipo.CTE_STRING, "strmensaje3");
-        if(!tablaSimbolos2.containsKey("strmensaje3")){
-            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista esta vacia",String.valueOf(mensaje3.getValor().toString().length())));
-            tablaSimbolos2.put("strmensaje3",contenido);
-            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-            }
-            ConstanteString mensaje2 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "strmensaje2");
-            if(!tablaSimbolos2.containsKey("strmensaje2")){
-                ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje2.getValor().toString().length())));
-                tablaSimbolos2.put("strmensaje2",contenido);
-                simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                }
-                ConstanteString mensaje1 = new ConstanteString("El valor debe ser >=1", Tipo.CTE_STRING, "strmensaje1");
-                if(!tablaSimbolos2.containsKey("strmensaje1")){
-                    ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El valor debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
-                    tablaSimbolos2.put("strmensaje1",contenido);
-                    simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
-                    }
+        ConstanteString mensaje1 = new ConstanteString("El pivot debe ser >=1", Tipo.CTE_STRING, "_Strmensaje1");
+        if(!tablaSimbolos2.containsKey("_Strmensaje1")){
+            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","El pivot debe ser >=1",String.valueOf(mensaje1.getValor().toString().length())));
+            tablaSimbolos2.put("_Strmensaje1",contenido);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Strmensaje1", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+        }
+        ConstanteString mensaje2 = new ConstanteString("La lista de expresiones esta vacia", Tipo.CTE_STRING, "_Strmensaje2");
+        if(!tablaSimbolos2.containsKey("_Strmensaje2")){
+            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista de expresiones esta vacia",String.valueOf(mensaje2.getValor().toString().length())));
+            tablaSimbolos2.put("_Strmensaje2",contenido);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Strmensaje2", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+        }
+        ConstanteString mensaje3 = new ConstanteString("La lista tiene menos elementos que el indicado", Tipo.CTE_STRING, "_Strmensaje3");
+        if(!tablaSimbolos2.containsKey("_Strmensaje3")){
+            ArrayList<String> contenido = new ArrayList<>(Arrays.asList("STRING_LITERAL","CTE_STRING","La lista tiene menos elementos que el indicado",String.valueOf(mensaje3.getValor().toString().length())));
+            tablaSimbolos2.put("_Strmensaje3",contenido);
+            simbolos.append(String.format("%20s%20s%20s%20s%20s%n", "_Strmensaje3", contenido.get(0), contenido.get(1), contenido.get(2), contenido.get(3)));
+        }
 
         //Creamos la cola con lo que necesitamos para obtener su valor
-        //Luego llamamos a la funcion colasInternas() para apilar las colas, y la invertimos
         Cola cola = new Cola("Cola",Tipo.Int,le,p,sentencias,acum,acumAux);
 
         //Finalmente recorremos las expresiones de la cola original e instanciamos las clases necesarias para luego graficar y generar el codigo intermedio
-        for (Expresion e : le) {
-            checkTipoInt(e);
-            Expresion aux;
-            if (e.getNombre() == "Cola") {
-                Cola nueva = (Cola) e;
-                aux = new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int);
-            } else {
-                aux = e;
+        int longitud_lista;
+        if(le != null){
+            for (Expresion e : le) {
+                checkTipoInt(e);
+                Expresion aux;
+                if (e.getNombre() == "Cola") {
+                    Cola nueva = (Cola) e;
+                    aux = new Identificador(nueva.getAcumAux().getNombre(),Tipo.Int);
+                } else {
+                    aux = e;
+                }
+                Integer i = le.size();
+                String a = i.toString();
+                Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
+                Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), aux));
+                Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias1 = new ArrayList<>();
+                sentencias1.add(asig1);
+                sentencias1.add(asig2);
+                sentencias1.add(asig3);
+                Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
+                List<Sentencia> sentencias2 = new ArrayList<>();
+                sentencias2.add(asig4);
+                IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
+                sents.add(ie);
             }
-            Integer i = le.size();
-            String a = i.toString();
-            Igual ig = new Igual("==", Tipo.Bool, new Resta("-", Tipo.Int, new ConstanteEntera(a, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(), Tipo.Int)), new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int));
-            Asignacion asig1 = new Asignacion("Asignacion", new Identificador(acum.getNombre(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador(acum.getNombre(), Tipo.Int), aux));
-            Asignacion asig2 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-            Asignacion asig3 = new Asignacion("Asignacion", new Identificador("_Pivot" + CodeGeneratorHelper.getPivot(), Tipo.Int), new Resta("-", Tipo.Int, new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-            List<Sentencia> sentencias1 = new ArrayList<>();
-            sentencias1.add(asig1);
-            sentencias1.add(asig2);
-            sentencias1.add(asig3);
-            Asignacion asig4 = new Asignacion("Asignacion", new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new Suma("+", Tipo.Int, new Identificador("_IdPos"+CodeGeneratorHelper.getPos(), Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int")));
-            List<Sentencia> sentencias2 = new ArrayList<>();
-            sentencias2.add(asig4);
-            IfElse ie = new IfElse("IFELSE", ig, sentencias1, sentencias2);
-            sents.add(ie);
+            longitud_lista = le.size();
+        } else {
+            longitud_lista = 0;
         }
-        int longitud_lista = le.size();
         String long_lista = Integer.toString(longitud_lista);
-
-        //La lista está vacía.
-        Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
-        List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
-        sentencia_mensaje3.add(new DisplayCadenaCaracteres("strmensaje3", mensaje3));
-        IfElse tercerIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sents, sentencia_mensaje3);
-        sentTercerIf.add(tercerIf);
 
         //La lista tiene menos elementos que el indicado
         MayorOIgual lista_menos_elementos = new MayorOIgual(">=", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new Identificador("_Pivot"+ CodeGeneratorHelper.getPivot(),Tipo.Int));
+        List<Sentencia> sentencia_mensaje3 = new ArrayList<>();
+        sentencia_mensaje3.add(new DisplayCadenaCaracteres("_Strmensaje3", mensaje3));
+        IfElse tercerIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sents, sentencia_mensaje3);
+        sentTercerIf.add(tercerIf);
+
+        //La lista está vacía.
+        Mayor valorListaNoCero = new Mayor(">", Tipo.Bool, new ConstanteEntera(long_lista, Tipo.Int, "Factor_Int"), new ConstanteEntera("0", Tipo.Int, "Factor_Int"));
         List<Sentencia> sentencia_mensaje2 = new ArrayList<>();
-        sentencia_mensaje2.add(new DisplayCadenaCaracteres("strmensaje2", mensaje2));
-        IfElse segundoIf = new IfElse("IfCondicionLongLista>=valorPivot", lista_menos_elementos, sentTercerIf, sentencia_mensaje2);
+        sentencia_mensaje2.add(new DisplayCadenaCaracteres("_Strmensaje2", mensaje2));
+        IfElse segundoIf = new IfElse("IfCondicionlongList>0", valorListaNoCero, sentTercerIf, sentencia_mensaje2);
         sentSegundoIf.add(segundoIf);
 
-        //El valor debe ser >=1
+        //El pivot debe ser >= 1
         MayorOIgual valor_mayor_o_igual_a_1 = new MayorOIgual(">=", Tipo.Bool, new Identificador("_Pivot"+CodeGeneratorHelper.getPivot(),Tipo.Int), new ConstanteEntera("1", Tipo.Int, "Factor_Int"));
         List<Sentencia> sentencia_mensaje1 = new ArrayList<>();
-        sentencia_mensaje1.add(new DisplayCadenaCaracteres("strmensaje1", mensaje1));
+        sentencia_mensaje1.add(new DisplayCadenaCaracteres("_Strmensaje1", mensaje1));
         IfElse primerIf = new IfElse("IfCondicionPivot>=1", valor_mayor_o_igual_a_1, sentSegundoIf, sentencia_mensaje1);
 
         sents_cola.add(asig_acum_0);
         sents_cola.add(asig_acum_aux_0);
         sents_cola.add(asig_pivot);
         sents_cola.add(primerIf);
-        sents_cola.add(asig_pivot_aux);
+        //sents_cola.add(asig_pivot_aux);
         sents_cola.add(asig_pos_0);
         sents_cola.add(asig_acum);
 

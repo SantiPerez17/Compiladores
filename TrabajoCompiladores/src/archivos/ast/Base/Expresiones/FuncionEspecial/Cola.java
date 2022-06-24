@@ -74,8 +74,10 @@ public class Cola extends Expresion {
     public String graficar(String idPadre) {
         StringBuilder resultado = new StringBuilder();
         resultado.append(super.graficar(idPadre));
-        for (Expresion expresion: this.getExpresiones()){
-            resultado.append(expresion.graficar(this.getId()));
+        if(this.getExpresiones() != null){
+            for (Expresion expresion: this.getExpresiones()){
+                resultado.append(expresion.graficar(this.getId()));
+            }
         }
         for (Sentencia sentencia:this.getSentencias()){
             resultado.append(sentencia.graficar(this.getId()));
@@ -86,8 +88,10 @@ public class Cola extends Expresion {
     @Override
     public String generarCodigo() {
         StringBuilder resultado = new StringBuilder();
-        for (Expresion expresion: this.getExpresiones()){
-            resultado.append(expresion.generarCodigo());
+        if(this.getExpresiones() != null){
+            for (Expresion expresion: this.getExpresiones()){
+                resultado.append(expresion.generarCodigo());
+            }
         }
         for (Sentencia sentencia:this.getSentencias()){
             resultado.append(sentencia.generarCodigo());

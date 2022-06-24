@@ -6,12 +6,7 @@ enddeclare.section
 
 program.section
 
-a:=10
-
-while (a >0) do
-    display(cola(1;[a]))
-    a := a - 1
-end
+a := cola(1;[2])
 
 (*pivot:=1
 res:=-cola(pivot;[1])

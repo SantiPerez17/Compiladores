@@ -16,11 +16,11 @@ TABLA DE SIMBOLOS
                  aux                  ID                Bool                   _                   _
                 aux2                  ID                Bool                   _                   _
                   ña                  ID                Bool                   _                   _
-             _Pivot1                  ID                 Int                   _                   _
-              _Acum1                  ID                 Int                   _                   _
-              _Acum2                  ID                 Int                   _                   _
-             _IdPos1                  ID                 Int                   _                   _
-         strmensaje3      STRING_LITERAL          CTE_STRING La lista esta vacia                  19
-         strmensaje2      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
-         strmensaje1      STRING_LITERAL          CTE_STRINGEl valor debe ser >=1                  21
+             _Pivot2                  ID                 Int                   _                   _
+              _Acum3                  ID                 Int                   _                   _
+              _Acum4                  ID                 Int                   _                   _
+             _IdPos2                  ID                 Int                   _                   _
+        _Strmensaje1      STRING_LITERAL          CTE_STRINGEl pivot debe ser >=1                  21
+        _Strmensaje2      STRING_LITERAL          CTE_STRINGLa lista de expresiones esta vacia                  34
+        _Strmensaje3      STRING_LITERAL          CTE_STRINGLa lista tiene menos elementos que el indicado                  46
 
