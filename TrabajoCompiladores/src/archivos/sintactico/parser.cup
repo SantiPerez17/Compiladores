@@ -652,10 +652,15 @@ funcion_especial ::=
 pivot ::=
     IDENTIFIER:id {:
         concat_rules("REGLA 10: pivot --> IDENTIFIER " + "\n\t --> " + id);
-        if(tablaSimbolos2.containsKey(id)){
-                    if (Objects.equals(tablaSimbolos2.get(id).get(1), Tipo.Int.name())){RESULT = new Identificador(id,Tipo.Int);}
-                    else {throw new Exception("Tipo " + tablaSimbolos2.get(id).get(1) + " no soportado en funcion especial Cola.");}}
-                else{throw new Exception("Variable " + id  + " no declarada.");}
+        if(tablaSimbolos2.containsKey(id)) {
+            if (Objects.equals(tablaSimbolos2.get(id).get(1), Tipo.Int.name())) {
+                RESULT = new Identificador(id,Tipo.Int);
+            } else {
+                throw new Exception("Tipo " + tablaSimbolos2.get(id).get(1) + " no soportado en funcion especial Cola.");
+            }
+        } else {
+            throw new Exception("Variable " + id  + " no declarada.");
+        }
     :}
     |
     INT:i {:
@@ -663,9 +668,16 @@ pivot ::=
         RESULT = new ConstanteEntera(i,Tipo.Int,"_Pivot");
     :}
     |
-    INPUT_INT:ii PARENTESISO PARENTESISC {:
-            concat_rules("REGLA 10.2: pivot --> INPUT_INT() " + "\n\t --> " + ii + "()");
-            RESULT = new Input_Int("INPUT_INT", Tipo.Int);
+    FLOAT:f {:
+        checkTipoInt(new ConstanteFloat(f, Tipo.Float));
+    :}
+    |
+    BOOL:b {:
+        checkTipoInt(new ConstanteBool(b, Tipo.Bool));
+    :}
+    |
+    STRING_LITERAL:sl {:
+        checkTipoInt(new ConstanteString(sl, Tipo.CTE_STRING));
     :};
 
 lista_expresiones ::=
