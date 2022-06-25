@@ -661,6 +661,11 @@ pivot ::=
     INT:i {:
         concat_rules("REGLA 10.1: pivot --> INT " + "\n\t --> " + i);
         RESULT = new ConstanteEntera(i,Tipo.Int,"_Pivot");
+    :}
+    |
+    INPUT_INT:ii PARENTESISO PARENTESISC {:
+            concat_rules("REGLA 10.2: pivot --> INPUT_INT() " + "\n\t --> " + ii + "()");
+            RESULT = new Input_Int("INPUT_INT", Tipo.Int);
     :};
 
 lista_expresiones ::=
