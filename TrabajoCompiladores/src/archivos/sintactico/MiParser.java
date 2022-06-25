@@ -405,10 +405,12 @@ public class MiParser extends java_cup.runtime.lr_parser {
         concat_rules("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." );}}
 
     public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
-        if (s.sym == 40){
-            throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ "" );}
-        else{
-        throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido." ); }}
+            if (s.sym == 40){
+                throw  new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ "." );}
+                if (s.sym == 41 || s.sym == 38){
+                    throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ " no reconocido para Funcion Especial Cola.");}
+            else {
+            throw new Exception("Error en la linea "+ (s.left+1)+ " Columna "+ s.right+ ". Valor simbolo '"+s.value+"' . Simbolo n° "+s.sym+ "." ); }}
 
     public String reglas = "";
 
@@ -1539,6 +1541,7 @@ class CUP$MiParser$actions {
         List<Expresion> colas = new ArrayList<>();
 
         //Generamos el Pivot
+        checkTipoInt(p);
         Identificador pivot = new Identificador("_Pivot"+CodeGeneratorHelper.getNewPivot(), Tipo.Int);
         Asignacion asig_pivot = new Asignacion("Asignacion",pivot,p);
         if(!tablaSimbolos2.containsKey("_Pivot"+CodeGeneratorHelper.getPivot())){
