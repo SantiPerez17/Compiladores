@@ -135,7 +135,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             try {
                 Compilar(txp.getText());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane,"Error: " + ex.getMessage());
             }
         }
         else if (btn.getText().equals("Generar Parser")) {
@@ -164,7 +164,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             try {
                 Parsing(txp.getText());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane,"Error: " + ex.getMessage());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -172,7 +172,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             try {
                 Graficar(txp.getText());
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane,"Error: " + ex.getMessage());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -191,7 +191,7 @@ public class AbrirParteGráfica extends JFrame implements ActionListener {
             try {
                 GenerarLLVM();
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(rootPane,"Error en linea 106: " + ex.getMessage());
+                JOptionPane.showMessageDialog(rootPane,"Error: " + ex.getMessage());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
